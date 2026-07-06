@@ -1,0 +1,438 @@
+{
+  "units": [
+    {
+      "id": "a1_u1",
+      "title": "Salut ! — Begrüßung & Vorstellung",
+      "level": "A1",
+      "icon": "hand.wave.fill",
+      "lessons": [
+        {
+          "id": "a1_u1_l1",
+          "title": "Bonjour !",
+          "newVocab": ["v_bonjour", "v_salut", "v_bonsoir", "v_au_revoir", "v_merci", "v_oui", "v_non", "v_sil_vous_plait", "v_pardon"],
+          "exercises": [
+            {"type": "vocabIntro", "vocab": ["v_bonjour", "v_salut", "v_bonsoir", "v_au_revoir"]},
+            {"type": "matching", "vocab": ["v_bonjour", "v_au_revoir", "v_merci", "v_oui", "v_non"]},
+            {"type": "vocabIntro", "vocab": ["v_merci", "v_sil_vous_plait", "v_pardon"]},
+            {"type": "cloze", "text": "___, madame !", "answer": "Bonjour", "choices": ["Bonjour", "Au revoir", "Non"], "translation": "Guten Tag!", "vocab": ["v_bonjour"]},
+            {"type": "mcSentence", "question": "Du verlässt eine Bäckerei. Was sagst du?", "answer": "Au revoir !", "distractors": ["Bonjour !", "Oui !"], "translation": "Auf Wiedersehen!", "vocab": ["v_au_revoir"]},
+            {"type": "vocabProd", "vocab": ["v_oui", "v_non", "v_merci"]},
+            {"type": "mcSentence", "question": "Wie bedankst du dich auf Französisch?", "answer": "Merci !", "distractors": ["Pardon !", "Salut !"], "translation": "Danke!", "vocab": ["v_merci"]}
+          ]
+        },
+        {
+          "id": "a1_u1_l2",
+          "title": "Je m'appelle …",
+          "grammar": ["g_pronouns"],
+          "newVocab": ["v_je_mappelle", "v_tu_tappelles", "v_comment", "v_monsieur", "v_madame", "v_et", "v_moi", "v_toi", "v_enchante"],
+          "exercises": [
+            {"type": "vocabIntro", "vocab": ["v_je_mappelle", "v_comment", "v_et"]},
+            {"type": "cloze", "text": "Je ___ Marie.", "answer": "m'appelle", "choices": ["m'appelle", "t'appelles", "appelle"], "translation": "Ich heiße Marie.", "vocab": ["v_je_mappelle"]},
+            {"type": "vocabIntro", "vocab": ["v_monsieur", "v_madame", "v_enchante"]},
+            {"type": "matching", "vocab": ["v_moi", "v_toi", "v_et", "v_comment", "v_madame"]},
+            {"type": "cloze", "text": "___ tu t'appelles ?", "answer": "Comment", "choices": ["Comment", "Et", "Oui"], "translation": "Wie heißt du?", "vocab": ["v_comment"]},
+            {"type": "wordOrder", "fr": "Moi, je m'appelle Paul", "de": "Ich heiße Paul", "vocab": ["v_je_mappelle"]},
+            {"type": "mcSentence", "question": "Jemand sagt: «Je m'appelle Léo.» Was bedeutet das?", "answer": "Ich heiße Léo.", "distractors": ["Ich mag Léo.", "Wie geht es Léo?"], "vocab": ["v_je_mappelle"]},
+            {"type": "vocabProd", "vocab": ["v_et", "v_comment"]}
+          ]
+        },
+        {
+          "id": "a1_u1_l3",
+          "title": "être — sein",
+          "grammar": ["g_etre"],
+          "newVocab": ["v_etre", "v_allemand", "v_francais_adj", "v_fatigue", "v_content", "v_ici", "v_aussi", "v_ca_va"],
+          "exercises": [
+            {"type": "vocabIntro", "vocab": ["v_etre", "v_allemand", "v_fatigue"]},
+            {"type": "conjugation", "verb": "être", "person": 0, "translation": "ich bin"},
+            {"type": "conjugation", "verb": "être", "person": 1, "translation": "du bist"},
+            {"type": "cloze", "text": "Il ___ français.", "answer": "est", "choices": ["est", "es", "suis"], "translation": "Er ist Franzose.", "vocab": ["v_etre"]},
+            {"type": "conjugation", "verb": "être", "person": 3, "translation": "wir sind"},
+            {"type": "vocabIntro", "vocab": ["v_ici", "v_aussi", "v_ca_va"]},
+            {"type": "wordOrder", "fr": "Je suis fatigué aussi", "de": "Ich bin auch müde", "vocab": ["v_fatigue"]},
+            {"type": "cloze", "text": "Vous ___ fatigués ?", "answer": "êtes", "hint": "être — 2. Person Plural", "translation": "Seid ihr müde? / Sind Sie müde?", "vocab": ["v_etre"]},
+            {"type": "conjugation", "verb": "être", "person": 5, "translation": "sie sind"},
+            {"type": "matching", "vocab": ["v_etre", "v_allemand", "v_francais_adj", "v_content", "v_ca_va"]}
+          ]
+        },
+        {
+          "id": "a1_u1_l4",
+          "title": "avoir — haben",
+          "grammar": ["g_avoir"],
+          "newVocab": ["v_avoir", "v_le_chat", "v_le_chien", "v_un_an", "v_quel", "v_lage", "v_avoir_faim", "v_avoir_soif"],
+          "exercises": [
+            {"type": "vocabIntro", "vocab": ["v_avoir", "v_le_chat", "v_le_chien"]},
+            {"type": "conjugation", "verb": "avoir", "person": 0, "translation": "ich habe"},
+            {"type": "cloze", "text": "Tu ___ un chien ?", "answer": "as", "choices": ["as", "a", "ai"], "translation": "Hast du einen Hund?", "vocab": ["v_avoir"]},
+            {"type": "conjugation", "verb": "avoir", "person": 2, "translation": "er/sie hat"},
+            {"type": "vocabIntro", "vocab": ["v_lage", "v_un_an", "v_avoir_faim"]},
+            {"type": "mcSentence", "question": "Wie fragst du nach dem Alter?", "answer": "Quel âge as-tu ?", "distractors": ["Comment tu t'appelles ?", "Ça va ?"], "translation": "Wie alt bist du?", "vocab": ["v_quel"]},
+            {"type": "conjugation", "verb": "avoir", "person": 4, "translation": "ihr habt / Sie haben"},
+            {"type": "wordOrder", "fr": "J'ai un chat et un chien", "de": "Ich habe eine Katze und einen Hund", "vocab": ["v_avoir"]},
+            {"type": "cloze", "text": "Nous ___ faim.", "answer": "avons", "hint": "avoir — 1. Person Plural", "translation": "Wir haben Hunger.", "vocab": ["v_avoir_faim"]},
+            {"type": "matching", "vocab": ["v_avoir_faim", "v_avoir_soif", "v_le_chat", "v_le_chien", "v_lage"]}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "a1_u2",
+      "title": "La famille — Familie & Menschen",
+      "level": "A1",
+      "icon": "figure.2.and.child.holdinghands",
+      "lessons": [
+        {
+          "id": "a1_u2_l1",
+          "title": "Die Familie",
+          "grammar": ["g_articles_def"],
+          "newVocab": ["v_la_famille", "v_le_pere", "v_la_mere", "v_les_parents", "v_le_frere", "v_la_soeur", "v_le_fils", "v_la_fille", "v_lenfant"],
+          "exercises": [
+            {"type": "vocabIntro", "vocab": ["v_la_famille", "v_le_pere", "v_la_mere"]},
+            {"type": "matching", "vocab": ["v_le_pere", "v_la_mere", "v_le_frere", "v_la_soeur", "v_lenfant"]},
+            {"type": "vocabIntro", "vocab": ["v_le_frere", "v_la_soeur", "v_le_fils", "v_la_fille"]},
+            {"type": "cloze", "text": "___ mère est ici.", "answer": "La", "choices": ["La", "Le", "Les"], "translation": "Die Mutter ist hier.", "vocab": ["v_la_mere"]},
+            {"type": "cloze", "text": "___ enfant a faim.", "answer": "L'", "choices": ["L'", "La", "Le"], "translation": "Das Kind hat Hunger.", "hint": "Vor Vokal: l'", "vocab": ["v_lenfant"]},
+            {"type": "vocabProd", "vocab": ["v_le_pere", "v_la_mere", "v_la_famille"]},
+            {"type": "wordOrder", "fr": "La famille est contente", "de": "Die Familie ist zufrieden", "vocab": ["v_la_famille"]},
+            {"type": "vocabIntro", "vocab": ["v_les_parents"]}
+          ]
+        },
+        {
+          "id": "a1_u2_l2",
+          "title": "Ein Mann, eine Frau",
+          "grammar": ["g_articles_indef"],
+          "newVocab": ["v_un_homme", "v_une_femme", "v_un_ami", "v_une_amie", "v_un_garcon", "v_les_gens", "v_une_personne", "v_cest"],
+          "exercises": [
+            {"type": "vocabIntro", "vocab": ["v_un_homme", "v_une_femme", "v_un_garcon", "v_cest"]},
+            {"type": "matching", "vocab": ["v_un_homme", "v_une_femme", "v_un_ami", "v_les_gens", "v_une_personne"]},
+            {"type": "cloze", "text": "C'est ___ amie.", "answer": "une", "choices": ["une", "un", "des"], "translation": "Das ist eine Freundin.", "vocab": ["v_une_amie"]},
+            {"type": "vocabIntro", "vocab": ["v_un_ami", "v_une_amie", "v_les_gens"]},
+            {"type": "cloze", "text": "C'est ___ garçon.", "answer": "un", "choices": ["un", "une", "la"], "translation": "Das ist ein Junge.", "vocab": ["v_un_garcon"]},
+            {"type": "vocabProd", "vocab": ["v_un_homme", "v_une_femme"]},
+            {"type": "wordOrder", "fr": "Une femme et un homme", "de": "Eine Frau und ein Mann"}
+          ]
+        },
+        {
+          "id": "a1_u2_l3",
+          "title": "Mein & dein",
+          "grammar": ["g_possessive"],
+          "newVocab": ["v_mon", "v_ma", "v_mes", "v_ton", "v_ta", "v_tes", "v_son", "v_sa"],
+          "exercises": [
+            {"type": "vocabIntro", "vocab": ["v_mon", "v_ma", "v_mes"]},
+            {"type": "cloze", "text": "___ mère est fatiguée.", "answer": "Ma", "choices": ["Ma", "Mon", "Mes"], "translation": "Meine Mutter ist müde.", "vocab": ["v_ma"]},
+            {"type": "cloze", "text": "___ père est content.", "answer": "Mon", "choices": ["Mon", "Ma", "Mes"], "translation": "Mein Vater ist froh.", "vocab": ["v_mon"]},
+            {"type": "vocabIntro", "vocab": ["v_ton", "v_son"]},
+            {"type": "cloze", "text": "C'est ___ sœur ?", "answer": "ta", "choices": ["ta", "ton", "tes"], "translation": "Ist das deine Schwester?", "vocab": ["v_ta"]},
+            {"type": "matching", "vocab": ["v_mon", "v_ta", "v_mes", "v_son", "v_sa"]},
+            {"type": "cloze", "text": "C'est ___ famille.", "answer": "sa", "choices": ["sa", "son", "ses"], "translation": "Das ist seine/ihre Familie.", "vocab": ["v_sa"]},
+            {"type": "wordOrder", "fr": "Mon frère et ma sœur", "de": "Mein Bruder und meine Schwester"}
+          ]
+        },
+        {
+          "id": "a1_u2_l4",
+          "title": "Beschreiben",
+          "grammar": ["g_adjectives"],
+          "newVocab": ["v_grand", "v_petit", "v_jeune", "v_vieux", "v_beau", "v_gentil", "v_sympa", "v_tres"],
+          "exercises": [
+            {"type": "vocabIntro", "vocab": ["v_grand", "v_petit", "v_jeune", "v_tres"]},
+            {"type": "matching", "vocab": ["v_grand", "v_petit", "v_vieux", "v_beau", "v_gentil"]},
+            {"type": "cloze", "text": "Ma sœur est ___.", "answer": "grande", "choices": ["grande", "grand", "grands"], "translation": "Meine Schwester ist groß.", "hint": "Feminin: +e", "vocab": ["v_grand"]},
+            {"type": "vocabIntro", "vocab": ["v_vieux", "v_beau", "v_gentil", "v_sympa"]},
+            {"type": "cloze", "text": "Mon frère est très ___.", "answer": "gentil", "choices": ["gentil", "gentille", "gentils"], "translation": "Mein Bruder ist sehr nett.", "vocab": ["v_gentil"]},
+            {"type": "cloze", "text": "Elle est ___.", "answer": "petite", "hint": "petit — an «elle» anpassen", "translation": "Sie ist klein.", "vocab": ["v_petit"]},
+            {"type": "wordOrder", "fr": "Ma mère est très sympa", "de": "Meine Mutter ist sehr sympathisch", "vocab": ["v_sympa"]},
+            {"type": "vocabProd", "vocab": ["v_grand", "v_jeune"]}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "a1_u3",
+      "title": "Les nombres & le temps — Zahlen & Zeit",
+      "level": "A1",
+      "icon": "number",
+      "lessons": [
+        {
+          "id": "a1_u3_l1",
+          "title": "Zahlen 0–12",
+          "newVocab": ["v_zero", "v_un_num", "v_deux", "v_trois", "v_quatre", "v_cinq", "v_six", "v_sept", "v_huit", "v_neuf", "v_dix", "v_onze", "v_douze"],
+          "exercises": [
+            {"type": "vocabIntro", "vocab": ["v_zero", "v_un_num", "v_deux", "v_trois"]},
+            {"type": "matching", "vocab": ["v_quatre", "v_cinq", "v_six", "v_sept"]},
+            {"type": "matching", "vocab": ["v_huit", "v_neuf", "v_dix", "v_onze", "v_douze"]},
+            {"type": "mcSentence", "question": "Was ist «deux + trois»?", "answer": "cinq", "distractors": ["six", "quatre", "sept"], "vocab": ["v_cinq"]},
+            {"type": "vocabProd", "vocab": ["v_dix", "v_douze"]},
+            {"type": "mcSentence", "question": "«12» auf Französisch:", "answer": "douze", "distractors": ["deux", "dix", "onze"], "vocab": ["v_douze"]},
+            {"type": "mcSentence", "question": "Was ist «dix − trois»?", "answer": "sept", "distractors": ["six", "huit", "trois"], "vocab": ["v_sept"]}
+          ]
+        },
+        {
+          "id": "a1_u3_l2",
+          "title": "Zahlen 13–69",
+          "newVocab": ["v_treize", "v_quatorze", "v_quinze", "v_seize", "v_dix_sept", "v_dix_huit", "v_dix_neuf", "v_vingt", "v_trente", "v_quarante", "v_cinquante", "v_soixante", "v_combien"],
+          "exercises": [
+            {"type": "vocabIntro", "vocab": ["v_treize", "v_quinze", "v_vingt"]},
+            {"type": "matching", "vocab": ["v_treize", "v_quatorze", "v_quinze", "v_seize"]},
+            {"type": "matching", "vocab": ["v_vingt", "v_trente", "v_quarante", "v_cinquante", "v_soixante"]},
+            {"type": "mcSentence", "question": "«vingt-cinq» ist …", "answer": "25", "distractors": ["35", "15", "52"]},
+            {"type": "mcSentence", "question": "Wie sagst du «31»?", "answer": "trente et un", "distractors": ["trente-un", "vingt et onze", "trois-un"], "translation": "Bei 21/31/41/51/61: … et un"},
+            {"type": "vocabIntro", "vocab": ["v_combien"]},
+            {"type": "mcSentence", "question": "Du willst den Preis wissen. Was fragst du?", "answer": "C'est combien ?", "distractors": ["C'est comment ?", "C'est quand ?"], "translation": "Wie viel kostet das?", "vocab": ["v_combien"]},
+            {"type": "mcSentence", "question": "«quarante-quatre» ist …", "answer": "44", "distractors": ["40", "54", "14"]}
+          ]
+        },
+        {
+          "id": "a1_u3_l3",
+          "title": "Zahlen 70–100",
+          "grammar": ["g_numbers70"],
+          "newVocab": ["v_soixante_dix", "v_soixante_quinze", "v_quatre_vingts", "v_quatre_vingt_dix", "v_cent", "v_mille"],
+          "exercises": [
+            {"type": "vocabIntro", "vocab": ["v_soixante_dix", "v_quatre_vingts", "v_quatre_vingt_dix"]},
+            {"type": "matching", "vocab": ["v_soixante_dix", "v_quatre_vingts", "v_quatre_vingt_dix", "v_cent", "v_mille"]},
+            {"type": "mcSentence", "question": "«71» heißt …", "answer": "soixante et onze", "distractors": ["soixante-dix-un", "septante et un", "soixante-onze"], "translation": "70 + 11 — mit «et»"},
+            {"type": "mcSentence", "question": "«95» heißt …", "answer": "quatre-vingt-quinze", "distractors": ["quatre-vingts-quinze", "neuf-cinq", "quatre-vingt-cinq"]},
+            {"type": "mcSentence", "question": "«80» heißt …", "answer": "quatre-vingts", "distractors": ["huitante", "quatre-vingt", "octante"], "translation": "4 × 20 — mit -s, wenn keine Zahl folgt", "vocab": ["v_quatre_vingts"]},
+            {"type": "vocabProd", "vocab": ["v_cent", "v_mille"]}
+          ]
+        },
+        {
+          "id": "a1_u3_l4",
+          "title": "Tage & Zeit",
+          "newVocab": ["v_le_jour", "v_la_semaine", "v_aujourdhui", "v_demain", "v_le_matin", "v_le_soir", "v_lheure", "v_lundi", "v_mardi", "v_mercredi", "v_jeudi", "v_vendredi", "v_samedi", "v_dimanche"],
+          "exercises": [
+            {"type": "vocabIntro", "vocab": ["v_aujourdhui", "v_demain", "v_le_jour"]},
+            {"type": "matching", "vocab": ["v_lundi", "v_mardi", "v_mercredi", "v_jeudi"]},
+            {"type": "matching", "vocab": ["v_vendredi", "v_samedi", "v_dimanche", "v_la_semaine"]},
+            {"type": "vocabIntro", "vocab": ["v_le_matin", "v_le_soir", "v_lheure"]},
+            {"type": "mcSentence", "question": "Welcher Tag kommt nach mardi?", "answer": "mercredi", "distractors": ["lundi", "jeudi", "dimanche"], "vocab": ["v_mercredi"]},
+            {"type": "cloze", "text": "Il est deux ___.", "answer": "heures", "choices": ["heures", "jours", "ans"], "translation": "Es ist zwei Uhr.", "vocab": ["v_lheure"]},
+            {"type": "wordOrder", "fr": "Aujourd'hui, je suis fatigué", "de": "Heute bin ich müde", "vocab": ["v_aujourdhui"]},
+            {"type": "vocabProd", "vocab": ["v_demain", "v_le_soir"]}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "a1_u4",
+      "title": "Bon appétit ! — Essen & Trinken",
+      "level": "A1",
+      "icon": "cup.and.saucer.fill",
+      "lessons": [
+        {
+          "id": "a1_u4_l1",
+          "title": "Café & Croissant",
+          "newVocab": ["v_le_pain", "v_le_cafe", "v_le_the", "v_leau", "v_le_lait", "v_le_sucre", "v_un_croissant", "v_le_fromage", "v_le_vin"],
+          "exercises": [
+            {"type": "vocabIntro", "vocab": ["v_le_pain", "v_le_cafe", "v_leau"]},
+            {"type": "matching", "vocab": ["v_le_pain", "v_le_the", "v_le_lait", "v_le_sucre", "v_le_fromage"]},
+            {"type": "vocabIntro", "vocab": ["v_un_croissant", "v_le_fromage", "v_le_vin"]},
+            {"type": "mcSentence", "question": "Welcher Artikel? — «___ lait»", "answer": "le", "distractors": ["la", "les"], "translation": "die Milch — im Französischen maskulin", "vocab": ["v_le_lait"]},
+            {"type": "mcSentence", "question": "Welcher Artikel? — «___ eau»", "answer": "l'", "distractors": ["le", "la"], "translation": "Vor Vokal: l'eau (feminin)", "vocab": ["v_leau"]},
+            {"type": "vocabProd", "vocab": ["v_le_pain", "v_le_cafe", "v_leau"]},
+            {"type": "wordOrder", "fr": "Un café et un croissant, s'il vous plaît", "de": "Einen Kaffee und ein Croissant, bitte", "vocab": ["v_le_cafe"]}
+          ]
+        },
+        {
+          "id": "a1_u4_l2",
+          "title": "Verben auf -er",
+          "grammar": ["g_er_verbs"],
+          "newVocab": ["v_parler", "v_aimer", "v_habiter", "v_travailler", "v_manger", "v_ecouter", "v_regarder", "v_la_musique"],
+          "exercises": [
+            {"type": "vocabIntro", "vocab": ["v_parler", "v_aimer", "v_habiter"]},
+            {"type": "conjugation", "verb": "parler", "person": 0, "translation": "ich spreche"},
+            {"type": "conjugation", "verb": "parler", "person": 1, "translation": "du sprichst"},
+            {"type": "conjugation", "verb": "aimer", "person": 2, "translation": "er/sie mag"},
+            {"type": "vocabIntro", "vocab": ["v_manger", "v_ecouter", "v_regarder", "v_la_musique"]},
+            {"type": "conjugation", "verb": "manger", "person": 3, "translation": "wir essen", "hint": "-ger: e nicht vergessen!"},
+            {"type": "cloze", "text": "Vous ___ français ?", "answer": "parlez", "choices": ["parlez", "parles", "parlons"], "translation": "Sprechen Sie Französisch?", "vocab": ["v_parler"]},
+            {"type": "conjugation", "verb": "travailler", "person": 5, "translation": "sie arbeiten"},
+            {"type": "wordOrder", "fr": "J'aime le pain et le fromage", "de": "Ich mag Brot und Käse", "vocab": ["v_aimer"]},
+            {"type": "matching", "vocab": ["v_parler", "v_manger", "v_travailler", "v_ecouter", "v_regarder"]}
+          ]
+        },
+        {
+          "id": "a1_u4_l3",
+          "title": "du, de la — der Teilungsartikel",
+          "grammar": ["g_partitive"],
+          "newVocab": ["v_la_viande", "v_le_poisson", "v_les_legumes", "v_les_fruits", "v_la_salade", "v_le_riz"],
+          "exercises": [
+            {"type": "vocabIntro", "vocab": ["v_la_viande", "v_le_poisson", "v_la_salade"]},
+            {"type": "cloze", "text": "Je mange ___ pain.", "answer": "du", "choices": ["du", "de la", "des"], "translation": "Ich esse Brot.", "hint": "le pain → du pain", "vocab": ["v_le_pain"]},
+            {"type": "cloze", "text": "Tu manges ___ viande ?", "answer": "de la", "choices": ["de la", "du", "des"], "translation": "Isst du Fleisch?", "vocab": ["v_la_viande"]},
+            {"type": "cloze", "text": "Nous mangeons ___ légumes.", "answer": "des", "choices": ["des", "du", "de la"], "translation": "Wir essen Gemüse.", "vocab": ["v_les_legumes"]},
+            {"type": "vocabIntro", "vocab": ["v_les_legumes", "v_les_fruits", "v_le_riz"]},
+            {"type": "cloze", "text": "Il mange ___ riz.", "answer": "du", "choices": ["du", "de la", "de l'"], "translation": "Er isst Reis.", "vocab": ["v_le_riz"]},
+            {"type": "matching", "vocab": ["v_la_viande", "v_le_poisson", "v_les_legumes", "v_les_fruits", "v_le_riz"]},
+            {"type": "mcSentence", "question": "„Ich esse Salat\" heißt …", "answer": "Je mange de la salade.", "distractors": ["Je mange la salade.", "Je mange du salade."], "translation": "Unbestimmte Menge → Teilungsartikel", "vocab": ["v_la_salade"]}
+          ]
+        },
+        {
+          "id": "a1_u4_l4",
+          "title": "Au restaurant",
+          "newVocab": ["v_je_voudrais", "v_commander", "v_la_carte", "v_laddition", "v_prendre", "v_boire", "v_le_menu", "v_une_table", "v_le_serveur"],
+          "exercises": [
+            {"type": "vocabIntro", "vocab": ["v_je_voudrais", "v_la_carte", "v_laddition"]},
+            {"type": "mcSentence", "question": "Du möchtest zahlen. Was sagst du?", "answer": "L'addition, s'il vous plaît.", "distractors": ["La carte, s'il vous plaît.", "Bonjour, madame."], "translation": "Die Rechnung, bitte.", "vocab": ["v_laddition"]},
+            {"type": "vocabIntro", "vocab": ["v_prendre", "v_boire", "v_commander"]},
+            {"type": "conjugation", "verb": "prendre", "person": 0, "translation": "ich nehme"},
+            {"type": "conjugation", "verb": "boire", "person": 2, "translation": "er/sie trinkt"},
+            {"type": "cloze", "text": "Je ___ un croissant.", "answer": "voudrais", "choices": ["voudrais", "voudras", "voulez"], "translation": "Ich hätte gern ein Croissant.", "vocab": ["v_je_voudrais"]},
+            {"type": "conjugation", "verb": "prendre", "person": 5, "translation": "sie nehmen"},
+            {"type": "wordOrder", "fr": "Je voudrais un thé, s'il vous plaît", "de": "Ich hätte gern einen Tee, bitte", "vocab": ["v_je_voudrais"]},
+            {"type": "matching", "vocab": ["v_la_carte", "v_laddition", "v_le_menu", "v_une_table", "v_le_serveur"]}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "a1_u5",
+      "title": "Au quotidien — Alltag",
+      "level": "A1",
+      "icon": "sun.max.fill",
+      "lessons": [
+        {
+          "id": "a1_u5_l1",
+          "title": "ne … pas — Verneinung",
+          "grammar": ["g_negation"],
+          "newVocab": ["v_ne_pas", "v_jamais", "v_faire", "v_le_sport", "v_fumer", "v_danser", "v_chanter"],
+          "exercises": [
+            {"type": "vocabIntro", "vocab": ["v_ne_pas", "v_faire", "v_le_sport"]},
+            {"type": "cloze", "text": "Je ne parle ___ anglais.", "answer": "pas", "choices": ["pas", "non", "jamais"], "translation": "Ich spreche kein Englisch.", "vocab": ["v_ne_pas"]},
+            {"type": "cloze", "text": "Il ___ fume pas.", "answer": "ne", "choices": ["ne", "pas", "non"], "translation": "Er raucht nicht.", "vocab": ["v_fumer"]},
+            {"type": "wordOrder", "fr": "Je ne danse pas", "de": "Ich tanze nicht", "vocab": ["v_danser"]},
+            {"type": "vocabIntro", "vocab": ["v_fumer", "v_danser", "v_chanter"]},
+            {"type": "conjugation", "verb": "faire", "person": 2, "translation": "er/sie macht"},
+            {"type": "cloze", "text": "Nous ne travaillons ___ le dimanche.", "answer": "pas", "hint": "Verneinung: ne … pas", "translation": "Sonntags arbeiten wir nicht.", "vocab": ["v_ne_pas"]},
+            {"type": "wordOrder", "fr": "Il ne chante jamais", "de": "Er singt nie", "vocab": ["v_jamais"]},
+            {"type": "conjugation", "verb": "faire", "person": 4, "translation": "ihr macht / Sie machen"}
+          ]
+        },
+        {
+          "id": "a1_u5_l2",
+          "title": "Fragen stellen",
+          "grammar": ["g_questions"],
+          "newVocab": ["v_est_ce_que", "v_quest_ce_que", "v_ou_question", "v_quand", "v_pourquoi", "v_qui", "v_parce_que", "v_la_question"],
+          "exercises": [
+            {"type": "vocabIntro", "vocab": ["v_ou_question", "v_quand", "v_pourquoi", "v_qui"]},
+            {"type": "matching", "vocab": ["v_ou_question", "v_quand", "v_pourquoi", "v_qui", "v_parce_que"]},
+            {"type": "cloze", "text": "___ tu habites ?", "answer": "Où", "choices": ["Où", "Quand", "Qui"], "translation": "Wo wohnst du?", "vocab": ["v_ou_question"]},
+            {"type": "vocabIntro", "vocab": ["v_est_ce_que", "v_quest_ce_que", "v_parce_que"]},
+            {"type": "mcSentence", "question": "„Was isst du?\" heißt …", "answer": "Qu'est-ce que tu manges ?", "distractors": ["Est-ce que tu manges ?", "Qui mange ?"], "vocab": ["v_quest_ce_que"]},
+            {"type": "cloze", "text": "___ tu ne manges pas ? — Parce que je n'ai pas faim.", "answer": "Pourquoi", "choices": ["Pourquoi", "Où", "Quand"], "translation": "Warum isst du nicht? — Weil ich keinen Hunger habe.", "vocab": ["v_pourquoi"]},
+            {"type": "wordOrder", "fr": "Où est mon café", "de": "Wo ist mein Kaffee", "vocab": ["v_ou_question"]},
+            {"type": "vocabProd", "vocab": ["v_quand", "v_pourquoi"]}
+          ]
+        },
+        {
+          "id": "a1_u5_l3",
+          "title": "aller — gehen",
+          "grammar": ["g_aller_au"],
+          "newVocab": ["v_aller", "v_la_maison", "v_lecole", "v_le_cinema", "v_le_travail", "v_la_boulangerie", "v_le_parc", "v_le_supermarche"],
+          "exercises": [
+            {"type": "vocabIntro", "vocab": ["v_aller", "v_la_maison", "v_lecole"]},
+            {"type": "conjugation", "verb": "aller", "person": 0, "translation": "ich gehe"},
+            {"type": "conjugation", "verb": "aller", "person": 1, "translation": "du gehst"},
+            {"type": "cloze", "text": "Je vais ___ cinéma.", "answer": "au", "choices": ["au", "à la", "à le"], "translation": "Ich gehe ins Kino.", "hint": "à + le = au", "vocab": ["v_le_cinema"]},
+            {"type": "cloze", "text": "Elle va ___ boulangerie.", "answer": "à la", "choices": ["à la", "au", "à l'"], "translation": "Sie geht zur Bäckerei.", "vocab": ["v_la_boulangerie"]},
+            {"type": "vocabIntro", "vocab": ["v_le_cinema", "v_la_boulangerie", "v_le_parc", "v_le_supermarche"]},
+            {"type": "cloze", "text": "Tu vas ___ école ?", "answer": "à l'", "choices": ["à l'", "à la", "au"], "translation": "Gehst du zur Schule?", "vocab": ["v_lecole"]},
+            {"type": "conjugation", "verb": "aller", "person": 3, "translation": "wir gehen"},
+            {"type": "wordOrder", "fr": "Nous allons au parc demain", "de": "Wir gehen morgen in den Park", "vocab": ["v_le_parc"]},
+            {"type": "matching", "vocab": ["v_la_maison", "v_lecole", "v_le_cinema", "v_le_parc", "v_le_supermarche"]}
+          ]
+        },
+        {
+          "id": "a1_u5_l4",
+          "title": "Futur proche — die nahe Zukunft",
+          "grammar": ["g_futur_proche"],
+          "newVocab": ["v_ce_soir", "v_ce_weekend", "v_la_semaine_prochaine", "v_voyager", "v_visiter", "v_rester", "v_acheter"],
+          "exercises": [
+            {"type": "vocabIntro", "vocab": ["v_ce_soir", "v_voyager", "v_rester"]},
+            {"type": "conjugation", "verb": "voyager", "person": 0, "tense": "futurProche", "translation": "ich werde reisen"},
+            {"type": "cloze", "text": "Je ___ manger avec Paul ce soir.", "answer": "vais", "choices": ["vais", "va", "vas"], "translation": "Ich werde heute Abend mit Paul essen.", "vocab": ["v_ce_soir"]},
+            {"type": "vocabIntro", "vocab": ["v_visiter", "v_acheter", "v_ce_weekend", "v_la_semaine_prochaine"]},
+            {"type": "conjugation", "verb": "acheter", "person": 0, "translation": "ich kaufe", "hint": "Stammwechsel: è"},
+            {"type": "conjugation", "verb": "visiter", "person": 3, "tense": "futurProche", "translation": "wir werden besichtigen"},
+            {"type": "wordOrder", "fr": "Nous allons rester à la maison", "de": "Wir werden zu Hause bleiben", "vocab": ["v_rester"]},
+            {"type": "cloze", "text": "Ils ___ acheter du pain demain.", "answer": "vont", "choices": ["vont", "allez", "va"], "translation": "Sie werden morgen Brot kaufen.", "vocab": ["v_acheter"]},
+            {"type": "mcSentence", "question": "«Tu vas travailler ce week-end.» bedeutet …", "answer": "Du wirst dieses Wochenende arbeiten.", "distractors": ["Du arbeitest gerade.", "Du hast gearbeitet."], "vocab": ["v_ce_weekend"]}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "a1_u6",
+      "title": "En ville — Stadt & erste Vergangenheit",
+      "level": "A1",
+      "icon": "building.2.fill",
+      "lessons": [
+        {
+          "id": "a1_u6_l1",
+          "title": "In der Stadt",
+          "grammar": ["g_il_y_a"],
+          "newVocab": ["v_il_y_a", "v_la_ville", "v_la_rue", "v_la_gare", "v_le_train", "v_le_metro", "v_lhotel", "v_venir", "v_dans"],
+          "exercises": [
+            {"type": "vocabIntro", "vocab": ["v_il_y_a", "v_la_ville", "v_la_gare"]},
+            {"type": "cloze", "text": "___ un hôtel ici ?", "answer": "Il y a", "choices": ["Il y a", "C'est", "Il est"], "translation": "Gibt es hier ein Hotel?", "vocab": ["v_il_y_a"]},
+            {"type": "vocabIntro", "vocab": ["v_le_train", "v_le_metro", "v_lhotel", "v_venir"]},
+            {"type": "matching", "vocab": ["v_la_ville", "v_la_rue", "v_la_gare", "v_le_train", "v_le_metro"]},
+            {"type": "conjugation", "verb": "venir", "person": 0, "translation": "ich komme"},
+            {"type": "conjugation", "verb": "venir", "person": 5, "translation": "sie kommen"},
+            {"type": "cloze", "text": "Il y a ___ trains à la gare.", "answer": "des", "choices": ["des", "du", "de la"], "translation": "Am Bahnhof gibt es Züge.", "vocab": ["v_le_train"]},
+            {"type": "wordOrder", "fr": "Il y a un parc dans ma ville", "de": "In meiner Stadt gibt es einen Park", "vocab": ["v_il_y_a"]}
+          ]
+        },
+        {
+          "id": "a1_u6_l2",
+          "title": "pouvoir, vouloir, devoir",
+          "grammar": ["g_modal_verbs"],
+          "newVocab": ["v_pouvoir", "v_vouloir", "v_devoir", "v_aider", "v_chercher", "v_trouver"],
+          "exercises": [
+            {"type": "vocabIntro", "vocab": ["v_pouvoir", "v_vouloir", "v_devoir"]},
+            {"type": "conjugation", "verb": "pouvoir", "person": 0, "translation": "ich kann"},
+            {"type": "conjugation", "verb": "vouloir", "person": 2, "translation": "er/sie will"},
+            {"type": "cloze", "text": "Tu ___ m'aider ?", "answer": "peux", "choices": ["peux", "veux", "dois"], "translation": "Kannst du mir helfen?", "vocab": ["v_pouvoir"]},
+            {"type": "conjugation", "verb": "devoir", "person": 3, "translation": "wir müssen"},
+            {"type": "vocabIntro", "vocab": ["v_aider", "v_chercher", "v_trouver"]},
+            {"type": "cloze", "text": "Je ___ travailler demain.", "answer": "dois", "choices": ["dois", "peux", "veux"], "translation": "Ich muss morgen arbeiten.", "vocab": ["v_devoir"]},
+            {"type": "wordOrder", "fr": "Nous voulons visiter Paris", "de": "Wir wollen Paris besichtigen", "vocab": ["v_vouloir"]},
+            {"type": "cloze", "text": "Ils ne ___ pas venir ce soir.", "answer": "peuvent", "choices": ["peuvent", "pouvez", "peut"], "translation": "Sie können heute Abend nicht kommen.", "vocab": ["v_pouvoir"]}
+          ]
+        },
+        {
+          "id": "a1_u6_l3",
+          "title": "finir & choisir — Verben auf -ir",
+          "grammar": ["g_ir_verbs"],
+          "newVocab": ["v_finir", "v_choisir", "v_reflechir", "v_reussir", "v_grandir", "v_lexamen", "v_le_projet"],
+          "exercises": [
+            {"type": "vocabIntro", "vocab": ["v_finir", "v_choisir", "v_lexamen"]},
+            {"type": "conjugation", "verb": "finir", "person": 0, "translation": "ich beende"},
+            {"type": "conjugation", "verb": "finir", "person": 3, "translation": "wir beenden", "hint": "Plural: -iss-"},
+            {"type": "cloze", "text": "Vous ___ le travail ce soir ?", "answer": "finissez", "choices": ["finissez", "finissent", "finis"], "translation": "Beendet ihr die Arbeit heute Abend?", "vocab": ["v_finir"]},
+            {"type": "vocabIntro", "vocab": ["v_reflechir", "v_reussir", "v_grandir", "v_le_projet"]},
+            {"type": "conjugation", "verb": "choisir", "person": 5, "translation": "sie wählen"},
+            {"type": "cloze", "text": "Je ___ le menu.", "answer": "choisis", "choices": ["choisis", "choisit", "choisissons"], "translation": "Ich wähle das Menü.", "vocab": ["v_choisir"]},
+            {"type": "wordOrder", "fr": "Nous finissons le projet demain", "de": "Wir beenden das Projekt morgen", "vocab": ["v_finir"]},
+            {"type": "conjugation", "verb": "réussir", "person": 2, "translation": "er/sie besteht"}
+          ]
+        },
+        {
+          "id": "a1_u6_l4",
+          "title": "Gestern — das Passé composé",
+          "grammar": ["g_passe_compose"],
+          "newVocab": ["v_hier", "v_deja", "v_le_weekend", "v_la_fete", "v_rencontrer", "v_gagner"],
+          "exercises": [
+            {"type": "vocabIntro", "vocab": ["v_hier", "v_deja", "v_la_fete"]},
+            {"type": "conjugation", "verb": "manger", "person": 0, "tense": "passeCompose", "translation": "ich habe gegessen"},
+            {"type": "cloze", "text": "Tu ___ travaillé hier ?", "answer": "as", "choices": ["as", "a", "es"], "translation": "Hast du gestern gearbeitet?", "vocab": ["v_hier"]},
+            {"type": "conjugation", "verb": "parler", "person": 2, "tense": "passeCompose", "translation": "er/sie hat gesprochen"},
+            {"type": "vocabIntro", "vocab": ["v_rencontrer", "v_gagner", "v_le_weekend"]},
+            {"type": "cloze", "text": "Nous avons ___ un café.", "answer": "trouvé", "choices": ["trouvé", "trouver", "trouvons"], "translation": "Wir haben ein Café gefunden.", "hint": "Participe passé: -er → -é", "vocab": ["v_trouver"]},
+            {"type": "conjugation", "verb": "finir", "person": 4, "tense": "passeCompose", "translation": "ihr habt beendet"},
+            {"type": "wordOrder", "fr": "J'ai rencontré Marie à la fête", "de": "Ich habe Marie auf dem Fest getroffen", "vocab": ["v_rencontrer"]},
+            {"type": "mcSentence", "question": "«Elle a gagné !» bedeutet …", "answer": "Sie hat gewonnen!", "distractors": ["Sie gewinnt gerade!", "Sie wird gewinnen!"], "vocab": ["v_gagner"]}
+          ]
+        }
+      ]
+    }
+  ]
+}

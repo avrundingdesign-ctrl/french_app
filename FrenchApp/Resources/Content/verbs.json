@@ -1,0 +1,41 @@
+{
+  "verbs": [
+    {"infinitive": "parler", "de": "sprechen", "group": 1},
+    {"infinitive": "aimer", "de": "mögen, lieben", "group": 1},
+    {"infinitive": "habiter", "de": "wohnen", "group": 1},
+    {"infinitive": "travailler", "de": "arbeiten", "group": 1},
+    {"infinitive": "manger", "de": "essen", "group": 1},
+    {"infinitive": "écouter", "de": "(zu)hören", "group": 1},
+    {"infinitive": "regarder", "de": "anschauen", "group": 1},
+    {"infinitive": "commander", "de": "bestellen", "group": 1},
+    {"infinitive": "fumer", "de": "rauchen", "group": 1},
+    {"infinitive": "danser", "de": "tanzen", "group": 1},
+    {"infinitive": "chanter", "de": "singen", "group": 1},
+    {"infinitive": "voyager", "de": "reisen", "group": 1},
+    {"infinitive": "visiter", "de": "besichtigen", "group": 1},
+    {"infinitive": "rester", "de": "bleiben", "group": 1, "auxiliary": "être"},
+    {"infinitive": "acheter", "de": "kaufen", "group": 1},
+    {"infinitive": "aider", "de": "helfen", "group": 1},
+    {"infinitive": "chercher", "de": "suchen", "group": 1},
+    {"infinitive": "trouver", "de": "finden", "group": 1},
+    {"infinitive": "rencontrer", "de": "treffen", "group": 1},
+    {"infinitive": "gagner", "de": "gewinnen", "group": 1},
+
+    {"infinitive": "finir", "de": "beenden", "group": 2},
+    {"infinitive": "choisir", "de": "(aus)wählen", "group": 2},
+    {"infinitive": "réfléchir", "de": "nachdenken", "group": 2},
+    {"infinitive": "réussir", "de": "schaffen, bestehen", "group": 2},
+    {"infinitive": "grandir", "de": "wachsen", "group": 2},
+
+    {"infinitive": "être", "de": "sein", "group": 3, "present": ["suis", "es", "est", "sommes", "êtes", "sont"], "participle": "été"},
+    {"infinitive": "avoir", "de": "haben", "group": 3, "present": ["ai", "as", "a", "avons", "avez", "ont"], "participle": "eu"},
+    {"infinitive": "aller", "de": "gehen, fahren", "group": 3, "present": ["vais", "vas", "va", "allons", "allez", "vont"], "participle": "allé", "auxiliary": "être"},
+    {"infinitive": "faire", "de": "machen, tun", "group": 3, "present": ["fais", "fais", "fait", "faisons", "faites", "font"], "participle": "fait"},
+    {"infinitive": "venir", "de": "kommen", "group": 3, "present": ["viens", "viens", "vient", "venons", "venez", "viennent"], "participle": "venu", "auxiliary": "être"},
+    {"infinitive": "prendre", "de": "nehmen", "group": 3, "present": ["prends", "prends", "prend", "prenons", "prenez", "prennent"], "participle": "pris"},
+    {"infinitive": "boire", "de": "trinken", "group": 3, "present": ["bois", "bois", "boit", "buvons", "buvez", "boivent"], "participle": "bu"},
+    {"infinitive": "pouvoir", "de": "können", "group": 3, "present": ["peux", "peux", "peut", "pouvons", "pouvez", "peuvent"], "participle": "pu"},
+    {"infinitive": "vouloir", "de": "wollen", "group": 3, "present": ["veux", "veux", "veut", "voulons", "voulez", "veulent"], "participle": "voulu"},
+    {"infinitive": "devoir", "de": "müssen", "group": 3, "present": ["dois", "dois", "doit", "devons", "devez", "doivent"], "participle": "dû"}
+  ]
+}

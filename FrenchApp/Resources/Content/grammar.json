@@ -1,0 +1,228 @@
+{
+  "rules": [
+    {
+      "id": "g_pronouns",
+      "title": "Subjektpronomen",
+      "level": "A1",
+      "explanation": "Die Subjektpronomen sind die Wörter für „ich, du, er…\" — im Französischen stehen sie **immer** beim Verb, sie dürfen (anders als im Spanischen oder Italienischen) nicht wegfallen.\n\n**je** – ich · **tu** – du · **il/elle** – er/sie · **nous** – wir · **vous** – ihr/Sie · **ils/elles** – sie (Plural)\n\nBesonderheiten:\n- **vous** ist zugleich die Höflichkeitsform („Sie\") — auch für eine einzelne Person.\n- **je** wird vor Vokal und stummem h zu **j'**: j'aime, j'habite.\n- **elles** nur für rein weibliche Gruppen; sobald ein Mann dabei ist: **ils**.",
+      "examples": [
+        {"fr": "Je suis fatigué.", "de": "Ich bin müde."},
+        {"fr": "Vous parlez allemand ?", "de": "Sprechen Sie Deutsch?"},
+        {"fr": "J'habite à Berlin.", "de": "Ich wohne in Berlin."}
+      ],
+      "typicalMistake": "Das Pronomen weglassen: *Suis fatigué.* — Im Französischen heißt es immer **Je suis** fatigué."
+    },
+    {
+      "id": "g_etre",
+      "title": "être — sein",
+      "level": "A1",
+      "explanation": "**être** (sein) ist das wichtigste Verb im Französischen — und komplett unregelmäßig. Die Formen musst du auswendig lernen.\n\nDu brauchst être für Beschreibungen (Je suis grand), Herkunft (Elle est française), Berufe und vieles mehr. Später bildet être auch zusammengesetzte Zeiten.",
+      "examples": [
+        {"fr": "Je suis allemand.", "de": "Ich bin Deutscher."},
+        {"fr": "Nous sommes fatigués.", "de": "Wir sind müde."},
+        {"fr": "C'est ma sœur.", "de": "Das ist meine Schwester."}
+      ],
+      "typicalMistake": "Beim Alter être benutzen: *Je suis 30 ans.* — Richtig ist **J'ai 30 ans** (wörtlich: „Ich habe 30 Jahre\").",
+      "verbTables": ["être"]
+    },
+    {
+      "id": "g_avoir",
+      "title": "avoir — haben",
+      "level": "A1",
+      "explanation": "**avoir** (haben) ist neben être das zweite Grundverb — ebenfalls unregelmäßig.\n\nAvoir steckt in vielen festen Wendungen, wo das Deutsche „sein\" benutzt:\n- **avoir faim** – Hunger haben\n- **avoir soif** – Durst haben\n- **avoir … ans** – … Jahre alt sein\n\nMerke: **j'ai** (nicht *je ai* — Elision vor Vokal).",
+      "examples": [
+        {"fr": "J'ai un chien.", "de": "Ich habe einen Hund."},
+        {"fr": "Tu as quel âge ?", "de": "Wie alt bist du?"},
+        {"fr": "Nous avons faim.", "de": "Wir haben Hunger."}
+      ],
+      "typicalMistake": "*Je suis faim* statt **J'ai faim** — Hunger „hat\" man im Französischen.",
+      "verbTables": ["avoir"]
+    },
+    {
+      "id": "g_articles_def",
+      "title": "Bestimmte Artikel: le, la, les",
+      "level": "A1",
+      "explanation": "Der bestimmte Artikel („der/die/das\") richtet sich nach Genus und Zahl des Nomens:\n\n- **le** + maskulin: le père, le chat\n- **la** + feminin: la mère, la famille\n- **l'** vor Vokal oder stummem h (m und f): l'enfant, l'école, l'hôtel\n- **les** im Plural (m und f): les parents, les filles\n\n**Wichtig:** Das französische Genus stimmt oft nicht mit dem deutschen überein (la gare – **der** Bahnhof). Lerne jedes Nomen immer **mit** seinem Artikel!",
+      "examples": [
+        {"fr": "La mère et le père sont ici.", "de": "Die Mutter und der Vater sind hier."},
+        {"fr": "L'enfant a faim.", "de": "Das Kind hat Hunger."},
+        {"fr": "Les parents travaillent.", "de": "Die Eltern arbeiten."}
+      ],
+      "typicalMistake": "Deutsches Genus übertragen: *le gare*, weil „der Bahnhof\" maskulin ist. Richtig: **la gare**."
+    },
+    {
+      "id": "g_articles_indef",
+      "title": "Unbestimmte Artikel: un, une, des",
+      "level": "A1",
+      "explanation": "Der unbestimmte Artikel („ein/eine\"):\n\n- **un** + maskulin: un homme, un café\n- **une** + feminin: une femme, une table\n- **des** im Plural: des amis („Freunde\") — im Deutschen steht hier **gar kein** Artikel!\n\nAn un/une erkennst du das Genus am zuverlässigsten, deshalb zeigen Wörterbücher Nomen oft so an.",
+      "examples": [
+        {"fr": "C'est un ami.", "de": "Das ist ein Freund."},
+        {"fr": "Je voudrais une table.", "de": "Ich hätte gern einen Tisch."},
+        {"fr": "Il y a des enfants dans le parc.", "de": "Im Park sind Kinder."}
+      ],
+      "typicalMistake": "**des** vergessen, weil das Deutsche keinen Plural-Artikel hat: *Il y a enfants…* — richtig: Il y a **des** enfants."
+    },
+    {
+      "id": "g_possessive",
+      "title": "Possessivbegleiter: mon, ton, son …",
+      "level": "A1",
+      "explanation": "Possessivbegleiter („mein, dein, sein…\") richten sich nach dem **Nomen**, das folgt — nicht nach der besitzenden Person:\n\n- mein: **mon** père · **ma** mère · **mes** parents\n- dein: **ton** père · **ta** mère · **tes** parents\n- sein/ihr: **son** père · **sa** mère · **ses** parents\n\n**son père** kann also „sein Vater\" ODER „ihr Vater\" bedeuten — das Französische unterscheidet das nicht.\n\nVor Vokal steht auch bei femininen Nomen mon/ton/son: **mon amie** (meine Freundin).",
+      "examples": [
+        {"fr": "Ma sœur est jeune.", "de": "Meine Schwester ist jung."},
+        {"fr": "Son frère habite à Paris.", "de": "Sein/Ihr Bruder wohnt in Paris."},
+        {"fr": "Mes parents sont gentils.", "de": "Meine Eltern sind nett."}
+      ],
+      "typicalMistake": "son/sa nach dem Besitzer wählen (wie im Deutschen „sein/ihr\"): *sa père*, weil die Besitzerin weiblich ist. Richtig: **son père** — père ist maskulin."
+    },
+    {
+      "id": "g_adjectives",
+      "title": "Adjektive angleichen",
+      "level": "A1",
+      "explanation": "Adjektive passen sich an das Nomen an:\n\n- **feminin: +e** — grand → grand**e**, fatigué → fatigué**e** (endet das Adjektiv schon auf -e, ändert sich nichts: jeune → jeune)\n- **Plural: +s** — grands, grandes\n- Einige verdoppeln den Konsonanten: gentil → gentil**le**\n- Ganz unregelmäßig: beau/belle, vieux/vieille\n\n**Stellung:** Die meisten Adjektive stehen **nach** dem Nomen (un vin français). Einige kurze, häufige stehen davor: grand, petit, jeune, vieux, beau (une petite maison).",
+      "examples": [
+        {"fr": "Ma mère est grande.", "de": "Meine Mutter ist groß."},
+        {"fr": "Ils sont contents.", "de": "Sie sind zufrieden."},
+        {"fr": "C'est une belle ville.", "de": "Das ist eine schöne Stadt."}
+      ],
+      "typicalMistake": "Die Angleichung vergessen, weil man sie nicht hört: *Elle est grand.* — geschrieben braucht es das -e: Elle est **grande**."
+    },
+    {
+      "id": "g_numbers70",
+      "title": "Zahlen 70–99",
+      "level": "A1",
+      "explanation": "Ab 70 rechnet das Französische:\n\n- **70 = soixante-dix** (60 + 10), 71 = soixante et onze, 75 = soixante-quinze …\n- **80 = quatre-vingts** (4 × 20) — mit -s, wenn keine Zahl folgt\n- **81 = quatre-vingt-un** (ohne et, ohne -s)\n- **90 = quatre-vingt-dix** (4 × 20 + 10), 95 = quatre-vingt-quinze\n\nBei 21, 31, 41, 51, 61, 71 steht **et**: vingt **et** un, soixante **et** onze. Bei 81 und 91 nicht: quatre-vingt-un.",
+      "examples": [
+        {"fr": "soixante-quinze", "de": "75"},
+        {"fr": "quatre-vingt-douze", "de": "92"},
+        {"fr": "Il a soixante et onze ans.", "de": "Er ist 71 Jahre alt."}
+      ],
+      "typicalMistake": "*septante* oder *neunzig-artige* Bildungen — septante/nonante sagt man in Belgien und der Schweiz, in Frankreich heißt es soixante-dix und quatre-vingt-dix."
+    },
+    {
+      "id": "g_er_verbs",
+      "title": "Verben auf -er (1. Gruppe)",
+      "level": "A1",
+      "explanation": "Rund **90 % aller französischen Verben** enden auf -er und werden alle gleich konjugiert — dein wichtigstes Muster!\n\n**Stamm** = Infinitiv ohne -er (parler → parl-), dann die Endungen:\n\n**-e, -es, -e, -ons, -ez, -ent**\n\nDie Formen je/tu/il/ils klingen alle gleich — die Endungen -e/-es/-ent sind stumm!\n\nKleine Schreibbesonderheiten:\n- Verben auf **-ger**: nous mang**e**ons (e eingeschoben)\n- Verben auf **-cer**: nous commen**ç**ons\n- acheter → j'ach**è**te (è bei je/tu/il/ils)\n\n**Achtung:** aller (gehen) endet auf -er, ist aber komplett unregelmäßig!",
+      "examples": [
+        {"fr": "Je parle allemand.", "de": "Ich spreche Deutsch."},
+        {"fr": "Nous mangeons du pain.", "de": "Wir essen Brot."},
+        {"fr": "Ils travaillent le samedi.", "de": "Sie arbeiten samstags."}
+      ],
+      "typicalMistake": "Endungen sprechen wollen: „ils parlent\" spricht sich genauso wie „il parle\" — das -ent ist völlig stumm.",
+      "verbTables": ["parler", "manger", "acheter"]
+    },
+    {
+      "id": "g_partitive",
+      "title": "Teilungsartikel: du, de la, de l', des",
+      "level": "A1",
+      "explanation": "Für **unbestimmte Mengen** (Stoffe, Lebensmittel) benutzt das Französische den Teilungsartikel — im Deutschen steht dort gar nichts:\n\n- **du** + maskulin: Je mange **du** pain. (Ich esse Brot.)\n- **de la** + feminin: Tu manges **de la** viande ?\n- **de l'** vor Vokal: Elle boit **de l'** eau.\n- **des** + Plural: Nous mangeons **des** légumes.\n\nFaustregel: Könnte man im Deutschen „etwas\" ergänzen („Ich esse [etwas] Brot\"), braucht das Französische den Teilungsartikel.",
+      "examples": [
+        {"fr": "Je voudrais du fromage.", "de": "Ich hätte gern (etwas) Käse."},
+        {"fr": "Il boit de l'eau.", "de": "Er trinkt Wasser."},
+        {"fr": "Elle achète des fruits.", "de": "Sie kauft Obst."}
+      ],
+      "typicalMistake": "Den Artikel ganz weglassen wie im Deutschen: *Je mange pain.* — richtig: Je mange **du** pain."
+    },
+    {
+      "id": "g_negation",
+      "title": "Verneinung: ne … pas",
+      "level": "A1",
+      "explanation": "Die französische Verneinung besteht aus **zwei Teilen**, die das konjugierte Verb umklammern:\n\n**ne + Verb + pas**\n\nJe **ne** parle **pas** anglais. — Ich spreche kein Englisch.\n\n- Vor Vokal wird ne zu **n'**: Je **n'**aime pas le thé.\n- Statt pas geht auch **jamais** (nie) oder **rien** (nichts): Il ne fume jamais.\n\nIn schneller Umgangssprache lassen Franzosen das „ne\" oft weg (Je sais pas) — schreibe es aber immer mit.",
+      "examples": [
+        {"fr": "Je ne suis pas fatigué.", "de": "Ich bin nicht müde."},
+        {"fr": "Elle n'habite pas ici.", "de": "Sie wohnt nicht hier."},
+        {"fr": "Nous ne travaillons jamais le dimanche.", "de": "Wir arbeiten nie sonntags."}
+      ],
+      "typicalMistake": "Nur ein Verneinungswort setzen: *Je parle pas anglais* (umgangssprachlich) oder *Je ne parle anglais* — standardsprachlich braucht es **beide** Teile."
+    },
+    {
+      "id": "g_questions",
+      "title": "Fragen stellen",
+      "level": "A1",
+      "explanation": "Drei einfache Wege, im Französischen zu fragen:\n\n1. **Intonation**: Aussagesatz mit Fragezeichen bzw. steigender Stimme — Tu parles français ?\n2. **est-ce que** vor den Satz: **Est-ce que** tu parles français ? (verändert sonst nichts!)\n3. **Fragewort** + est-ce que: Où est-ce que tu habites ?\n\nDie wichtigsten Fragewörter:\n**où** (wo) · **quand** (wann) · **pourquoi** (warum) · **comment** (wie) · **qui** (wer) · **qu'est-ce que** (was) · **combien** (wie viel)",
+      "examples": [
+        {"fr": "Est-ce que tu as faim ?", "de": "Hast du Hunger?"},
+        {"fr": "Où est la gare ?", "de": "Wo ist der Bahnhof?"},
+        {"fr": "Pourquoi tu ne viens pas ?", "de": "Warum kommst du nicht?"}
+      ],
+      "typicalMistake": "est-ce que wörtlich übersetzen wollen — es bedeutet nichts Eigenes, sondern macht nur aus einem Aussagesatz eine Frage."
+    },
+    {
+      "id": "g_aller_au",
+      "title": "aller + à: au, à la, à l'",
+      "level": "A1",
+      "explanation": "**aller** (gehen/fahren) ist unregelmäßig — und das Ziel wird mit **à** angeschlossen. Dabei verschmilzt à mit dem bestimmten Artikel:\n\n- à + le = **au**: Je vais **au** cinéma.\n- à + la = **à la**: Elle va **à la** boulangerie.\n- à + l' = **à l'**: Tu vas **à l'**école.\n- à + les = **aux**: Nous allons **aux** toilettes.\n\n*à le* und *à les* existieren nicht!",
+      "examples": [
+        {"fr": "Je vais au travail.", "de": "Ich gehe zur Arbeit."},
+        {"fr": "On va à la maison.", "de": "Wir gehen nach Hause."},
+        {"fr": "Ils vont à l'hôtel.", "de": "Sie gehen ins Hotel."}
+      ],
+      "typicalMistake": "*Je vais à le cinéma* — à + le muss zu **au** verschmelzen: Je vais **au** cinéma.",
+      "verbTables": ["aller"]
+    },
+    {
+      "id": "g_futur_proche",
+      "title": "Futur proche: aller + Infinitiv",
+      "level": "A1",
+      "explanation": "Die einfachste Zukunftsform — wie das deutsche „ich werde …\" oder „ich gehe jetzt …\":\n\n**aller (konjugiert) + Infinitiv**\n\nJe **vais manger**. — Ich werde (gleich) essen.\nNous **allons visiter** Paris. — Wir werden Paris besichtigen.\n\nDas Futur proche benutzt du für nahe, geplante Zukunft — im Alltag ist es viel häufiger als das „richtige\" Futur (das kommt erst in A2).\n\nVerneinung umklammert nur das konjugierte aller: Je **ne** vais **pas** travailler.",
+      "examples": [
+        {"fr": "Je vais acheter du pain.", "de": "Ich werde Brot kaufen."},
+        {"fr": "Tu vas rester ici ?", "de": "Wirst du hierbleiben?"},
+        {"fr": "Ils vont voyager ce week-end.", "de": "Sie werden dieses Wochenende verreisen."}
+      ],
+      "typicalMistake": "Beide Verben konjugieren: *Je vais achète…* — nach aller steht immer der **Infinitiv**: Je vais **acheter**.",
+      "verbTables": ["aller"]
+    },
+    {
+      "id": "g_il_y_a",
+      "title": "il y a — es gibt",
+      "level": "A1",
+      "explanation": "**il y a** entspricht dem deutschen „es gibt\" und ist unveränderlich — auch vor Plural:\n\nIl y a **un** café ici. — Es gibt hier ein Café.\nIl y a **des** cafés ici. — Es gibt hier Cafés.\n\nFrage: **Est-ce qu'il y a** … ? / Qu'est-ce qu'**il y a** ? (Was ist los?)\nVerneinung: Il **n'**y a **pas** de café. (nach der Verneinung wird du/de la/des zu **de**!)",
+      "examples": [
+        {"fr": "Il y a un train à dix heures.", "de": "Es gibt einen Zug um zehn Uhr."},
+        {"fr": "Dans ma ville, il y a deux cinémas.", "de": "In meiner Stadt gibt es zwei Kinos."},
+        {"fr": "Il n'y a pas de métro ici.", "de": "Hier gibt es keine U-Bahn."}
+      ],
+      "typicalMistake": "Wörtlich „es gibt\" mit donner (geben) bauen: *Il donne…* — es heißt immer **il y a**."
+    },
+    {
+      "id": "g_modal_verbs",
+      "title": "pouvoir, vouloir, devoir",
+      "level": "A1",
+      "explanation": "Die drei wichtigsten Modalverben — alle unregelmäßig, alle mit **Infinitiv** danach:\n\n- **pouvoir** (können): Je **peux** venir. — Ich kann kommen.\n- **vouloir** (wollen): Tu **veux** un café ? — Willst du einen Kaffee?\n- **devoir** (müssen): Nous **devons** travailler. — Wir müssen arbeiten.\n\nHöflich wünschen: **je voudrais** (ich möchte) — die höfliche Form von vouloir, perfekt zum Bestellen.",
+      "examples": [
+        {"fr": "Je peux vous aider ?", "de": "Kann ich Ihnen helfen?"},
+        {"fr": "Elle veut rester à la maison.", "de": "Sie will zu Hause bleiben."},
+        {"fr": "Vous devez finir le projet.", "de": "Ihr müsst das Projekt beenden."}
+      ],
+      "typicalMistake": "Nach dem Modalverb ein konjugiertes Verb: *Je peux viens.* — richtig ist der Infinitiv: Je peux **venir**.",
+      "verbTables": ["pouvoir", "vouloir", "devoir"]
+    },
+    {
+      "id": "g_ir_verbs",
+      "title": "Verben auf -ir (2. Gruppe)",
+      "level": "A1",
+      "explanation": "Die zweite regelmäßige Verbgruppe: Verben auf **-ir** mit dem typischen **-iss-** im Plural.\n\n**Stamm** = Infinitiv ohne -ir (finir → fin-), Endungen:\n\n**-is, -is, -it, -issons, -issez, -issent**\n\nje finis, tu finis, il finit, nous fin**iss**ons, vous fin**iss**ez, ils fin**iss**ent\n\nSo gehen z. B. finir, choisir, réfléchir, réussir, grandir.\n\n**Achtung:** Nicht jedes -ir-Verb gehört dazu! partir, sortir, venir sind unregelmäßig (3. Gruppe) — erkennbar daran, dass ihnen das -iss- fehlt.",
+      "examples": [
+        {"fr": "Je finis le travail à six heures.", "de": "Ich beende die Arbeit um sechs."},
+        {"fr": "Nous choisissons le menu.", "de": "Wir wählen das Menü."},
+        {"fr": "Ils réussissent l'examen.", "de": "Sie bestehen die Prüfung."}
+      ],
+      "typicalMistake": "Das -iss- im Plural vergessen: *nous finons* — richtig: nous fin**iss**ons.",
+      "verbTables": ["finir", "choisir"]
+    },
+    {
+      "id": "g_passe_compose",
+      "title": "Passé composé mit avoir",
+      "level": "A1",
+      "explanation": "Das Passé composé ist **die** Vergangenheitsform für Erlebtes und Erzähltes — gebildet wie das deutsche Perfekt:\n\n**avoir (Präsens) + Participe passé**\n\nJ'**ai mangé**. — Ich habe gegessen.\nTu **as fini** ? — Bist du fertig (geworden)?\n\nParticipe passé:\n- -er-Verben → **-é**: mangé, parlé, acheté\n- -ir-Verben (2. Gruppe) → **-i**: fini, choisi\n- unregelmäßig (lernen!): fait (faire), pris (prendre), bu (boire), eu (avoir), été (être)\n\nVerneinung umklammert nur avoir: Je **n'**ai **pas** mangé.\n\n**Ausblick A2:** Einige Verben (aller, venir, rester …) bilden das Passé composé mit être statt avoir.",
+      "examples": [
+        {"fr": "J'ai travaillé hier.", "de": "Ich habe gestern gearbeitet."},
+        {"fr": "Elle a trouvé un café sympa.", "de": "Sie hat ein nettes Café gefunden."},
+        {"fr": "Nous avons fini le projet.", "de": "Wir haben das Projekt beendet."}
+      ],
+      "typicalMistake": "Den Infinitiv statt des Partizips schreiben (klingt gleich!): *J'ai manger.* — richtig: J'ai mang**é**.",
+      "verbTables": ["manger", "finir"]
+    }
+  ]
+}

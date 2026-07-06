@@ -1,0 +1,16 @@
+# macOS
+.DS_Store
+
+# Xcode — das Projekt wird mit XcodeGen aus project.yml generiert
+*.xcodeproj
+*.xcworkspace
+xcuserdata/
+DerivedData/
+build/
+
+# Swift Package Manager
+.build/
+.swiftpm/
+
+# Temporäres
+*.log
