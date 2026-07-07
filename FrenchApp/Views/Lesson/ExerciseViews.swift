@@ -259,7 +259,7 @@ struct TextInputExerciseView: View {
         guard !answered, !text.trimmingCharacters(in: .whitespaces).isEmpty else { return }
         answered = true
         focused = false
-        let result = AnswerChecker.check(input: text, answer: exercise.answer)
+        let result = exercise.check(text)
         switch result {
         case .correct:
             onAnswered(AnswerOutcome(correct: true, userAnswer: text))

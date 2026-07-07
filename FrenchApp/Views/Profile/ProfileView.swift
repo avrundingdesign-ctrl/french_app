@@ -8,6 +8,7 @@ struct ProfileView: View {
     @Query private var states: [ReviewState]
     @Query private var settingsList: [UserSettings]
     @Query private var mistakes: [MistakeRecord]
+    @Query private var reviewLog: [ReviewLogEntry]
 
     private let content = ContentStore.shared
 
@@ -21,6 +22,8 @@ struct ProfileView: View {
                 VStack(spacing: 16) {
                     levelRings
                     statGrid
+                    forecastSection
+                    activitySection
                     mistakeSection
                 }
                 .padding()
@@ -37,6 +40,90 @@ struct ProfileView: View {
                 }
             }
         }
+    }
+
+    // MARK: - Fälligkeits-Prognose (nächste 7 Tage)
+
+    private var forecastSection: some View {
+        let calendar = Calendar.current
+        let today = calendar.startOfDay(for: .now)
+        let days: [(label: String, count: Int)] = (0..<7).map { offset in
+            let dayStart = calendar.date(byAdding: .day, value: offset, to: today) ?? today
+            let dayEnd = calendar.date(byAdding: .day, value: 1, to: dayStart) ?? dayStart
+            let count = states.filter {
+                !$0.isNew && (offset == 0 ? $0.nextReview < dayEnd : ($0.nextReview >= dayStart && $0.nextReview < dayEnd))
+            }.count
+            let label = offset == 0 ? "heute" : dayStart.formatted(.dateTime.weekday(.abbreviated))
+            return (label, count)
+        }
+        let maxCount = max(days.map(\.count).max() ?? 1, 1)
+
+        return VStack(alignment: .leading, spacing: 10) {
+            Text("Wiederholungen — nächste 7 Tage")
+                .font(.headline)
+            HStack(alignment: .bottom, spacing: 10) {
+                ForEach(days.indices, id: \.self) { index in
+                    VStack(spacing: 4) {
+                        Text("\(days[index].count)")
+                            .font(.caption2.monospacedDigit())
+                            .foregroundStyle(.secondary)
+                        RoundedRectangle(cornerRadius: 3)
+                            .fill(index == 0 ? Theme.warning : Theme.accent.opacity(0.55))
+                            .frame(height: max(4, CGFloat(days[index].count) / CGFloat(maxCount) * 56))
+                        Text(days[index].label)
+                            .font(.caption2)
+                            .foregroundStyle(.secondary)
+                    }
+                    .frame(maxWidth: .infinity)
+                }
+            }
+        }
+        .card()
+    }
+
+    // MARK: - Aktivität & Wörter nach Niveau
+
+    private var activitySection: some View {
+        let calendar = Calendar.current
+        let weekAgo = calendar.date(byAdding: .day, value: -7, to: .now) ?? .now
+        let reviewsThisWeek = reviewLog.filter { $0.timestamp >= weekAgo }.count
+
+        return VStack(alignment: .leading, spacing: 10) {
+            Text("Training")
+                .font(.headline)
+            HStack {
+                statInline(value: "\(reviewLog.count)", label: "Bewertungen gesamt")
+                Divider().frame(height: 32)
+                statInline(value: "\(reviewsThisWeek)", label: "in den letzten 7 Tagen")
+            }
+            Divider()
+            ForEach(content.levels) { level in
+                let ids = Set(states.map(\.vocabID))
+                let count = ids.filter { content.vocabLevelByID[$0] == level }.count
+                let total = content.vocabLevelByID.values.filter { $0 == level }.count
+                HStack {
+                    LevelBadge(level: level)
+                    Text("Wörter im Training")
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
+                    Spacer()
+                    Text("\(count)/\(total)")
+                        .font(.subheadline.monospacedDigit())
+                }
+            }
+        }
+        .card()
+    }
+
+    private func statInline(value: String, label: String) -> some View {
+        VStack(alignment: .leading, spacing: 2) {
+            Text(value)
+                .font(.title3.bold().monospacedDigit())
+            Text(label)
+                .font(.caption)
+                .foregroundStyle(.secondary)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
     }
 
     // MARK: - Niveau-Ringe

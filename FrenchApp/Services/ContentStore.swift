@@ -26,6 +26,8 @@ final class ContentStore {
     let lessonByID: [String: CourseLesson]
     private let lessonIndexByID: [String: Int]
     let unitByLessonID: [String: CourseUnit]
+    /// Niveau, auf dem eine Vokabel eingeführt wird (erste Lektion zählt).
+    let vocabLevelByID: [String: CEFRLevel]
 
     init(bundle: Bundle) throws {
         let decoder = JSONDecoder()
@@ -53,16 +55,25 @@ final class ContentStore {
         var ordered: [CourseLesson] = []
         var byID: [String: CourseLesson] = [:]
         var unitLookup: [String: CourseUnit] = [:]
-        for unit in units.sorted(by: { $0.level < $1.level }) {
+        var vocabLevels: [String: CEFRLevel] = [:]
+        // Stabil nach Niveau sortieren (JSON-Reihenfolge innerhalb eines Niveaus bleibt).
+        let sortedUnits = units.enumerated()
+            .sorted { ($0.element.level.sortIndex, $0.offset) < ($1.element.level.sortIndex, $1.offset) }
+            .map(\.element)
+        for unit in sortedUnits {
             for lesson in unit.lessons {
                 ordered.append(lesson)
                 byID[lesson.id] = lesson
                 unitLookup[lesson.id] = unit
+                for vocabID in lesson.newVocab where vocabLevels[vocabID] == nil {
+                    vocabLevels[vocabID] = unit.level
+                }
             }
         }
         self.orderedLessons = ordered
         self.lessonByID = byID
         self.unitByLessonID = unitLookup
+        self.vocabLevelByID = vocabLevels
         self.lessonIndexByID = Dictionary(
             uniqueKeysWithValues: ordered.enumerated().map { ($0.element.id, $0.offset) }
         )

@@ -84,10 +84,10 @@ final class ConjugatorTests: XCTestCase {
         XCTAssertEqual(content.conjugator.form(of: prendre, tense: .passeCompose, person: 2), "a pris")
     }
 
-    func testPasseComposeUnavailableForEtreVerbs() throws {
-        // aller/venir/rester bilden das PC mit être — kommt erst in A2, Engine liefert nil.
+    func testPasseComposeWithEtreVerb() throws {
+        // Seit Phase 2 unterstützt die Engine être-Verben (maskuline Grundform).
         let aller = try XCTUnwrap(content.conjugator.verb("aller"))
-        XCTAssertNil(content.conjugator.form(of: aller, tense: .passeCompose, person: 0))
+        XCTAssertEqual(content.conjugator.form(of: aller, tense: .passeCompose, person: 0), "suis allé")
     }
 
     func testFuturProche() throws {

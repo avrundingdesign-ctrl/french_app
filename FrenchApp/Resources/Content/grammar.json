@@ -223,6 +223,178 @@
       ],
       "typicalMistake": "Den Infinitiv statt des Partizips schreiben (klingt gleich!): *J'ai manger.* — richtig: J'ai mang**é**.",
       "verbTables": ["manger", "finir"]
+    },
+    {
+      "id": "g_prepositions_place",
+      "title": "Ortspräpositionen",
+      "level": "A2",
+      "explanation": "Die wichtigsten Präpositionen, um zu sagen, **wo** etwas ist:\n\n- **dans** – in: dans la cuisine\n- **sur** – auf: sur la table\n- **sous** – unter: sous le lit\n- **devant** – vor: devant la maison\n- **derrière** – hinter: derrière la porte\n- **entre** – zwischen: entre la banque et la poste\n- **à côté de** – neben: à côté de la fenêtre\n- **chez** – bei/zu (Personen!): chez Marie, chez le médecin\n\n**chez** gibt es nur für Personen — für Orte nimmst du à: Je vais **à la** boulangerie, aber **chez** le boulanger.",
+      "examples": [
+        {"fr": "Le chat est sous la table.", "de": "Die Katze ist unter dem Tisch."},
+        {"fr": "La clé est sur le lit.", "de": "Der Schlüssel ist auf dem Bett."},
+        {"fr": "Ce soir, on mange chez mes parents.", "de": "Heute Abend essen wir bei meinen Eltern."}
+      ],
+      "typicalMistake": "*Je vais à Marie* — bei Personen steht **chez**: Je vais **chez** Marie."
+    },
+    {
+      "id": "g_imparfait",
+      "title": "Imparfait — die Beschreibungs-Vergangenheit",
+      "level": "A2",
+      "explanation": "Das Imparfait beschreibt **Zustände, Gewohnheiten und Hintergründe** in der Vergangenheit — das deutsche „früher war/machte ich immer…\".\n\n**Bildung:** nous-Form des Präsens ohne -ons + Endungen:\n\n**-ais, -ais, -ait, -ions, -iez, -aient**\n\nnous parl~~ons~~ → je parl**ais**, tu parl**ais**, il parl**ait**, nous parl**ions**, vous parl**iez**, ils parl**aient**\n\nEinzige Ausnahme: **être** → j'ét**ais** (Stamm ét-).\n\n**Imparfait oder Passé composé?**\n- Imparfait: Hintergrund, Beschreibung, Gewohnheit („es war schön, wir spielten oft\")\n- Passé composé: einzelnes, abgeschlossenes Ereignis („plötzlich kam er\")",
+      "examples": [
+        {"fr": "Avant, j'habitais à la campagne.", "de": "Früher wohnte ich auf dem Land."},
+        {"fr": "C'était super !", "de": "Das war super!"},
+        {"fr": "Quand j'étais petit, je jouais dans le jardin.", "de": "Als ich klein war, spielte ich im Garten."}
+      ],
+      "typicalMistake": "Für Gewohnheiten das Passé composé nehmen: *Avant, j'ai habité…* — bei „früher (immer)\" steht das Imparfait: Avant, j'**habitais**…",
+      "verbTables": ["être", "avoir", "faire", "parler"]
+    },
+    {
+      "id": "g_comparative",
+      "title": "Vergleichen: plus, moins, aussi … que",
+      "level": "A2",
+      "explanation": "Vergleiche baut das Französische mit drei festen Mustern:\n\n- **plus + Adjektiv + que** – mehr/…er als: Paul est **plus grand que** Marie.\n- **moins + Adjektiv + que** – weniger … als: Le train est **moins cher que** l'avion.\n- **aussi + Adjektiv + que** – genauso … wie: Elle est **aussi sympa que** toi.\n\nDas Adjektiv gleicht sich weiterhin an: Marie est plus grand**e** que Paul.\n\n**Ausnahme:** „besser\" heißt **meilleur(e)** — nicht *plus bon*: Ce café est **meilleur**.",
+      "examples": [
+        {"fr": "Ma chambre est plus petite que le salon.", "de": "Mein Zimmer ist kleiner als das Wohnzimmer."},
+        {"fr": "Le métro est moins cher que le taxi.", "de": "Die U-Bahn ist billiger als das Taxi."},
+        {"fr": "Ce restaurant est meilleur que l'autre.", "de": "Dieses Restaurant ist besser als das andere."}
+      ],
+      "typicalMistake": "*plus bon* — „besser\" hat eine eigene Form: **meilleur(e)**."
+    },
+    {
+      "id": "g_ordinals",
+      "title": "Ordnungszahlen & Mengenangaben",
+      "level": "A2",
+      "explanation": "**Ordnungszahlen** bildest du mit **-ième**: deux → deux**ième**, trois → trois**ième** (Schluss-e fällt weg: quatre → quatr**ième**).\n\nAusnahme: „erste(r)\" = **premier / première**. „Letzte(r)\" = **dernier / dernière**.\n\nLa **première** rue à gauche, le **deuxième** étage.\n\n**Mengenangaben** stehen mit **de** (ohne Artikel!):\n- **beaucoup de** – viel(e): beaucoup de travail\n- **un peu de** – ein wenig: un peu de lait\n- **trop de** – zu viel(e): trop de sucre\n- **un kilo de / une bouteille de** – ein Kilo / eine Flasche …",
+      "examples": [
+        {"fr": "C'est la première fois.", "de": "Das ist das erste Mal."},
+        {"fr": "Prenez la deuxième rue à droite.", "de": "Nehmen Sie die zweite Straße rechts."},
+        {"fr": "Je voudrais un kilo de fruits et une bouteille d'eau.", "de": "Ich hätte gern ein Kilo Obst und eine Flasche Wasser."}
+      ],
+      "typicalMistake": "Nach Mengenangaben den Artikel behalten: *beaucoup du pain* — richtig ist nur **de**: beaucoup **de** pain."
+    },
+    {
+      "id": "g_futur_simple",
+      "title": "Futur simple",
+      "level": "A2",
+      "explanation": "Das „echte\" Futur für Pläne, Versprechen und Vorhersagen — förmlicher als das Futur proche.\n\n**Bildung:** Infinitiv + Endungen (die Endungen klingen wie avoir!):\n\n**-ai, -as, -a, -ons, -ez, -ont**\n\nparler → je parler**ai**, tu parler**as**, il parler**a**, nous parler**ons**, vous parler**ez**, ils parler**ont**\n\nBei -re-Verben fällt das e weg: prendre → je prendr**ai**.\n\n**Unregelmäßige Stämme** (lernen!):\nêtre → **ser**- · avoir → **aur**- · aller → **ir**- · faire → **fer**- · venir → **viendr**- · pouvoir → **pourr**- · vouloir → **voudr**- · devoir → **devr**- · voir → **verr**-\n\nJe **serai** là demain. — Ich werde morgen da sein.",
+      "examples": [
+        {"fr": "L'année prochaine, nous voyagerons en France.", "de": "Nächstes Jahr werden wir nach Frankreich reisen."},
+        {"fr": "Tu verras, ce sera super !", "de": "Du wirst sehen, das wird super!"},
+        {"fr": "Ils achèteront une maison.", "de": "Sie werden ein Haus kaufen."}
+      ],
+      "typicalMistake": "Futur-Formen von être/avoir regelmäßig bilden: *je êtrerai* — die Stämme sind unregelmäßig: je **serai**, j'**aurai**.",
+      "verbTables": ["parler", "être", "avoir", "aller"]
+    },
+    {
+      "id": "g_il_faut",
+      "title": "il faut — man muss",
+      "level": "A2",
+      "explanation": "**il faut + Infinitiv** drückt eine allgemeine Notwendigkeit aus — wie das deutsche „man muss / es ist nötig\":\n\nIl faut **manger** des légumes. — Man muss Gemüse essen.\n\n- Verneint: **il ne faut pas** + Infinitiv = man darf nicht!\n  Il ne faut pas fumer ici. — Hier darf man nicht rauchen.\n- Mit Nomen: Il faut **du temps**. — Man braucht Zeit.\n\nil faut ist unpersönlich — es gibt nur diese eine Form (kein *je faut*!). Für „ich muss\" nimmst du **je dois**.",
+      "examples": [
+        {"fr": "Il faut prendre un médicament.", "de": "Man muss ein Medikament nehmen."},
+        {"fr": "Il faut réserver une table.", "de": "Man muss einen Tisch reservieren."},
+        {"fr": "Il ne faut pas arriver en retard.", "de": "Man darf nicht zu spät kommen."}
+      ],
+      "typicalMistake": "*il ne faut pas* als „man muss nicht\" verstehen — es heißt „man **darf** nicht\"! „Man muss nicht\" = ce n'est pas nécessaire."
+    },
+    {
+      "id": "g_reflexive",
+      "title": "Reflexive Verben",
+      "level": "A2",
+      "explanation": "Reflexive Verben beschreiben, was man **mit sich selbst** tut — vor allem die tägliche Routine: se lever (aufstehen), se laver (sich waschen), s'habiller (sich anziehen).\n\nDas Reflexivpronomen steht **vor** dem Verb und passt sich der Person an:\n\nje **me** lève · tu **te** lèves · il/elle **se** lève · nous **nous** levons · vous **vous** levez · ils/elles **se** lèvent\n\nVor Vokal wird me/te/se zu **m'/t'/s'**: je **m'**habille, il **s'**habille.\n\n**Verneinung** umklammert Pronomen + Verb: Je **ne** me lève **pas** tôt.\n\nViele Verben sind im Französischen reflexiv, im Deutschen aber nicht: s'appeler (heißen), se reposer (sich ausruhen ✓), se coucher (ins Bett gehen).",
+      "examples": [
+        {"fr": "Je me lève à sept heures.", "de": "Ich stehe um sieben Uhr auf."},
+        {"fr": "Tu t'habilles vite !", "de": "Du ziehst dich schnell an!"},
+        {"fr": "Nous ne nous couchons pas tard.", "de": "Wir gehen nicht spät ins Bett."}
+      ],
+      "typicalMistake": "Das Reflexivpronomen vergessen oder nicht anpassen: *Je se lève* — richtig: Je **me** lève.",
+      "verbTables": ["se lever", "s'habiller", "se coucher"]
+    },
+    {
+      "id": "g_jouer_faire",
+      "title": "jouer à, jouer de, faire de",
+      "level": "A2",
+      "explanation": "Für Sport, Spiele und Instrumente gibt es feste Muster:\n\n- **jouer à** + Spiel/Mannschaftssport: jouer **au** football, jouer **aux** cartes\n- **jouer de** + Instrument: jouer **de la** guitare, jouer **du** piano\n- **faire de** + Aktivität/Sport: faire **du** vélo, faire **de la** natation\n\nDie Präpositionen verschmelzen wie üblich: à + le = **au**, de + le = **du**.\n\nMerkhilfe: **à** fürs Spielen gegen andere, **de** fürs Instrument, **faire** für alles, was man „macht\".",
+      "examples": [
+        {"fr": "Il joue au tennis le samedi.", "de": "Er spielt samstags Tennis."},
+        {"fr": "Elle joue de la guitare.", "de": "Sie spielt Gitarre."},
+        {"fr": "Nous faisons du vélo ensemble.", "de": "Wir fahren zusammen Rad."}
+      ],
+      "typicalMistake": "*jouer le football* oder *jouer la guitare* — es braucht immer die Präposition: jouer **au** football, jouer **de la** guitare."
+    },
+    {
+      "id": "g_cod",
+      "title": "Direkte Objektpronomen: le, la, les",
+      "level": "A2",
+      "explanation": "Damit du dich nicht wiederholst, ersetzt du direkte Objekte („wen oder was?\") durch Pronomen:\n\n- **le** – ihn/es: Tu vois le bus ? — Oui, je **le** vois.\n- **la** – sie: Tu regardes la télé ? — Oui, je **la** regarde.\n- **l'** vor Vokal: Tu m'invites ? — Oui, je **t'**invite !\n- **les** – sie (Plural): Tu achètes les billets ? — Oui, je **les** achète.\n\n**Position:** Das Pronomen steht **vor** dem konjugierten Verb — anders als im Deutschen!\n\nVerneinung: Je **ne le** vois **pas**.\nMit Infinitiv: Je vais **le** faire. (vor dem Infinitiv)",
+      "examples": [
+        {"fr": "Ce film ? Je le connais.", "de": "Diesen Film? Den kenne ich."},
+        {"fr": "Ma valise ! Je ne la trouve pas.", "de": "Mein Koffer! Ich finde ihn nicht."},
+        {"fr": "Les clés ? Je les cherche.", "de": "Die Schlüssel? Ich suche sie."}
+      ],
+      "typicalMistake": "Das Pronomen wie im Deutschen hinter das Verb stellen: *Je vois le.* — richtig: Je **le** vois."
+    },
+    {
+      "id": "g_coi",
+      "title": "Indirekte Objektpronomen: lui, leur",
+      "level": "A2",
+      "explanation": "Für Personen nach **à** („wem?\") gibt es eigene Pronomen:\n\n- **lui** – ihm/ihr: Tu parles à Marie ? — Oui, je **lui** parle.\n- **leur** – ihnen: Tu réponds à tes parents ? — Oui, je **leur** réponds.\n\n**lui** gilt für Männer UND Frauen!\n\nTypische Verben mit à: parler à, répondre à, donner à, montrer à, demander à, expliquer à, téléphoner à.\n\nAuch lui/leur stehen **vor** dem Verb: Je **lui** donne le livre. Verneint: Je **ne lui** donne **pas** le livre.",
+      "examples": [
+        {"fr": "Je lui explique le problème.", "de": "Ich erkläre ihm/ihr das Problem."},
+        {"fr": "Nous leur montrons les photos.", "de": "Wir zeigen ihnen die Fotos."},
+        {"fr": "Tu lui as répondu ?", "de": "Hast du ihm/ihr geantwortet?"}
+      ],
+      "typicalMistake": "le/la für „ihm/ihr\" benutzen: *Je la parle* — nach Verben mit à steht **lui**: Je **lui** parle."
+    },
+    {
+      "id": "g_pc_etre",
+      "title": "Passé composé mit être",
+      "level": "A2",
+      "explanation": "Einige Verben — vor allem **Bewegungs- und Zustandsverben** — bilden das Passé composé mit **être** statt avoir:\n\n**aller, venir, arriver, partir, rester, entrer, sortir, monter, descendre, tomber, retourner, naître, mourir** (+ alle reflexiven Verben)\n\nJe **suis allé** au cinéma. — Ich bin ins Kino gegangen.\n\n**Wichtig — die Angleichung:** Bei être gleicht sich das Partizip an das Subjekt an:\n\n- Marie est allé**e** (feminin +e)\n- Nous sommes allé**s** (Plural +s)\n- Elles sont allé**es** (feminin Plural +es)\n\nBei avoir passiert das nicht: Elle **a mangé** (kein -e!).",
+      "examples": [
+        {"fr": "Elle est partie tôt.", "de": "Sie ist früh abgefahren."},
+        {"fr": "Nous sommes restés à la maison.", "de": "Wir sind zu Hause geblieben."},
+        {"fr": "Ils sont venus ensemble.", "de": "Sie sind zusammen gekommen."}
+      ],
+      "typicalMistake": "avoir statt être: *J'ai allé au cinéma.* — Bewegungsverben brauchen être: Je **suis** allé.",
+      "verbTables": ["aller", "partir", "venir"]
+    },
+    {
+      "id": "g_en_y",
+      "title": "Die Pronomen en und y",
+      "level": "A2",
+      "explanation": "Zwei kleine Wörter, die ganze Satzteile ersetzen:\n\n**y** ersetzt Orte (à/dans/chez + Ort):\n- Tu vas à Paris ? — Oui, j'**y** vais. (Ich fahre dorthin.)\n- Il travaille au bureau ? — Oui, il **y** travaille.\n\n**en** ersetzt Mengen (du/de la/des + Sache):\n- Tu veux du café ? — Oui, j'**en** veux bien. (Ich will davon.)\n- Vous avez des enfants ? — Oui, nous **en** avons deux.\n\nBeide stehen **vor** dem Verb. Die Wendung **il y a** (es gibt) enthält übrigens genau dieses y!",
+      "examples": [
+        {"fr": "La piscine ? On y va demain.", "de": "Das Schwimmbad? Wir gehen morgen hin."},
+        {"fr": "Du pain ? J'en achète.", "de": "Brot? Ich kaufe welches."},
+        {"fr": "Des idées ? Elle en a beaucoup.", "de": "Ideen? Sie hat viele davon."}
+      ],
+      "typicalMistake": "en/y einfach weglassen, weil das Deutsche kein Pendant hat: *— Tu vas à la gare ? — Oui, je vais.* — richtig: Oui, j'**y** vais."
+    },
+    {
+      "id": "g_si_present",
+      "title": "Bedingungen: si + Präsens",
+      "level": "A2",
+      "explanation": "Reale Bedingungen („wenn/falls\") baust du mit **si + Präsens** — die Folge steht im Präsens, Futur oder als Aufforderung:\n\n- **Si** tu veux, on va au cinéma. — Wenn du willst, gehen wir ins Kino.\n- **S'**il pleut, nous resterons à la maison. — Falls es regnet, bleiben wir zu Hause.\n\nVor il/ils wird si zu **s'**: s'il, s'ils (aber: si elle!).\n\n**Wichtig:** Nach si steht NIE das Futur — das Futur gehört in den Hauptsatz:\n*Si tu viendras…* ✗ → Si tu **viens**, ce **sera** super. ✓",
+      "examples": [
+        {"fr": "Si tu es malade, il faut rester au lit.", "de": "Wenn du krank bist, musst du im Bett bleiben."},
+        {"fr": "S'il fait beau, on ira à la plage.", "de": "Wenn das Wetter schön ist, gehen wir an den Strand."},
+        {"fr": "Si vous avez le temps, appelez-nous !", "de": "Wenn Sie Zeit haben, rufen Sie uns an!"}
+      ],
+      "typicalMistake": "Futur nach si: *Si tu voudras…* — nach si steht Präsens: Si tu **veux**…"
+    },
+    {
+      "id": "g_relative",
+      "title": "Relativpronomen: qui, que, où",
+      "level": "A2",
+      "explanation": "Relativsätze verbinden zwei Sätze — mit drei Wörtern kommst du weit:\n\n- **qui** = Subjekt des Nebensatzes (wer/was etwas TUT):\n  C'est un ami **qui** habite à Lyon. (der Freund wohnt)\n- **que** = Objekt des Nebensatzes (wen/was):\n  C'est le film **que** je préfère. (ich bevorzuge den Film)\n  Vor Vokal: qu' — le livre **qu'**il lit.\n- **où** = wo/als (Ort oder Zeit):\n  La ville **où** j'habite. — Le jour **où** il est arrivé.\n\nFaustregel: Folgt direkt ein **Verb** → qui. Folgt ein **Subjekt** (je, tu, mon frère …) → que.",
+      "examples": [
+        {"fr": "J'ai un collègue qui parle cinq langues.", "de": "Ich habe einen Kollegen, der fünf Sprachen spricht."},
+        {"fr": "C'est quelque chose que je ne connais pas.", "de": "Das ist etwas, das ich nicht kenne."},
+        {"fr": "Voilà le café où nous nous sommes rencontrés.", "de": "Das ist das Café, wo wir uns getroffen haben."}
+      ],
+      "typicalMistake": "qui und que verwechseln: *le film qui je regarde* — nach que folgt ein Subjekt, nach qui ein Verb: le film **que** je regarde."
     }
   ]
 }

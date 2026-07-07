@@ -8,6 +8,7 @@ struct FrenchAppApp: App {
     init() {
         let schema = Schema([
             ReviewState.self,
+            ReviewLogEntry.self,
             LessonProgress.self,
             MistakeRecord.self,
             UserSettings.self,

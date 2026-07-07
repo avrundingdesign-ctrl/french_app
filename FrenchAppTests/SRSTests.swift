@@ -9,10 +9,24 @@ final class SRSTests: XCTestCase {
     private var context: ModelContext!
 
     override func setUpWithError() throws {
-        let schema = Schema([ReviewState.self, LessonProgress.self, MistakeRecord.self, UserSettings.self])
+        let schema = Schema([
+            ReviewState.self, ReviewLogEntry.self, LessonProgress.self,
+            MistakeRecord.self, UserSettings.self,
+        ])
         let config = ModelConfiguration(isStoredInMemoryOnly: true)
         container = try ModelContainer(for: schema, configurations: config)
         context = ModelContext(container)
+    }
+
+    func testApplyWritesReviewLog() throws {
+        SRSService.enroll(vocabIDs: ["v_a"], context: context)
+        let state = SRSService.fetchStates(context: context)[0]
+        SRSService.apply(grade: .good, to: state, context: context)
+        SRSService.apply(grade: .easy, to: state, context: context)
+
+        let log = try context.fetch(FetchDescriptor<ReviewLogEntry>())
+        XCTAssertEqual(log.count, 2)
+        XCTAssertTrue(log.allSatisfy { $0.vocabID == "v_a" })
     }
 
     func testEnrollCreatesStatesOnce() {

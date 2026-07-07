@@ -103,6 +103,8 @@ struct VerbEntry: Codable, Identifiable, Hashable {
     let participle: String?
     /// "être", falls das Hilfsverb nicht "avoir" ist.
     let auxiliary: String?
+    /// Unregelmäßiger Futur-simple-Stamm (être → "ser", avoir → "aur" …).
+    let futurStem: String?
 }
 
 struct VerbsFile: Codable {
@@ -175,6 +177,11 @@ enum ExerciseSpecType: String, Codable {
     case wordOrder
     /// Satzbezogenes Multiple Choice. `question`, `answer`, `distractors`, optional `translation`.
     case mcSentence
+    /// Produktion DE→FR als Freitext. `de` = Aufgabe, `fr` = Lösung, optional `altAnswers`.
+    case translate
+    /// Fehlerkorrektur: `text` = fehlerhafter Satz, `answer` = korrigierte Version,
+    /// `distractors` = weitere falsche Korrekturen, optional `translation`.
+    case errorCorrection
 }
 
 struct ExerciseSpec: Codable, Hashable {
@@ -192,6 +199,8 @@ struct ExerciseSpec: Codable, Hashable {
     let distractors: [String]?
     let fr: String?
     let de: String?
+    /// Zusätzlich akzeptierte Antworten (z. B. Angleichungsvarianten, Synonyme).
+    let altAnswers: [String]?
 
     init(
         type: ExerciseSpecType,
@@ -207,7 +216,8 @@ struct ExerciseSpec: Codable, Hashable {
         question: String? = nil,
         distractors: [String]? = nil,
         fr: String? = nil,
-        de: String? = nil
+        de: String? = nil,
+        altAnswers: [String]? = nil
     ) {
         self.type = type
         self.vocab = vocab
@@ -223,5 +233,6 @@ struct ExerciseSpec: Codable, Hashable {
         self.distractors = distractors
         self.fr = fr
         self.de = de
+        self.altAnswers = altAnswers
     }
 }

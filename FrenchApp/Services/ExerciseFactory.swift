@@ -33,10 +33,48 @@ struct TextInputExercise {
     /// Satzteil nach der Lücke (kann leer sein).
     let suffix: String
     let answer: String
+    /// Ebenfalls akzeptierte Antworten (Angleichung, Varianten).
+    let altAnswers: [String]
     let hint: String?
     let translation: String?
     /// Vollständige Lösung fürs Feedback.
     let fullSolution: String
+
+    init(
+        instruction: String,
+        prefix: String,
+        suffix: String,
+        answer: String,
+        altAnswers: [String] = [],
+        hint: String?,
+        translation: String?,
+        fullSolution: String
+    ) {
+        self.instruction = instruction
+        self.prefix = prefix
+        self.suffix = suffix
+        self.answer = answer
+        self.altAnswers = altAnswers
+        self.hint = hint
+        self.translation = translation
+        self.fullSolution = fullSolution
+    }
+
+    /// Prüft die Eingabe gegen Haupt- und Alternativantworten; bestes Ergebnis zählt.
+    func check(_ input: String) -> AnswerChecker.Result {
+        var best: AnswerChecker.Result = .wrong
+        for candidate in [answer] + altAnswers {
+            switch AnswerChecker.check(input: input, answer: candidate) {
+            case .correct:
+                return .correct
+            case .correctWithAccentHint:
+                best = .correctWithAccentHint
+            case .wrong:
+                break
+            }
+        }
+        return best
+    }
 }
 
 struct WordOrderExercise {
@@ -180,6 +218,51 @@ struct ExerciseFactory {
                 promptSummary: question,
                 answerSummary: answer
             )]
+
+        case .translate:
+            guard let de = spec.de, let fr = spec.fr else { return [] }
+            let exercise = TextInputExercise(
+                instruction: "Übersetze ins Französische",
+                prefix: "",
+                suffix: "",
+                answer: fr,
+                altAnswers: spec.altAnswers ?? [],
+                hint: spec.hint,
+                translation: de,
+                fullSolution: fr
+            )
+            return [RuntimeExercise(
+                ref: ref(0),
+                kind: .textInput(exercise),
+                vocabID: spec.vocab?.first,
+                promptSummary: de,
+                answerSummary: fr
+            )]
+
+        case .errorCorrection:
+            guard let faulty = spec.text,
+                  let answer = spec.answer,
+                  let distractors = spec.distractors,
+                  !distractors.isEmpty
+            else { return [] }
+            var options = ([answer] + distractors).shuffled()
+            options = dedupe(options)
+            guard let correctIndex = options.firstIndex(of: answer) else { return [] }
+            let exercise = MCExercise(
+                instruction: "Dieser Satz enthält einen Fehler. Wähle die richtige Version:",
+                prompt: "✗ \(faulty)",
+                promptDetail: spec.translation,
+                options: options,
+                correctIndex: correctIndex,
+                explanation: spec.hint
+            )
+            return [RuntimeExercise(
+                ref: ref(0),
+                kind: .multipleChoice(exercise),
+                vocabID: spec.vocab?.first,
+                promptSummary: faulty,
+                answerSummary: answer
+            )]
         }
     }
 
@@ -256,6 +339,7 @@ struct ExerciseFactory {
             prefix: parts.first ?? "",
             suffix: parts.count > 1 ? parts[1] : "",
             answer: answer,
+            altAnswers: spec.altAnswers ?? [],
             hint: spec.hint,
             translation: spec.translation,
             fullSolution: fullSolution
@@ -294,14 +378,30 @@ struct ExerciseFactory {
         let fullSolution = prefix + answer
         // Vokabel-IDs sind ASCII (v_ecouter), Infinitive tragen Akzente (écouter).
         let vocabKey = "v_" + AnswerChecker.stripDiacritics(infinitive)
+            .replacingOccurrences(of: "se ", with: "se_")
+            .replacingOccurrences(of: "s'", with: "s")
         let vocabID = content.vocabByID[vocabKey] != nil ? vocabKey : nil
+
+        // Angleichung bei être-Verben im Passé composé: alle Varianten akzeptieren.
+        var altAnswers: [String] = []
+        var hint = spec.hint
+        if tense == .passeCompose, verb.auxiliary == "être" {
+            let auxWord = answer.components(separatedBy: " ").first ?? ""
+            altAnswers = content.conjugator.participleVariants(of: verb, person: person)
+                .map { auxWord + " " + $0 }
+                .filter { $0 != answer }
+            if hint == nil {
+                hint = "Mit être — das Partizip gleicht sich an (alle Formen zählen)."
+            }
+        }
 
         let exercise = TextInputExercise(
             instruction: "Konjugiere «\(infinitive)» (\(verb.de)) — \(tense.germanLabel)",
             prefix: prefix,
             suffix: "",
             answer: answer,
-            hint: spec.hint,
+            altAnswers: altAnswers,
+            hint: hint,
             translation: spec.translation,
             fullSolution: fullSolution
         )
@@ -339,10 +439,17 @@ enum AnswerChecker {
     }
 
     static func normalize(_ s: String) -> String {
-        s.trimmingCharacters(in: .whitespacesAndNewlines)
-            .lowercased()
+        // Satzzeichen sind für die Bewertung egal (Apostroph und Bindestrich nicht —
+        // die sind bedeutungstragend: j'ai, est-ce que).
+        let punctuation = CharacterSet(charactersIn: ".,!?;:…«»\"„“”()")
+        let cleaned = s.lowercased()
             .replacingOccurrences(of: "’", with: "'")
-            .replacingOccurrences(of: "  ", with: " ")
+            .components(separatedBy: punctuation)
+            .joined()
+        return cleaned
+            .components(separatedBy: .whitespacesAndNewlines)
+            .filter { !$0.isEmpty }
+            .joined(separator: " ")
     }
 
     static func stripDiacritics(_ s: String) -> String {

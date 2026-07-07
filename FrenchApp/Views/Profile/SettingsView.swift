@@ -9,6 +9,7 @@ struct SettingsView: View {
     @Query private var states: [ReviewState]
     @Query private var progress: [LessonProgress]
     @Query private var mistakes: [MistakeRecord]
+    @Query private var reviewLog: [ReviewLogEntry]
 
     @AppStorage("appearance") private var appearance = "system"
     @State private var confirmSRSReset = false
@@ -99,13 +100,13 @@ struct SettingsView: View {
     // MARK: - Aktionen
 
     private func resetSRS() {
-        for state in states {
-            context.delete(state)
-        }
+        for state in states { context.delete(state) }
+        for entry in reviewLog { context.delete(entry) }
     }
 
     private func resetAll() {
         for state in states { context.delete(state) }
+        for entry in reviewLog { context.delete(entry) }
         for item in progress { context.delete(item) }
         for mistake in mistakes { context.delete(mistake) }
     }

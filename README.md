@@ -11,15 +11,28 @@ Vollständige Spezifikation: [`docs/SPEC.md`](docs/SPEC.md)
   <img src="docs/screenshots/02_home.png" width="260" alt="Lernpfad">
 </p>
 
-## Status: Phase 1 — MVP (A1)
+## Status: Phase 2 — A1 + A2 komplett
 
+**Phase 1 (A1-MVP):**
 - ✅ CEFR-Lernpfad A1 mit 6 Einheiten / 24 Lektionen, sequenzielle Freischaltung
 - ✅ Übungstypen: Multiple Choice, Matching, Lückentext (Cloze), Konjugation, Satzbau (Wörter ordnen), Satz-MC
 - ✅ SM-2 Spaced Repetition (Start-EF 2.5, Untergrenze 1.3, Buttons „Nochmal/Schwer/Gut/Einfach")
 - ✅ Regelbasierter Konjugator (1./2. Gruppe generiert, 3. Gruppe aus eigener Ausnahmentabelle)
-- ✅ 18 Grammatikthemen mit deutschen Erklärungen, Beispielen, typischen Fehlern und Konjugationstabellen
 - ✅ Personalisierte Fehlerwiederholung (falsche Antworten setzen den SRS-Zustand zurück, „Fehler üben"-Modus)
 - ✅ Profil/Statistik ohne Streaks, Einstellungen mit Tagespensum, Datenexport, Reset
+
+**Phase 2 (A2-Ausbau):**
+- ✅ A2-Lernpfad: 6 weitere Einheiten / 24 Lektionen (Wohnen, Einkaufen, Gesundheit, Freizeit, Reise, Arbeit)
+- ✅ Engine-Ausbau: **Imparfait** (nous-Stamm + Orthografie: mangions/commencions), **Futur simple**
+  (inkl. unregelmäßiger Stämme ser-/aur-/ir-/fer-/viendr-/pourr-/voudr-/devr-/verr-),
+  **Passé composé mit être** (+ Angleichung, alle Varianten werden akzeptiert),
+  **Reflexivverben** (me/te/se mit Elision), y→i-Verben (payer)
+- ✅ Neue Übungstypen: **Übersetzung DE→FR** (Freitext mit Alternativantworten), **Fehlerkorrektur**
+- ✅ Grammatik: 32 Themen gesamt (u. a. COD/COI-Pronomen, en/y, Relativsätze, si + Präsens, Komparativ)
+- ✅ Review-Log pro Bewertung (Statistik + Grundlage für spätere FSRS-Migration)
+- ✅ Profil: 7-Tage-Fälligkeitsprognose, Trainings-Aktivität, Wörter nach Niveau
+
+**Inhalt gesamt:** 373 Vokabeln · 70 Verben · 32 Grammatikthemen · 48 Lektionen · ~600 Übungen
 
 ## Build
 
@@ -88,6 +101,6 @@ kuratierte Tatoeba-Sätze CC BY): siehe SPEC, Abschnitt „Datenquellen-Strategi
 
 ## Roadmap
 
-- **Phase 2 (A2/B1):** weitere Übungstypen (DE→FR-Produktion, Fehlerkorrektur),
-  zusammengesetzte Zeiten & Subjonctif in der Engine, Datenpipeline (Python → JSON/SQLite)
-- **Phase 3 (B2):** B2-Inhalte, optional FSRS als Opt-in, optional iCloud-Sync
+- **Phase 3 (B1/B2):** Subjonctif, Conditionnel, Plus-que-parfait und reflexives Passé composé
+  in der Engine; B1/B2-Curriculum; optional FSRS als Opt-in (Review-Log liegt bereits vor),
+  optional iCloud-Sync; Datenpipeline (Lexique/DBnary/Tatoeba → JSON/SQLite via GRDB)

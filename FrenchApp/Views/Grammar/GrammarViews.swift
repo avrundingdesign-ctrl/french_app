@@ -166,14 +166,9 @@ struct ConjugationTable: View {
     @State private var tense: Conjugator.Tense = .present
 
     private var availableTenses: [Conjugator.Tense] {
-        var tenses: [Conjugator.Tense] = [.present]
-        if conjugator.form(of: verb, tense: .passeCompose, person: 0) != nil {
-            tenses.append(.passeCompose)
+        Conjugator.Tense.allCases.filter { tense in
+            conjugator.form(of: verb, tense: tense, person: 0) != nil
         }
-        if conjugator.form(of: verb, tense: .futurProche, person: 0) != nil {
-            tenses.append(.futurProche)
-        }
-        return tenses
     }
 
     var body: some View {
@@ -191,12 +186,17 @@ struct ConjugationTable: View {
             }
 
             if availableTenses.count > 1 {
-                Picker("Zeit", selection: $tense) {
-                    ForEach(availableTenses, id: \.self) { t in
-                        Text(t.germanLabel).tag(t)
+                if availableTenses.count <= 3 {
+                    tensePicker.pickerStyle(.segmented)
+                } else {
+                    HStack {
+                        Text("Zeitform")
+                            .font(.subheadline)
+                            .foregroundStyle(.secondary)
+                        Spacer()
+                        tensePicker.pickerStyle(.menu)
                     }
                 }
-                .pickerStyle(.segmented)
             }
 
             VStack(spacing: 0) {
@@ -219,6 +219,14 @@ struct ConjugationTable: View {
             }
         }
         .card()
+    }
+
+    private var tensePicker: some View {
+        Picker("Zeit", selection: $tense) {
+            ForEach(availableTenses, id: \.self) { t in
+                Text(t.germanLabel).tag(t)
+            }
+        }
     }
 
     private var groupLabel: String {

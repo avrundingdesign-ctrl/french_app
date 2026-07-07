@@ -97,6 +97,37 @@ final class MistakeRecord {
     var isResolved: Bool { resolvedAt != nil }
 }
 
+// MARK: - Review-Historie
+
+/// Ein Protokolleintrag pro Bewertung — Grundlage für Statistik und die
+/// spätere FSRS-Migration (die volle Reviewhistorie braucht, Spec §3).
+@Model
+final class ReviewLogEntry {
+    var vocabID: String
+    var timestamp: Date
+    /// SM-2-Qualität (2–5, siehe ReviewGrade).
+    var grade: Int
+    var intervalBefore: Int
+    var intervalAfter: Int
+    var easeAfter: Double
+
+    init(
+        vocabID: String,
+        timestamp: Date = .now,
+        grade: Int,
+        intervalBefore: Int,
+        intervalAfter: Int,
+        easeAfter: Double
+    ) {
+        self.vocabID = vocabID
+        self.timestamp = timestamp
+        self.grade = grade
+        self.intervalBefore = intervalBefore
+        self.intervalAfter = intervalAfter
+        self.easeAfter = easeAfter
+    }
+}
+
 // MARK: - Einstellungen (Singleton-Datensatz)
 
 @Model

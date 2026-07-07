@@ -184,7 +184,7 @@ struct ReviewSessionView: View {
     }
 
     private func apply(_ grade: ReviewGrade, to state: ReviewState) {
-        SRSService.apply(grade: grade, to: state)
+        SRSService.apply(grade: grade, to: state, context: context)
         reviewedCount += 1
         revealed = false
         guard !queue.isEmpty else { return }

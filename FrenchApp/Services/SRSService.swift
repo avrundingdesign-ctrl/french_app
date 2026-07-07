@@ -39,7 +39,12 @@ enum SRSService {
 
     // MARK: - Bewertung anwenden
 
-    static func apply(grade: ReviewGrade, to state: ReviewState, now: Date = .now) {
+    static func apply(
+        grade: ReviewGrade,
+        to state: ReviewState,
+        context: ModelContext? = nil,
+        now: Date = .now
+    ) {
         let before = SM2.State(
             easeFactor: state.easeFactor,
             repetitions: state.repetitions,
@@ -58,6 +63,16 @@ enum SRSService {
         if state.firstReviewedAt == nil { state.firstReviewedAt = now }
         state.lastReviewedAt = now
         state.totalReviews += 1
+
+        // Historie fürs Profil und die spätere FSRS-Migration.
+        context?.insert(ReviewLogEntry(
+            vocabID: state.vocabID,
+            timestamp: now,
+            grade: grade.rawValue,
+            intervalBefore: before.interval,
+            intervalAfter: after.interval,
+            easeAfter: after.easeFactor
+        ))
     }
 
     /// Vorschau des Intervalls für die Button-Beschriftung ("Gut · 6 T").

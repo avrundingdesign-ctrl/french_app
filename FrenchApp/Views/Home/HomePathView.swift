@@ -188,7 +188,7 @@ struct HomePathView: View {
         VStack(spacing: 8) {
             Image(systemName: "sparkles")
                 .foregroundStyle(.secondary)
-            Text("A2, B1 und B2 folgen in den nächsten Phasen.")
+            Text("B1 und B2 folgen in Phase 3.")
                 .font(.footnote)
                 .foregroundStyle(.secondary)
         }
