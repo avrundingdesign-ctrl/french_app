@@ -395,6 +395,360 @@
         {"fr": "Voilà le café où nous nous sommes rencontrés.", "de": "Das ist das Café, wo wir uns getroffen haben."}
       ],
       "typicalMistake": "qui und que verwechseln: *le film qui je regarde* — nach que folgt ein Subjekt, nach qui ein Verb: le film **que** je regarde."
+    },
+    {
+      "id": "g_subjonctif_intro",
+      "title": "Der Subjonctif — Einführung",
+      "level": "B1",
+      "explanation": "Der Subjonctif ist ein eigener Modus für Subjektives: Notwendigkeit, Wunsch, Gefühl, Zweifel. Er steht fast immer in **que-Sätzen**.\n\n**Bildung:** Stamm der ils-Form + Endungen **-e, -es, -e, -ions, -iez, -ent**\n(nous/vous-Formen = Imparfait):\n\nparler → ils parl~~ent~~ → que je parl**e**, que nous parl**ions**\nfinir → ils finiss~~ent~~ → que je finiss**e**\n\n**Unregelmäßig** (lernen!): être → que je **sois** · avoir → que j'**aie** · aller → que j'**aille** · faire → que je **fasse** · pouvoir → que je **puisse** · vouloir → que je **veuille** · savoir → que je **sache**\n\nDer häufigste Auslöser: **il faut que** — Il faut que tu **sois** à l'heure.",
+      "examples": [
+        {"fr": "Il faut que je parte.", "de": "Ich muss los (es ist nötig, dass ich gehe)."},
+        {"fr": "Il faut que tu sois patient.", "de": "Du musst geduldig sein."},
+        {"fr": "Il faut que nous finissions le projet.", "de": "Wir müssen das Projekt beenden."}
+      ],
+      "typicalMistake": "Nach il faut que den Indikativ benutzen: *Il faut que tu es là.* — richtig: Il faut que tu **sois** là.",
+      "verbTables": ["être", "avoir", "parler"]
+    },
+    {
+      "id": "g_subjonctif_usage",
+      "title": "Subjonctif nach Wunsch & Gefühl",
+      "level": "B1",
+      "explanation": "Der Subjonctif steht nach Ausdrücken von **Wunsch/Wille** und **Gefühl**:\n\n- **vouloir que**: Je veux que tu **viennes**. — Ich will, dass du kommst.\n- **aimer que / préférer que**: J'aimerais que ce **soit** simple.\n- **être content/triste/heureux que**: Je suis contente que tu **sois** là.\n- **avoir peur que**: Elle a peur qu'il ne **fasse** pas attention.\n\n**Wichtig:** Gleiche Subjekte → Infinitiv statt Subjonctif:\nJe veux **partir** (ich will gehen) vs. Je veux que **tu partes** (ich will, dass du gehst).",
+      "examples": [
+        {"fr": "Je veux que tu viennes ce soir.", "de": "Ich will, dass du heute Abend kommst."},
+        {"fr": "Nous sommes heureux que vous soyez ici.", "de": "Wir sind glücklich, dass Sie hier sind."},
+        {"fr": "Elle préfère que nous prenions le train.", "de": "Sie möchte lieber, dass wir den Zug nehmen."}
+      ],
+      "typicalMistake": "*Je veux que je parte* — bei gleichem Subjekt steht der Infinitiv: Je veux **partir**."
+    },
+    {
+      "id": "g_ne_que",
+      "title": "ne … que — nur",
+      "level": "B1",
+      "explanation": "**ne … que** bedeutet „nur\" — es sieht aus wie eine Verneinung, ist aber eine **Einschränkung**:\n\nJe **n'**ai **que** dix euros. — Ich habe **nur** zehn Euro.\n\n- **que** steht direkt vor dem eingeschränkten Element:\n  Il **ne** boit **que** du café. (nur Kaffee)\n  Il **ne** travaille **que** le lundi. (nur montags)\n- Alternative: **seulement** — Il boit seulement du café.\n\nAnders als bei der echten Verneinung bleibt der Teilungsartikel erhalten: Je ne bois **que du** café (nicht *de*).",
+      "examples": [
+        {"fr": "Elle ne parle que français.", "de": "Sie spricht nur Französisch."},
+        {"fr": "Nous n'avons qu'une heure.", "de": "Wir haben nur eine Stunde."},
+        {"fr": "Il n'y a que trois places libres.", "de": "Es gibt nur drei freie Plätze."}
+      ],
+      "typicalMistake": "ne … que als Verneinung lesen: „Je n'ai que dix euros\" heißt NICHT „ich habe keine zehn Euro\", sondern „ich habe NUR zehn Euro\"."
+    },
+    {
+      "id": "g_conditionnel",
+      "title": "Conditionnel présent",
+      "level": "B1",
+      "explanation": "Das Conditionnel entspricht dem deutschen „würde …\" — für Höflichkeit, Wünsche und Hypothesen.\n\n**Bildung:** Futur-Stamm + Imparfait-Endungen:\n\n**-ais, -ais, -ait, -ions, -iez, -aient**\n\nparler → je parler**ais** · être → je ser**ais** · avoir → j'aur**ais** · aller → j'ir**ais**\n\n(Die unregelmäßigen Stämme sind dieselben wie im Futur simple!)\n\n**Gebrauch:**\n- Höflichkeit: Je **voudrais** un café. / **Pourriez**-vous m'aider ?\n- Wunsch: J'**aimerais** voyager.\n- Hypothese: Ce **serait** super !",
+      "examples": [
+        {"fr": "J'aimerais habiter à Paris.", "de": "Ich würde gern in Paris wohnen."},
+        {"fr": "Tu pourrais m'aider ?", "de": "Könntest du mir helfen?"},
+        {"fr": "Ce serait une bonne idée.", "de": "Das wäre eine gute Idee."}
+      ],
+      "typicalMistake": "Conditionnel und Futur verwechseln: je parler**ai** (Futur: werde) vs. je parler**ais** (Conditionnel: würde) — nur ein s Unterschied!",
+      "verbTables": ["être", "avoir", "pouvoir", "aimer"]
+    },
+    {
+      "id": "g_si_imparfait",
+      "title": "Hypothesen: si + Imparfait → Conditionnel",
+      "level": "B1",
+      "explanation": "Für **irreale oder hypothetische** Bedingungen („wenn ich reich wäre …\"):\n\n**si + Imparfait, … Conditionnel**\n\n**Si** j'**avais** le temps, je **voyagerais**. — Wenn ich Zeit hätte, würde ich reisen.\n\nVergleiche die beiden si-Typen:\n- Real: Si tu **veux**, on **va** au cinéma. (si + Präsens)\n- Irreal: Si tu **voulais**, on **irait** au cinéma. (si + Imparfait → Conditionnel)\n\nWie immer gilt: Nach **si** steht NIE Futur oder Conditionnel — die gehören in den Hauptsatz.",
+      "examples": [
+        {"fr": "Si j'étais riche, j'achèterais une maison à Nice.", "de": "Wenn ich reich wäre, würde ich ein Haus in Nizza kaufen."},
+        {"fr": "Si tu avais le temps, qu'est-ce que tu ferais ?", "de": "Wenn du Zeit hättest, was würdest du tun?"},
+        {"fr": "Nous serions contents si vous veniez.", "de": "Wir würden uns freuen, wenn ihr kämt."}
+      ],
+      "typicalMistake": "Conditionnel nach si: *Si j'aurais le temps…* — nach si steht das Imparfait: Si j'**avais** le temps, j'**aurais**… (Gilt übrigens auch im Deutschen: „wenn ich hätte\", nicht „wenn ich würde haben\".)"
+    },
+    {
+      "id": "g_gerondif",
+      "title": "Gérondif: en + -ant",
+      "level": "B1",
+      "explanation": "Das Gérondif drückt Gleichzeitigkeit oder Art und Weise aus — „beim …\", „indem man …\":\n\n**en + Verbstamm (nous-Form) + -ant**\n\nnous parl~~ons~~ → **en parlant** (beim Sprechen)\nnous finiss~~ons~~ → **en finissant**\nnous mange~~ons~~ → **en mangeant**\n\nAusnahmen: être → **en étant**, avoir → **en ayant**, savoir → **en sachant**.\n\nJ'apprends le français **en écoutant** des podcasts. — Ich lerne Französisch, indem ich Podcasts höre.\n\nDas **participe présent** (ohne en) beschreibt: une histoire **passionnante**, un film **amusant**.",
+      "examples": [
+        {"fr": "Elle téléphone en marchant.", "de": "Sie telefoniert beim Gehen."},
+        {"fr": "On apprend en faisant des erreurs.", "de": "Man lernt, indem man Fehler macht."},
+        {"fr": "En arrivant, j'ai vu Marie.", "de": "Als ich ankam, habe ich Marie gesehen."}
+      ],
+      "typicalMistake": "Das Gérondif bezieht sich immer auf das **Subjekt** des Hauptsatzes: „En sortant du métro, il a plu\" ist falsch — der Regen steigt nicht aus der Metro."
+    },
+    {
+      "id": "g_pc_reflexive",
+      "title": "Reflexive Verben im Passé composé",
+      "level": "B1",
+      "explanation": "Alle reflexiven Verben bilden das Passé composé mit **être**:\n\n**Reflexivpronomen + être + Participe passé**\n\nJe **me suis levé(e)** tôt. — Ich bin früh aufgestanden.\nElle **s'est couchée** tard. — Sie ist spät ins Bett gegangen.\n\nDas Partizip gleicht sich (meistens) an das Subjekt an:\nnous nous sommes lavé**s**, elles se sont réveillé**es**.\n\nVerneinung umklammert Pronomen + être: Je **ne** me suis **pas** reposé.",
+      "examples": [
+        {"fr": "Je me suis réveillé à six heures.", "de": "Ich bin um sechs aufgewacht."},
+        {"fr": "Elle s'est habillée rapidement.", "de": "Sie hat sich schnell angezogen."},
+        {"fr": "Nous nous sommes rencontrés à Paris.", "de": "Wir haben uns in Paris kennengelernt."}
+      ],
+      "typicalMistake": "avoir benutzen: *Je m'ai levé* — reflexive Verben nehmen immer être: Je **me suis** levé.",
+      "verbTables": ["se lever", "se coucher"]
+    },
+    {
+      "id": "g_plus_que_parfait",
+      "title": "Plus-que-parfait",
+      "level": "B1",
+      "explanation": "Die „Vor-Vergangenheit\" — für Dinge, die **noch früher** passiert waren (deutsch: „hatte/war … ge…\"):\n\n**avoir/être im Imparfait + Participe passé**\n\nJ'**avais** déjà **mangé** quand il est arrivé. — Ich hatte schon gegessen, als er ankam.\nElle **était** déjà **partie**. — Sie war schon abgefahren.\n\nDie être-Regeln gelten wie im Passé composé (gleiche Verben, gleiche Angleichung).\n\nTypisch mit **déjà** und in Kombination mit Passé composé/Imparfait beim Erzählen.",
+      "examples": [
+        {"fr": "Quand je suis arrivé, le train était déjà parti.", "de": "Als ich ankam, war der Zug schon abgefahren."},
+        {"fr": "Il avait oublié son billet.", "de": "Er hatte sein Ticket vergessen."},
+        {"fr": "Nous avions réservé une table.", "de": "Wir hatten einen Tisch reserviert."}
+      ],
+      "typicalMistake": "Einfaches Passé composé, wo „vorher\" gemeint ist: Der Zug *est parti* quand je suis arrivé klingt nach Gleichzeitigkeit — für „war schon weg\" braucht es das Plus-que-parfait: **était parti**.",
+      "verbTables": ["manger", "partir"]
+    },
+    {
+      "id": "g_narrative_tenses",
+      "title": "Erzählen: Imparfait, PC & Plus-que-parfait",
+      "level": "B1",
+      "explanation": "Beim Erzählen arbeiten die drei Vergangenheitszeiten zusammen:\n\n- **Imparfait** = Hintergrund, Zustand, Gewohnheit\n  (Il **faisait** beau, j'**étais** fatigué …)\n- **Passé composé** = Ereignis, Handlung, das „Dann\"\n  (Soudain, le téléphone **a sonné**.)\n- **Plus-que-parfait** = noch weiter zurück\n  (J'**avais oublié** mes clés.)\n\nFaustregel: Das Imparfait malt die Kulisse, das Passé composé treibt die Handlung voran.\n\nSignalwörter: souvent/toujours/autrefois → Imparfait · soudain/puis/hier → Passé composé · déjà/avant → oft Plus-que-parfait.",
+      "examples": [
+        {"fr": "Il pleuvait quand je suis sorti.", "de": "Es regnete, als ich hinausging."},
+        {"fr": "Je lisais quand tu as appelé.", "de": "Ich las (gerade), als du angerufen hast."},
+        {"fr": "Elle était triste parce qu'elle avait perdu ses clés.", "de": "Sie war traurig, weil sie ihre Schlüssel verloren hatte."}
+      ],
+      "typicalMistake": "Alles im Passé composé erzählen: *Il a fait beau, j'ai été fatigué…* — Hintergrund und Zustände gehören ins Imparfait."
+    },
+    {
+      "id": "g_venir_de_depuis",
+      "title": "venir de, depuis & il y a",
+      "level": "B1",
+      "explanation": "Drei praktische Zeit-Konstruktionen:\n\n- **venir de + Infinitiv** = gerade etwas getan haben:\n  Je **viens de finir**. — Ich bin gerade fertig geworden.\n- **depuis** = seit (läuft noch!) — mit **Präsens**:\n  J'habite ici **depuis** trois ans. — Ich wohne seit drei Jahren hier.\n- **il y a + Zeit** = vor:\n  Il est parti **il y a** deux heures. — Er ist vor zwei Stunden gegangen.\n\n**Achtung depuis:** Das Französische nimmt Präsens, wo das Deutsche auch Präsens hat — aber Englischlerner tappen in die have-been-Falle.",
+      "examples": [
+        {"fr": "Nous venons d'arriver.", "de": "Wir sind gerade angekommen."},
+        {"fr": "Elle apprend le français depuis six mois.", "de": "Sie lernt seit sechs Monaten Französisch."},
+        {"fr": "J'ai visité Paris il y a deux ans.", "de": "Ich habe Paris vor zwei Jahren besucht."}
+      ],
+      "typicalMistake": "*depuis deux ans* mit Passé composé für laufende Zustände: „Ich wohne hier seit…\" → Präsens: J'**habite** ici depuis…"
+    },
+    {
+      "id": "g_indirect_speech",
+      "title": "Indirekte Rede",
+      "level": "B1",
+      "explanation": "Aussagen und Fragen wiedergeben:\n\n- Aussage: **que** — Il dit **qu'**il est fatigué.\n- Ja/Nein-Frage: **si** — Elle demande **si** tu viens.\n- Fragewort bleibt: Il demande **où** tu habites.\n- „was\": **ce que** — Je ne sais pas **ce qu'**il veut.\n\n**Zeitverschiebung** nach Vergangenheit (wie im Deutschen):\nIl a dit : « Je **suis** malade. » → Il a dit qu'il **était** malade.\nPräsens → Imparfait · Passé composé → Plus-que-parfait · Futur → Conditionnel.",
+      "examples": [
+        {"fr": "Elle dit qu'elle arrive demain.", "de": "Sie sagt, dass sie morgen ankommt."},
+        {"fr": "Il m'a demandé si j'avais le temps.", "de": "Er hat mich gefragt, ob ich Zeit hätte."},
+        {"fr": "Je ne sais pas ce que tu veux dire.", "de": "Ich weiß nicht, was du meinst."}
+      ],
+      "typicalMistake": "In der indirekten Frage est-ce que oder Inversion behalten: *Il demande où est-ce que tu habites.* — richtig: Il demande **où tu habites**."
+    },
+    {
+      "id": "g_double_pronouns",
+      "title": "Doppelte Pronomen",
+      "level": "B1",
+      "explanation": "Zwei Objektpronomen im selben Satz? Feste Reihenfolge vor dem Verb:\n\n**me/te/nous/vous** → **le/la/les** → **lui/leur** → **y** → **en**\n\n- Tu me prêtes ton vélo ? — Oui, je **te le** prête.\n- Elle donne le livre à Paul ? — Oui, elle **le lui** donne.\n- Il y a du pain ? — Oui, il y **en** a.\n\nMerkhilfe: erst die Person (mir/dir), dann die Sache (es) — **außer** bei lui/leur: da kommt die Sache zuerst (le lui, la leur).",
+      "examples": [
+        {"fr": "Je te le montre.", "de": "Ich zeige es dir."},
+        {"fr": "Elle le lui explique.", "de": "Sie erklärt es ihm/ihr."},
+        {"fr": "Des idées ? Il y en a beaucoup.", "de": "Ideen? Davon gibt es viele."}
+      ],
+      "typicalMistake": "Deutsche Reihenfolge übertragen: *Je le te montre* — richtig: Je **te le** montre (me/te vor le/la)."
+    },
+    {
+      "id": "g_passive",
+      "title": "Das Passiv",
+      "level": "B1",
+      "explanation": "Wie im Deutschen: **être + Participe passé** — das Partizip gleicht sich ans Subjekt an.\n\nLa tour **est visitée** par des millions de gens. — Der Turm wird von Millionen besucht.\nCe roman **a été écrit** en 1943. — Dieser Roman wurde 1943 geschrieben.\n\n- Urheber mit **par**: construit **par** Gustave Eiffel.\n- Die Zeit steckt im être: est écrit (wird) / a été écrit (wurde) / sera écrit (wird … werden).\n\nFranzösisch vermeidet das Passiv oft mit **on**: **On parle** français ici. — Hier wird Französisch gesprochen.",
+      "examples": [
+        {"fr": "Le musée est fermé le lundi.", "de": "Das Museum ist montags geschlossen."},
+        {"fr": "Cette maison a été construite en 1900.", "de": "Dieses Haus wurde 1900 gebaut."},
+        {"fr": "Ici, on parle allemand.", "de": "Hier spricht man Deutsch."}
+      ],
+      "typicalMistake": "Die Angleichung vergessen: *La lettre a été écrit.* — richtig: La lettre a été écrit**e**."
+    },
+    {
+      "id": "g_dont",
+      "title": "Das Relativpronomen dont",
+      "level": "B1",
+      "explanation": "**dont** ersetzt **de + Nomen** im Relativsatz — „dessen/deren\", „von dem/wovon\":\n\n- parler **de**: Le film **dont** je parle. — Der Film, von dem ich spreche.\n- avoir besoin **de**: C'est tout **dont** j'ai besoin. — Das ist alles, was ich brauche.\n- Besitz: Un ami **dont** le frère habite ici. — Ein Freund, dessen Bruder hier wohnt.\n\nFaustregel: Steht beim Verb ein **de** (parler de, avoir besoin de, rêver de, être fier de …) → im Relativsatz wird daraus **dont**.",
+      "examples": [
+        {"fr": "C'est le sujet dont tout le monde parle.", "de": "Das ist das Thema, über das alle reden."},
+        {"fr": "Voilà le livre dont j'ai besoin.", "de": "Hier ist das Buch, das ich brauche."},
+        {"fr": "Elle a un travail dont elle est fière.", "de": "Sie hat eine Arbeit, auf die sie stolz ist."}
+      ],
+      "typicalMistake": "*le film que je parle* oder *le film de que je parle* — parler **de** → **dont**: le film **dont** je parle."
+    },
+    {
+      "id": "g_conditionnel_passe",
+      "title": "Conditionnel passé — hätte, wäre",
+      "level": "B1",
+      "explanation": "Für Vergangenes, das anders hätte laufen können — Vorwürfe, Bedauern, verpasste Chancen:\n\n**avoir/être im Conditionnel + Participe passé**\n\nJ'**aurais dû** partir plus tôt. — Ich hätte früher losgehen sollen.\nTu **aurais pu** me le dire ! — Du hättest es mir sagen können!\nElle **serait venue**. — Sie wäre gekommen.\n\nTypische Formeln: **j'aurais dû** (ich hätte sollen), **tu aurais pu** (du hättest können), **ça aurait été** (das wäre gewesen).\n\nVollständige Hypothese: Si + Plus-que-parfait → Conditionnel passé: Si j'avais su, je ne **serais** pas **venu**.",
+      "examples": [
+        {"fr": "J'aurais dû réserver une table.", "de": "Ich hätte einen Tisch reservieren sollen."},
+        {"fr": "Nous aurions préféré rester.", "de": "Wir wären lieber geblieben."},
+        {"fr": "Si tu avais demandé, je t'aurais aidé.", "de": "Wenn du gefragt hättest, hätte ich dir geholfen."}
+      ],
+      "typicalMistake": "„ich hätte gemusst/gesollt\" wörtlich bauen — die feste Form ist **j'aurais dû** + Infinitiv: J'aurais dû **partir**.",
+      "verbTables": ["devoir", "pouvoir"]
+    },
+    {
+      "id": "g_verb_prepositions",
+      "title": "Verben mit à und de + Infinitiv",
+      "level": "B1",
+      "explanation": "Viele Verben brauchen vor einem Infinitiv eine feste Präposition — lernen wie Vokabeln!\n\n**mit à:**\ncommencer **à**, continuer **à**, réussir **à**, apprendre **à**, aider **à**\n→ Je commence **à comprendre**.\n\n**mit de:**\ndécider **de**, arrêter **de**, essayer **de**, oublier **de**, avoir envie **de**, avoir peur **de**\n→ Il a décidé **de partir**.\n\n**ohne Präposition:** vouloir, pouvoir, devoir, aimer, aller\n→ Je veux partir.",
+      "examples": [
+        {"fr": "Elle a commencé à apprendre le français.", "de": "Sie hat angefangen, Französisch zu lernen."},
+        {"fr": "J'ai décidé de changer de travail.", "de": "Ich habe beschlossen, den Job zu wechseln."},
+        {"fr": "N'oublie pas d'acheter du pain !", "de": "Vergiss nicht, Brot zu kaufen!"}
+      ],
+      "typicalMistake": "Die Präposition raten oder weglassen: *Je commence de comprendre* / *J'essaie à faire* — es heißt commencer **à**, aber essayer **de**."
+    },
+    {
+      "id": "g_negations_advanced",
+      "title": "Verneinung: rien, personne, plus, jamais",
+      "level": "B1",
+      "explanation": "Die Verneinungsfamilie über ne … pas hinaus:\n\n- **ne … rien** — nichts: Je **ne** vois **rien**.\n- **ne … personne** — niemanden: Il **ne** connaît **personne**.\n- **ne … plus** — nicht mehr: Elle **ne** fume **plus**.\n- **ne … jamais** — nie: Nous **ne** sortons **jamais**.\n\nrien und personne können auch Subjekt sein:\n**Personne ne** répond. — Niemand antwortet. / **Rien ne** change. — Nichts ändert sich.\n\nIm Passé composé: rien/plus/jamais vor dem Partizip (Je n'ai **rien** dit), aber personne danach (Je n'ai vu **personne**).",
+      "examples": [
+        {"fr": "Je n'ai rien compris.", "de": "Ich habe nichts verstanden."},
+        {"fr": "Personne ne le sait.", "de": "Niemand weiß es."},
+        {"fr": "Il n'habite plus ici.", "de": "Er wohnt nicht mehr hier."}
+      ],
+      "typicalMistake": "pas zusätzlich setzen: *Je ne vois pas rien.* — rien/personne/plus/jamais ersetzen das pas."
+    },
+    {
+      "id": "g_subjonctif_conjunctions",
+      "title": "Konjunktionen mit Subjonctif",
+      "level": "B2",
+      "explanation": "Bestimmte Konjunktionen verlangen immer den Subjonctif:\n\n- **bien que** — obwohl: Bien qu'il **soit** tard, je reste.\n- **pour que / afin que** — damit: Je t'explique pour que tu **comprennes**.\n- **avant que** — bevor: Pars avant qu'il **pleuve**.\n- **à condition que** — unter der Bedingung, dass\n- **sans que** — ohne dass\n\n**Aber mit Indikativ:** parce que, pendant que, après que, **même si**.\n\nMerkhilfe: Alles, was noch nicht Fakt ist (Ziel, Einschränkung, Vorzeitigkeit), zieht den Subjonctif.",
+      "examples": [
+        {"fr": "Bien que ce soit difficile, elle continue.", "de": "Obwohl es schwierig ist, macht sie weiter."},
+        {"fr": "Je parle lentement pour que tout le monde comprenne.", "de": "Ich spreche langsam, damit alle verstehen."},
+        {"fr": "Finis avant qu'il soit trop tard.", "de": "Werde fertig, bevor es zu spät ist."}
+      ],
+      "typicalMistake": "*bien que c'est difficile* — bien que verlangt Subjonctif: bien que ce **soit** difficile. (Selbst Franzosen schludern hier — du nicht!)"
+    },
+    {
+      "id": "g_subjonctif_vs_indicatif",
+      "title": "Subjonctif oder Indicatif?",
+      "level": "B2",
+      "explanation": "Die Faustregel: **Sicher/behauptet → Indicatif. Unsicher/gewünscht/bewertet → Subjonctif.**\n\nIndicatif (sicher):\n- Je **pense/crois que** tu as raison.\n- Il est **certain/évident que** c'est vrai.\n- Il me **semble que** …\n\nSubjonctif (unsicher/subjektiv):\n- Je **ne pense pas que** ce **soit** vrai. (verneint!)\n- **Penses-tu que** ce **soit** possible ? (Frage)\n- Il est **possible que** / il se **peut que** …\n- Je **doute que** …\n\nDasselbe Verb kippt also je nach Form: Je crois qu'il **vient** ↔ Je ne crois pas qu'il **vienne**.",
+      "examples": [
+        {"fr": "Je pense que c'est une bonne idée.", "de": "Ich denke, das ist eine gute Idee."},
+        {"fr": "Je ne pense pas que ce soit une bonne idée.", "de": "Ich denke nicht, dass das eine gute Idee ist."},
+        {"fr": "Il est possible qu'elle ait raison.", "de": "Es ist möglich, dass sie recht hat."}
+      ],
+      "typicalMistake": "Nach verneintem penser/croire den Indikativ lassen: *Je ne crois pas qu'il vient.* — verneint kippt es in den Subjonctif: … qu'il **vienne**."
+    },
+    {
+      "id": "g_futur_anterieur",
+      "title": "Futur antérieur",
+      "level": "B2",
+      "explanation": "Das „Vor-Futur\": Was zu einem Zeitpunkt in der Zukunft **abgeschlossen sein wird**:\n\n**avoir/être im Futur simple + Participe passé**\n\nD'ici demain, j'**aurai fini**. — Bis morgen werde ich fertig sein.\nQuand tu arriveras, je **serai** déjà **parti**. — Wenn du ankommst, werde ich schon weg sein.\n\nTypisch nach **quand/dès que/lorsque** mit Zukunftsbezug:\n**Dès que** j'aurai reçu ta réponse, je réserverai. — Sobald ich deine Antwort (bekommen haben) werde, reserviere ich.\n\nHier nimmt das Französische konsequent Futur, wo das Deutsche Präsens/Perfekt sagt!",
+      "examples": [
+        {"fr": "Dans une heure, nous aurons terminé.", "de": "In einer Stunde werden wir fertig sein."},
+        {"fr": "Quand tu liras ce message, je serai arrivé.", "de": "Wenn du diese Nachricht liest, werde ich angekommen sein."},
+        {"fr": "Dès qu'il aura fini, il t'appellera.", "de": "Sobald er fertig ist, ruft er dich an."}
+      ],
+      "typicalMistake": "Nach quand/dès que mit Zukunftssinn Präsens setzen (wie im Deutschen): *Quand tu arrives demain, …* — im Französischen: Quand tu **arriveras** / **seras arrivé** …",
+      "verbTables": ["finir", "partir"]
+    },
+    {
+      "id": "g_infinitif_passe",
+      "title": "Infinitif passé: après avoir …",
+      "level": "B2",
+      "explanation": "„Nachdem ich gegessen hatte\" elegant in einem Satz — mit dem Infinitiv der Vergangenheit:\n\n**après + avoir/être + Participe passé**\n\n**Après avoir mangé**, il est parti. — Nachdem er gegessen hatte, ging er.\n**Après être arrivée**, elle a appelé. — Nachdem sie angekommen war, rief sie an.\n\n- être-Verben behalten être und die Angleichung (arrivé**e**).\n- Reflexiv: Après **s'être levé**, il a pris un café.\n- Funktioniert nur bei **gleichem Subjekt** in beiden Satzteilen!\n\nAuch nach anderen Präpositionen/Verben: merci **d'être venu**, il regrette **d'avoir dit** ça.",
+      "examples": [
+        {"fr": "Après avoir fini le travail, nous sommes sortis.", "de": "Nachdem wir die Arbeit beendet hatten, sind wir ausgegangen."},
+        {"fr": "Après être partie, elle a regretté.", "de": "Nachdem sie gegangen war, bereute sie es."},
+        {"fr": "Merci d'être venus !", "de": "Danke, dass ihr gekommen seid!"}
+      ],
+      "typicalMistake": "*Après manger, il est parti* — nach après steht der Infinitif **passé**: Après **avoir mangé** …"
+    },
+    {
+      "id": "g_passe_simple",
+      "title": "Passé simple — erkennen & lesen",
+      "level": "B2",
+      "explanation": "Das Passé simple ist die **Erzählzeit der Literatur** — gesprochen sagt niemand „je mangeai\", geschrieben begegnet es dir in jedem Roman. Du musst es nur **erkennen**, nicht bilden.\n\nTypische Endungen: -ai, -as, -a (er-Verben) · -is, -it (ir/re) · -us, -ut …\n\nDie wichtigsten unregelmäßigen Formen:\n- être: il **fut** (= il a été)\n- avoir: il **eut** (= il a eu)\n- faire: il **fit** · dire: il **dit** · aller: il **alla**\n- venir: il **vint** · prendre: il **prit** · voir: il **vit**\n- pouvoir: il **put** · savoir: il **sut**\n\nBeim Lesen einfach als Passé composé verstehen: « Il ouvrit la porte » = Il a ouvert la porte.",
+      "examples": [
+        {"fr": "Le prince entra et vit la princesse.", "de": "Der Prinz trat ein und sah die Prinzessin."},
+        {"fr": "Elle fut très surprise.", "de": "Sie war sehr überrascht."},
+        {"fr": "Ils vécurent heureux.", "de": "Sie lebten glücklich (… bis ans Ende ihrer Tage)."}
+      ],
+      "typicalMistake": "il fut/il eut als Futur lesen — fut = a été (war), eut = a eu (hatte). Mit dem Futur (sera, aura) hat das nichts zu tun."
+    },
+    {
+      "id": "g_agreement_avoir",
+      "title": "Angleichung mit avoir: COD davor",
+      "level": "B2",
+      "explanation": "Grundregel: Mit avoir gleicht sich das Partizip **nicht** an — **außer** das direkte Objekt (COD) steht **vor** dem Verb:\n\n1. Normal: J'ai écrit **la lettre**. (keine Angleichung)\n2. Pronomen davor: La lettre ? Je **l'**ai écrit**e**. ✓\n3. Relativsatz: la lettre **que** j'ai écrit**e** ✓\n4. Frage: **Quelles fleurs** as-tu acheté**es** ? ✓\n\nMerksatz: Steht das „Was?\" schon **links** vom Verb, gleicht sich das Partizip daran an.\n\nKeine Angleichung an indirekte Objekte: Je **leur** ai parlé (kein s!).",
+      "examples": [
+        {"fr": "Ces photos ? Je les ai prises hier.", "de": "Diese Fotos? Ich habe sie gestern gemacht."},
+        {"fr": "La solution que nous avons trouvée est simple.", "de": "Die Lösung, die wir gefunden haben, ist einfach."},
+        {"fr": "Quelle robe as-tu choisie ?", "de": "Welches Kleid hast du gewählt?"}
+      ],
+      "typicalMistake": "*la lettre que j'ai écrit* — das que (= la lettre) steht vor dem Verb, also: que j'ai écrit**e**."
+    },
+    {
+      "id": "g_agreement_reflexive",
+      "title": "Angleichung bei reflexiven Verben",
+      "level": "B2",
+      "explanation": "Bei reflexiven Verben gleicht sich das Partizip ans Reflexivpronomen an — **wenn** es direktes Objekt ist:\n\nElle s'est lavé**e**. — Sie hat sich gewaschen. (se = sich = COD ✓)\nIls se sont rencontré**s**. — Sie haben sich getroffen. ✓\n\n**Aber:** Folgt ein direktes Objekt **nach** dem Verb, ist se nur indirekt — keine Angleichung:\n\nElle s'est lavé **les mains**. (kein e! — sie wusch WEM? sich DIE HÄNDE)\nElles se sont écrit **des lettres**. (écrire à — se ist indirekt: kein es)\n\nTest: „sich\" = wen? → Angleichung. „sich\" = wem? → keine.",
+      "examples": [
+        {"fr": "Elle s'est levée tôt.", "de": "Sie ist früh aufgestanden."},
+        {"fr": "Elle s'est lavé les mains.", "de": "Sie hat sich die Hände gewaschen."},
+        {"fr": "Nous nous sommes téléphoné.", "de": "Wir haben (miteinander) telefoniert. (téléphoner à → keine Angleichung)"}
+      ],
+      "typicalMistake": "*Elle s'est lavée les mains* — sobald das COD (les mains) hinter dem Verb steht, bleibt das Partizip unverändert: s'est lav**é** les mains."
+    },
+    {
+      "id": "g_faire_causatif",
+      "title": "faire + Infinitiv — machen lassen",
+      "level": "B2",
+      "explanation": "**faire + Infinitiv** heißt: etwas von jemand anderem erledigen lassen:\n\nJe **fais réparer** ma voiture. — Ich lasse mein Auto reparieren.\nElle **a fait construire** une maison. — Sie hat ein Haus bauen lassen.\n\nIn dieser Konstruktion bleibt das Partizip von faire unverändert: la maison qu'elle a **fait** construire.\n\n**laisser + Infinitiv** = zulassen: **Laisse-moi** réfléchir ! — Lass mich nachdenken!\n\nNützliche Wendungen: faire venir (kommen lassen), faire savoir (wissen lassen), laisser tomber (fallen lassen / aufgeben, ugs.).",
+      "examples": [
+        {"fr": "Je fais couper mes cheveux demain.", "de": "Ich lasse mir morgen die Haare schneiden."},
+        {"fr": "Il a fait réparer son vélo.", "de": "Er hat sein Fahrrad reparieren lassen."},
+        {"fr": "Laisse-moi t'expliquer !", "de": "Lass es mich dir erklären!"}
+      ],
+      "typicalMistake": "„sich etwas machen lassen\" mit Passiv bauen — das Französische nimmt schlicht faire + Infinitiv: Je **fais réparer** (nicht *je suis réparé*!)."
+    },
+    {
+      "id": "g_connectors_cause",
+      "title": "Ursache & Folge ausdrücken",
+      "level": "B2",
+      "explanation": "**Ursache:**\n- **parce que** — weil (neutral, nach der Hauptaussage)\n- **puisque** — da ja (Begründung, die beide kennen)\n- **comme** — da (nur am Satzanfang!)\n- **grâce à** — dank (positiv) · **à cause de** — wegen (negativ)\n\n**Folge:**\n- **donc** — also · **alors** — da, dann\n- **c'est pourquoi** — deshalb · **par conséquent** — folglich (formell)\n- **du coup** — daher (gesprochen, sehr häufig)\n\nComme il pleuvait, on est restés. / Il pleuvait, **donc** on est restés.",
+      "examples": [
+        {"fr": "Comme j'étais malade, je suis resté au lit.", "de": "Da ich krank war, blieb ich im Bett."},
+        {"fr": "Grâce à ton aide, j'ai réussi.", "de": "Dank deiner Hilfe habe ich es geschafft."},
+        {"fr": "Il n'a pas répondu, c'est pourquoi je t'appelle.", "de": "Er hat nicht geantwortet, deshalb rufe ich dich an."}
+      ],
+      "typicalMistake": "comme mitten im Satz als „weil\" benutzen: *Je reste comme il pleut.* — comme (= da) steht nur am **Satzanfang**; sonst parce que."
+    },
+    {
+      "id": "g_connectors_concession",
+      "title": "Konzession & Opposition",
+      "level": "B2",
+      "explanation": "Einräumen und Gegenüberstellen:\n\n**Konzession** („obwohl/trotzdem\"):\n- **bien que** + Subjonctif — obwohl\n- **malgré** + Nomen — trotz: malgré la pluie\n- **pourtant / cependant / néanmoins** — dennoch, jedoch\n- **quand même** — trotzdem (nachgestellt): Il est venu **quand même**.\n- **même si** + Indicatif — auch wenn\n\n**Opposition** („während/hingegen\"):\n- **alors que / tandis que** — während: Il travaille **alors que** je dors.\n- **en revanche / par contre** — hingegen\n\nmalgré + Nomen vs. bien que + Satz: **malgré** le problème / **bien que** ce soit un problème.",
+      "examples": [
+        {"fr": "Malgré la grève, il est arrivé à l'heure.", "de": "Trotz des Streiks kam er pünktlich an."},
+        {"fr": "Elle dit oui, pourtant elle n'est pas sûre.", "de": "Sie sagt ja, dabei ist sie sich nicht sicher."},
+        {"fr": "Lui adore la ville, tandis qu'elle préfère la campagne.", "de": "Er liebt die Stadt, während sie das Land bevorzugt."}
+      ],
+      "typicalMistake": "*malgré que* — standardsprachlich heißt es **bien que** (+ Subjonctif) oder **malgré** + Nomen, nie malgré que."
+    },
+    {
+      "id": "g_connectors_goal",
+      "title": "Ziel & Absicht ausdrücken",
+      "level": "B2",
+      "explanation": "**Gleiche Subjekte → Infinitiv:**\n- **pour + Infinitiv** — um zu: Je pars tôt **pour éviter** le trafic.\n- **afin de + Infinitiv** — um zu (gehoben)\n- **dans le but de** — mit dem Ziel zu\n\n**Verschiedene Subjekte → que + Subjonctif:**\n- **pour que**: Je parle fort **pour que** tout le monde **entende**.\n- **afin que** (gehoben)\n\nNegatives Ziel: **pour ne pas** + Infinitiv (um nicht zu) / **de peur que** + Subjonctif (aus Angst, dass).",
+      "examples": [
+        {"fr": "Elle étudie pour réussir l'examen.", "de": "Sie lernt, um die Prüfung zu bestehen."},
+        {"fr": "Je t'écris afin que tu saches la vérité.", "de": "Ich schreibe dir, damit du die Wahrheit weißt."},
+        {"fr": "Il parle doucement pour ne pas réveiller le bébé.", "de": "Er spricht leise, um das Baby nicht zu wecken."}
+      ],
+      "typicalMistake": "pour que + Infinitiv mischen: *pour que réussir* — entweder **pour réussir** (gleiches Subjekt) oder **pour que tu réussisses** (anderes Subjekt)."
+    },
+    {
+      "id": "g_faux_amis",
+      "title": "Falsche Freunde (faux amis)",
+      "level": "B2",
+      "explanation": "Wörter, die deutsch klingen, aber etwas anderes bedeuten:\n\n- **actuellement** = zurzeit (nicht „aktuell\" im Sinn von „wirklich\")\n- **la librairie** = Buchhandlung (Bibliothek = la bibliothèque)\n- **le gymnase** = Turnhalle (Gymnasium = le lycée)\n- **la chance** = das Glück (die Chance = l'occasion)\n- **la veste** = die Jacke (die Weste = le gilet)\n- **le régime** = die Diät (das Regime auch — Kontext!)\n- **brave** = rechtschaffen, lieb (tapfer = courageux)\n- **la tour** = der Turm / **le tour** = die Runde — Genus entscheidet!\n\nStrategie: faux amis bewusst als Paar lernen — „librairie = Buchhandlung, Bibliothek = bibliothèque\".",
+      "examples": [
+        {"fr": "Actuellement, je travaille à Lyon.", "de": "Zurzeit arbeite ich in Lyon."},
+        {"fr": "J'ai acheté ce roman dans une librairie.", "de": "Ich habe diesen Roman in einer Buchhandlung gekauft."},
+        {"fr": "Tu as de la chance !", "de": "Du hast Glück!"}
+      ],
+      "typicalMistake": "„Ich habe eine Chance bekommen\" → *j'ai reçu une chance* — richtig: une **occasion**. Und „la librairie\" verleiht keine Bücher!"
     }
   ]
 }

@@ -5,24 +5,58 @@ import Foundation
 /// Gruppe 1 (-er) und Gruppe 2 (-ir/-issant) werden generiert
 /// (Stamm = Infinitiv minus Endung, plus Orthografie-Regeln),
 /// Gruppe 3 kommt vollständig aus der gebündelten Ausnahmentabelle (`verbs.json`).
-/// Seit Phase 2 zusätzlich: Imparfait, Futur simple, Passé composé mit être
-/// (inkl. Angleichung) und Reflexivverben (se lever, s'habiller …).
+///
+/// Tempora: Präsens, Imparfait, Subjonctif présent, Conditionnel présent,
+/// Futur simple, Futur proche sowie die zusammengesetzten Zeiten Passé composé,
+/// Plus-que-parfait, Futur antérieur und Conditionnel passé — inklusive
+/// être-Hilfsverb, Angleichung und Reflexivverben (je me suis levé).
 /// Alle Daten sind selbst verfasst — keine Verbiste-Ableitung (Lizenz, siehe SPEC §5).
 struct Conjugator {
     enum Tense: String, CaseIterable {
         case present
         case imparfait
         case passeCompose
+        case plusQueParfait
         case futurProche
         case futurSimple
+        case futurAnterieur
+        case conditionnel
+        case conditionnelPasse
+        case subjonctifPresent
 
         var germanLabel: String {
             switch self {
             case .present: return "Präsens"
             case .imparfait: return "Imparfait"
             case .passeCompose: return "Passé composé"
+            case .plusQueParfait: return "Plus-que-parfait"
             case .futurProche: return "Futur proche"
             case .futurSimple: return "Futur simple"
+            case .futurAnterieur: return "Futur antérieur"
+            case .conditionnel: return "Conditionnel"
+            case .conditionnelPasse: return "Conditionnel passé"
+            case .subjonctifPresent: return "Subjonctif"
+            }
+        }
+
+        /// Zusammengesetzte Zeiten: Hilfsverb + Participe passé.
+        var isCompound: Bool {
+            switch self {
+            case .passeCompose, .plusQueParfait, .futurAnterieur, .conditionnelPasse:
+                return true
+            default:
+                return false
+            }
+        }
+
+        /// Tempus, in dem das Hilfsverb steht.
+        var auxiliaryTense: Tense? {
+            switch self {
+            case .passeCompose: return .present
+            case .plusQueParfait: return .imparfait
+            case .futurAnterieur: return .futurSimple
+            case .conditionnelPasse: return .conditionnel
+            default: return nil
             }
         }
     }
@@ -41,7 +75,7 @@ struct Conjugator {
     /// -er-Verben mit Stammwechsel é → è (préférer → je préfère) —
     /// im Futur simple bleibt das é erhalten (je préférerai).
     private static let accentGraveVerbs: Set<String> = [
-        "préférer", "espérer", "répéter", "compléter", "posséder",
+        "préférer", "espérer", "répéter", "compléter", "posséder", "protéger",
     ]
 
     /// -er-Verben mit Konsonantverdopplung (appeler → j'appelle, j'appellerai).
@@ -49,6 +83,9 @@ struct Conjugator {
 
     /// -yer-Verben mit y → i (payer → je paie, je paierai).
     private static let yToIVerbs: Set<String> = ["payer", "essayer", "employer", "envoyer", "nettoyer"]
+
+    /// -ir-Verben mit -er-Präsensendungen (offrir → j'offre, ouvrir → j'ouvre).
+    private static let erLikeIrVerbs: Set<String> = ["offrir", "ouvrir", "découvrir", "souffrir"]
 
     init(verbs: [VerbEntry]) {
         self.verbsByInfinitive = Dictionary(uniqueKeysWithValues: verbs.map { ($0.infinitive, $0) })
@@ -95,6 +132,11 @@ struct Conjugator {
             return irregular
         }
         let base = Self.baseInfinitive(verb.infinitive)
+        if Self.erLikeIrVerbs.contains(base) {
+            // offrir → offr- mit -er-Endungen: offre, offres, offre …
+            let stem = String(base.dropLast(2))
+            return ["e", "es", "e", "ons", "ez", "ent"].map { stem + $0 }
+        }
         switch verb.group {
         case 1:
             return Self.firstGroupPresent(infinitive: base)
@@ -180,7 +222,23 @@ struct Conjugator {
         }
     }
 
-    // MARK: - Futur simple
+    // MARK: - Subjonctif présent
+
+    /// Regelbildung: Stamm der ils-Form + -e/-es/-e/-ent, nous/vous = Imparfait.
+    /// Verben mit eigenem Subjonctif (être, avoir, aller …) kommen aus der Tabelle.
+    func subjonctifForms(of verb: VerbEntry) -> [String]? {
+        if let irregular = verb.subjonctif {
+            return irregular
+        }
+        let present = basePresentForms(of: verb)
+        guard present.count == 6, present[5].hasSuffix("ent"),
+              let imparfait = imparfaitForms(of: verb)
+        else { return nil }
+        let stem = String(present[5].dropLast(3))
+        return [stem + "e", stem + "es", stem + "e", imparfait[3], imparfait[4], stem + "ent"]
+    }
+
+    // MARK: - Futur simple & Conditionnel
 
     /// Futur-Stamm: unregelmäßig aus der Tabelle (ser-, aur-, ir- …),
     /// sonst Infinitiv (bei -re ohne Schluss-e; Stammwechsel-Verben behalten è/ll/i).
@@ -209,6 +267,12 @@ struct Conjugator {
         return ["ai", "as", "a", "ons", "ez", "ont"].map { stem + $0 }
     }
 
+    /// Conditionnel présent: Futur-Stamm + Imparfait-Endungen.
+    func conditionnelForms(of verb: VerbEntry) -> [String] {
+        let stem = futurStem(of: verb)
+        return ["ais", "ais", "ait", "ions", "iez", "aient"].map { stem + $0 }
+    }
+
     // MARK: - Participe passé & Hilfsverb
 
     func participle(of verb: VerbEntry) -> String {
@@ -220,6 +284,11 @@ struct Conjugator {
         case 2: return stem + "i"
         default: return stem
         }
+    }
+
+    /// Braucht dieses Verb in zusammengesetzten Zeiten être (inkl. Reflexive)?
+    func usesEtreAuxiliary(_ verb: VerbEntry) -> Bool {
+        verb.auxiliary == "être" || Self.isReflexive(verb.infinitive)
     }
 
     /// Angleichungs-Varianten des Partizips für être-Verben (allé, allée, allés, allées),
@@ -236,14 +305,19 @@ struct Conjugator {
     // MARK: - Formen für Übungen & Tabellen
 
     /// Verbform (ohne Subjektpronomen) für Tempus + Person (0–5).
-    /// Reflexivpronomen ist enthalten ("me lève"). Passé composé von être-Verben
-    /// liefert die maskuline Grundform ("suis allé", "sommes allés").
+    /// Reflexivpronomen ist enthalten ("me lève", "me suis levé").
+    /// Zusammengesetzte être-Zeiten liefern die maskuline Grundform
+    /// ("suis allé", "sommes allés") — Varianten via `participleVariants`.
     func form(of verb: VerbEntry, tense: Tense, person: Int) -> String? {
         guard (0...5).contains(person) else { return nil }
         let reflexive = Self.isReflexive(verb.infinitive)
 
         func withReflexive(_ form: String) -> String {
             reflexive ? Self.reflexivePronoun(person: person, before: form) + form : form
+        }
+
+        if tense.isCompound {
+            return compoundForm(of: verb, tense: tense, person: person)
         }
 
         switch tense {
@@ -255,16 +329,9 @@ struct Conjugator {
             guard let forms = imparfaitForms(of: verb) else { return nil }
             return withReflexive(forms[person])
 
-        case .passeCompose:
-            // Reflexives Passé composé (je me suis levé) kommt mit B1.
-            guard !reflexive else { return nil }
-            if verb.auxiliary == "être" {
-                guard let etre = verbsByInfinitive["être"], let aux = etre.present?[person] else { return nil }
-                let agreed = [3, 5].contains(person) ? participle(of: verb) + "s" : participle(of: verb)
-                return aux + " " + agreed
-            }
-            guard let avoir = verbsByInfinitive["avoir"], let aux = avoir.present?[person] else { return nil }
-            return aux + " " + participle(of: verb)
+        case .subjonctifPresent:
+            guard let forms = subjonctifForms(of: verb), forms.count == 6 else { return nil }
+            return withReflexive(forms[person])
 
         case .futurProche:
             guard let aller = verbsByInfinitive["aller"], let aux = aller.present?[person] else { return nil }
@@ -279,7 +346,38 @@ struct Conjugator {
             let forms = futurSimpleForms(of: verb)
             guard forms.count == 6, !forms[person].isEmpty else { return nil }
             return withReflexive(forms[person])
+
+        case .conditionnel:
+            let forms = conditionnelForms(of: verb)
+            guard forms.count == 6, !forms[person].isEmpty else { return nil }
+            return withReflexive(forms[person])
+
+        default:
+            return nil
         }
+    }
+
+    /// Zusammengesetzte Zeiten: Hilfsverb im passenden Tempus + Participe passé.
+    /// Reflexiv: Pronomen + être ("me suis levé").
+    private func compoundForm(of verb: VerbEntry, tense: Tense, person: Int) -> String? {
+        guard let auxTense = tense.auxiliaryTense else { return nil }
+        let reflexive = Self.isReflexive(verb.infinitive)
+        let needsEtre = usesEtreAuxiliary(verb)
+
+        guard let auxVerb = verbsByInfinitive[needsEtre ? "être" : "avoir"],
+              let auxForm = form(of: auxVerb, tense: auxTense, person: person)
+        else { return nil }
+
+        var agreed = participle(of: verb)
+        if needsEtre, [3, 5].contains(person) {
+            agreed += "s"
+        }
+
+        if reflexive {
+            let pronoun = Self.reflexivePronoun(person: person, before: auxForm)
+            return pronoun + auxForm + " " + agreed
+        }
+        return auxForm + " " + agreed
     }
 
     /// "je" wird vor Vokal oder stummem h zu "j'" (j'aime, j'habite, j'ai mangé).
@@ -287,22 +385,34 @@ struct Conjugator {
         startsWithVowelSound(form)
     }
 
+    /// Subjektpronomen fürs Prompt/Tabelle — Subjonctif bekommt "que" davor.
+    static func displayPronoun(person: Int, form: String, tense: Tense) -> String {
+        let base: String
+        if person == 0 {
+            base = elidesAfterJe(form) ? "j'" : "je"
+        } else {
+            base = tablePronouns[person]
+        }
+        guard tense == .subjonctifPresent else { return base }
+        if base.hasPrefix("il") || base.hasPrefix("ils") {
+            return "qu'" + base
+        }
+        return "que " + base
+    }
+
     /// Konjugationstabelle fürs UI: [(Pronomen, Form)] mit Elision.
-    /// Bei être-Verben im Passé composé wird die Angleichung angezeigt: "suis allé(e)".
+    /// Zusammengesetzte être-Zeiten zeigen die Angleichung: "suis allé(e)".
     func table(for verb: VerbEntry, tense: Tense = .present) -> [(pronoun: String, form: String)] {
         (0...5).compactMap { person in
             guard var f = form(of: verb, tense: tense, person: person) else { return nil }
-            if tense == .passeCompose, verb.auxiliary == "être" {
+            if tense.isCompound, usesEtreAuxiliary(verb) {
                 switch person {
                 case 3, 5: f = String(f.dropLast()) + "(e)s" // sommes allés → sommes allé(e)s
                 case 4: f += "(e)(s)"                        // êtes allé(e)(s)
                 default: f += "(e)"                          // suis allé(e)
                 }
             }
-            if person == 0 {
-                return Self.elidesAfterJe(f) ? ("j'", f) : ("je", f)
-            }
-            return (Self.tablePronouns[person], f)
+            return (Self.displayPronoun(person: person, form: f, tense: tense), f)
         }
     }
 }

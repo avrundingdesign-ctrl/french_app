@@ -130,10 +130,10 @@ final class ConjugatorPhase2Tests: XCTestCase {
         XCTAssertEqual(conjugator.form(of: seLever, tense: .futurSimple, person: 0), "me lèverai")
     }
 
-    func testReflexivePasseComposeNotYetSupported() throws {
-        // Kommt mit B1 (je me suis levé) — Engine liefert bewusst nil.
+    func testReflexivePasseComposeSupported() throws {
+        // Seit Phase 3 unterstützt: je me suis levé.
         let seLever = try XCTUnwrap(conjugator.verb("se lever"))
-        XCTAssertNil(conjugator.form(of: seLever, tense: .passeCompose, person: 0))
+        XCTAssertEqual(conjugator.form(of: seLever, tense: .passeCompose, person: 0), "me suis levé")
     }
 
     // MARK: y → i (payer)

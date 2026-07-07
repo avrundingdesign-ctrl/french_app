@@ -186,9 +186,9 @@ struct HomePathView: View {
 
     private var phase2Teaser: some View {
         VStack(spacing: 8) {
-            Image(systemName: "sparkles")
+            Image(systemName: "flag.checkered")
                 .foregroundStyle(.secondary)
-            Text("B1 und B2 folgen in Phase 3.")
+            Text("Der komplette Pfad von A1 bis B2 — bonne route !")
                 .font(.footnote)
                 .foregroundStyle(.secondary)
         }

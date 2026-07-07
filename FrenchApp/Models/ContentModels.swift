@@ -105,6 +105,9 @@ struct VerbEntry: Codable, Identifiable, Hashable {
     let auxiliary: String?
     /// Unregelmäßiger Futur-simple-Stamm (être → "ser", avoir → "aur" …).
     let futurStem: String?
+    /// Sechs Subjonctif-présent-Formen — nur für Verben mit eigenem
+    /// Subjonctif-Stamm (être, avoir, aller, faire, pouvoir, vouloir, savoir).
+    let subjonctif: [String]?
 }
 
 struct VerbsFile: Codable {

@@ -11,7 +11,7 @@ Vollständige Spezifikation: [`docs/SPEC.md`](docs/SPEC.md)
   <img src="docs/screenshots/02_home.png" width="260" alt="Lernpfad">
 </p>
 
-## Status: Phase 2 — A1 + A2 komplett
+## Status: Phase 3 — kompletter Lernpfad A1 → B2 ✅
 
 **Phase 1 (A1-MVP):**
 - ✅ CEFR-Lernpfad A1 mit 6 Einheiten / 24 Lektionen, sequenzielle Freischaltung
@@ -32,7 +32,29 @@ Vollständige Spezifikation: [`docs/SPEC.md`](docs/SPEC.md)
 - ✅ Review-Log pro Bewertung (Statistik + Grundlage für spätere FSRS-Migration)
 - ✅ Profil: 7-Tage-Fälligkeitsprognose, Trainings-Aktivität, Wörter nach Niveau
 
-**Inhalt gesamt:** 373 Vokabeln · 70 Verben · 32 Grammatikthemen · 48 Lektionen · ~600 Übungen
+**Phase 3 (B1/B2-Vollausbau):**
+- ✅ B1-Lernpfad: Meinung/Subjonctif, Beruf/Conditionnel, Erinnerungen/Plus-que-parfait,
+  Medien/indirekte Rede, Umwelt/dont, Erfahrungen (24 Lektionen)
+- ✅ B2-Lernpfad: Subjonctif vertieft (Konjunktionen, vs. Indicatif), Futur antérieur,
+  Infinitif passé, Passé simple (Erkennung), Angleichung komplett (avoir-COD, Reflexive),
+  faire causatif, Konnektoren, Fachsprache, faux amis, Idiomatik (24 Lektionen)
+- ✅ Engine-Vollausbau: **Subjonctif présent** (ils-Stamm + Imparfait-nous/vous, Sonderformen
+  sois/aie/aille/fasse/puisse/veuille/sache), **Conditionnel présent/passé**,
+  **Plus-que-parfait**, **Futur antérieur**, **reflexives Passé composé** (je me suis levé)
+  — Angleichung in allen être-Zeiten, alle Varianten werden als Antwort akzeptiert
+- ✅ `tools/validate_content.py`: Content-Validierung ohne Xcode (für CI/pre-commit)
+
+**Inhalt gesamt:** 590 Vokabeln · 107 Verben · 61 Grammatikthemen · 96 Lektionen (24 je Niveau) · ~1200 Übungen
+
+### Bewusst verschoben (Phase 4 / optional)
+
+- **FSRS**: Die Spec nennt als Benchmark-Schwelle „>1000 aktive Karten" — darunter ist der
+  Effizienzgewinn die Zusatzkomplexität nicht wert. Die nötige Reviewhistorie wird seit
+  Phase 2 vollständig geloggt (`ReviewLogEntry`), die Migration ist also jederzeit möglich.
+- **iCloud-Sync**: SwiftData + CloudKit verbietet Unique-Constraints (`ReviewState.vocabID`)
+  und verlangt Defaults für alle Attribute — braucht ein eigenes Schema-Redesign.
+- **Datenpipeline** (Lexique/DBnary/Tatoeba): lohnt ab redaktioneller Skalierung über
+  das aktuelle, selbst verfasste Inventar hinaus; Lizenz-Attributionen dann in den Credits.
 
 ## Build
 
@@ -101,6 +123,8 @@ kuratierte Tatoeba-Sätze CC BY): siehe SPEC, Abschnitt „Datenquellen-Strategi
 
 ## Roadmap
 
-- **Phase 3 (B1/B2):** Subjonctif, Conditionnel, Plus-que-parfait und reflexives Passé composé
-  in der Engine; B1/B2-Curriculum; optional FSRS als Opt-in (Review-Log liegt bereits vor),
-  optional iCloud-Sync; Datenpipeline (Lexique/DBnary/Tatoeba → JSON/SQLite via GRDB)
+Der Spec-Umfang (Phase 1–3) ist umgesetzt. Mögliche nächste Schritte:
+
+- **Phase 4 (optional):** FSRS als Opt-in mit Ziel-Retention (Review-Log liegt vor),
+  iCloud-Sync (Schema-Redesign nötig), Datenpipeline Lexique/DBnary/Tatoeba,
+  UI-Tests (XCUITest), App-Store-Vorbereitung (Signing, Datenschutz, Screenshots)

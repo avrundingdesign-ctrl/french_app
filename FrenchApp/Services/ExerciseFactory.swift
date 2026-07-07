@@ -374,7 +374,10 @@ struct ExerciseFactory {
         default: pronoun = Conjugator.tablePronouns[person]
         }
 
-        let prefix = elided ? pronoun : pronoun + " "
+        var prefix = elided ? pronoun : pronoun + " "
+        if tense == .subjonctifPresent {
+            prefix = (pronoun.hasPrefix("il") ? "qu'" : "que ") + prefix
+        }
         let fullSolution = prefix + answer
         // Vokabel-IDs sind ASCII (v_ecouter), Infinitive tragen Akzente (écouter).
         let vocabKey = "v_" + AnswerChecker.stripDiacritics(infinitive)
@@ -382,13 +385,14 @@ struct ExerciseFactory {
             .replacingOccurrences(of: "s'", with: "s")
         let vocabID = content.vocabByID[vocabKey] != nil ? vocabKey : nil
 
-        // Angleichung bei être-Verben im Passé composé: alle Varianten akzeptieren.
+        // Angleichung in zusammengesetzten être-Zeiten (inkl. Reflexive):
+        // alle Partizip-Varianten akzeptieren.
         var altAnswers: [String] = []
         var hint = spec.hint
-        if tense == .passeCompose, verb.auxiliary == "être" {
-            let auxWord = answer.components(separatedBy: " ").first ?? ""
+        if tense.isCompound, content.conjugator.usesEtreAuxiliary(verb) {
+            let head = answer.components(separatedBy: " ").dropLast().joined(separator: " ")
             altAnswers = content.conjugator.participleVariants(of: verb, person: person)
-                .map { auxWord + " " + $0 }
+                .map { head + " " + $0 }
                 .filter { $0 != answer }
             if hint == nil {
                 hint = "Mit être — das Partizip gleicht sich an (alle Formen zählen)."

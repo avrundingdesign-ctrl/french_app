@@ -69,9 +69,14 @@ final class ConjugatorTests: XCTestCase {
         )
     }
 
-    func testAllIrregularVerbsHaveSixPresentForms() {
-        for verb in content.verbs where verb.group == 3 {
-            XCTAssertEqual(verb.present?.count, 6, "\(verb.infinitive) braucht 6 Präsensformen")
+    func testAllVerbsProduceSixPresentForms() {
+        // Gruppe 3 aus der Tabelle, offrir/ouvrir regelbasiert — am Ende
+        // müssen alle Verben sechs Präsensformen liefern.
+        for verb in content.verbs {
+            XCTAssertEqual(
+                content.conjugator.basePresentForms(of: verb).count, 6,
+                "\(verb.infinitive) liefert keine 6 Präsensformen"
+            )
         }
     }
 

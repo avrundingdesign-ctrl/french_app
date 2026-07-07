@@ -874,6 +874,852 @@
           ]
         }
       ]
+    },
+    {
+      "id": "b1_u1",
+      "title": "Mon avis — Meinung & Diskussion",
+      "level": "B1",
+      "icon": "bubble.left.and.bubble.right.fill",
+      "lessons": [
+        {
+          "id": "b1_u1_l1",
+          "title": "Meinung äußern",
+          "newVocab": ["v_croire", "v_dire", "v_savoir", "v_lavis", "v_a_mon_avis", "v_avoir_raison", "v_avoir_tort", "v_surement"],
+          "exercises": [
+            {"type": "vocabIntro", "vocab": ["v_croire", "v_dire", "v_lavis"]},
+            {"type": "conjugation", "verb": "croire", "person": 0, "translation": "ich glaube"},
+            {"type": "conjugation", "verb": "dire", "person": 4, "translation": "ihr sagt / Sie sagen", "hint": "Unregelmäßig: vous dites!"},
+            {"type": "vocabIntro", "vocab": ["v_savoir", "v_a_mon_avis", "v_avoir_raison", "v_avoir_tort"]},
+            {"type": "conjugation", "verb": "savoir", "person": 0, "translation": "ich weiß"},
+            {"type": "cloze", "text": "Tu as ___, c'est une bonne idée.", "answer": "raison", "choices": ["raison", "tort", "avis"], "translation": "Du hast recht, das ist eine gute Idee.", "vocab": ["v_avoir_raison"]},
+            {"type": "mcSentence", "question": "«savoir» oder «connaître»? — „Ich kenne Paris.\"", "answer": "Je connais Paris.", "distractors": ["Je sais Paris.", "Je sais à Paris."], "translation": "Orte/Personen → connaître", "vocab": ["v_savoir"]},
+            {"type": "wordOrder", "fr": "À mon avis, tu as tort", "de": "Meiner Meinung nach hast du unrecht", "vocab": ["v_a_mon_avis"]},
+            {"type": "translate", "de": "Ich glaube, dass du recht hast.", "fr": "Je crois que tu as raison.", "vocab": ["v_croire"]}
+          ]
+        },
+        {
+          "id": "b1_u1_l2",
+          "title": "Der Subjonctif",
+          "grammar": ["g_subjonctif_intro"],
+          "newVocab": ["v_il_faut_que", "v_necessaire", "v_la_verite"],
+          "exercises": [
+            {"type": "vocabIntro", "vocab": ["v_il_faut_que", "v_necessaire", "v_la_verite"]},
+            {"type": "conjugation", "verb": "être", "person": 1, "tense": "subjonctifPresent", "translation": "(dass) du seist", "hint": "il faut que tu …"},
+            {"type": "cloze", "text": "Il faut que tu ___ à l'heure.", "answer": "sois", "choices": ["sois", "es", "seras"], "translation": "Du musst pünktlich sein.", "vocab": ["v_il_faut_que"]},
+            {"type": "conjugation", "verb": "parler", "person": 0, "tense": "subjonctifPresent", "translation": "(dass) ich spreche"},
+            {"type": "conjugation", "verb": "avoir", "person": 2, "tense": "subjonctifPresent", "translation": "(dass) er/sie habe"},
+            {"type": "cloze", "text": "Il faut que nous ___ le projet.", "answer": "finissions", "choices": ["finissions", "finissons", "finirons"], "translation": "Wir müssen das Projekt beenden.", "vocab": ["v_finir"]},
+            {"type": "conjugation", "verb": "finir", "person": 3, "tense": "subjonctifPresent", "translation": "(dass) wir beenden"},
+            {"type": "errorCorrection", "text": "Il faut que tu es patient.", "answer": "Il faut que tu sois patient.", "distractors": ["Il faut que tu seras patient.", "Il faut que tu étais patient."], "translation": "Du musst geduldig sein.", "hint": "il faut que + Subjonctif", "vocab": ["v_il_faut_que"]}
+          ]
+        },
+        {
+          "id": "b1_u1_l3",
+          "title": "Wünsche & Gefühle",
+          "grammar": ["g_subjonctif_usage"],
+          "newVocab": ["v_le_sentiment", "v_heureux", "v_triste", "v_la_peur", "v_avoir_peur"],
+          "exercises": [
+            {"type": "vocabIntro", "vocab": ["v_le_sentiment", "v_heureux", "v_triste"]},
+            {"type": "conjugation", "verb": "venir", "person": 1, "tense": "subjonctifPresent", "translation": "(dass) du kommst", "hint": "Stamm aus ils viennent"},
+            {"type": "cloze", "text": "Je veux que tu ___ ce soir.", "answer": "viennes", "choices": ["viennes", "viens", "viendras"], "translation": "Ich will, dass du heute Abend kommst.", "vocab": ["v_venir"]},
+            {"type": "vocabIntro", "vocab": ["v_la_peur", "v_avoir_peur"]},
+            {"type": "conjugation", "verb": "faire", "person": 0, "tense": "subjonctifPresent", "translation": "(dass) ich mache", "hint": "fasse!"},
+            {"type": "cloze", "text": "Je suis contente que tu ___ là.", "answer": "sois", "choices": ["sois", "es", "est"], "translation": "Ich bin froh, dass du da bist.", "vocab": ["v_content"]},
+            {"type": "conjugation", "verb": "aller", "person": 1, "tense": "subjonctifPresent", "translation": "(dass) du gehst", "hint": "aille-!"},
+            {"type": "errorCorrection", "text": "Je veux que je parte.", "answer": "Je veux partir.", "distractors": ["Je veux que partir.", "Je veux de partir."], "translation": "Ich will gehen.", "hint": "Gleiches Subjekt → Infinitiv", "vocab": ["v_vouloir"]},
+            {"type": "translate", "de": "Sie hat Angst, dass es zu spät ist.", "fr": "Elle a peur qu'il soit trop tard.", "vocab": ["v_avoir_peur"]}
+          ]
+        },
+        {
+          "id": "b1_u1_l4",
+          "title": "ne … que & Argumente",
+          "grammar": ["g_ne_que"],
+          "newVocab": ["v_seulement", "v_ne_que", "v_largument", "v_la_raison", "v_etre_daccord", "v_le_debat"],
+          "exercises": [
+            {"type": "vocabIntro", "vocab": ["v_seulement", "v_ne_que", "v_largument"]},
+            {"type": "cloze", "text": "Je n'ai ___ dix euros.", "answer": "que", "choices": ["que", "pas", "rien"], "translation": "Ich habe nur zehn Euro.", "vocab": ["v_ne_que"]},
+            {"type": "mcSentence", "question": "«Il ne boit que du café.» bedeutet …", "answer": "Er trinkt nur Kaffee.", "distractors": ["Er trinkt keinen Kaffee.", "Er trinkt keinen Kaffee mehr."], "vocab": ["v_ne_que"]},
+            {"type": "vocabIntro", "vocab": ["v_la_raison", "v_etre_daccord", "v_le_debat"]},
+            {"type": "cloze", "text": "Je suis ___ avec toi.", "answer": "d'accord", "choices": ["d'accord", "raison", "content"], "translation": "Ich bin einverstanden mit dir.", "vocab": ["v_etre_daccord"]},
+            {"type": "wordOrder", "fr": "Elle ne parle que français", "de": "Sie spricht nur Französisch", "vocab": ["v_ne_que"]},
+            {"type": "translate", "de": "Wir haben nur eine Stunde.", "fr": "Nous n'avons qu'une heure.", "altAnswers": ["Nous avons seulement une heure."], "vocab": ["v_ne_que"]},
+            {"type": "matching", "vocab": ["v_largument", "v_la_raison", "v_le_debat", "v_lavis", "v_la_verite"]}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "b1_u2",
+      "title": "Au boulot — Beruf & Träume",
+      "level": "B1",
+      "icon": "case.fill",
+      "lessons": [
+        {
+          "id": "b1_u2_l1",
+          "title": "Die Bewerbung",
+          "newVocab": ["v_lemploi", "v_le_stage", "v_lentretien", "v_le_patron", "v_le_cv", "v_la_reunion"],
+          "exercises": [
+            {"type": "vocabIntro", "vocab": ["v_lemploi", "v_le_stage", "v_le_cv"]},
+            {"type": "matching", "vocab": ["v_lemploi", "v_lentretien", "v_le_patron", "v_le_cv", "v_la_reunion"]},
+            {"type": "vocabIntro", "vocab": ["v_lentretien", "v_le_patron", "v_la_reunion"]},
+            {"type": "cloze", "text": "Elle cherche un ___ pour l'été.", "answer": "emploi", "choices": ["emploi", "entretien", "patron"], "translation": "Sie sucht eine Stelle für den Sommer.", "vocab": ["v_lemploi"]},
+            {"type": "conjugation", "verb": "chercher", "person": 5, "translation": "sie suchen"},
+            {"type": "wordOrder", "fr": "J'ai un entretien demain matin", "de": "Ich habe morgen früh ein Vorstellungsgespräch", "vocab": ["v_lentretien"]},
+            {"type": "translate", "de": "Der Chef ist in einer Besprechung.", "fr": "Le patron est en réunion.", "altAnswers": ["Le patron est dans une réunion."], "vocab": ["v_la_reunion"]},
+            {"type": "vocabProd", "vocab": ["v_lemploi", "v_le_stage"]}
+          ]
+        },
+        {
+          "id": "b1_u2_l2",
+          "title": "Ich würde gern — Conditionnel",
+          "grammar": ["g_conditionnel"],
+          "newVocab": ["v_jaimerais", "v_volontiers", "v_poli", "v_la_possibilite"],
+          "exercises": [
+            {"type": "vocabIntro", "vocab": ["v_jaimerais", "v_volontiers", "v_poli", "v_la_possibilite"]},
+            {"type": "conjugation", "verb": "aimer", "person": 0, "tense": "conditionnel", "translation": "ich würde gern (mögen)"},
+            {"type": "conjugation", "verb": "pouvoir", "person": 1, "tense": "conditionnel", "translation": "du könntest"},
+            {"type": "cloze", "text": "Tu ___ m'aider ?", "answer": "pourrais", "choices": ["pourrais", "peux", "pourras"], "translation": "Könntest du mir helfen?", "vocab": ["v_pouvoir"]},
+            {"type": "conjugation", "verb": "être", "person": 2, "tense": "conditionnel", "translation": "es wäre"},
+            {"type": "cloze", "text": "Ce ___ une bonne idée !", "answer": "serait", "choices": ["serait", "sera", "était"], "translation": "Das wäre eine gute Idee!", "vocab": ["v_lidee"]},
+            {"type": "conjugation", "verb": "vouloir", "person": 3, "tense": "conditionnel", "translation": "wir würden wollen"},
+            {"type": "errorCorrection", "text": "Je voudrai un café, s'il vous plaît.", "answer": "Je voudrais un café, s'il vous plaît.", "distractors": ["Je voudras un café, s'il vous plaît.", "Je veux voudrais un café."], "translation": "Ich hätte gern einen Kaffee, bitte.", "hint": "Conditionnel: -ais (nicht Futur -ai)", "vocab": ["v_je_voudrais"]},
+            {"type": "translate", "de": "Ich würde gern in Paris wohnen.", "fr": "J'aimerais habiter à Paris.", "vocab": ["v_jaimerais"]}
+          ]
+        },
+        {
+          "id": "b1_u2_l3",
+          "title": "Wenn ich reich wäre …",
+          "grammar": ["g_si_imparfait"],
+          "newVocab": ["v_riche", "v_pauvre", "v_le_reve", "v_rever"],
+          "exercises": [
+            {"type": "vocabIntro", "vocab": ["v_riche", "v_pauvre", "v_le_reve", "v_rever"]},
+            {"type": "cloze", "text": "Si j'___ riche, j'achèterais une maison.", "answer": "étais", "choices": ["étais", "serais", "suis"], "translation": "Wenn ich reich wäre, würde ich ein Haus kaufen.", "hint": "si + Imparfait", "vocab": ["v_riche"]},
+            {"type": "cloze", "text": "Si tu avais le temps, qu'est-ce que tu ___ ?", "answer": "ferais", "choices": ["ferais", "fais", "feras"], "translation": "Wenn du Zeit hättest, was würdest du tun?", "vocab": ["v_faire"]},
+            {"type": "conjugation", "verb": "voyager", "person": 0, "tense": "conditionnel", "translation": "ich würde reisen"},
+            {"type": "cloze", "text": "Nous serions contents si vous ___ .", "answer": "veniez", "choices": ["veniez", "viendrez", "venez"], "translation": "Wir würden uns freuen, wenn ihr kämt.", "vocab": ["v_venir"]},
+            {"type": "errorCorrection", "text": "Si j'aurais le temps, je voyagerais.", "answer": "Si j'avais le temps, je voyagerais.", "distractors": ["Si j'ai le temps, je voyagerais.", "Si j'aurai le temps, je voyagerais."], "translation": "Wenn ich Zeit hätte, würde ich reisen.", "hint": "Nach si: Imparfait, nie Conditionnel", "vocab": ["v_voyager"]},
+            {"type": "wordOrder", "fr": "Si j'étais toi, je resterais ici", "de": "Wenn ich du wäre, würde ich hierbleiben", "vocab": ["v_rester"]},
+            {"type": "translate", "de": "Sie träumt von einem Haus am Meer.", "fr": "Elle rêve d'une maison à la mer.", "altAnswers": ["Elle rêve d'une maison au bord de la mer."], "vocab": ["v_rever"]}
+          ]
+        },
+        {
+          "id": "b1_u2_l4",
+          "title": "en travaillant — das Gérondif",
+          "grammar": ["g_gerondif"],
+          "newVocab": ["v_en_meme_temps", "v_pendant_que", "v_apprendre", "v_ameliorer"],
+          "exercises": [
+            {"type": "vocabIntro", "vocab": ["v_en_meme_temps", "v_pendant_que", "v_apprendre", "v_ameliorer"]},
+            {"type": "conjugation", "verb": "apprendre", "person": 0, "translation": "ich lerne"},
+            {"type": "cloze", "text": "J'apprends le français en ___ des podcasts.", "answer": "écoutant", "choices": ["écoutant", "écouter", "écoutez"], "translation": "Ich lerne Französisch, indem ich Podcasts höre.", "hint": "en + -ant", "vocab": ["v_ecouter"]},
+            {"type": "cloze", "text": "Elle téléphone en ___ .", "answer": "marchant", "choices": ["marchant", "marcher", "marche"], "translation": "Sie telefoniert beim Gehen.", "vocab": ["v_le_telephone"]},
+            {"type": "cloze", "text": "On apprend en ___ des erreurs.", "answer": "faisant", "choices": ["faisant", "faire", "fait"], "translation": "Man lernt, indem man Fehler macht.", "hint": "faire → faisant", "vocab": ["v_faire"]},
+            {"type": "mcSentence", "question": "Wie heißt das Gérondif von «finir»?", "answer": "en finissant", "distractors": ["en finant", "en finirant"], "vocab": ["v_finir"]},
+            {"type": "wordOrder", "fr": "Il écoute la radio en travaillant", "de": "Er hört Radio beim Arbeiten", "vocab": ["v_la_radio"]},
+            {"type": "translate", "de": "Ich verbessere mein Französisch, indem ich lese.", "fr": "J'améliore mon français en lisant.", "vocab": ["v_ameliorer"]}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "b1_u3",
+      "title": "Souvenirs — Erinnerungen & Erzählen",
+      "level": "B1",
+      "icon": "clock.arrow.circlepath",
+      "lessons": [
+        {
+          "id": "b1_u3_l1",
+          "title": "Was ist passiert? — Reflexive im PC",
+          "grammar": ["g_pc_reflexive"],
+          "newVocab": ["v_se_passer", "v_se_souvenir", "v_le_souvenir", "v_se_sentir"],
+          "exercises": [
+            {"type": "vocabIntro", "vocab": ["v_se_passer", "v_se_souvenir", "v_le_souvenir", "v_se_sentir"]},
+            {"type": "conjugation", "verb": "se lever", "person": 0, "tense": "passeCompose", "translation": "ich bin aufgestanden"},
+            {"type": "cloze", "text": "Je me ___ levé tôt ce matin.", "answer": "suis", "choices": ["suis", "ai", "es"], "translation": "Ich bin heute Morgen früh aufgestanden.", "vocab": ["v_se_lever"]},
+            {"type": "conjugation", "verb": "se coucher", "person": 2, "tense": "passeCompose", "translation": "er ist ins Bett gegangen"},
+            {"type": "cloze", "text": "Qu'est-ce qui s'est ___ ?", "answer": "passé", "choices": ["passé", "passer", "passe"], "translation": "Was ist passiert?", "vocab": ["v_se_passer"]},
+            {"type": "conjugation", "verb": "se réveiller", "person": 5, "tense": "passeCompose", "translation": "sie sind aufgewacht"},
+            {"type": "errorCorrection", "text": "Je m'ai levé à sept heures.", "answer": "Je me suis levé à sept heures.", "distractors": ["Je me sais levé à sept heures.", "J'ai me levé à sept heures."], "translation": "Ich bin um sieben aufgestanden.", "hint": "Reflexive Verben: immer être", "vocab": ["v_se_lever"]},
+            {"type": "conjugation", "verb": "se sentir", "person": 1, "translation": "du fühlst dich"},
+            {"type": "translate", "de": "Sie hat sich schnell angezogen.", "fr": "Elle s'est habillée vite.", "altAnswers": ["Elle s'est habillée rapidement.", "Elle s'est habillé vite."], "vocab": ["v_shabiller"]}
+          ]
+        },
+        {
+          "id": "b1_u3_l2",
+          "title": "Plus-que-parfait",
+          "grammar": ["g_plus_que_parfait"],
+          "newVocab": ["v_le_passe", "v_le_moment", "v_avant_de"],
+          "exercises": [
+            {"type": "vocabIntro", "vocab": ["v_le_passe", "v_le_moment", "v_avant_de"]},
+            {"type": "conjugation", "verb": "manger", "person": 0, "tense": "plusQueParfait", "translation": "ich hatte gegessen"},
+            {"type": "cloze", "text": "Quand je suis arrivé, le train était déjà ___ .", "answer": "parti", "choices": ["parti", "part", "partait"], "translation": "Als ich ankam, war der Zug schon abgefahren.", "vocab": ["v_partir"]},
+            {"type": "conjugation", "verb": "oublier", "person": 2, "tense": "plusQueParfait", "translation": "er/sie hatte vergessen"},
+            {"type": "cloze", "text": "Il ___ oublié son billet.", "answer": "avait", "choices": ["avait", "a", "est"], "translation": "Er hatte sein Ticket vergessen.", "vocab": ["v_le_billet"]},
+            {"type": "conjugation", "verb": "partir", "person": 2, "tense": "plusQueParfait", "translation": "er war abgefahren"},
+            {"type": "conjugation", "verb": "réserver", "person": 3, "tense": "plusQueParfait", "translation": "wir hatten reserviert"},
+            {"type": "wordOrder", "fr": "Elle était déjà partie avant le film", "de": "Sie war schon vor dem Film gegangen", "vocab": ["v_partir"]},
+            {"type": "translate", "de": "Wir hatten einen Tisch reserviert.", "fr": "Nous avions réservé une table.", "vocab": ["v_reserver"]}
+          ]
+        },
+        {
+          "id": "b1_u3_l3",
+          "title": "Eine Geschichte erzählen",
+          "grammar": ["g_narrative_tenses"],
+          "newVocab": ["v_soudain", "v_dabord", "v_puis", "v_enfin", "v_lhistoire"],
+          "exercises": [
+            {"type": "vocabIntro", "vocab": ["v_soudain", "v_dabord", "v_puis", "v_enfin", "v_lhistoire"]},
+            {"type": "matching", "vocab": ["v_soudain", "v_dabord", "v_puis", "v_enfin"]},
+            {"type": "cloze", "text": "Il ___ beau quand je suis sorti.", "answer": "faisait", "choices": ["faisait", "a fait", "fait"], "translation": "Das Wetter war schön, als ich hinausging.", "hint": "Hintergrund → Imparfait", "vocab": ["v_faire"]},
+            {"type": "cloze", "text": "Je lisais quand tu ___ .", "answer": "as appelé", "choices": ["as appelé", "appelais", "appelles"], "translation": "Ich las gerade, als du angerufen hast.", "hint": "Ereignis → Passé composé", "vocab": ["v_appeler"]},
+            {"type": "cloze", "text": "Elle était triste parce qu'elle ___ perdu ses clés.", "answer": "avait", "choices": ["avait", "a", "était"], "translation": "Sie war traurig, weil sie ihre Schlüssel verloren hatte.", "vocab": ["v_la_cle"]},
+            {"type": "errorCorrection", "text": "Soudain, le téléphone sonnait.", "answer": "Soudain, le téléphone a sonné.", "distractors": ["Soudain, le téléphone sonnera.", "Soudain, le téléphone avait sonné."], "translation": "Plötzlich klingelte das Telefon.", "hint": "soudain → Ereignis → Passé composé", "vocab": ["v_le_telephone"]},
+            {"type": "wordOrder", "fr": "D'abord, nous avons visité le musée", "de": "Zuerst haben wir das Museum besucht", "vocab": ["v_dabord"]},
+            {"type": "translate", "de": "Plötzlich hat es geregnet.", "fr": "Soudain, il a plu.", "altAnswers": ["Soudain il a plu."], "vocab": ["v_soudain"]}
+          ]
+        },
+        {
+          "id": "b1_u3_l4",
+          "title": "venir de, depuis & il y a",
+          "grammar": ["g_venir_de_depuis"],
+          "newVocab": ["v_venir_de", "v_depuis", "v_il_y_a_temps", "v_longtemps"],
+          "exercises": [
+            {"type": "vocabIntro", "vocab": ["v_venir_de", "v_depuis", "v_il_y_a_temps", "v_longtemps"]},
+            {"type": "cloze", "text": "Je ___ de finir mon travail.", "answer": "viens", "choices": ["viens", "vais", "dois"], "translation": "Ich bin gerade mit meiner Arbeit fertig geworden.", "vocab": ["v_venir_de"]},
+            {"type": "cloze", "text": "Elle apprend le français ___ six mois.", "answer": "depuis", "choices": ["depuis", "il y a", "pendant"], "translation": "Sie lernt seit sechs Monaten Französisch.", "vocab": ["v_depuis"]},
+            {"type": "cloze", "text": "Il est parti ___ deux heures.", "answer": "il y a", "choices": ["il y a", "depuis", "dans"], "translation": "Er ist vor zwei Stunden gegangen.", "vocab": ["v_il_y_a_temps"]},
+            {"type": "mcSentence", "question": "«Nous venons d'arriver.» bedeutet …", "answer": "Wir sind gerade angekommen.", "distractors": ["Wir werden gleich ankommen.", "Wir kommen von der Ankunft."], "vocab": ["v_venir_de"]},
+            {"type": "errorCorrection", "text": "J'ai habité ici depuis trois ans.", "answer": "J'habite ici depuis trois ans.", "distractors": ["J'habiterai ici depuis trois ans.", "J'habitais ici depuis trois ans."], "translation": "Ich wohne seit drei Jahren hier (und immer noch).", "hint": "depuis + läuft noch → Präsens", "vocab": ["v_depuis"]},
+            {"type": "wordOrder", "fr": "Je te connais depuis longtemps", "de": "Ich kenne dich seit Langem", "vocab": ["v_longtemps"]},
+            {"type": "translate", "de": "Sie ist gerade abgefahren.", "fr": "Elle vient de partir.", "vocab": ["v_venir_de"]}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "b1_u4",
+      "title": "Les médias — Medien & Kommunikation",
+      "level": "B1",
+      "icon": "newspaper.fill",
+      "lessons": [
+        {
+          "id": "b1_u4_l1",
+          "title": "Nachrichten & Netz",
+          "newVocab": ["v_le_journal", "v_les_infos", "v_larticle", "v_lemission", "v_la_radio", "v_les_reseaux_sociaux", "v_lecran", "v_partager"],
+          "exercises": [
+            {"type": "vocabIntro", "vocab": ["v_le_journal", "v_les_infos", "v_larticle"]},
+            {"type": "matching", "vocab": ["v_le_journal", "v_lemission", "v_la_radio", "v_lecran", "v_les_reseaux_sociaux"]},
+            {"type": "vocabIntro", "vocab": ["v_lemission", "v_les_reseaux_sociaux", "v_partager"]},
+            {"type": "cloze", "text": "Je lis un ___ intéressant sur le climat.", "answer": "article", "choices": ["article", "écran", "journal"], "translation": "Ich lese einen interessanten Artikel über das Klima.", "vocab": ["v_larticle"]},
+            {"type": "conjugation", "verb": "lire", "person": 5, "translation": "sie lesen"},
+            {"type": "cloze", "text": "Il passe trop de temps devant l'___ .", "answer": "écran", "choices": ["écran", "émission", "article"], "translation": "Er verbringt zu viel Zeit vor dem Bildschirm.", "vocab": ["v_lecran"]},
+            {"type": "wordOrder", "fr": "Elle partage la photo sur les réseaux sociaux", "de": "Sie teilt das Foto in den sozialen Netzwerken", "vocab": ["v_partager"]},
+            {"type": "vocabProd", "vocab": ["v_le_journal", "v_les_infos"]}
+          ]
+        },
+        {
+          "id": "b1_u4_l2",
+          "title": "Er sagt, dass … — indirekte Rede",
+          "grammar": ["g_indirect_speech"],
+          "newVocab": ["v_raconter", "v_la_nouvelle", "v_selon", "v_annoncer"],
+          "exercises": [
+            {"type": "vocabIntro", "vocab": ["v_raconter", "v_la_nouvelle", "v_selon", "v_annoncer"]},
+            {"type": "cloze", "text": "Elle dit ___ elle arrive demain.", "answer": "qu'", "choices": ["qu'", "si", "quand"], "translation": "Sie sagt, dass sie morgen ankommt.", "vocab": ["v_dire"]},
+            {"type": "cloze", "text": "Il demande ___ tu viens ce soir.", "answer": "si", "choices": ["si", "que", "quoi"], "translation": "Er fragt, ob du heute Abend kommst.", "vocab": ["v_demander"]},
+            {"type": "cloze", "text": "Je ne sais pas ce ___ il veut.", "answer": "qu'", "choices": ["qu'", "qui", "que"], "translation": "Ich weiß nicht, was er will.", "hint": "ce que + Subjekt", "vocab": ["v_savoir"]},
+            {"type": "mcSentence", "question": "Il a dit : «Je suis malade.» → indirekt:", "answer": "Il a dit qu'il était malade.", "distractors": ["Il a dit qu'il est malade hier.", "Il a dit que je suis malade."], "translation": "Zeitverschiebung: Präsens → Imparfait", "vocab": ["v_malade"]},
+            {"type": "errorCorrection", "text": "Il demande où est-ce que tu habites.", "answer": "Il demande où tu habites.", "distractors": ["Il demande où habites-tu.", "Il demande où que tu habites."], "translation": "Er fragt, wo du wohnst.", "hint": "Indirekte Frage ohne est-ce que", "vocab": ["v_habiter"]},
+            {"type": "wordOrder", "fr": "Selon le journal, il va pleuvoir", "de": "Laut der Zeitung wird es regnen", "vocab": ["v_selon"]},
+            {"type": "translate", "de": "Sie erzählt, dass sie in Lyon gewohnt hat.", "fr": "Elle raconte qu'elle a habité à Lyon.", "vocab": ["v_raconter"]}
+          ]
+        },
+        {
+          "id": "b1_u4_l3",
+          "title": "Ich gebe es dir — doppelte Pronomen",
+          "grammar": ["g_double_pronouns"],
+          "newVocab": ["v_preter", "v_rendre"],
+          "exercises": [
+            {"type": "vocabIntro", "vocab": ["v_preter", "v_rendre"]},
+            {"type": "conjugation", "verb": "rendre", "person": 0, "translation": "ich gebe zurück"},
+            {"type": "cloze", "text": "Tu me prêtes ton vélo ? — Oui, je ___ prête.", "answer": "te le", "choices": ["te le", "le te", "te la"], "translation": "Leihst du mir dein Rad? — Ja, ich leihe es dir.", "vocab": ["v_preter"]},
+            {"type": "cloze", "text": "Elle donne le livre à Paul ? — Oui, elle ___ donne.", "answer": "le lui", "choices": ["le lui", "lui le", "le leur"], "translation": "Gibt sie Paul das Buch? — Ja, sie gibt es ihm.", "vocab": ["v_donner"]},
+            {"type": "cloze", "text": "Il y a du pain ? — Oui, il y ___ a.", "answer": "en", "choices": ["en", "le", "y"], "translation": "Gibt es Brot? — Ja, es gibt welches.", "vocab": ["v_le_pain"]},
+            {"type": "errorCorrection", "text": "Je le te montre.", "answer": "Je te le montre.", "distractors": ["Je te la montre.", "Je le lui te montre."], "translation": "Ich zeige es dir.", "hint": "me/te vor le/la", "vocab": ["v_montrer"]},
+            {"type": "wordOrder", "fr": "Je te le rends demain", "de": "Ich gebe es dir morgen zurück", "vocab": ["v_rendre"]},
+            {"type": "translate", "de": "Sie erklärt es ihm.", "fr": "Elle le lui explique.", "vocab": ["v_expliquer"]}
+          ]
+        },
+        {
+          "id": "b1_u4_l4",
+          "title": "Das Passiv",
+          "grammar": ["g_passive"],
+          "newVocab": ["v_le_batiment", "v_publier", "v_celebre"],
+          "exercises": [
+            {"type": "vocabIntro", "vocab": ["v_le_batiment", "v_publier", "v_celebre"]},
+            {"type": "cloze", "text": "Ce roman a été ___ en 1943.", "answer": "écrit", "choices": ["écrit", "écrire", "écrivait"], "translation": "Dieser Roman wurde 1943 geschrieben.", "vocab": ["v_ecrire"]},
+            {"type": "cloze", "text": "Le musée est ___ le lundi.", "answer": "fermé", "choices": ["fermé", "fermer", "ferme"], "translation": "Das Museum ist montags geschlossen.", "vocab": ["v_le_musee"]},
+            {"type": "cloze", "text": "Cette maison a été ___ en 1900.", "answer": "construite", "choices": ["construite", "construit", "construire"], "translation": "Dieses Haus wurde 1900 gebaut.", "hint": "la maison → Angleichung +e", "vocab": ["v_la_maison"]},
+            {"type": "mcSentence", "question": "«Ici, on parle allemand.» bedeutet …", "answer": "Hier wird Deutsch gesprochen.", "distractors": ["Hier spricht ein Mann Deutsch.", "Wir sprechen über Deutschland."], "translation": "on-Form statt Passiv", "vocab": ["v_parler"]},
+            {"type": "errorCorrection", "text": "La lettre a été écrit par Marie.", "answer": "La lettre a été écrite par Marie.", "distractors": ["La lettre a été écrits par Marie.", "La lettre est été écrite par Marie."], "translation": "Der Brief wurde von Marie geschrieben.", "hint": "la lettre → écrite", "vocab": ["v_la_lettre"]},
+            {"type": "wordOrder", "fr": "L'article est publié par le journal", "de": "Der Artikel wird von der Zeitung veröffentlicht", "vocab": ["v_publier"]},
+            {"type": "translate", "de": "Dieses Gebäude ist sehr berühmt.", "fr": "Ce bâtiment est très célèbre.", "vocab": ["v_celebre"]}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "b1_u5",
+      "title": "L'environnement — Umwelt",
+      "level": "B1",
+      "icon": "leaf.fill",
+      "lessons": [
+        {
+          "id": "b1_u5_l1",
+          "title": "Unser Planet",
+          "newVocab": ["v_lenvironnement", "v_la_terre", "v_lair", "v_la_pollution", "v_le_climat", "v_proteger", "v_jeter", "v_les_dechets"],
+          "exercises": [
+            {"type": "vocabIntro", "vocab": ["v_lenvironnement", "v_la_terre", "v_le_climat"]},
+            {"type": "matching", "vocab": ["v_la_terre", "v_lair", "v_la_pollution", "v_le_climat", "v_les_dechets"]},
+            {"type": "vocabIntro", "vocab": ["v_la_pollution", "v_proteger", "v_jeter", "v_les_dechets"]},
+            {"type": "conjugation", "verb": "protéger", "person": 0, "translation": "ich schütze", "hint": "è!"},
+            {"type": "conjugation", "verb": "jeter", "person": 2, "translation": "er/sie wirft weg", "hint": "Doppel-t!"},
+            {"type": "cloze", "text": "Il faut ___ l'environnement.", "answer": "protéger", "choices": ["protéger", "jeter", "polluer"], "translation": "Man muss die Umwelt schützen.", "vocab": ["v_proteger"]},
+            {"type": "wordOrder", "fr": "La pollution de l'air est un grand problème", "de": "Die Luftverschmutzung ist ein großes Problem", "vocab": ["v_la_pollution"]},
+            {"type": "translate", "de": "Wirf den Müll nicht auf die Straße!", "fr": "Ne jette pas les déchets dans la rue !", "altAnswers": ["Ne jette pas les déchets dans la rue"], "vocab": ["v_jeter"]}
+          ]
+        },
+        {
+          "id": "b1_u5_l2",
+          "title": "dont — wovon ich spreche",
+          "grammar": ["g_dont"],
+          "newVocab": ["v_avoir_besoin_de", "v_le_sujet", "v_grave"],
+          "exercises": [
+            {"type": "vocabIntro", "vocab": ["v_avoir_besoin_de", "v_le_sujet", "v_grave"]},
+            {"type": "cloze", "text": "C'est le sujet ___ tout le monde parle.", "answer": "dont", "choices": ["dont", "que", "qui"], "translation": "Das ist das Thema, über das alle reden.", "hint": "parler de → dont", "vocab": ["v_le_sujet"]},
+            {"type": "cloze", "text": "Voilà le livre ___ j'ai besoin.", "answer": "dont", "choices": ["dont", "que", "où"], "translation": "Hier ist das Buch, das ich brauche.", "hint": "avoir besoin de", "vocab": ["v_avoir_besoin_de"]},
+            {"type": "cloze", "text": "C'est un film ___ je connais la fin.", "answer": "dont", "choices": ["dont", "que", "qui"], "translation": "Das ist ein Film, dessen Ende ich kenne.", "vocab": ["v_le_film"]},
+            {"type": "mcSentence", "question": "Welcher Satz ist richtig?", "answer": "Elle a un travail dont elle est fière.", "distractors": ["Elle a un travail qu'elle est fière.", "Elle a un travail de qui elle est fière."], "translation": "Sie hat eine Arbeit, auf die sie stolz ist. (être fier de)", "vocab": ["v_fier"]},
+            {"type": "errorCorrection", "text": "C'est le problème que je parle.", "answer": "C'est le problème dont je parle.", "distractors": ["C'est le problème qui je parle.", "C'est le problème où je parle."], "translation": "Das ist das Problem, von dem ich spreche.", "hint": "parler de → dont", "vocab": ["v_le_probleme"]},
+            {"type": "wordOrder", "fr": "C'est tout dont j'ai besoin", "de": "Das ist alles, was ich brauche", "vocab": ["v_avoir_besoin_de"]},
+            {"type": "translate", "de": "Das ist ein ernstes Thema.", "fr": "C'est un sujet grave.", "vocab": ["v_grave"]}
+          ]
+        },
+        {
+          "id": "b1_u5_l3",
+          "title": "Hätte, wäre — Conditionnel passé",
+          "grammar": ["g_conditionnel_passe"],
+          "newVocab": ["v_regretter", "v_lerreur", "v_la_faute"],
+          "exercises": [
+            {"type": "vocabIntro", "vocab": ["v_regretter", "v_lerreur", "v_la_faute"]},
+            {"type": "conjugation", "verb": "devoir", "person": 0, "tense": "conditionnelPasse", "translation": "ich hätte müssen/sollen"},
+            {"type": "cloze", "text": "J'___ dû partir plus tôt.", "answer": "aurais", "choices": ["aurais", "avais", "aurai"], "translation": "Ich hätte früher losgehen sollen.", "vocab": ["v_devoir"]},
+            {"type": "conjugation", "verb": "pouvoir", "person": 1, "tense": "conditionnelPasse", "translation": "du hättest können"},
+            {"type": "cloze", "text": "Tu aurais ___ me le dire !", "answer": "pu", "choices": ["pu", "pouvoir", "peux"], "translation": "Du hättest es mir sagen können!", "vocab": ["v_pouvoir"]},
+            {"type": "conjugation", "verb": "venir", "person": 2, "tense": "conditionnelPasse", "translation": "er wäre gekommen"},
+            {"type": "errorCorrection", "text": "Si tu avais demandé, je t'avais aidé.", "answer": "Si tu avais demandé, je t'aurais aidé.", "distractors": ["Si tu aurais demandé, je t'aurais aidé.", "Si tu avais demandé, je t'aiderai."], "translation": "Wenn du gefragt hättest, hätte ich dir geholfen.", "hint": "si + PQP → Conditionnel passé", "vocab": ["v_aider"]},
+            {"type": "translate", "de": "Das wäre eine gute Idee gewesen.", "fr": "Ça aurait été une bonne idée.", "altAnswers": ["Cela aurait été une bonne idée."], "vocab": ["v_lidee"]}
+          ]
+        },
+        {
+          "id": "b1_u5_l4",
+          "title": "Die Umwelt-Debatte",
+          "newVocab": ["v_lenergie", "v_la_planete", "v_la_nature", "v_le_recyclage", "v_recycler"],
+          "exercises": [
+            {"type": "vocabIntro", "vocab": ["v_lenergie", "v_la_planete", "v_la_nature", "v_le_recyclage", "v_recycler"]},
+            {"type": "matching", "vocab": ["v_lenergie", "v_la_planete", "v_la_nature", "v_le_recyclage"]},
+            {"type": "cloze", "text": "Il faut que nous ___ la planète.", "answer": "protégions", "choices": ["protégions", "protégeons", "protégerons"], "translation": "Wir müssen den Planeten schützen.", "hint": "il faut que + Subjonctif", "vocab": ["v_proteger"]},
+            {"type": "conjugation", "verb": "recycler", "person": 3, "translation": "wir recyceln"},
+            {"type": "cloze", "text": "Si tout le monde recyclait, il y ___ moins de déchets.", "answer": "aurait", "choices": ["aurait", "aura", "avait"], "translation": "Wenn alle recyceln würden, gäbe es weniger Müll.", "vocab": ["v_le_recyclage"]},
+            {"type": "wordOrder", "fr": "Nous devons protéger la nature pour nos enfants", "de": "Wir müssen die Natur für unsere Kinder schützen", "vocab": ["v_la_nature"]},
+            {"type": "translate", "de": "Meiner Meinung nach ist das Klima das wichtigste Thema.", "fr": "À mon avis, le climat est le sujet le plus important.", "vocab": ["v_le_climat"]}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "b1_u6",
+      "title": "Expériences — Erfahrungen & Wege",
+      "level": "B1",
+      "icon": "map.fill",
+      "lessons": [
+        {
+          "id": "b1_u6_l1",
+          "title": "Mein Lebensweg",
+          "newVocab": ["v_ne_e", "v_demenager", "v_luniversite", "v_le_diplome", "v_etudier", "v_letranger"],
+          "exercises": [
+            {"type": "vocabIntro", "vocab": ["v_ne_e", "v_demenager", "v_luniversite"]},
+            {"type": "cloze", "text": "Je suis ___ à Vienne en 1995.", "answer": "né", "choices": ["né", "naît", "naissant"], "translation": "Ich bin 1995 in Wien geboren.", "altAnswers": ["née"], "vocab": ["v_ne_e"]},
+            {"type": "vocabIntro", "vocab": ["v_le_diplome", "v_etudier", "v_letranger"]},
+            {"type": "conjugation", "verb": "étudier", "person": 0, "tense": "passeCompose", "translation": "ich habe studiert"},
+            {"type": "conjugation", "verb": "déménager", "person": 3, "tense": "passeCompose", "translation": "wir sind umgezogen (haben umgezogen)"},
+            {"type": "cloze", "text": "Elle a étudié à l'___ de Lyon.", "answer": "université", "choices": ["université", "école", "gymnase"], "translation": "Sie hat an der Universität Lyon studiert.", "vocab": ["v_luniversite"]},
+            {"type": "wordOrder", "fr": "Après l'école, j'ai travaillé à l'étranger", "de": "Nach der Schule habe ich im Ausland gearbeitet", "vocab": ["v_letranger"]},
+            {"type": "translate", "de": "Wir sind vor zwei Jahren umgezogen.", "fr": "Nous avons déménagé il y a deux ans.", "vocab": ["v_demenager"]}
+          ]
+        },
+        {
+          "id": "b1_u6_l2",
+          "title": "anfangen zu, aufhören zu",
+          "grammar": ["g_verb_prepositions"],
+          "newVocab": ["v_decider_de", "v_commencer_a", "v_arreter_de", "v_continuer_a", "v_reussir_a"],
+          "exercises": [
+            {"type": "vocabIntro", "vocab": ["v_decider_de", "v_commencer_a", "v_arreter_de"]},
+            {"type": "cloze", "text": "Elle a commencé ___ apprendre le français.", "answer": "à", "choices": ["à", "de", "pour"], "translation": "Sie hat angefangen, Französisch zu lernen.", "vocab": ["v_commencer_a"]},
+            {"type": "cloze", "text": "J'ai décidé ___ changer de travail.", "answer": "de", "choices": ["de", "à", "que"], "translation": "Ich habe beschlossen, den Job zu wechseln.", "vocab": ["v_decider_de"]},
+            {"type": "vocabIntro", "vocab": ["v_continuer_a", "v_reussir_a"]},
+            {"type": "cloze", "text": "Il a arrêté ___ fumer.", "answer": "de", "choices": ["de", "à", "avec"], "translation": "Er hat aufgehört zu rauchen.", "vocab": ["v_arreter_de"]},
+            {"type": "cloze", "text": "N'oublie pas ___ acheter du pain !", "answer": "d'", "choices": ["d'", "à", "pour"], "translation": "Vergiss nicht, Brot zu kaufen!", "vocab": ["v_le_pain"]},
+            {"type": "errorCorrection", "text": "J'essaie à faire du sport.", "answer": "J'essaie de faire du sport.", "distractors": ["J'essaie pour faire du sport.", "J'essaie faire du sport."], "translation": "Ich versuche, Sport zu machen.", "hint": "essayer de", "vocab": ["v_essayer"]},
+            {"type": "translate", "de": "Sie hat es geschafft, die Prüfung zu bestehen.", "fr": "Elle a réussi à passer l'examen.", "altAnswers": ["Elle a réussi à réussir l'examen.", "Elle a réussi l'examen."], "vocab": ["v_reussir_a"]}
+          ]
+        },
+        {
+          "id": "b1_u6_l3",
+          "title": "nichts, niemand, nie mehr",
+          "grammar": ["g_negations_advanced"],
+          "newVocab": ["v_ne_rien", "v_ne_personne", "v_ne_plus"],
+          "exercises": [
+            {"type": "vocabIntro", "vocab": ["v_ne_rien", "v_ne_personne", "v_ne_plus"]},
+            {"type": "cloze", "text": "Je n'ai ___ compris.", "answer": "rien", "choices": ["rien", "pas", "personne"], "translation": "Ich habe nichts verstanden.", "vocab": ["v_ne_rien"]},
+            {"type": "cloze", "text": "Il ne connaît ___ ici.", "answer": "personne", "choices": ["personne", "rien", "plus"], "translation": "Er kennt hier niemanden.", "vocab": ["v_ne_personne"]},
+            {"type": "cloze", "text": "Elle ne fume ___ .", "answer": "plus", "choices": ["plus", "pas", "rien"], "translation": "Sie raucht nicht mehr.", "vocab": ["v_ne_plus"]},
+            {"type": "cloze", "text": "___ ne répond.", "answer": "Personne", "choices": ["Personne", "Rien", "Pas"], "translation": "Niemand antwortet.", "vocab": ["v_ne_personne"]},
+            {"type": "errorCorrection", "text": "Je ne vois pas rien.", "answer": "Je ne vois rien.", "distractors": ["Je ne vois pas de rien.", "Je vois pas rien."], "translation": "Ich sehe nichts.", "hint": "rien ersetzt pas", "vocab": ["v_ne_rien"]},
+            {"type": "wordOrder", "fr": "Il n'y a plus de pain", "de": "Es gibt kein Brot mehr", "vocab": ["v_ne_plus"]},
+            {"type": "translate", "de": "Niemand weiß es.", "fr": "Personne ne le sait.", "vocab": ["v_ne_personne"]}
+          ]
+        },
+        {
+          "id": "b1_u6_l4",
+          "title": "übrigens, trotzdem — B1-Finale",
+          "newVocab": ["v_quand_meme", "v_pourtant", "v_dailleurs", "v_en_fait", "v_bref", "v_donc"],
+          "exercises": [
+            {"type": "vocabIntro", "vocab": ["v_quand_meme", "v_pourtant", "v_dailleurs"]},
+            {"type": "matching", "vocab": ["v_quand_meme", "v_pourtant", "v_en_fait", "v_bref", "v_donc"]},
+            {"type": "vocabIntro", "vocab": ["v_en_fait", "v_bref", "v_donc"]},
+            {"type": "cloze", "text": "Il pleuvait, mais il est venu ___ .", "answer": "quand même", "choices": ["quand même", "pourtant", "donc"], "translation": "Es regnete, aber er ist trotzdem gekommen.", "vocab": ["v_quand_meme"]},
+            {"type": "cloze", "text": "Elle dit oui, ___ elle n'est pas sûre.", "answer": "pourtant", "choices": ["pourtant", "donc", "bref"], "translation": "Sie sagt ja, dabei ist sie sich nicht sicher.", "vocab": ["v_pourtant"]},
+            {"type": "cloze", "text": "Je pense, ___ je suis.", "answer": "donc", "choices": ["donc", "bref", "en fait"], "translation": "Ich denke, also bin ich.", "vocab": ["v_donc"]},
+            {"type": "errorCorrection", "text": "Il faut que tu es courageux pour ce travail.", "answer": "Il faut que tu sois courageux pour ce travail.", "distractors": ["Il faut que tu seras courageux pour ce travail.", "Il faut que tu être courageux pour ce travail."], "translation": "Du musst mutig sein für diese Arbeit.", "hint": "B1-Wiederholung: Subjonctif!", "vocab": ["v_il_faut_que"]},
+            {"type": "translate", "de": "Kurz gesagt: Es war ein super Tag.", "fr": "Bref, c'était une super journée.", "altAnswers": ["Bref, c'était un super jour."], "vocab": ["v_bref"]}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "b2_u1",
+      "title": "Nuances — Subjonctif vertieft",
+      "level": "B2",
+      "icon": "text.magnifyingglass",
+      "lessons": [
+        {
+          "id": "b2_u1_l1",
+          "title": "obwohl, damit, bevor",
+          "grammar": ["g_subjonctif_conjunctions"],
+          "newVocab": ["v_bien_que", "v_pour_que", "v_avant_que", "v_a_condition_que", "v_sans_que"],
+          "exercises": [
+            {"type": "vocabIntro", "vocab": ["v_bien_que", "v_pour_que", "v_avant_que"]},
+            {"type": "cloze", "text": "___ ce soit difficile, elle continue.", "answer": "Bien que", "choices": ["Bien que", "Parce que", "Même si"], "translation": "Obwohl es schwierig ist, macht sie weiter.", "vocab": ["v_bien_que"]},
+            {"type": "cloze", "text": "Je parle lentement pour que tout le monde ___ .", "answer": "comprenne", "choices": ["comprenne", "comprend", "comprendra"], "translation": "Ich spreche langsam, damit alle verstehen.", "vocab": ["v_pour_que"]},
+            {"type": "vocabIntro", "vocab": ["v_a_condition_que", "v_sans_que"]},
+            {"type": "conjugation", "verb": "comprendre", "person": 1, "tense": "subjonctifPresent", "translation": "(dass) du verstehst"},
+            {"type": "cloze", "text": "Pars avant qu'il ___ trop tard.", "answer": "soit", "choices": ["soit", "est", "sera"], "translation": "Geh, bevor es zu spät ist.", "vocab": ["v_avant_que"]},
+            {"type": "errorCorrection", "text": "Bien que c'est difficile, elle continue.", "answer": "Bien que ce soit difficile, elle continue.", "distractors": ["Bien que ce serait difficile, elle continue.", "Bien que c'était difficile, elle continue."], "translation": "Obwohl es schwierig ist, macht sie weiter.", "hint": "bien que + Subjonctif", "vocab": ["v_bien_que"]},
+            {"type": "mcSentence", "question": "Welche Konjunktion steht mit Indicatif?", "answer": "même si", "distractors": ["bien que", "pour que", "avant que"], "translation": "même si + Indicatif — auch wenn", "vocab": ["v_meme_si"]},
+            {"type": "translate", "de": "Ich erkläre es, damit du es verstehst.", "fr": "Je l'explique pour que tu comprennes.", "altAnswers": ["Je l'explique pour que tu le comprennes."], "vocab": ["v_pour_que"]}
+          ]
+        },
+        {
+          "id": "b2_u1_l2",
+          "title": "Subjonctif oder Indicatif?",
+          "grammar": ["g_subjonctif_vs_indicatif"],
+          "newVocab": ["v_certain", "v_il_est_possible_que", "v_il_me_semble", "v_le_doute", "v_douter"],
+          "exercises": [
+            {"type": "vocabIntro", "vocab": ["v_certain", "v_il_est_possible_que", "v_le_doute"]},
+            {"type": "cloze", "text": "Je pense que c'___ une bonne idée.", "answer": "est", "choices": ["est", "soit", "serait"], "translation": "Ich denke, das ist eine gute Idee.", "hint": "penser que (bejaht) + Indicatif", "vocab": ["v_penser"]},
+            {"type": "cloze", "text": "Je ne pense pas que ce ___ une bonne idée.", "answer": "soit", "choices": ["soit", "est", "sera"], "translation": "Ich denke nicht, dass das eine gute Idee ist.", "hint": "verneint → Subjonctif", "vocab": ["v_penser"]},
+            {"type": "vocabIntro", "vocab": ["v_il_me_semble", "v_douter"]},
+            {"type": "cloze", "text": "Il est possible qu'elle ___ raison.", "answer": "ait", "choices": ["ait", "a", "aura"], "translation": "Es ist möglich, dass sie recht hat.", "vocab": ["v_il_est_possible_que"]},
+            {"type": "conjugation", "verb": "être", "person": 2, "tense": "subjonctifPresent", "translation": "(dass) er/sie sei"},
+            {"type": "errorCorrection", "text": "Je ne crois pas qu'il vient.", "answer": "Je ne crois pas qu'il vienne.", "distractors": ["Je ne crois pas qu'il viendra pas.", "Je ne crois pas qu'il venir."], "translation": "Ich glaube nicht, dass er kommt.", "hint": "verneintes croire → Subjonctif", "vocab": ["v_croire"]},
+            {"type": "mcSentence", "question": "Nach welchem Ausdruck steht der Indicatif?", "answer": "il est certain que", "distractors": ["il est possible que", "je doute que", "il se peut que"], "translation": "Sicherheit → Indicatif", "vocab": ["v_certain"]},
+            {"type": "translate", "de": "Ich bezweifle, dass das wahr ist.", "fr": "Je doute que ce soit vrai.", "vocab": ["v_douter"]}
+          ]
+        },
+        {
+          "id": "b2_u1_l3",
+          "title": "Zweifel & Möglichkeit",
+          "newVocab": ["v_il_se_peut_que", "v_la_certitude", "v_lhypothese", "v_evident", "v_convaincre"],
+          "exercises": [
+            {"type": "vocabIntro", "vocab": ["v_il_se_peut_que", "v_la_certitude", "v_lhypothese"]},
+            {"type": "cloze", "text": "Il se peut qu'il ___ demain.", "answer": "pleuve", "choices": ["pleuve", "pleut", "pleuvra"], "translation": "Es kann sein, dass es morgen regnet.", "vocab": ["v_il_se_peut_que"]},
+            {"type": "vocabIntro", "vocab": ["v_evident", "v_convaincre"]},
+            {"type": "conjugation", "verb": "convaincre", "person": 0, "translation": "ich überzeuge"},
+            {"type": "conjugation", "verb": "pouvoir", "person": 3, "tense": "subjonctifPresent", "translation": "(dass) wir können", "hint": "puiss-!"},
+            {"type": "cloze", "text": "Il est ___ que tu as raison.", "answer": "évident", "choices": ["évident", "possible", "important"], "translation": "Es ist offensichtlich, dass du recht hast.", "hint": "évident → Indicatif danach", "vocab": ["v_evident"]},
+            {"type": "wordOrder", "fr": "Il se peut que je sois en retard", "de": "Es kann sein, dass ich zu spät komme", "vocab": ["v_il_se_peut_que"]},
+            {"type": "translate", "de": "Sie hat mich überzeugt.", "fr": "Elle m'a convaincu.", "altAnswers": ["Elle m'a convaincue."], "vocab": ["v_convaincre"]}
+          ]
+        },
+        {
+          "id": "b2_u1_l4",
+          "title": "Idiomatik I — typisch Französisch",
+          "newVocab": ["v_avoir_envie_de", "v_avoir_lair", "v_ca_vaut_la_peine", "v_se_rendre_compte", "v_en_avoir_marre", "v_du_coup"],
+          "exercises": [
+            {"type": "vocabIntro", "vocab": ["v_avoir_envie_de", "v_avoir_lair", "v_ca_vaut_la_peine"]},
+            {"type": "matching", "vocab": ["v_avoir_envie_de", "v_avoir_lair", "v_se_rendre_compte", "v_en_avoir_marre", "v_du_coup"]},
+            {"type": "vocabIntro", "vocab": ["v_se_rendre_compte", "v_en_avoir_marre", "v_du_coup"]},
+            {"type": "cloze", "text": "Tu as l'___ fatigué aujourd'hui.", "answer": "air", "choices": ["air", "envie", "peine"], "translation": "Du siehst heute müde aus.", "vocab": ["v_avoir_lair"]},
+            {"type": "cloze", "text": "J'ai ___ d'un café.", "answer": "envie", "choices": ["envie", "marre", "l'air"], "translation": "Ich habe Lust auf einen Kaffee.", "vocab": ["v_avoir_envie_de"]},
+            {"type": "cloze", "text": "J'en ai ___ de ce travail !", "answer": "marre", "choices": ["marre", "envie", "besoin"], "translation": "Ich habe die Nase voll von dieser Arbeit!", "vocab": ["v_en_avoir_marre"]},
+            {"type": "mcSentence", "question": "«Ça vaut la peine.» bedeutet …", "answer": "Es lohnt sich.", "distractors": ["Es tut weh.", "Es ist schade."], "vocab": ["v_ca_vaut_la_peine"]},
+            {"type": "translate", "de": "Ich habe gemerkt, dass es spät war.", "fr": "Je me suis rendu compte qu'il était tard.", "altAnswers": ["Je me suis rendue compte qu'il était tard."], "vocab": ["v_se_rendre_compte"]}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "b2_u2",
+      "title": "Le temps parfait — alle Zeiten",
+      "level": "B2",
+      "icon": "timer",
+      "lessons": [
+        {
+          "id": "b2_u2_l1",
+          "title": "Futur antérieur",
+          "grammar": ["g_futur_anterieur"],
+          "newVocab": ["v_dici", "v_des_que", "v_lorsque"],
+          "exercises": [
+            {"type": "vocabIntro", "vocab": ["v_dici", "v_des_que", "v_lorsque"]},
+            {"type": "conjugation", "verb": "finir", "person": 0, "tense": "futurAnterieur", "translation": "ich werde beendet haben"},
+            {"type": "cloze", "text": "D'ici demain, j'___ fini.", "answer": "aurai", "choices": ["aurai", "ai", "avais"], "translation": "Bis morgen werde ich fertig sein.", "vocab": ["v_dici"]},
+            {"type": "conjugation", "verb": "partir", "person": 2, "tense": "futurAnterieur", "translation": "er wird abgefahren sein"},
+            {"type": "cloze", "text": "Quand tu arriveras, je ___ déjà parti.", "answer": "serai", "choices": ["serai", "suis", "étais"], "translation": "Wenn du ankommst, werde ich schon weg sein.", "vocab": ["v_partir"]},
+            {"type": "cloze", "text": "Dès qu'il ___ fini, il t'appellera.", "answer": "aura", "choices": ["aura", "a", "avait"], "translation": "Sobald er fertig ist, ruft er dich an.", "vocab": ["v_des_que"]},
+            {"type": "errorCorrection", "text": "Quand tu arrives demain, on mangera ensemble.", "answer": "Quand tu arriveras demain, on mangera ensemble.", "distractors": ["Quand tu arrivais demain, on mangera ensemble.", "Quand tu es arrivé demain, on mangera ensemble."], "translation": "Wenn du morgen ankommst, essen wir zusammen.", "hint": "Zukunft nach quand → Futur", "vocab": ["v_quand"]},
+            {"type": "translate", "de": "In einer Stunde werden wir fertig sein.", "fr": "Dans une heure, nous aurons fini.", "altAnswers": ["Dans une heure nous aurons fini.", "Dans une heure, nous aurons terminé."], "vocab": ["v_finir"]}
+          ]
+        },
+        {
+          "id": "b2_u2_l2",
+          "title": "après avoir … — Infinitif passé",
+          "grammar": ["g_infinitif_passe"],
+          "newVocab": ["v_apres_avoir", "v_la_suite", "v_finalement"],
+          "exercises": [
+            {"type": "vocabIntro", "vocab": ["v_apres_avoir", "v_la_suite", "v_finalement"]},
+            {"type": "cloze", "text": "Après ___ mangé, il est parti.", "answer": "avoir", "choices": ["avoir", "être", "a"], "translation": "Nachdem er gegessen hatte, ist er gegangen.", "vocab": ["v_apres_avoir"]},
+            {"type": "cloze", "text": "Après ___ arrivée, elle a appelé.", "answer": "être", "choices": ["être", "avoir", "est"], "translation": "Nachdem sie angekommen war, hat sie angerufen.", "hint": "arriver → être", "vocab": ["v_arriver"]},
+            {"type": "cloze", "text": "Merci d'___ venus !", "answer": "être", "choices": ["être", "avoir", "avez"], "translation": "Danke, dass ihr gekommen seid!", "vocab": ["v_venir"]},
+            {"type": "errorCorrection", "text": "Après manger, il est parti.", "answer": "Après avoir mangé, il est parti.", "distractors": ["Après mangé, il est parti.", "Après a mangé, il est parti."], "translation": "Nachdem er gegessen hatte, ging er.", "hint": "après + Infinitif passé", "vocab": ["v_manger"]},
+            {"type": "wordOrder", "fr": "Après avoir fini, nous sommes sortis", "de": "Nachdem wir fertig waren, sind wir ausgegangen", "vocab": ["v_finir"]},
+            {"type": "mcSentence", "question": "«Après s'être levé, il a pris un café.» — Wann trank er Kaffee?", "answer": "Nach dem Aufstehen", "distractors": ["Vor dem Aufstehen", "Beim Aufstehen"], "vocab": ["v_se_lever"]},
+            {"type": "translate", "de": "Nachdem ich die Nachricht gelesen hatte, habe ich geantwortet.", "fr": "Après avoir lu le message, j'ai répondu.", "vocab": ["v_le_message"]}
+          ]
+        },
+        {
+          "id": "b2_u2_l3",
+          "title": "il fut, il eut — Passé simple lesen",
+          "grammar": ["g_passe_simple"],
+          "newVocab": ["v_le_roman", "v_lecrivain", "v_le_conte", "v_le_heros"],
+          "exercises": [
+            {"type": "vocabIntro", "vocab": ["v_le_roman", "v_lecrivain", "v_le_conte", "v_le_heros"]},
+            {"type": "mcSentence", "question": "«il fut» ist das Passé simple von …", "answer": "être (= il a été)", "distractors": ["faire (= il a fait)", "avoir (= il a eu)"], "vocab": ["v_etre"]},
+            {"type": "mcSentence", "question": "«il eut» ist das Passé simple von …", "answer": "avoir (= il a eu)", "distractors": ["être (= il a été)", "vouloir (= il a voulu)"], "vocab": ["v_avoir"]},
+            {"type": "mcSentence", "question": "«Le prince entra et vit la princesse.» — «vit» kommt von …", "answer": "voir", "distractors": ["vivre", "venir"], "translation": "il vit = il a vu", "vocab": ["v_voir"]},
+            {"type": "cloze", "text": "«Il ouvrit la porte.» = Il ___ ouvert la porte.", "answer": "a", "choices": ["a", "est", "avait"], "translation": "Er öffnete die Tür. (Passé simple = Passé composé)", "vocab": ["v_la_porte"]},
+            {"type": "mcSentence", "question": "«Ils vécurent heureux.» bedeutet …", "answer": "Sie lebten glücklich.", "distractors": ["Sie werden glücklich leben.", "Sie würden glücklich leben."], "vocab": ["v_heureux"]},
+            {"type": "mcSentence", "question": "Wo begegnet dir das Passé simple?", "answer": "In Romanen und Märchen", "distractors": ["In Alltagsgesprächen", "In SMS"], "vocab": ["v_le_roman"]},
+            {"type": "translate", "de": "Der Schriftsteller hat einen berühmten Roman geschrieben.", "fr": "L'écrivain a écrit un roman célèbre.", "vocab": ["v_lecrivain"]}
+          ]
+        },
+        {
+          "id": "b2_u2_l4",
+          "title": "Zeiten-Mix: erzählen wie ein Profi",
+          "newVocab": ["v_lepoque", "v_autrefois", "v_desormais"],
+          "exercises": [
+            {"type": "vocabIntro", "vocab": ["v_lepoque", "v_autrefois", "v_desormais"]},
+            {"type": "cloze", "text": "___ , les gens voyageaient en train.", "answer": "Autrefois", "choices": ["Autrefois", "Désormais", "Demain"], "translation": "Früher reisten die Leute mit dem Zug.", "vocab": ["v_autrefois"]},
+            {"type": "conjugation", "verb": "vivre", "person": 5, "tense": "imparfait", "translation": "sie lebten"},
+            {"type": "cloze", "text": "Quand il est arrivé, nous ___ déjà commencé.", "answer": "avions", "choices": ["avions", "avons", "aurons"], "translation": "Als er ankam, hatten wir schon angefangen.", "hint": "Vor-Vergangenheit", "vocab": ["v_commencer_a"]},
+            {"type": "conjugation", "verb": "recevoir", "person": 0, "tense": "futurSimple", "translation": "ich werde bekommen"},
+            {"type": "errorCorrection", "text": "Hier, il faisait beau, donc nous allions à la plage.", "answer": "Hier, il faisait beau, donc nous sommes allés à la plage.", "distractors": ["Hier, il a fait beau, donc nous allions à la plage.", "Hier, il fera beau, donc nous sommes allés à la plage."], "translation": "Gestern war schönes Wetter, also sind wir an den Strand gegangen.", "hint": "Ereignis → Passé composé", "vocab": ["v_la_plage"]},
+            {"type": "wordOrder", "fr": "À l'époque, la vie était plus calme", "de": "Damals war das Leben ruhiger", "vocab": ["v_lepoque"]},
+            {"type": "translate", "de": "Von nun an werde ich jeden Tag üben.", "fr": "Désormais, je vais m'entraîner tous les jours.", "altAnswers": ["Désormais, je m'entraînerai tous les jours.", "Désormais je vais m'entraîner tous les jours."], "vocab": ["v_desormais"]}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "b2_u3",
+      "title": "L'accord parfait — Angleichung komplett",
+      "level": "B2",
+      "icon": "checkmark.seal.fill",
+      "lessons": [
+        {
+          "id": "b2_u3_l1",
+          "title": "die Briefe, die ich geschrieben habe",
+          "grammar": ["g_agreement_avoir"],
+          "newVocab": ["v_la_lettre", "v_la_photo", "v_les_fleurs"],
+          "exercises": [
+            {"type": "vocabIntro", "vocab": ["v_la_lettre", "v_la_photo", "v_les_fleurs"]},
+            {"type": "cloze", "text": "La lettre que j'ai ___ est longue.", "answer": "écrite", "choices": ["écrite", "écrit", "écrits"], "translation": "Der Brief, den ich geschrieben habe, ist lang.", "hint": "que (= la lettre) steht davor", "vocab": ["v_la_lettre"]},
+            {"type": "cloze", "text": "Ces photos ? Je les ai ___ hier.", "answer": "prises", "choices": ["prises", "pris", "prise"], "translation": "Diese Fotos? Ich habe sie gestern gemacht.", "vocab": ["v_la_photo"]},
+            {"type": "cloze", "text": "J'ai ___ une lettre.", "answer": "écrit", "choices": ["écrit", "écrite", "écrits"], "translation": "Ich habe einen Brief geschrieben.", "hint": "COD steht danach → keine Angleichung", "vocab": ["v_la_lettre"]},
+            {"type": "cloze", "text": "Quelles fleurs as-tu ___ ?", "answer": "achetées", "choices": ["achetées", "acheté", "achetés"], "translation": "Welche Blumen hast du gekauft?", "vocab": ["v_les_fleurs"]},
+            {"type": "errorCorrection", "text": "La solution que nous avons trouvé est simple.", "answer": "La solution que nous avons trouvée est simple.", "distractors": ["La solution que nous avons trouvés est simple.", "La solution que nous avons trouver est simple."], "translation": "Die Lösung, die wir gefunden haben, ist einfach.", "vocab": ["v_la_solution"]},
+            {"type": "mcSentence", "question": "Wo gleicht sich das Partizip NICHT an?", "answer": "Je leur ai parlé.", "distractors": ["La robe que j'ai mise.", "Ces livres, je les ai lus."], "translation": "leur ist indirekt — keine Angleichung", "vocab": ["v_parler"]},
+            {"type": "translate", "de": "Die Blumen, die er gekauft hat, sind schön.", "fr": "Les fleurs qu'il a achetées sont belles.", "vocab": ["v_les_fleurs"]}
+          ]
+        },
+        {
+          "id": "b2_u3_l2",
+          "title": "Elle s'est lavée — oder lavé?",
+          "grammar": ["g_agreement_reflexive"],
+          "newVocab": ["v_se_marier", "v_se_quitter"],
+          "exercises": [
+            {"type": "vocabIntro", "vocab": ["v_se_marier", "v_se_quitter"]},
+            {"type": "cloze", "text": "Elle s'est ___ tôt.", "answer": "levée", "choices": ["levée", "levé", "levés"], "translation": "Sie ist früh aufgestanden.", "hint": "se = COD → Angleichung", "vocab": ["v_se_lever"]},
+            {"type": "cloze", "text": "Elle s'est ___ les mains.", "answer": "lavé", "choices": ["lavé", "lavée", "lavées"], "translation": "Sie hat sich die Hände gewaschen.", "hint": "COD (les mains) steht danach!", "vocab": ["v_se_laver"]},
+            {"type": "cloze", "text": "Ils se sont ___ à Paris.", "answer": "rencontrés", "choices": ["rencontrés", "rencontré", "rencontrée"], "translation": "Sie haben sich in Paris kennengelernt.", "vocab": ["v_rencontrer"]},
+            {"type": "cloze", "text": "Nous nous sommes ___ .", "answer": "téléphoné", "choices": ["téléphoné", "téléphonés", "téléphonées"], "translation": "Wir haben (miteinander) telefoniert.", "hint": "téléphoner à → keine Angleichung", "vocab": ["v_le_telephone"]},
+            {"type": "errorCorrection", "text": "Elle s'est lavée les mains.", "answer": "Elle s'est lavé les mains.", "distractors": ["Elle s'est lavés les mains.", "Elle a se lavé les mains."], "translation": "Sie hat sich die Hände gewaschen.", "vocab": ["v_se_laver"]},
+            {"type": "wordOrder", "fr": "Ils se sont mariés en juin", "de": "Sie haben im Juni geheiratet", "vocab": ["v_se_marier"]},
+            {"type": "translate", "de": "Sie haben sich vor einem Jahr getrennt.", "fr": "Ils se sont quittés il y a un an.", "altAnswers": ["Elles se sont quittées il y a un an."], "vocab": ["v_se_quitter"]}
+          ]
+        },
+        {
+          "id": "b2_u3_l3",
+          "title": "Kultur & Passiv vertieft",
+          "newVocab": ["v_le_siecle", "v_la_tour", "v_le_musee"],
+          "exercises": [
+            {"type": "vocabIntro", "vocab": ["v_le_siecle", "v_la_tour", "v_le_musee"]},
+            {"type": "cloze", "text": "La tour Eiffel a été ___ en 1889.", "answer": "construite", "choices": ["construite", "construit", "construis"], "translation": "Der Eiffelturm wurde 1889 gebaut.", "vocab": ["v_la_tour"]},
+            {"type": "cloze", "text": "Ce tableau ___ été peint au 19e siècle.", "answer": "a", "choices": ["a", "est", "avait"], "translation": "Dieses Gemälde wurde im 19. Jahrhundert gemalt.", "vocab": ["v_le_siecle"]},
+            {"type": "mcSentence", "question": "«la tour» oder «le tour»? — der Eiffelturm", "answer": "la tour Eiffel", "distractors": ["le tour Eiffel", "les tours Eiffel"], "translation": "la tour = Turm, le tour = Runde", "vocab": ["v_la_tour"]},
+            {"type": "conjugation", "verb": "ouvrir", "person": 2, "translation": "er/sie öffnet", "hint": "-er-Endungen!"},
+            {"type": "cloze", "text": "Le musée est ___ par des millions de gens.", "answer": "visité", "choices": ["visité", "visitée", "visiter"], "translation": "Das Museum wird von Millionen Menschen besucht.", "vocab": ["v_le_musee"]},
+            {"type": "wordOrder", "fr": "Ce roman a été traduit en vingt langues", "de": "Dieser Roman wurde in zwanzig Sprachen übersetzt", "vocab": ["v_le_roman"]},
+            {"type": "translate", "de": "Das Museum wurde im 18. Jahrhundert eröffnet.", "fr": "Le musée a été ouvert au 18e siècle.", "altAnswers": ["Le musée a été ouvert au dix-huitième siècle."], "vocab": ["v_le_musee"]}
+          ]
+        },
+        {
+          "id": "b2_u3_l4",
+          "title": "machen lassen — faire + Infinitiv",
+          "grammar": ["g_faire_causatif"],
+          "newVocab": ["v_faire_reparer", "v_laisser", "v_reparer"],
+          "exercises": [
+            {"type": "vocabIntro", "vocab": ["v_faire_reparer", "v_laisser", "v_reparer"]},
+            {"type": "cloze", "text": "Je fais ___ ma voiture.", "answer": "réparer", "choices": ["réparer", "réparé", "répare"], "translation": "Ich lasse mein Auto reparieren.", "hint": "faire + Infinitiv", "vocab": ["v_faire_reparer"]},
+            {"type": "cloze", "text": "Elle a fait ___ une maison.", "answer": "construire", "choices": ["construire", "construit", "construite"], "translation": "Sie hat ein Haus bauen lassen.", "vocab": ["v_la_maison"]},
+            {"type": "cloze", "text": "___ -moi réfléchir !", "answer": "Laisse", "choices": ["Laisse", "Fais", "Va"], "translation": "Lass mich nachdenken!", "vocab": ["v_laisser"]},
+            {"type": "mcSentence", "question": "«Il fait venir le médecin.» bedeutet …", "answer": "Er lässt den Arzt kommen.", "distractors": ["Er wird Arzt.", "Er geht zum Arzt."], "vocab": ["v_le_medecin"]},
+            {"type": "errorCorrection", "text": "Je suis coupé mes cheveux demain.", "answer": "Je fais couper mes cheveux demain.", "distractors": ["Je coupe faire mes cheveux demain.", "Je me suis couper les cheveux demain."], "translation": "Ich lasse mir morgen die Haare schneiden.", "hint": "machen lassen = faire + Inf.", "vocab": ["v_faire_reparer"]},
+            {"type": "wordOrder", "fr": "Il a fait réparer son vélo", "de": "Er hat sein Fahrrad reparieren lassen", "vocab": ["v_le_velo"]},
+            {"type": "translate", "de": "Lass es mich dir erklären!", "fr": "Laisse-moi t'expliquer !", "vocab": ["v_expliquer"]}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "b2_u4",
+      "title": "Argumenter — Konnektoren",
+      "level": "B2",
+      "icon": "list.bullet.indent",
+      "lessons": [
+        {
+          "id": "b2_u4_l1",
+          "title": "weil, deshalb, dank",
+          "grammar": ["g_connectors_cause"],
+          "newVocab": ["v_puisque", "v_comme_cause", "v_cest_pourquoi", "v_grace_a", "v_a_cause_de", "v_par_consequent"],
+          "exercises": [
+            {"type": "vocabIntro", "vocab": ["v_puisque", "v_comme_cause", "v_cest_pourquoi"]},
+            {"type": "matching", "vocab": ["v_puisque", "v_cest_pourquoi", "v_grace_a", "v_a_cause_de", "v_par_consequent"]},
+            {"type": "vocabIntro", "vocab": ["v_grace_a", "v_a_cause_de", "v_par_consequent"]},
+            {"type": "cloze", "text": "___ il pleuvait, on est restés à la maison.", "answer": "Comme", "choices": ["Comme", "Donc", "Pourtant"], "translation": "Da es regnete, sind wir zu Hause geblieben.", "hint": "comme am Satzanfang", "vocab": ["v_comme_cause"]},
+            {"type": "cloze", "text": "___ ton aide, j'ai réussi.", "answer": "Grâce à", "choices": ["Grâce à", "À cause de", "Malgré"], "translation": "Dank deiner Hilfe habe ich es geschafft.", "hint": "positiv → grâce à", "vocab": ["v_grace_a"]},
+            {"type": "cloze", "text": "Le train est en retard ___ la grève.", "answer": "à cause de", "choices": ["à cause de", "grâce à", "pour que"], "translation": "Der Zug ist wegen des Streiks verspätet.", "vocab": ["v_a_cause_de"]},
+            {"type": "wordOrder", "fr": "Il n'a pas répondu, c'est pourquoi je t'appelle", "de": "Er hat nicht geantwortet, deshalb rufe ich dich an", "vocab": ["v_cest_pourquoi"]},
+            {"type": "translate", "de": "Da du ja da bist, können wir anfangen.", "fr": "Puisque tu es là, on peut commencer.", "altAnswers": ["Puisque tu es là, nous pouvons commencer."], "vocab": ["v_puisque"]}
+          ]
+        },
+        {
+          "id": "b2_u4_l2",
+          "title": "trotz & während — Konzession",
+          "grammar": ["g_connectors_concession"],
+          "newVocab": ["v_cependant", "v_malgre", "v_tandis_que", "v_alors_que", "v_neanmoins", "v_meme_si"],
+          "exercises": [
+            {"type": "vocabIntro", "vocab": ["v_cependant", "v_malgre", "v_meme_si"]},
+            {"type": "matching", "vocab": ["v_cependant", "v_malgre", "v_tandis_que", "v_neanmoins", "v_meme_si"]},
+            {"type": "vocabIntro", "vocab": ["v_tandis_que", "v_alors_que", "v_neanmoins"]},
+            {"type": "cloze", "text": "___ la pluie, il est venu à vélo.", "answer": "Malgré", "choices": ["Malgré", "Bien que", "Pendant"], "translation": "Trotz des Regens ist er mit dem Rad gekommen.", "hint": "malgré + Nomen", "vocab": ["v_malgre"]},
+            {"type": "cloze", "text": "Lui adore la ville, ___ elle préfère la campagne.", "answer": "tandis qu'", "choices": ["tandis qu'", "pour qu'", "puisqu'"], "translation": "Er liebt die Stadt, während sie das Land bevorzugt.", "vocab": ["v_tandis_que"]},
+            {"type": "cloze", "text": "___ si tu ne viens pas, je serai content.", "answer": "Même", "choices": ["Même", "Bien", "Alors"], "translation": "Auch wenn du nicht kommst, werde ich zufrieden sein.", "vocab": ["v_meme_si"]},
+            {"type": "errorCorrection", "text": "Malgré que il pleut, on sort.", "answer": "Bien qu'il pleuve, on sort.", "distractors": ["Malgré qu'il pleuve, on sort.", "Bien que il pleut, on sort."], "translation": "Obwohl es regnet, gehen wir raus.", "hint": "malgré que existiert nicht!", "vocab": ["v_bien_que"]},
+            {"type": "translate", "de": "Es ist teuer, jedoch sehr gut.", "fr": "C'est cher, cependant c'est très bon.", "altAnswers": ["C'est cher, cependant très bon."], "vocab": ["v_cependant"]}
+          ]
+        },
+        {
+          "id": "b2_u4_l3",
+          "title": "um zu, damit — Ziele",
+          "grammar": ["g_connectors_goal"],
+          "newVocab": ["v_afin_de", "v_afin_que", "v_dans_le_but_de", "v_le_but", "v_atteindre"],
+          "exercises": [
+            {"type": "vocabIntro", "vocab": ["v_afin_de", "v_afin_que", "v_le_but"]},
+            {"type": "cloze", "text": "Elle étudie ___ réussir l'examen.", "answer": "pour", "choices": ["pour", "pour que", "afin que"], "translation": "Sie lernt, um die Prüfung zu bestehen.", "hint": "gleiches Subjekt → pour + Inf.", "vocab": ["v_lexamen"]},
+            {"type": "cloze", "text": "Je t'écris afin que tu ___ la vérité.", "answer": "saches", "choices": ["saches", "sais", "sauras"], "translation": "Ich schreibe dir, damit du die Wahrheit weißt.", "hint": "afin que + Subjonctif", "vocab": ["v_afin_que"]},
+            {"type": "vocabIntro", "vocab": ["v_dans_le_but_de", "v_atteindre"]},
+            {"type": "conjugation", "verb": "savoir", "person": 1, "tense": "subjonctifPresent", "translation": "(dass) du weißt", "hint": "sache-!"},
+            {"type": "cloze", "text": "Il parle doucement pour ne ___ réveiller le bébé.", "answer": "pas", "choices": ["pas", "rien", "plus"], "translation": "Er spricht leise, um das Baby nicht zu wecken.", "hint": "pour ne pas + Inf.", "vocab": ["v_se_reveiller"]},
+            {"type": "errorCorrection", "text": "Elle travaille beaucoup pour que réussir.", "answer": "Elle travaille beaucoup pour réussir.", "distractors": ["Elle travaille beaucoup pour qu'elle réussir.", "Elle travaille beaucoup afin que réussir."], "translation": "Sie arbeitet viel, um Erfolg zu haben.", "hint": "pour que nur mit neuem Subjekt", "vocab": ["v_reussir_a"]},
+            {"type": "translate", "de": "Wir haben unser Ziel erreicht.", "fr": "Nous avons atteint notre but.", "vocab": ["v_atteindre"]}
+          ]
+        },
+        {
+          "id": "b2_u4_l4",
+          "title": "Die große Debatte",
+          "newVocab": ["v_le_point_de_vue", "v_dune_part", "v_dautre_part", "v_en_revanche", "v_defendre"],
+          "exercises": [
+            {"type": "vocabIntro", "vocab": ["v_le_point_de_vue", "v_dune_part", "v_dautre_part"]},
+            {"type": "matching", "vocab": ["v_dune_part", "v_dautre_part", "v_en_revanche", "v_le_point_de_vue"]},
+            {"type": "vocabIntro", "vocab": ["v_en_revanche", "v_defendre"]},
+            {"type": "cloze", "text": "D'une part c'est cher, ___ c'est très utile.", "answer": "d'autre part", "choices": ["d'autre part", "d'une part", "à cause de"], "translation": "Einerseits ist es teuer, andererseits sehr nützlich.", "vocab": ["v_dautre_part"]},
+            {"type": "conjugation", "verb": "défendre", "person": 0, "translation": "ich verteidige"},
+            {"type": "cloze", "text": "Je comprends ton ___ de vue.", "answer": "point", "choices": ["point", "but", "avis"], "translation": "Ich verstehe deinen Standpunkt.", "vocab": ["v_le_point_de_vue"]},
+            {"type": "wordOrder", "fr": "Le train est lent, en revanche il est confortable", "de": "Der Zug ist langsam, dafür ist er bequem", "vocab": ["v_en_revanche"]},
+            {"type": "translate", "de": "Einerseits verstehe ich dich, andererseits hat er recht.", "fr": "D'une part je te comprends, d'autre part il a raison.", "vocab": ["v_dune_part"]}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "b2_u5",
+      "title": "La langue vivante — Fachsprache & Nuancen",
+      "level": "B2",
+      "icon": "brain.head.profile",
+      "lessons": [
+        {
+          "id": "b2_u5_l1",
+          "title": "Wirtschaft & Gesellschaft",
+          "newVocab": ["v_la_societe", "v_leconomie", "v_le_developpement", "v_la_croissance", "v_le_chomage", "v_la_greve"],
+          "exercises": [
+            {"type": "vocabIntro", "vocab": ["v_la_societe", "v_leconomie", "v_le_developpement"]},
+            {"type": "matching", "vocab": ["v_leconomie", "v_la_croissance", "v_le_chomage", "v_la_greve", "v_le_developpement"]},
+            {"type": "vocabIntro", "vocab": ["v_la_croissance", "v_le_chomage", "v_la_greve"]},
+            {"type": "cloze", "text": "Le ___ a baissé cette année.", "answer": "chômage", "choices": ["chômage", "croissance", "grève"], "translation": "Die Arbeitslosigkeit ist dieses Jahr gesunken.", "vocab": ["v_le_chomage"]},
+            {"type": "cloze", "text": "Les employés font ___ pour de meilleurs salaires.", "answer": "grève", "choices": ["grève", "chômage", "économie"], "translation": "Die Angestellten streiken für bessere Gehälter.", "vocab": ["v_la_greve"]},
+            {"type": "wordOrder", "fr": "L'économie de la France est la deuxième d'Europe", "de": "Die Wirtschaft Frankreichs ist die zweitgrößte Europas", "vocab": ["v_leconomie"]},
+            {"type": "translate", "de": "Die Gesellschaft ändert sich schnell.", "fr": "La société change vite.", "altAnswers": ["La société change rapidement."], "vocab": ["v_la_societe"]},
+            {"type": "vocabProd", "vocab": ["v_leconomie", "v_la_greve"]}
+          ]
+        },
+        {
+          "id": "b2_u5_l2",
+          "title": "Forschung & Technik",
+          "newVocab": ["v_la_recherche", "v_la_decouverte", "v_la_technologie", "v_linformatique", "v_les_donnees", "v_lia"],
+          "exercises": [
+            {"type": "vocabIntro", "vocab": ["v_la_recherche", "v_la_decouverte", "v_la_technologie"]},
+            {"type": "matching", "vocab": ["v_la_recherche", "v_linformatique", "v_les_donnees", "v_lia", "v_la_technologie"]},
+            {"type": "vocabIntro", "vocab": ["v_linformatique", "v_les_donnees", "v_lia"]},
+            {"type": "cloze", "text": "L'___ change notre façon de travailler.", "answer": "IA", "choices": ["IA", "informatique", "économie"], "translation": "Die KI verändert unsere Art zu arbeiten.", "vocab": ["v_lia"]},
+            {"type": "cloze", "text": "Cette ___ a été faite par une équipe française.", "answer": "découverte", "choices": ["découverte", "recherche", "donnée"], "translation": "Diese Entdeckung wurde von einem französischen Team gemacht.", "vocab": ["v_la_decouverte"]},
+            {"type": "wordOrder", "fr": "Il travaille dans la recherche depuis dix ans", "de": "Er arbeitet seit zehn Jahren in der Forschung", "vocab": ["v_la_recherche"]},
+            {"type": "translate", "de": "Die Daten sind wichtig für die Forschung.", "fr": "Les données sont importantes pour la recherche.", "vocab": ["v_les_donnees"]}
+          ]
+        },
+        {
+          "id": "b2_u5_l3",
+          "title": "Falsche Freunde",
+          "grammar": ["g_faux_amis"],
+          "newVocab": ["v_actuellement", "v_la_librairie", "v_le_gymnase", "v_la_chance"],
+          "exercises": [
+            {"type": "vocabIntro", "vocab": ["v_actuellement", "v_la_librairie", "v_le_gymnase", "v_la_chance"]},
+            {"type": "mcSentence", "question": "«la librairie» bedeutet …", "answer": "die Buchhandlung", "distractors": ["die Bibliothek", "die Buchhaltung"], "translation": "Bibliothek = la bibliothèque", "vocab": ["v_la_librairie"]},
+            {"type": "cloze", "text": "___ , je travaille à Lyon.", "answer": "Actuellement", "choices": ["Actuellement", "Actuel", "En fait"], "translation": "Zurzeit arbeite ich in Lyon.", "vocab": ["v_actuellement"]},
+            {"type": "mcSentence", "question": "«Tu as de la chance !» bedeutet …", "answer": "Du hast Glück!", "distractors": ["Du hast eine Chance!", "Du hast Charme!"], "vocab": ["v_la_chance"]},
+            {"type": "mcSentence", "question": "Wo macht man in Frankreich das Abitur?", "answer": "au lycée", "distractors": ["au gymnase", "au collège"], "translation": "le gymnase = die Turnhalle!", "vocab": ["v_le_gymnase"]},
+            {"type": "errorCorrection", "text": "Je cherche un livre à la bibliothèque pour l'acheter.", "answer": "Je cherche un livre à la librairie pour l'acheter.", "distractors": ["Je cherche un livre au gymnase pour l'acheter.", "Je cherche un livre à la librairie pour le prêter."], "translation": "Ich suche ein Buch in der Buchhandlung, um es zu kaufen.", "hint": "Kaufen → librairie, leihen → bibliothèque", "vocab": ["v_la_librairie"]},
+            {"type": "translate", "de": "Zurzeit habe ich viel Glück.", "fr": "Actuellement, j'ai beaucoup de chance.", "altAnswers": ["Actuellement j'ai beaucoup de chance."], "vocab": ["v_la_chance"]}
+          ]
+        },
+        {
+          "id": "b2_u5_l4",
+          "title": "Idiomatik II — wie ein Profi klingen",
+          "newVocab": ["v_tomber_amoureux", "v_avoir_lieu", "v_il_sagit_de", "v_de_plus_en_plus", "v_de_moins_en_moins", "v_nimporte_quoi"],
+          "exercises": [
+            {"type": "vocabIntro", "vocab": ["v_tomber_amoureux", "v_avoir_lieu", "v_il_sagit_de"]},
+            {"type": "matching", "vocab": ["v_tomber_amoureux", "v_avoir_lieu", "v_de_plus_en_plus", "v_nimporte_quoi", "v_il_sagit_de"]},
+            {"type": "vocabIntro", "vocab": ["v_de_plus_en_plus", "v_de_moins_en_moins", "v_nimporte_quoi"]},
+            {"type": "cloze", "text": "Le concert aura ___ samedi.", "answer": "lieu", "choices": ["lieu", "place", "temps"], "translation": "Das Konzert findet am Samstag statt.", "vocab": ["v_avoir_lieu"]},
+            {"type": "cloze", "text": "De quoi ___ -il ? — Il s'agit du climat.", "answer": "s'agit", "choices": ["s'agit", "sagit", "agit"], "translation": "Worum geht es? — Es geht ums Klima.", "vocab": ["v_il_sagit_de"]},
+            {"type": "cloze", "text": "Il est ___ amoureux de Paris.", "answer": "tombé", "choices": ["tombé", "tombe", "tomber"], "translation": "Er hat sich in Paris verliebt.", "vocab": ["v_tomber_amoureux"]},
+            {"type": "mcSentence", "question": "«C'est n'importe quoi !» bedeutet …", "answer": "Das ist Quatsch!", "distractors": ["Das ist egal!", "Das ist alles!"], "vocab": ["v_nimporte_quoi"]},
+            {"type": "translate", "de": "Immer mehr Leute lernen Französisch.", "fr": "De plus en plus de gens apprennent le français.", "vocab": ["v_de_plus_en_plus"]}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "b2_u6",
+      "title": "Chef-d'œuvre — das Finale",
+      "level": "B2",
+      "icon": "trophy.fill",
+      "lessons": [
+        {
+          "id": "b2_u6_l1",
+          "title": "Kunst & Literatur",
+          "newVocab": ["v_loeuvre", "v_le_chef_doeuvre", "v_la_peinture", "v_le_tableau", "v_le_spectacle", "v_le_theatre"],
+          "exercises": [
+            {"type": "vocabIntro", "vocab": ["v_loeuvre", "v_le_chef_doeuvre", "v_la_peinture"]},
+            {"type": "matching", "vocab": ["v_loeuvre", "v_le_tableau", "v_le_spectacle", "v_le_theatre", "v_la_peinture"]},
+            {"type": "vocabIntro", "vocab": ["v_le_tableau", "v_le_spectacle", "v_le_theatre"]},
+            {"type": "cloze", "text": "La Joconde est le ___ le plus célèbre du monde.", "answer": "tableau", "choices": ["tableau", "théâtre", "spectacle"], "translation": "Die Mona Lisa ist das berühmteste Gemälde der Welt.", "vocab": ["v_le_tableau"]},
+            {"type": "cloze", "text": "Ce roman est une ___ magnifique.", "answer": "œuvre", "choices": ["œuvre", "peinture", "chose"], "translation": "Dieser Roman ist ein großartiges Werk.", "vocab": ["v_loeuvre"]},
+            {"type": "wordOrder", "fr": "Nous sommes allés au théâtre hier soir", "de": "Wir sind gestern Abend ins Theater gegangen", "vocab": ["v_le_theatre"]},
+            {"type": "translate", "de": "Dieses Meisterwerk wurde von Monet gemalt.", "fr": "Ce chef-d'œuvre a été peint par Monet.", "vocab": ["v_le_chef_doeuvre"]}
+          ]
+        },
+        {
+          "id": "b2_u6_l2",
+          "title": "Es war einmal — Literatur lesen",
+          "newVocab": ["v_alors", "v_aussitot"],
+          "exercises": [
+            {"type": "vocabIntro", "vocab": ["v_alors", "v_aussitot"]},
+            {"type": "mcSentence", "question": "«Le héros prit son épée.» — «prit» = …", "answer": "il a pris", "distractors": ["il prendra", "il prenait"], "translation": "Passé simple von prendre", "vocab": ["v_prendre"]},
+            {"type": "mcSentence", "question": "«Elle alla au château.» — «alla» = …", "answer": "elle est allée", "distractors": ["elle ira", "elle allait"], "translation": "Passé simple von aller", "vocab": ["v_aller"]},
+            {"type": "mcSentence", "question": "«Il dit au revoir et partit aussitôt.» — Was tat er?", "answer": "Er verabschiedete sich und ging sofort.", "distractors": ["Er sagt gerade auf Wiedersehen.", "Er wird sich gleich verabschieden."], "vocab": ["v_aussitot"]},
+            {"type": "cloze", "text": "«Ils furent très heureux.» = Ils ont ___ très heureux.", "answer": "été", "choices": ["été", "eu", "fait"], "translation": "Sie waren sehr glücklich.", "vocab": ["v_heureux"]},
+            {"type": "mcSentence", "question": "«il vint» ist das Passé simple von …", "answer": "venir", "distractors": ["voir", "vivre"], "vocab": ["v_venir"]},
+            {"type": "translate", "de": "Der Held des Romans ist ein junger Schriftsteller.", "fr": "Le héros du roman est un jeune écrivain.", "vocab": ["v_le_heros"]}
+          ]
+        },
+        {
+          "id": "b2_u6_l3",
+          "title": "Pronomen-Meisterklasse",
+          "newVocab": ["v_plusieurs", "v_chacun", "v_certains"],
+          "exercises": [
+            {"type": "vocabIntro", "vocab": ["v_plusieurs", "v_chacun", "v_certains"]},
+            {"type": "cloze", "text": "Des livres ? J'en ai lu ___ .", "answer": "plusieurs", "choices": ["plusieurs", "chacun", "tous les"], "translation": "Bücher? Ich habe mehrere (davon) gelesen.", "vocab": ["v_plusieurs"]},
+            {"type": "cloze", "text": "Tu lui as donné les clés ? — Oui, je ___ ai données.", "answer": "les lui", "choices": ["les lui", "lui les", "le lui"], "translation": "Hast du ihm die Schlüssel gegeben? — Ja, ich habe sie ihm gegeben.", "vocab": ["v_la_cle"]},
+            {"type": "cloze", "text": "Du café ? Il y ___ a encore.", "answer": "en", "choices": ["en", "y", "le"], "translation": "Kaffee? Es gibt noch welchen.", "vocab": ["v_le_cafe"]},
+            {"type": "cloze", "text": "___ a son point de vue.", "answer": "Chacun", "choices": ["Chacun", "Plusieurs", "Certains"], "translation": "Jeder hat seinen Standpunkt.", "vocab": ["v_chacun"]},
+            {"type": "errorCorrection", "text": "Je lui les ai données.", "answer": "Je les lui ai données.", "distractors": ["Je les leur lui ai données.", "Je lui ai les données."], "translation": "Ich habe sie ihm gegeben.", "hint": "le/la/les vor lui/leur", "vocab": ["v_donner"]},
+            {"type": "wordOrder", "fr": "Certains préfèrent le train, d'autres l'avion", "de": "Manche bevorzugen den Zug, andere das Flugzeug", "vocab": ["v_certains"]},
+            {"type": "translate", "de": "Ich erinnere mich daran.", "fr": "Je m'en souviens.", "vocab": ["v_se_souvenir"]}
+          ]
+        },
+        {
+          "id": "b2_u6_l4",
+          "title": "Félicitations — das B2-Finale",
+          "newVocab": ["v_felicitations", "v_le_niveau", "v_couramment", "v_la_reussite", "v_fier"],
+          "exercises": [
+            {"type": "vocabIntro", "vocab": ["v_felicitations", "v_le_niveau", "v_couramment", "v_la_reussite", "v_fier"]},
+            {"type": "cloze", "text": "Elle parle ___ trois langues.", "answer": "couramment", "choices": ["couramment", "courant", "couramment de"], "translation": "Sie spricht fließend drei Sprachen.", "vocab": ["v_couramment"]},
+            {"type": "cloze", "text": "Il faut que tu ___ fier de toi !", "answer": "sois", "choices": ["sois", "es", "seras"], "translation": "Du musst stolz auf dich sein!", "hint": "Subjonctif — bis zum Schluss!", "vocab": ["v_fier"]},
+            {"type": "cloze", "text": "Si tu n'avais pas travaillé, tu n'___ pas réussi.", "answer": "aurais", "choices": ["aurais", "avais", "auras"], "translation": "Wenn du nicht gearbeitet hättest, hättest du es nicht geschafft.", "vocab": ["v_la_reussite"]},
+            {"type": "errorCorrection", "text": "Après avoir atteignu le niveau B2, elle a continué.", "answer": "Après avoir atteint le niveau B2, elle a continué.", "distractors": ["Après avoir atteindre le niveau B2, elle a continué.", "Après être atteint le niveau B2, elle a continué."], "translation": "Nachdem sie das Niveau B2 erreicht hatte, machte sie weiter.", "hint": "atteindre → atteint", "vocab": ["v_atteindre"]},
+            {"type": "wordOrder", "fr": "Je suis fier de tout ce que j'ai appris", "de": "Ich bin stolz auf alles, was ich gelernt habe", "vocab": ["v_fier"]},
+            {"type": "translate", "de": "Herzlichen Glückwunsch! Du sprichst jetzt fließend Französisch.", "fr": "Félicitations ! Tu parles maintenant couramment français.", "altAnswers": ["Félicitations ! Tu parles couramment français maintenant."], "vocab": ["v_felicitations"]}
+          ]
+        }
+      ]
     }
   ]
 }
