@@ -14,6 +14,7 @@ struct FrenchAppApp: App {
             UserSettings.self,
             ExamAttempt.self,
             EarnedCertificate.self,
+            ChallengeProgress.self,
         ])
         do {
             container = try ModelContainer(for: schema)

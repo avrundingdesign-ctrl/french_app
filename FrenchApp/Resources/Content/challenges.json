@@ -1,0 +1,548 @@
+{
+  "challenges": [
+    {
+      "id": "challenge_a1",
+      "level": "A1",
+      "title": "Vertiefung A1",
+      "subtitle": "Lückentexte, Verneinung und Sätze verbinden — alles aus A1 kombiniert",
+      "tasks": [
+        {
+          "context": "Texte à trous: Lies den Text und fülle die Lücken (1)–(4).",
+          "passageTitle": "Une journée à Paris",
+          "passage": "Marie habite (1) Paris. Le matin, elle (2) un café et un croissant. Ensuite, elle (3) au travail en métro. Le soir, elle retrouve (4) amis au restaurant.",
+          "questions": [
+            {
+              "type": "cloze",
+              "text": "Lücke (1): Marie habite ___ Paris.",
+              "answer": "à",
+              "translation": "Marie wohnt in Paris.",
+              "hint": "Präposition bei Städten."
+            },
+            {
+              "type": "cloze",
+              "text": "Lücke (2): elle ___ un café et un croissant. (prendre)",
+              "answer": "prend",
+              "translation": "Sie nimmt einen Kaffee und ein Croissant."
+            },
+            {
+              "type": "cloze",
+              "text": "Lücke (3): elle ___ au travail en métro. (aller)",
+              "answer": "va",
+              "translation": "Sie fährt mit der Metro zur Arbeit."
+            },
+            {
+              "type": "cloze",
+              "text": "Lücke (4): elle retrouve ___ amis au restaurant. (Possessiv: ihre)",
+              "answer": "ses",
+              "translation": "Sie trifft ihre Freunde im Restaurant."
+            }
+          ]
+        },
+        {
+          "context": "Transformation: Verneine die Sätze.",
+          "questions": [
+            {
+              "type": "cloze",
+              "text": "«Il a un chien.» → Il ___ pas de chien.",
+              "answer": "n'a",
+              "translation": "Er hat keinen Hund.",
+              "hint": "ne + a → Elision."
+            },
+            {
+              "type": "cloze",
+              "text": "«Je mange de la viande.» → Je ne mange pas ___ viande.",
+              "answer": "de",
+              "translation": "Ich esse kein Fleisch.",
+              "hint": "Nach der Verneinung wird der Teilungsartikel zu «de»."
+            },
+            {
+              "type": "mcSentence",
+              "question": "Wie verneint man «Nous avons des enfants.»?",
+              "answer": "Nous n'avons pas d'enfants.",
+              "distractors": ["Nous n'avons pas des enfants.", "Nous ne avons pas d'enfants."]
+            }
+          ]
+        },
+        {
+          "context": "Verbinde die Sätze mit dem passenden Wort.",
+          "questions": [
+            {
+              "type": "cloze",
+              "text": "«J'aime l'été.» + «Il fait chaud.» → J'aime l'été ___ fait chaud.",
+              "answer": "parce qu'il",
+              "translation": "Ich mag den Sommer, weil es warm ist.",
+              "hint": "weil + Elision vor il."
+            },
+            {
+              "type": "cloze",
+              "text": "«Il est fatigué.» + «Il va au lit.» → Il est fatigué, ___ il va au lit.",
+              "answer": "donc",
+              "altAnswers": ["alors"],
+              "translation": "Er ist müde, also geht er ins Bett."
+            },
+            {
+              "type": "wordOrder",
+              "fr": "Je voudrais un café mais pas de sucre",
+              "de": "Ich möchte einen Kaffee, aber keinen Zucker"
+            }
+          ]
+        },
+        {
+          "context": "Hörverstehen: Lucas stellt sich vor.",
+          "audioScript": "Bonjour ! Je m'appelle Lucas. J'ai vingt-cinq ans et j'habite à Bordeaux avec mon frère. Le week-end, nous jouons au tennis et nous regardons des films.",
+          "questions": [
+            {
+              "type": "mcSentence",
+              "question": "Wo wohnt Lucas?",
+              "answer": "In Bordeaux",
+              "distractors": ["In Paris", "In Lyon"]
+            },
+            {
+              "type": "mcSentence",
+              "question": "Mit wem wohnt er zusammen?",
+              "answer": "Mit seinem Bruder",
+              "distractors": ["Mit seiner Schwester", "Er wohnt allein"]
+            },
+            {
+              "type": "mcSentence",
+              "question": "Was macht er am Wochenende?",
+              "answer": "Tennis spielen und Filme schauen",
+              "distractors": ["Fußball spielen und lesen", "Schwimmen und kochen"]
+            }
+          ]
+        },
+        {
+          "context": "Lesen und anwenden.",
+          "passageTitle": "Le petit marché",
+          "passage": "Tous les samedis, il y a un petit marché sur la place. On peut acheter des fruits, des légumes et du fromage. Les prix ne sont pas chers et les vendeurs sont très gentils. Beaucoup de familles viennent avec leurs enfants.",
+          "questions": [
+            {
+              "type": "mcSentence",
+              "question": "Wann findet der Markt statt?",
+              "answer": "Jeden Samstag",
+              "distractors": ["Jeden Sonntag", "Jeden Tag"]
+            },
+            {
+              "type": "mcSentence",
+              "question": "Wie sind die Preise?",
+              "answer": "Günstig",
+              "distractors": ["Sehr teuer", "Im Text steht nichts dazu"]
+            },
+            {
+              "type": "cloze",
+              "text": "Setze ein: On peut acheter ___ fromage. (Teilungsartikel)",
+              "answer": "du",
+              "translation": "Man kann Käse kaufen."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "challenge_a2",
+      "level": "A2",
+      "title": "Vertiefung A2",
+      "subtitle": "Zeiten-Transformation, Erzähltexte und Vergleiche — alles aus A2 kombiniert",
+      "tasks": [
+        {
+          "context": "Transformation: Setze in die angegebene Zeit.",
+          "questions": [
+            {
+              "type": "cloze",
+              "text": "Passé composé: «Je mange une pomme.» → J'___ une pomme.",
+              "answer": "ai mangé",
+              "translation": "Ich habe einen Apfel gegessen."
+            },
+            {
+              "type": "cloze",
+              "text": "Passé composé: «Elle va au cinéma.» → Elle ___ au cinéma.",
+              "answer": "est allée",
+              "translation": "Sie ist ins Kino gegangen.",
+              "hint": "aller nimmt être — Angleichung nicht vergessen."
+            },
+            {
+              "type": "cloze",
+              "text": "Imparfait: «Nous habitons à Nice.» → Avant, nous ___ à Nice.",
+              "answer": "habitions",
+              "translation": "Früher wohnten wir in Nizza."
+            },
+            {
+              "type": "cloze",
+              "text": "Futur proche: «Tu fais les courses.» → Demain, tu ___ les courses.",
+              "answer": "vas faire",
+              "translation": "Morgen wirst du einkaufen."
+            }
+          ]
+        },
+        {
+          "context": "Texte à trous: Erzähle Léos Samstag in der Vergangenheit — Lücken (1)–(4).",
+          "passageTitle": "Le samedi de Léo",
+          "passage": "Samedi dernier, Léo (1) chez ses grands-parents. Il (2) le train à neuf heures. Pendant le voyage, il (3) de la musique. Quand il est arrivé, sa grand-mère (4) un gâteau.",
+          "questions": [
+            {
+              "type": "cloze",
+              "text": "Lücke (1): Léo ___ chez ses grands-parents. (aller, Passé composé)",
+              "answer": "est allé",
+              "translation": "Léo ist zu seinen Großeltern gefahren."
+            },
+            {
+              "type": "cloze",
+              "text": "Lücke (2): Il ___ le train à neuf heures. (prendre, Passé composé)",
+              "answer": "a pris",
+              "translation": "Er hat den Neun-Uhr-Zug genommen."
+            },
+            {
+              "type": "cloze",
+              "text": "Lücke (3): il ___ de la musique. (écouter, Passé composé)",
+              "answer": "a écouté",
+              "translation": "Er hat Musik gehört."
+            },
+            {
+              "type": "cloze",
+              "text": "Lücke (4): sa grand-mère ___ un gâteau. (préparer, Imparfait — Hintergrund!)",
+              "answer": "préparait",
+              "translation": "Seine Großmutter bereitete gerade einen Kuchen zu.",
+              "hint": "Laufende Hintergrundhandlung → Imparfait."
+            }
+          ]
+        },
+        {
+          "context": "Reflexive Verben: Forme um.",
+          "questions": [
+            {
+              "type": "cloze",
+              "text": "Er → Ich: «Il se lève à sept heures.» → Je ___ à sept heures.",
+              "answer": "me lève",
+              "translation": "Ich stehe um sieben Uhr auf."
+            },
+            {
+              "type": "cloze",
+              "text": "Sie → Wir: «Elle se couche tard.» → Nous ___ tard.",
+              "answer": "nous couchons",
+              "translation": "Wir gehen spät schlafen."
+            },
+            {
+              "type": "mcSentence",
+              "question": "Wie lautet das Passé composé von «se lever» (elle)?",
+              "answer": "Elle s'est levée.",
+              "distractors": ["Elle s'a levé.", "Elle est se levée."]
+            }
+          ]
+        },
+        {
+          "context": "Hörverstehen: Eine Durchsage im Kaufhaus.",
+          "audioScript": "Attention, chers clients ! Aujourd'hui, tous les vêtements sont en solde : moins trente pour cent sur les pulls et les manteaux. Le magasin ferme exceptionnellement à dix-neuf heures. Merci de votre visite !",
+          "questions": [
+            {
+              "type": "mcSentence",
+              "question": "Was ist heute im Angebot?",
+              "answer": "Pullover und Mäntel",
+              "distractors": ["Schuhe und Taschen", "Hosen und Hemden"]
+            },
+            {
+              "type": "mcSentence",
+              "question": "Wie hoch ist der Rabatt?",
+              "answer": "30 Prozent",
+              "distractors": ["13 Prozent", "40 Prozent"]
+            },
+            {
+              "type": "mcSentence",
+              "question": "Wann schließt das Geschäft heute?",
+              "answer": "Um 19 Uhr",
+              "distractors": ["Um 20 Uhr", "Um 18 Uhr"]
+            }
+          ]
+        },
+        {
+          "context": "Lesen und Vergleiche anwenden.",
+          "passageTitle": "Ma nouvelle ville",
+          "passage": "J'habite à Lille depuis six mois. C'est plus petit que Paris, mais la vie est moins chère. Les gens sont aussi gentils qu'à Paris. Ce que je préfère ? Le vieux quartier avec ses cafés.",
+          "questions": [
+            {
+              "type": "mcSentence",
+              "question": "Wie ist Lille im Vergleich zu Paris?",
+              "answer": "Kleiner, aber das Leben ist günstiger",
+              "distractors": ["Größer und teurer", "Genauso groß und teuer"]
+            },
+            {
+              "type": "cloze",
+              "text": "Setze ein: Les gens sont ___ gentils qu'à Paris. (genauso)",
+              "answer": "aussi",
+              "translation": "Die Leute sind genauso nett wie in Paris."
+            },
+            {
+              "type": "wordOrder",
+              "fr": "La vie est moins chère à Lille",
+              "de": "Das Leben ist in Lille günstiger"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "challenge_b1",
+      "level": "B1",
+      "title": "Vertiefung B1",
+      "subtitle": "Si-Sätze, indirekte Rede, Passiv und Subjonctif — alles aus B1 kombiniert",
+      "tasks": [
+        {
+          "context": "Hypothesen: Forme um oder vervollständige.",
+          "questions": [
+            {
+              "type": "cloze",
+              "text": "Real → Irreal: «Si j'ai le temps, je viendrai.» → Si j'___ le temps, je viendrais.",
+              "answer": "avais",
+              "translation": "Wenn ich Zeit hätte, würde ich kommen."
+            },
+            {
+              "type": "cloze",
+              "text": "Vervollständige: Si nous avions une voiture, nous ___ à la mer. (aller)",
+              "answer": "irions",
+              "translation": "Wenn wir ein Auto hätten, würden wir ans Meer fahren."
+            },
+            {
+              "type": "mcSentence",
+              "question": "Welcher Satz ist korrekt?",
+              "answer": "Si tu venais, je serais content.",
+              "distractors": ["Si tu viendrais, je serais content.", "Si tu venais, je suis content."]
+            }
+          ]
+        },
+        {
+          "context": "Indirekte Rede: Gib die Aussagen wieder.",
+          "questions": [
+            {
+              "type": "cloze",
+              "text": "Il dit : «Je suis malade.» → Il dit qu'___ malade.",
+              "answer": "il est",
+              "translation": "Er sagt, dass er krank ist."
+            },
+            {
+              "type": "cloze",
+              "text": "Elle demande : «Où habites-tu ?» → Elle demande ___ j'habite.",
+              "answer": "où",
+              "translation": "Sie fragt, wo ich wohne."
+            },
+            {
+              "type": "cloze",
+              "text": "Il demande : «Est-ce que tu viens ?» → Il demande ___ je viens.",
+              "answer": "si",
+              "translation": "Er fragt, ob ich komme.",
+              "hint": "Ja/Nein-Frage → «si»."
+            }
+          ]
+        },
+        {
+          "context": "Passiv: Forme die Sätze um.",
+          "questions": [
+            {
+              "type": "cloze",
+              "text": "«On construit un pont.» → Un pont ___ construit.",
+              "answer": "est",
+              "translation": "Eine Brücke wird gebaut."
+            },
+            {
+              "type": "cloze",
+              "text": "«Le chef prépare le repas.» → Le repas est préparé ___ le chef.",
+              "answer": "par",
+              "translation": "Das Essen wird vom Chef zubereitet."
+            },
+            {
+              "type": "mcSentence",
+              "question": "Wie lautet das Passiv von «La ville a organisé un festival.»?",
+              "answer": "Un festival a été organisé par la ville.",
+              "distractors": ["Un festival est organisé par la ville.", "Un festival a organisé par la ville."]
+            }
+          ]
+        },
+        {
+          "context": "Texte à trous: Subjonctif oder nicht? Lücken (1)–(3).",
+          "passageTitle": "Chère Julie",
+          "passage": "Chère Julie, je suis contente que tu (1) venir samedi ! Il faut que nous (2) le menu ensemble. Je ne pense pas qu'il (3) nécessaire de cuisiner pour vingt personnes. À samedi !",
+          "questions": [
+            {
+              "type": "cloze",
+              "text": "Lücke (1): je suis contente que tu ___ venir. (pouvoir)",
+              "answer": "puisses",
+              "translation": "Ich freue mich, dass du kommen kannst.",
+              "hint": "Gefühl + que → Subjonctif."
+            },
+            {
+              "type": "cloze",
+              "text": "Lücke (2): il faut que nous ___ le menu. (choisir)",
+              "answer": "choisissions",
+              "translation": "Wir müssen das Menü auswählen."
+            },
+            {
+              "type": "cloze",
+              "text": "Lücke (3): je ne pense pas qu'il ___ nécessaire. (être)",
+              "answer": "soit",
+              "translation": "Ich glaube nicht, dass es nötig ist.",
+              "hint": "Verneinte Meinung → Subjonctif."
+            }
+          ]
+        },
+        {
+          "context": "Hörverstehen: Stadt oder Land?",
+          "audioScript": "Pour moi, habiter en ville a beaucoup d'avantages : tout est proche, il y a des cinémas, des théâtres. Par contre, c'est bruyant et les loyers sont élevés. Ma sœur, elle, préfère la campagne : elle dit qu'on y respire mieux, même s'il faut prendre la voiture pour tout.",
+          "questions": [
+            {
+              "type": "mcSentence",
+              "question": "Welche Nachteile der Stadt nennt die Person?",
+              "answer": "Lärm und hohe Mieten",
+              "distractors": ["Schlechte Luft und Staus", "Wenig Kultur und Langeweile"]
+            },
+            {
+              "type": "mcSentence",
+              "question": "Warum mag die Schwester das Land?",
+              "answer": "Man atmet dort besser",
+              "distractors": ["Die Häuser sind billiger", "Die Nachbarn sind netter"]
+            },
+            {
+              "type": "mcSentence",
+              "question": "Welche Einschränkung nennt sie beim Landleben?",
+              "answer": "Man braucht für alles das Auto",
+              "distractors": ["Es gibt keine Schulen", "Das Internet ist langsam"]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "challenge_b2",
+      "level": "B2",
+      "title": "Vertiefung B2",
+      "subtitle": "Nominalisierung, Zeitenfolge, Gérondif und Subjonctif-Feinheiten — alles aus B2 kombiniert",
+      "tasks": [
+        {
+          "context": "Nominalisierung: Forme das Verb in ein Nomen um — der Stil der Zeitungssprache.",
+          "questions": [
+            {
+              "type": "cloze",
+              "text": "«On a augmenté les prix.» → L'___ des prix inquiète les clients.",
+              "answer": "augmentation",
+              "translation": "Die Preiserhöhung beunruhigt die Kunden."
+            },
+            {
+              "type": "cloze",
+              "text": "«Le magasin va fermer.» → La ___ du magasin est prévue en mars. (fermer → Nomen)",
+              "answer": "fermeture",
+              "translation": "Die Schließung des Ladens ist für März geplant."
+            },
+            {
+              "type": "cloze",
+              "text": "«Les ventes ont baissé.» → La ___ des ventes inquiète l'entreprise.",
+              "answer": "baisse",
+              "translation": "Der Umsatzrückgang beunruhigt das Unternehmen."
+            }
+          ]
+        },
+        {
+          "context": "Zeitenfolge: Gib die Aussagen in der Vergangenheit wieder.",
+          "questions": [
+            {
+              "type": "cloze",
+              "text": "Il a dit : «Je suis fatigué.» → Il a dit qu'il ___ fatigué.",
+              "answer": "était",
+              "translation": "Er sagte, dass er müde sei."
+            },
+            {
+              "type": "cloze",
+              "text": "Elle a dit : «J'ai fini.» → Elle a dit qu'elle ___ fini.",
+              "answer": "avait",
+              "translation": "Sie sagte, dass sie fertig sei.",
+              "hint": "Passé composé → Plus-que-parfait."
+            },
+            {
+              "type": "cloze",
+              "text": "Il a promis : «Je viendrai.» → Il a promis qu'il ___.",
+              "answer": "viendrait",
+              "translation": "Er versprach, dass er kommen würde.",
+              "hint": "Futur → Conditionnel présent."
+            }
+          ]
+        },
+        {
+          "context": "Gérondif: Drücke Gleichzeitigkeit aus.",
+          "questions": [
+            {
+              "type": "cloze",
+              "text": "«Il travaille et il écoute de la musique.» → Il travaille ___ écoutant de la musique.",
+              "answer": "en",
+              "translation": "Er arbeitet, während er Musik hört."
+            },
+            {
+              "type": "cloze",
+              "text": "Gérondif von «faire»: ___ du sport, on reste en forme.",
+              "answer": "En faisant",
+              "translation": "Indem man Sport treibt, bleibt man fit."
+            },
+            {
+              "type": "mcSentence",
+              "question": "Welcher Satz drückt Gleichzeitigkeit aus?",
+              "answer": "En sortant, j'ai vu Marie.",
+              "distractors": ["Pour sortir, j'ai vu Marie.", "Avant de sortir, j'ai vu Marie."]
+            }
+          ]
+        },
+        {
+          "context": "Texte à trous: Subjonctif oder Indicatif? Lücken (1)–(4).",
+          "passageTitle": "Le débat continue",
+          "passage": "Bien que l'idée (1) séduisante, tout le monde n'est pas convaincu. Certains pensent qu'elle (2) impossible dans leur secteur. Pour que le modèle (3), il faudra du temps — à moins que les entreprises ne (4) une autre solution.",
+          "questions": [
+            {
+              "type": "cloze",
+              "text": "Lücke (1): Bien que l'idée ___ séduisante. (être)",
+              "answer": "soit",
+              "translation": "Obwohl die Idee verlockend ist …"
+            },
+            {
+              "type": "cloze",
+              "text": "Lücke (2): Certains pensent qu'elle ___ impossible. (être)",
+              "answer": "est",
+              "translation": "Manche denken, dass sie unmöglich ist.",
+              "hint": "Bejahte Meinung → Indicatif!"
+            },
+            {
+              "type": "cloze",
+              "text": "Lücke (3): Pour que le modèle ___, il faudra du temps. (fonctionner)",
+              "answer": "fonctionne",
+              "translation": "Damit das Modell funktioniert, braucht es Zeit."
+            },
+            {
+              "type": "cloze",
+              "text": "Lücke (4): à moins que les entreprises ne ___ une autre solution. (trouver)",
+              "answer": "trouvent",
+              "translation": "Es sei denn, die Unternehmen finden eine andere Lösung.",
+              "hint": "Das «ne» ist explétif — keine Verneinung."
+            }
+          ]
+        },
+        {
+          "context": "Hörverstehen: Eine Kulturnachricht.",
+          "audioScript": "Le musée municipal rouvre ses portes samedi après deux ans de travaux. La rénovation, qui a coûté quatre millions d'euros, a été financée en partie par des dons. Le maire espère que la nouvelle salle consacrée à l'art moderne attirera un public plus jeune.",
+          "questions": [
+            {
+              "type": "mcSentence",
+              "question": "Warum war das Museum geschlossen?",
+              "answer": "Wegen Renovierungsarbeiten",
+              "distractors": ["Wegen Geldmangels", "Wegen eines Brandes"]
+            },
+            {
+              "type": "mcSentence",
+              "question": "Wie wurde die Renovierung teilweise finanziert?",
+              "answer": "Durch Spenden",
+              "distractors": ["Durch höhere Eintrittspreise", "Durch den Verkauf von Kunstwerken"]
+            },
+            {
+              "type": "mcSentence",
+              "question": "Was erhofft sich der Bürgermeister vom neuen Saal?",
+              "answer": "Dass er ein jüngeres Publikum anzieht",
+              "distractors": ["Dass er mehr Touristen anzieht", "Dass er Geld einbringt"]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

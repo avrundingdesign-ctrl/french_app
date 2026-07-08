@@ -164,6 +164,28 @@ def main() -> int:
             if question_count < 4:
                 errors.append(f"{exam['id']} {section['kind']}: nur {question_count} Fragen")
 
+    # Vertiefungskapitel (optionale Komplex-Übungen pro Niveau)
+    challenges = load("challenges")["challenges"]
+    challenge_levels = [c["level"] for c in challenges]
+    challenge_question_count = 0
+    if len(challenge_levels) != len(set(challenge_levels)):
+        errors.append("Mehrere Vertiefungskapitel für dasselbe Niveau")
+    for chapter in challenges:
+        if chapter["level"] not in VALID_LEVELS:
+            errors.append(f"{chapter['id']}: ungültiges Niveau")
+        count = 0
+        for ti, task in enumerate(chapter["tasks"]):
+            for qi, ex in enumerate(task["questions"]):
+                count += 1
+                challenge_question_count += 1
+                where = f"{chapter['id']} t{ti} q{qi}"
+                if ex["type"] not in EXAM_QUESTION_TYPES:
+                    errors.append(f"{where}: Typ {ex['type']} hier nicht erlaubt")
+                    continue
+                check_spec(ex, where, verbs, errors)
+        if count < 12:
+            errors.append(f"{chapter['id']}: nur {count} Aufgaben — mindestens 12")
+
     # Wortschatz-Pakete
     packs = load("packs")["packs"]
     pack_ids = [p["id"] for p in packs]
@@ -216,7 +238,8 @@ def main() -> int:
         f"{len(vocab)} Vokabeln · {len(verbs)} Verben · {len(rules)} Regeln · "
         f"{lesson_count} Lektionen {level_counts} · {spec_count} Übungs-Specs · "
         f"{len(exams)} Prüfungen mit {exam_question_count} Fragen · {len(pairs)} Minimal-Paare · "
-        f"{len(packs)} Pakete mit {len(pack_vocab)} Wörtern"
+        f"{len(packs)} Pakete mit {len(pack_vocab)} Wörtern · "
+        f"{len(challenges)} Vertiefungen mit {challenge_question_count} Aufgaben"
     )
     for w in warnings:
         print(f"⚠️  {w}")

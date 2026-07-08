@@ -8,9 +8,11 @@ struct HomePathView: View {
     @Query private var reviewStates: [ReviewState]
     @Query private var settingsList: [UserSettings]
     @Query private var certificates: [EarnedCertificate]
+    @Query private var challengeProgress: [ChallengeProgress]
 
     @State private var activeLesson: CourseLesson?
     @State private var activeExam: ExamDefinition?
+    @State private var activeChallenge: ChallengeChapter?
     @State private var showReview = false
     @State private var showGrammarPractice = false
 
@@ -55,6 +57,9 @@ struct HomePathView: View {
             }
             .fullScreenCover(item: $activeExam) { exam in
                 ExamSessionView(exam: exam)
+            }
+            .fullScreenCover(item: $activeChallenge) { chapter in
+                ChallengeSessionView(chapter: chapter)
             }
             .fullScreenCover(isPresented: $showReview) {
                 ReviewSessionView()
@@ -110,10 +115,78 @@ struct HomePathView: View {
                 unitCard(unit)
             }
 
+            if let chapter = content.challengeByLevel[level] {
+                challengeCard(chapter)
+            }
             if let exam = content.examByLevel[level] {
                 examCard(exam)
             }
         }
+    }
+
+    // MARK: - Vertiefung (optionale Komplex-Übungen)
+
+    private func challengeCard(_ chapter: ChallengeChapter) -> some View {
+        let unlocked = snapshot.isExamUnlocked(chapter.level, earnedLevels: earnedLevels)
+        let progress = challengeProgress.first { $0.chapterID == chapter.id }
+        let color = Theme.levelColor(chapter.level)
+
+        return Button {
+            if unlocked {
+                activeChallenge = chapter
+            }
+        } label: {
+            HStack(spacing: 12) {
+                ZStack {
+                    Circle()
+                        .fill(progress != nil ? Theme.success : (unlocked ? color.opacity(0.85) : Color(.systemFill)))
+                        .frame(width: 40, height: 40)
+                    Image(systemName: progress != nil ? "star.fill" : (unlocked ? "puzzlepiece.extension.fill" : "lock.fill"))
+                        .font(.subheadline)
+                        .foregroundStyle(unlocked || progress != nil ? .white : .secondary)
+                }
+                VStack(alignment: .leading, spacing: 2) {
+                    HStack(spacing: 6) {
+                        Text(chapter.title)
+                            .font(.body.weight(.semibold))
+                            .foregroundStyle(unlocked ? Color.primary : Color.secondary)
+                        Text("optional")
+                            .font(.caption2.bold())
+                            .foregroundStyle(.secondary)
+                            .padding(.horizontal, 6)
+                            .padding(.vertical, 2)
+                            .background(Color(.systemFill), in: Capsule())
+                    }
+                    Text(challengeSubtitle(chapter, progress: progress, unlocked: unlocked))
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
+                Spacer()
+                if progress != nil {
+                    Text("Wiederholen")
+                        .font(.caption)
+                        .foregroundStyle(color)
+                } else if unlocked {
+                    Image(systemName: "chevron.right")
+                        .font(.caption)
+                        .foregroundStyle(.tertiary)
+                }
+            }
+            .padding(14)
+            .background(Color(.secondarySystemGroupedBackground), in: RoundedRectangle(cornerRadius: 16))
+        }
+        .buttonStyle(.plain)
+        .disabled(!unlocked)
+    }
+
+    private func challengeSubtitle(_ chapter: ChallengeChapter, progress: ChallengeProgress?, unlocked: Bool) -> String {
+        if let progress {
+            return "Bester Lauf: \(Int((progress.bestScore * 100).rounded())) % · \(chapter.questionCount) Aufgaben"
+        }
+        if unlocked {
+            return "Komplexe Übungen: Grammatik + Wortschatz kombiniert · \(chapter.questionCount) Aufgaben"
+        }
+        return "Schließe zuerst alle Lektionen von \(chapter.level.rawValue) ab"
     }
 
     // MARK: - Grammatik-Training

@@ -63,6 +63,29 @@ struct ExamSection: Codable, Hashable {
     let tasks: [ExamTask]
 }
 
+// MARK: - Vertiefungskapitel
+
+/// Optionales Übungskapitel pro Niveau: komplexere Aufgaben, die Grammatik
+/// und Wortschatz des Levels kombinieren (Transformation, texte à trous,
+/// Konnektoren, Nominalisierung, integriertes Lesen/Hören). Kein Zeitlimit,
+/// sofortiges Feedback — die Prüfungsvorbereitung vor dem Zertifikat.
+struct ChallengeChapter: Codable, Identifiable, Hashable {
+    let id: String
+    let level: CEFRLevel
+    let title: String
+    let subtitle: String?
+    /// Gleiche Aufgabenstruktur wie Prüfungen: Kontext, Lesetext oder Audio + Fragen.
+    let tasks: [ExamTask]
+
+    var questionCount: Int {
+        tasks.reduce(0) { $0 + $1.questions.count }
+    }
+}
+
+struct ChallengesFile: Codable {
+    let challenges: [ChallengeChapter]
+}
+
 struct ExamTask: Codable, Hashable {
     /// Situationsbeschreibung auf Deutsch (z. B. "Du hörst eine Durchsage am Bahnhof").
     let context: String?

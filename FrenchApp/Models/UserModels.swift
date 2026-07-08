@@ -182,6 +182,23 @@ final class ExamAttempt {
     }
 }
 
+/// Abschluss eines Vertiefungskapitels (optionale Komplex-Übungen pro Niveau).
+@Model
+final class ChallengeProgress {
+    @Attribute(.unique) var chapterID: String
+    var completedAt: Date
+    /// Bester erreichter Anteil richtiger Antworten (0…1).
+    var bestScore: Double
+    var timesCompleted: Int
+
+    init(chapterID: String, completedAt: Date = .now, bestScore: Double) {
+        self.chapterID = chapterID
+        self.completedAt = completedAt
+        self.bestScore = bestScore
+        self.timesCompleted = 1
+    }
+}
+
 /// Verliehenes Zertifikat — entsteht beim ersten Bestehen der Niveau-Prüfung
 /// und bleibt bestehen (spätere Versuche ändern es nicht).
 @Model
