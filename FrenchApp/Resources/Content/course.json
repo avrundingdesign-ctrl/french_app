@@ -1313,7 +1313,7 @@
         {
           "id": "b2_u1_l1",
           "title": "obwohl, damit, bevor",
-          "grammar": ["g_subjonctif_conjunctions"],
+          "grammar": ["g_subjonctif_conjunctions", "g_ne_expletif"],
           "newVocab": ["v_bien_que", "v_pour_que", "v_avant_que", "v_a_condition_que", "v_sans_que"],
           "exercises": [
             {"type": "vocabIntro", "vocab": ["v_bien_que", "v_pour_que", "v_avant_que"]},
@@ -1347,6 +1347,7 @@
         {
           "id": "b2_u1_l3",
           "title": "Zweifel & Möglichkeit",
+          "grammar": ["g_subjonctif_passe"],
           "newVocab": ["v_il_se_peut_que", "v_la_certitude", "v_lhypothese", "v_evident", "v_convaincre"],
           "exercises": [
             {"type": "vocabIntro", "vocab": ["v_il_se_peut_que", "v_la_certitude", "v_lhypothese"]},
@@ -1433,6 +1434,7 @@
         {
           "id": "b2_u2_l4",
           "title": "Zeiten-Mix: erzählen wie ein Profi",
+          "grammar": ["g_concordance"],
           "newVocab": ["v_lepoque", "v_autrefois", "v_desormais"],
           "exercises": [
             {"type": "vocabIntro", "vocab": ["v_lepoque", "v_autrefois", "v_desormais"]},
@@ -1575,6 +1577,7 @@
         {
           "id": "b2_u4_l4",
           "title": "Die große Debatte",
+          "grammar": ["g_mise_en_relief"],
           "newVocab": ["v_le_point_de_vue", "v_dune_part", "v_dautre_part", "v_en_revanche", "v_defendre"],
           "exercises": [
             {"type": "vocabIntro", "vocab": ["v_le_point_de_vue", "v_dune_part", "v_dautre_part"]},
@@ -1693,6 +1696,7 @@
         {
           "id": "b2_u6_l3",
           "title": "Pronomen-Meisterklasse",
+          "grammar": ["g_lequel"],
           "newVocab": ["v_plusieurs", "v_chacun", "v_certains"],
           "exercises": [
             {"type": "vocabIntro", "vocab": ["v_plusieurs", "v_chacun", "v_certains"]},

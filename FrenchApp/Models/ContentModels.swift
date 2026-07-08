@@ -147,6 +147,25 @@ struct GrammarFile: Codable {
     let rules: [GrammarRule]
 }
 
+// MARK: - Wortschatz-Pakete
+
+/// Thematisches Vokabelpaket außerhalb des Lektionspfads — wird auf Knopfdruck
+/// komplett ins SRS-Training aufgenommen. So wächst der Wortschatz über die
+/// Lektionsvokabeln hinaus, ohne dass neue Lektionen nötig sind.
+struct VocabPack: Codable, Identifiable, Hashable {
+    let id: String
+    let title: String
+    let level: CEFRLevel
+    /// SF-Symbol.
+    let icon: String?
+    let subtitle: String?
+    let vocab: [String]
+}
+
+struct PacksFile: Codable {
+    let packs: [VocabPack]
+}
+
 // MARK: - Hörtraining
 
 /// Wortpaar, das sich nur in einem Laut unterscheidet (rue/roue) —

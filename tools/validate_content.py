@@ -164,6 +164,27 @@ def main() -> int:
             if question_count < 4:
                 errors.append(f"{exam['id']} {section['kind']}: nur {question_count} Fragen")
 
+    # Wortschatz-Pakete
+    packs = load("packs")["packs"]
+    pack_ids = [p["id"] for p in packs]
+    if len(pack_ids) != len(set(pack_ids)):
+        errors.append("Doppelte Paket-IDs")
+    pack_vocab: list[str] = []
+    for pack in packs:
+        if pack["level"] not in VALID_LEVELS:
+            errors.append(f"{pack['id']}: ungültiges Niveau")
+        if len(pack["vocab"]) < 15:
+            errors.append(f"{pack['id']}: nur {len(pack['vocab'])} Wörter — mindestens 15")
+        for vocab_id in pack["vocab"]:
+            pack_vocab.append(vocab_id)
+            if vocab_id not in vocab:
+                errors.append(f"{pack['id']}: Vokabel {vocab_id} fehlt")
+            if vocab_id in all_new_vocab:
+                errors.append(f"{pack['id']}: {vocab_id} wird schon von einer Lektion eingeführt")
+    dupes = {v for v in pack_vocab if pack_vocab.count(v) > 1}
+    if dupes:
+        errors.append(f"Vokabeln in mehreren Paketen: {sorted(dupes)}")
+
     # Hörtraining: Minimal-Paare
     pairs = load("listening")["minimalPairs"]
     if len(pairs) < 20:
@@ -187,14 +208,15 @@ def main() -> int:
     dupes = {v for v in all_new_vocab if all_new_vocab.count(v) > 1}
     if dupes:
         errors.append(f"Vokabeln mehrfach eingeführt: {sorted(dupes)}")
-    unused = vocab - set(all_new_vocab)
+    unused = vocab - set(all_new_vocab) - set(pack_vocab)
     if unused:
-        warnings.append(f"{len(unused)} Vokabeln nie in newVocab: {sorted(unused)[:10]} …")
+        warnings.append(f"{len(unused)} Vokabeln weder in Lektion noch Paket: {sorted(unused)[:10]} …")
 
     print(
         f"{len(vocab)} Vokabeln · {len(verbs)} Verben · {len(rules)} Regeln · "
         f"{lesson_count} Lektionen {level_counts} · {spec_count} Übungs-Specs · "
-        f"{len(exams)} Prüfungen mit {exam_question_count} Fragen · {len(pairs)} Minimal-Paare"
+        f"{len(exams)} Prüfungen mit {exam_question_count} Fragen · {len(pairs)} Minimal-Paare · "
+        f"{len(packs)} Pakete mit {len(pack_vocab)} Wörtern"
     )
     for w in warnings:
         print(f"⚠️  {w}")

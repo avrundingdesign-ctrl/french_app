@@ -22,6 +22,7 @@ final class ContentStore {
     let exams: [ExamDefinition]
     let examByLevel: [CEFRLevel: ExamDefinition]
     let minimalPairs: [MinimalPair]
+    let packs: [VocabPack]
     let conjugator: Conjugator
 
     /// Alle Lektionen in Kurs-Reihenfolge (über Einheiten und Niveaus hinweg).
@@ -53,6 +54,7 @@ final class ContentStore {
         self.exams = try load("exams", as: ExamFile.self).exams
         self.examByLevel = Dictionary(uniqueKeysWithValues: exams.map { ($0.level, $0) })
         self.minimalPairs = try load("listening", as: ListeningFile.self).minimalPairs
+        self.packs = try load("packs", as: PacksFile.self).packs
 
         self.vocabByID = Dictionary(uniqueKeysWithValues: vocabulary.map { ($0.id, $0) })
         self.grammarByID = Dictionary(uniqueKeysWithValues: grammarRules.map { ($0.id, $0) })
@@ -76,6 +78,13 @@ final class ContentStore {
                 }
             }
         }
+        // Paket-Vokabeln bekommen das Paket-Niveau (Lektionen haben Vorrang).
+        for pack in packs {
+            for vocabID in pack.vocab where vocabLevels[vocabID] == nil {
+                vocabLevels[vocabID] = pack.level
+            }
+        }
+
         self.orderedLessons = ordered
         self.lessonByID = byID
         self.unitByLessonID = unitLookup

@@ -31,6 +31,7 @@ struct ReviewHubView: View {
                 VStack(spacing: 16) {
                     reviewCard
                     mistakeCard
+                    packsCard
                     listeningCard
                     infoCard
                 }
@@ -110,6 +111,41 @@ struct ReviewHubView: View {
                 .buttonStyle(.bordered)
                 .tint(Theme.warning)
             }
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .card()
+    }
+
+    // MARK: - Wortschatz-Pakete
+
+    private var packsCard: some View {
+        let enrolledIDs = Set(states.map(\.vocabID))
+        let totalWords = content.packs.reduce(0) { $0 + $1.vocab.count }
+        let enrolledWords = content.packs.reduce(0) { sum, pack in
+            sum + pack.vocab.filter { enrolledIDs.contains($0) }.count
+        }
+
+        return VStack(alignment: .leading, spacing: 12) {
+            HStack {
+                Label("Wortschatz-Pakete", systemImage: "shippingbox")
+                    .font(.headline)
+                Spacer()
+                Text("\(enrolledWords)/\(totalWords)")
+                    .font(.subheadline.monospacedDigit())
+                    .foregroundStyle(.secondary)
+            }
+            Text("Thematische Pakete von Körper bis Wissenschaft — hol dir neue Wörter direkt ins Training, unabhängig vom Lektionspfad.")
+                .font(.subheadline)
+                .foregroundStyle(.secondary)
+            NavigationLink {
+                VocabPacksView()
+            } label: {
+                Text("Pakete ansehen")
+                    .font(.headline)
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 6)
+            }
+            .buttonStyle(.bordered)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .card()

@@ -749,6 +749,67 @@
         {"fr": "Tu as de la chance !", "de": "Du hast Glück!"}
       ],
       "typicalMistake": "„Ich habe eine Chance bekommen\" → *j'ai reçu une chance* — richtig: une **occasion**. Und „la librairie\" verleiht keine Bücher!"
+    },
+    {
+      "id": "g_lequel",
+      "title": "Relativpronomen: lequel, auquel, duquel",
+      "level": "B2",
+      "explanation": "Nach Präpositionen steht **lequel** (in der passenden Form) statt qui/que:\n\n| | maskulin | feminin |\n|---|---|---|\n| Singular | lequel | laquelle |\n| Plural | lesquels | lesquelles |\n\nMit **à** und **de** verschmilzt es:\n- à + lequel = **auquel**, à + lesquels = **auxquels** (aber: à laquelle)\n- de + lequel = **duquel**, de + lesquels = **desquels**\n\nBei Personen geht nach Präposition auch **qui**: l'ami avec qui / avec lequel je voyage.\n\nMerke: Das Pronomen richtet sich nach dem Bezugswort — la table sur **laquelle**, le sujet **auquel** je pense (penser à).",
+      "examples": [
+        {"fr": "C'est un sujet auquel je pense souvent.", "de": "Das ist ein Thema, an das ich oft denke."},
+        {"fr": "La table sur laquelle j'écris est vieille.", "de": "Der Tisch, auf dem ich schreibe, ist alt."},
+        {"fr": "Les amis avec lesquels je voyage arrivent demain.", "de": "Die Freunde, mit denen ich reise, kommen morgen an."}
+      ],
+      "typicalMistake": "*le sujet que je pense* — penser braucht **à**, also: le sujet **auquel** je pense. Präposition nie verschlucken!"
+    },
+    {
+      "id": "g_subjonctif_passe",
+      "title": "Subjonctif passé",
+      "level": "B2",
+      "explanation": "Der Subjonctif passé drückt aus, dass die Handlung im Nebensatz **vor** der Haupthandlung liegt — oder bis zu einem Zeitpunkt abgeschlossen ist.\n\nBildung: **Subjonctif présent von avoir/être + Participe passé**\n- que j'aie fini, que tu aies fini …\n- que je sois parti(e), que nous soyons partis …\n\nAuslöser sind dieselben wie beim Subjonctif présent (Gefühl, Zweifel, Bewertung, bestimmte Konjunktionen):\n- Je suis content **que tu sois venu**. (Das Kommen liegt vor der Freude.)\n- Bien qu'il **ait plu**, nous sommes sortis.",
+      "examples": [
+        {"fr": "Je suis content que tu sois venu.", "de": "Ich freue mich, dass du gekommen bist."},
+        {"fr": "Bien qu'il ait plu, nous sommes sortis.", "de": "Obwohl es geregnet hat, sind wir rausgegangen."},
+        {"fr": "Il faut que tu aies fini avant midi.", "de": "Du musst vor Mittag fertig sein."}
+      ],
+      "typicalMistake": "*Je suis content que tu es venu* — nach Gefühlsausdrücken steht der Subjonctif: que tu **sois** venu.",
+      "verbTables": ["être", "avoir"]
+    },
+    {
+      "id": "g_mise_en_relief",
+      "title": "Hervorheben: c'est … qui / c'est … que",
+      "level": "B2",
+      "explanation": "Mit **c'est … qui** (Subjekt) und **c'est … que** (alles andere) hebst du einen Satzteil hervor — im Französischen viel üblicher als Betonung durch die Stimme:\n\n- **C'est Marie qui** a raison. (Marie hat recht — nicht Paul.)\n- **C'est ce film que** je veux voir. (Genau diesen Film.)\n- **C'est à Lyon que** nous nous sommes rencontrés.\n\nIm Plural: **ce sont** … qui/que.\n\nAuch mit Pronomen: **C'est moi qui** paie. Achtung: Das Verb richtet sich nach dem hervorgehobenen Subjekt — c'est moi qui **paie**, c'est vous qui **décidez**.",
+      "examples": [
+        {"fr": "C'est Marie qui a raison.", "de": "Marie ist es, die recht hat."},
+        {"fr": "C'est à Lyon que nous nous sommes rencontrés.", "de": "In Lyon haben wir uns kennengelernt."},
+        {"fr": "C'est moi qui paie aujourd'hui.", "de": "Heute zahle ich."}
+      ],
+      "typicalMistake": "*C'est moi qui paye-t-il?* — nach c'est moi qui steht die 1. Person: c'est moi qui **paie**."
+    },
+    {
+      "id": "g_concordance",
+      "title": "Zeitenfolge in der indirekten Rede",
+      "level": "B2",
+      "explanation": "Steht das Einleitungsverb in der Vergangenheit (il a dit que …), rücken die Zeiten zurück:\n\n| Direkte Rede | Indirekte Rede (nach Vergangenheit) |\n|---|---|\n| Présent | **Imparfait** |\n| Passé composé | **Plus-que-parfait** |\n| Futur simple | **Conditionnel présent** |\n\n- « Je suis fatigué. » → Il a dit qu'il **était** fatigué.\n- « J'ai fini. » → Elle a dit qu'elle **avait fini**.\n- « Je viendrai. » → Il a promis qu'il **viendrait**.\n\nZeit- und Ortsangaben wandern mit: aujourd'hui → ce jour-là, demain → le lendemain, ici → là.",
+      "examples": [
+        {"fr": "Il a dit qu'il était fatigué.", "de": "Er sagte, dass er müde sei."},
+        {"fr": "Elle a expliqué qu'elle avait fini.", "de": "Sie erklärte, dass sie fertig war."},
+        {"fr": "Il a promis qu'il viendrait le lendemain.", "de": "Er versprach, dass er am nächsten Tag kommen würde."}
+      ],
+      "typicalMistake": "*Il a dit qu'il est fatigué* — nach Vergangenheit rückt das Présent ins Imparfait: qu'il **était** fatigué."
+    },
+    {
+      "id": "g_ne_expletif",
+      "title": "Das ne explétif — ne ohne Verneinung",
+      "level": "B2",
+      "explanation": "In gehobener Sprache steht nach bestimmten Ausdrücken ein **ne**, das **keine Verneinung** ist:\n\n- nach **avant que**: Pars avant qu'il **ne** pleuve.\n- nach **à moins que**: … à moins que tu **n'**aies une idée.\n- nach Ausdrücken der Angst (**craindre, avoir peur que**): Je crains qu'il **ne** soit trop tard.\n- nach Vergleichen: Il est plus tard que je **ne** pensais.\n\nDer Satz bleibt **positiv** — „Ich fürchte, dass es zu spät ist.\" Das ne explétif ist optional und formell; im Alltag wird es oft weggelassen. Erst mit **pas** wird es eine echte Verneinung.",
+      "examples": [
+        {"fr": "Je crains qu'il ne soit trop tard.", "de": "Ich fürchte, dass es zu spät ist."},
+        {"fr": "Pars avant qu'il ne pleuve.", "de": "Geh, bevor es regnet."},
+        {"fr": "C'est plus difficile que je ne pensais.", "de": "Es ist schwieriger, als ich dachte."}
+      ],
+      "typicalMistake": "„Je crains qu'il ne soit trop tard\" heißt NICHT „…, dass es nicht zu spät ist\" — das ne explétif verneint nichts."
     }
   ]
 }

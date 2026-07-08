@@ -108,6 +108,26 @@
     {"infinitive": "se souvenir", "de": "sich erinnern", "group": 3, "present": ["souviens", "souviens", "souvient", "souvenons", "souvenez", "souviennent"], "participle": "souvenu", "auxiliary": "être"},
     {"infinitive": "convaincre", "de": "überzeugen", "group": 3, "present": ["convaincs", "convaincs", "convainc", "convainquons", "convainquez", "convainquent"], "participle": "convaincu"},
     {"infinitive": "défendre", "de": "verteidigen", "group": 3, "present": ["défends", "défends", "défend", "défendons", "défendez", "défendent"], "participle": "défendu"},
-    {"infinitive": "rendre", "de": "zurückgeben", "group": 3, "present": ["rends", "rends", "rend", "rendons", "rendez", "rendent"], "participle": "rendu"}
+    {"infinitive": "rendre", "de": "zurückgeben", "group": 3, "present": ["rends", "rends", "rend", "rendons", "rendez", "rendent"], "participle": "rendu"},
+    {"infinitive": "courir", "de": "laufen, rennen", "group": 3, "present": ["cours", "cours", "court", "courons", "courez", "courent"], "participle": "couru", "futurStem": "courr"},
+    {"infinitive": "dormir", "de": "schlafen", "group": 3, "present": ["dors", "dors", "dort", "dormons", "dormez", "dorment"], "participle": "dormi"},
+    {"infinitive": "mourir", "de": "sterben", "group": 3, "present": ["meurs", "meurs", "meurt", "mourons", "mourez", "meurent"], "participle": "mort", "auxiliary": "être", "futurStem": "mourr"},
+    {"infinitive": "naître", "de": "geboren werden", "group": 3, "present": ["nais", "nais", "naît", "naissons", "naissez", "naissent"], "participle": "né", "auxiliary": "être"},
+    {"infinitive": "suivre", "de": "folgen, belegen (Kurs)", "group": 3, "present": ["suis", "suis", "suit", "suivons", "suivez", "suivent"], "participle": "suivi"},
+    {"infinitive": "servir", "de": "servieren, dienen", "group": 3, "present": ["sers", "sers", "sert", "servons", "servez", "servent"], "participle": "servi"},
+    {"infinitive": "conduire", "de": "fahren, steuern", "group": 3, "present": ["conduis", "conduis", "conduit", "conduisons", "conduisez", "conduisent"], "participle": "conduit"},
+    {"infinitive": "traduire", "de": "übersetzen", "group": 3, "present": ["traduis", "traduis", "traduit", "traduisons", "traduisez", "traduisent"], "participle": "traduit"},
+    {"infinitive": "cuire", "de": "garen, backen", "group": 3, "present": ["cuis", "cuis", "cuit", "cuisons", "cuisez", "cuisent"], "participle": "cuit"},
+    {"infinitive": "rire", "de": "lachen", "group": 3, "present": ["ris", "ris", "rit", "rions", "riez", "rient"], "participle": "ri"},
+    {"infinitive": "plaire", "de": "gefallen", "group": 3, "present": ["plais", "plais", "plaît", "plaisons", "plaisez", "plaisent"], "participle": "plu"},
+    {"infinitive": "valoir", "de": "wert sein", "group": 3, "present": ["vaux", "vaux", "vaut", "valons", "valez", "valent"], "participle": "valu", "futurStem": "vaudr", "subjonctif": ["vaille", "vailles", "vaille", "valions", "valiez", "vaillent"]},
+    {"infinitive": "craindre", "de": "fürchten", "group": 3, "present": ["crains", "crains", "craint", "craignons", "craignez", "craignent"], "participle": "craint"},
+    {"infinitive": "peindre", "de": "malen", "group": 3, "present": ["peins", "peins", "peint", "peignons", "peignez", "peignent"], "participle": "peint"},
+    {"infinitive": "suffire", "de": "genügen", "group": 3, "present": ["suffis", "suffis", "suffit", "suffisons", "suffisez", "suffisent"], "participle": "suffi"},
+    {"infinitive": "battre", "de": "schlagen", "group": 3, "present": ["bats", "bats", "bat", "battons", "battez", "battent"], "participle": "battu"},
+    {"infinitive": "fuir", "de": "fliehen", "group": 3, "present": ["fuis", "fuis", "fuit", "fuyons", "fuyez", "fuient"], "participle": "fui"},
+    {"infinitive": "mentir", "de": "lügen", "group": 3, "present": ["mens", "mens", "ment", "mentons", "mentez", "mentent"], "participle": "menti"},
+    {"infinitive": "accueillir", "de": "empfangen, willkommen heißen", "group": 3, "present": ["accueille", "accueilles", "accueille", "accueillons", "accueillez", "accueillent"], "participle": "accueilli", "futurStem": "accueiller"},
+    {"infinitive": "se taire", "de": "schweigen", "group": 3, "present": ["tais", "tais", "tait", "taisons", "taisez", "taisent"], "participle": "tu", "auxiliary": "être"}
   ]
 }
