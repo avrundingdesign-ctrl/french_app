@@ -1,10 +1,12 @@
 import SwiftUI
 import SwiftData
 
-/// Grammatik-Übersicht (Spec Screen 5): Themen nach Niveau, nachschlagbar
-/// unabhängig vom Lernpfad.
+/// Grammatik-Übersicht (Spec Screen 5): Themen nach Niveau. Ein Thema
+/// schaltet sich frei, sobald die verknüpfte Lektion abgeschlossen ist —
+/// vorher zeigt die Liste nur den Titel mit Schloss.
 struct GrammarListView: View {
     @Query private var progress: [LessonProgress]
+    @State private var showMixedPractice = false
 
     private let content = ContentStore.shared
 
@@ -12,20 +14,58 @@ struct GrammarListView: View {
         ProgressSnapshot(progress: progress, content: content)
     }
 
+    private var unlockedRules: [GrammarRule] {
+        content.grammarRules.filter { snapshot.isGrammarCovered($0.id) }
+    }
+
     var body: some View {
         NavigationStack {
             List {
+                if !unlockedRules.isEmpty {
+                    Section {
+                        Button {
+                            showMixedPractice = true
+                        } label: {
+                            HStack(spacing: 12) {
+                                Image(systemName: "dumbbell.fill")
+                                    .foregroundStyle(Theme.accent)
+                                VStack(alignment: .leading, spacing: 2) {
+                                    Text("Grammatik-Training")
+                                        .font(.body.weight(.semibold))
+                                        .foregroundStyle(Color.primary)
+                                    Text("Gemischte Übungen aus deinen \(unlockedRules.count) freigeschalteten Themen")
+                                        .font(.caption)
+                                        .foregroundStyle(.secondary)
+                                }
+                                Spacer()
+                                Image(systemName: "chevron.right")
+                                    .font(.caption)
+                                    .foregroundStyle(.tertiary)
+                            }
+                        }
+                    }
+                }
+
                 ForEach(content.levels) { level in
                     Section {
                         ForEach(content.grammarRules.filter { $0.level == level }) { rule in
-                            NavigationLink(value: rule) {
-                                HStack {
-                                    Text(rule.title)
-                                    Spacer()
-                                    if snapshot.isGrammarCovered(rule.id) {
+                            if snapshot.isGrammarCovered(rule.id) {
+                                NavigationLink(value: rule) {
+                                    HStack {
+                                        Text(rule.title)
+                                        Spacer()
                                         Image(systemName: "checkmark.circle.fill")
                                             .foregroundStyle(Theme.success)
                                     }
+                                }
+                            } else {
+                                HStack {
+                                    Text(rule.title)
+                                        .foregroundStyle(.secondary)
+                                    Spacer()
+                                    Image(systemName: "lock.fill")
+                                        .font(.caption)
+                                        .foregroundStyle(.tertiary)
                                 }
                             }
                         }
@@ -34,12 +74,19 @@ struct GrammarListView: View {
                             LevelBadge(level: level)
                             Text(level.subtitle)
                         }
+                    } footer: {
+                        if level == content.levels.first {
+                            Text("Themen schalten sich frei, sobald du die passende Lektion im Lernpfad abgeschlossen hast.")
+                        }
                     }
                 }
             }
             .navigationTitle("Grammatik")
             .navigationDestination(for: GrammarRule.self) { rule in
                 GrammarDetailView(rule: rule)
+            }
+            .fullScreenCover(isPresented: $showMixedPractice) {
+                GrammarPracticeView(rules: unlockedRules)
             }
         }
     }
@@ -52,6 +99,7 @@ struct GrammarDetailView: View {
 
     @Query private var progress: [LessonProgress]
     @State private var selectedTense: Conjugator.Tense = .present
+    @State private var showPractice = false
 
     private let content = ContentStore.shared
 
@@ -110,6 +158,8 @@ struct GrammarDetailView: View {
                     conjugationSection(infinitives)
                 }
 
+                practiceButton
+
                 relatedLessons
             }
             .padding()
@@ -117,6 +167,21 @@ struct GrammarDetailView: View {
         .background(Color(.systemGroupedBackground))
         .navigationTitle(rule.title)
         .navigationBarTitleDisplayMode(.large)
+        .fullScreenCover(isPresented: $showPractice) {
+            GrammarPracticeView(rules: [rule], title: rule.title)
+        }
+    }
+
+    private var practiceButton: some View {
+        Button {
+            showPractice = true
+        } label: {
+            Label("Dieses Thema üben", systemImage: "dumbbell.fill")
+                .font(.headline)
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 6)
+        }
+        .buttonStyle(.borderedProminent)
     }
 
     // MARK: - Konjugationstabellen

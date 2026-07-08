@@ -12,6 +12,7 @@ struct HomePathView: View {
     @State private var activeLesson: CourseLesson?
     @State private var activeExam: ExamDefinition?
     @State private var showReview = false
+    @State private var showGrammarPractice = false
 
     private let content = ContentStore.shared
 
@@ -30,6 +31,10 @@ struct HomePathView: View {
                 VStack(spacing: 16) {
                     if dueCount > 0 {
                         reviewBanner
+                    }
+
+                    if !unlockedGrammarRules.isEmpty {
+                        grammarPracticeBanner
                     }
 
                     ForEach(content.levels) { level in
@@ -53,6 +58,9 @@ struct HomePathView: View {
             }
             .fullScreenCover(isPresented: $showReview) {
                 ReviewSessionView()
+            }
+            .fullScreenCover(isPresented: $showGrammarPractice) {
+                GrammarPracticeView(rules: unlockedGrammarRules)
             }
         }
     }
@@ -106,6 +114,40 @@ struct HomePathView: View {
                 examCard(exam)
             }
         }
+    }
+
+    // MARK: - Grammatik-Training
+
+    private var unlockedGrammarRules: [GrammarRule] {
+        content.grammarRules.filter { snapshot.isGrammarCovered($0.id) }
+    }
+
+    /// Gemischte Grammatik-Übungen aus allen bereits gelernten Themen.
+    private var grammarPracticeBanner: some View {
+        Button {
+            showGrammarPractice = true
+        } label: {
+            HStack(spacing: 12) {
+                Image(systemName: "dumbbell.fill")
+                    .font(.title3)
+                    .foregroundStyle(Theme.accent)
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("Grammatik-Training")
+                        .font(.subheadline.weight(.semibold))
+                        .foregroundStyle(Color.primary)
+                    Text("\(unlockedGrammarRules.count) \(unlockedGrammarRules.count == 1 ? "Thema" : "Themen") freigeschaltet — gemischt üben")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
+                Spacer()
+                Image(systemName: "chevron.right")
+                    .font(.caption)
+                    .foregroundStyle(.tertiary)
+            }
+            .padding(14)
+            .background(Color(.secondarySystemGroupedBackground), in: RoundedRectangle(cornerRadius: 16))
+        }
+        .buttonStyle(.plain)
     }
 
     // MARK: - Niveau-Prüfung
