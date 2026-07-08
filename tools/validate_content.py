@@ -164,6 +164,23 @@ def main() -> int:
             if question_count < 4:
                 errors.append(f"{exam['id']} {section['kind']}: nur {question_count} Fragen")
 
+    # Hörtraining: Minimal-Paare
+    pairs = load("listening")["minimalPairs"]
+    if len(pairs) < 20:
+        errors.append(f"Nur {len(pairs)} Minimal-Paare — mindestens 20 erwartet")
+    seen_pairs = set()
+    for i, pair in enumerate(pairs):
+        where = f"minimalPairs[{i}]"
+        if not all(pair.get(k) for k in ("a", "b", "deA", "deB", "contrast")):
+            errors.append(f"{where}: Feld fehlt/leer")
+            continue
+        if pair["a"] == pair["b"]:
+            errors.append(f"{where}: a und b identisch")
+        key = tuple(sorted((pair["a"], pair["b"])))
+        if key in seen_pairs:
+            errors.append(f"{where}: Paar {key} doppelt")
+        seen_pairs.add(key)
+
     dupes = {l for l in lesson_ids if lesson_ids.count(l) > 1}
     if dupes:
         errors.append(f"Doppelte Lektions-IDs: {sorted(dupes)}")
@@ -177,7 +194,7 @@ def main() -> int:
     print(
         f"{len(vocab)} Vokabeln · {len(verbs)} Verben · {len(rules)} Regeln · "
         f"{lesson_count} Lektionen {level_counts} · {spec_count} Übungs-Specs · "
-        f"{len(exams)} Prüfungen mit {exam_question_count} Fragen"
+        f"{len(exams)} Prüfungen mit {exam_question_count} Fragen · {len(pairs)} Minimal-Paare"
     )
     for w in warnings:
         print(f"⚠️  {w}")

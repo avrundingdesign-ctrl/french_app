@@ -9,6 +9,8 @@ struct ReviewHubView: View {
 
     @State private var showSession = false
     @State private var showMistakePractice = false
+    @State private var listeningMode: ListeningTrainer.Mode?
+    @AppStorage("listeningLevel") private var listeningLevelRaw = CEFRLevel.a1.rawValue
 
     private let content = ContentStore.shared
 
@@ -29,6 +31,7 @@ struct ReviewHubView: View {
                 VStack(spacing: 16) {
                     reviewCard
                     mistakeCard
+                    listeningCard
                     infoCard
                 }
                 .padding()
@@ -40,6 +43,9 @@ struct ReviewHubView: View {
             }
             .fullScreenCover(isPresented: $showMistakePractice) {
                 LessonSessionView(mode: .mistakes(unresolvedMistakes))
+            }
+            .fullScreenCover(item: $listeningMode) { mode in
+                ListeningSessionView(mode: mode, level: listeningLevel)
             }
         }
     }
@@ -103,6 +109,65 @@ struct ReviewHubView: View {
                 }
                 .buttonStyle(.bordered)
                 .tint(Theme.warning)
+            }
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .card()
+    }
+
+    // MARK: - Hörtraining
+
+    private var listeningLevel: CEFRLevel {
+        CEFRLevel(rawValue: listeningLevelRaw) ?? .a1
+    }
+
+    /// Niveaus mit Lektionen — C1 hat keine Beispielsätze im Pool.
+    private var listeningLevels: [CEFRLevel] {
+        content.levels
+    }
+
+    private var listeningCard: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            Label("Hörtraining", systemImage: "ear")
+                .font(.headline)
+
+            Text("Trainiere dein Ohr mit der französischen Sprachausgabe — die beste Vorbereitung auf das Hörverstehen der Niveau-Prüfungen.")
+                .font(.subheadline)
+                .foregroundStyle(.secondary)
+
+            Picker("Niveau", selection: $listeningLevelRaw) {
+                ForEach(listeningLevels) { level in
+                    Text(level.rawValue).tag(level.rawValue)
+                }
+            }
+            .pickerStyle(.segmented)
+
+            ForEach(ListeningTrainer.Mode.allCases) { mode in
+                Button {
+                    listeningMode = mode
+                } label: {
+                    HStack(spacing: 12) {
+                        Image(systemName: mode.symbol)
+                            .frame(width: 28)
+                            .foregroundStyle(Theme.accent)
+                        VStack(alignment: .leading, spacing: 1) {
+                            Text(mode.germanTitle)
+                                .font(.subheadline.weight(.semibold))
+                                .foregroundStyle(Color.primary)
+                            Text(mode.description)
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                                .multilineTextAlignment(.leading)
+                        }
+                        Spacer()
+                        Image(systemName: "chevron.right")
+                            .font(.caption)
+                            .foregroundStyle(.tertiary)
+                    }
+                    .padding(10)
+                    .background(Color(.tertiarySystemGroupedBackground), in: RoundedRectangle(cornerRadius: 12))
+                }
+                .buttonStyle(.plain)
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)

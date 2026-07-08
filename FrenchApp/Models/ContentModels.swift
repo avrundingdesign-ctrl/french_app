@@ -147,6 +147,23 @@ struct GrammarFile: Codable {
     let rules: [GrammarRule]
 }
 
+// MARK: - Hörtraining
+
+/// Wortpaar, das sich nur in einem Laut unterscheidet (rue/roue) —
+/// Hörunterscheidung für Laute, die Deutschsprachigen schwerfallen.
+struct MinimalPair: Codable, Hashable {
+    let a: String
+    let b: String
+    let deA: String
+    let deB: String
+    /// Kurzbezeichnung des Lautkontrasts, z. B. "u – ou".
+    let contrast: String
+}
+
+struct ListeningFile: Codable {
+    let minimalPairs: [MinimalPair]
+}
+
 // MARK: - Kursplan
 
 struct CourseFile: Codable {

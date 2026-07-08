@@ -21,6 +21,7 @@ final class ContentStore {
     let units: [CourseUnit]
     let exams: [ExamDefinition]
     let examByLevel: [CEFRLevel: ExamDefinition]
+    let minimalPairs: [MinimalPair]
     let conjugator: Conjugator
 
     /// Alle Lektionen in Kurs-Reihenfolge (über Einheiten und Niveaus hinweg).
@@ -51,6 +52,7 @@ final class ContentStore {
         self.units = try load("course", as: CourseFile.self).units
         self.exams = try load("exams", as: ExamFile.self).exams
         self.examByLevel = Dictionary(uniqueKeysWithValues: exams.map { ($0.level, $0) })
+        self.minimalPairs = try load("listening", as: ListeningFile.self).minimalPairs
 
         self.vocabByID = Dictionary(uniqueKeysWithValues: vocabulary.map { ($0.id, $0) })
         self.grammarByID = Dictionary(uniqueKeysWithValues: grammarRules.map { ($0.id, $0) })
