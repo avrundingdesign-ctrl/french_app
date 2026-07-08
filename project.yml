@@ -40,6 +40,9 @@ targets:
     platform: iOS
     sources:
       - path: FrenchAppTests
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
     dependencies:
       - target: FrenchApp
 
