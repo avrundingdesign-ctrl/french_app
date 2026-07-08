@@ -13,6 +13,7 @@ enum Theme {
         case .a2: return Color(red: 0.05, green: 0.55, blue: 0.55)
         case .b1: return Color(red: 0.80, green: 0.45, blue: 0.10)
         case .b2: return Color(red: 0.45, green: 0.30, blue: 0.65)
+        case .c1: return Color(red: 0.70, green: 0.18, blue: 0.32)
         }
     }
 }

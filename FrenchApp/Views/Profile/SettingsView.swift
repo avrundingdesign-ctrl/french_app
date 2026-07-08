@@ -19,6 +19,7 @@ struct SettingsView: View {
         Form {
             if let settings = settingsList.first {
                 trainingSection(settings)
+                certificateSection(settings)
             }
 
             Section("Erscheinungsbild") {
@@ -94,6 +95,20 @@ struct SettingsView: View {
             Text("Tägliches Pensum")
         } footer: {
             Text("Bestimmt, wie viele neue Wörter pro Tag zusätzlich zu den fälligen Wiederholungen ins Training kommen.")
+        }
+    }
+
+    private func certificateSection(_ settings: UserSettings) -> some View {
+        Section {
+            TextField("Dein Name", text: Binding(
+                get: { settings.certificateName },
+                set: { settings.certificateName = $0 }
+            ))
+            .textInputAutocapitalization(.words)
+        } header: {
+            Text("Name auf Zertifikaten")
+        } footer: {
+            Text("Erscheint auf deinen Zertifikaten nach bestandener Niveau-Prüfung. Ohne Namen steht dort «Apprenant·e de français».")
         }
     }
 

@@ -128,6 +128,87 @@ final class ReviewLogEntry {
     }
 }
 
+// MARK: - Niveau-Prüfungen
+
+/// Ein abgeschlossener Prüfungsversuch — bestanden oder nicht.
+/// Punkteschema wie DELF: vier Teile à 25, gesamt 100.
+@Model
+final class ExamAttempt {
+    var examID: String
+    var levelRaw: String
+    var date: Date
+    var listeningScore: Double
+    var readingScore: Double
+    var languageScore: Double
+    var writingScore: Double
+    var totalScore: Double
+    var passed: Bool
+    /// Sekunden vom Start bis zur Abgabe.
+    var duration: Int
+
+    init(
+        examID: String,
+        level: CEFRLevel,
+        date: Date = .now,
+        listeningScore: Double,
+        readingScore: Double,
+        languageScore: Double,
+        writingScore: Double,
+        totalScore: Double,
+        passed: Bool,
+        duration: Int
+    ) {
+        self.examID = examID
+        self.levelRaw = level.rawValue
+        self.date = date
+        self.listeningScore = listeningScore
+        self.readingScore = readingScore
+        self.languageScore = languageScore
+        self.writingScore = writingScore
+        self.totalScore = totalScore
+        self.passed = passed
+        self.duration = duration
+    }
+
+    var level: CEFRLevel? { CEFRLevel(rawValue: levelRaw) }
+
+    func score(for kind: ExamSectionKind) -> Double {
+        switch kind {
+        case .listening: return listeningScore
+        case .reading: return readingScore
+        case .language: return languageScore
+        case .writing: return writingScore
+        }
+    }
+}
+
+/// Verliehenes Zertifikat — entsteht beim ersten Bestehen der Niveau-Prüfung
+/// und bleibt bestehen (spätere Versuche ändern es nicht).
+@Model
+final class EarnedCertificate {
+    @Attribute(.unique) var levelRaw: String
+    var date: Date
+    /// Punktzahl des Versuchs, mit dem bestanden wurde (0–100).
+    var score: Double
+    /// Anzeige-Seriennummer, z. B. "FR-A1-2607-4821".
+    var serial: String
+
+    init(level: CEFRLevel, date: Date = .now, score: Double) {
+        self.levelRaw = level.rawValue
+        self.date = date
+        self.score = score
+        let calendar = Calendar.current
+        let year = calendar.component(.year, from: date) % 100
+        let month = calendar.component(.month, from: date)
+        self.serial = String(
+            format: "FR-%@-%02d%02d-%04d",
+            level.rawValue, year, month, Int.random(in: 1000...9999)
+        )
+    }
+
+    var level: CEFRLevel? { CEFRLevel(rawValue: levelRaw) }
+}
+
 // MARK: - Einstellungen (Singleton-Datensatz)
 
 @Model
@@ -135,10 +216,13 @@ final class UserSettings {
     var onboardingDone: Bool
     /// Tagespensum: maximal so viele neue Karten pro Tag.
     var newCardsPerDay: Int
+    /// Name auf Zertifikaten (optional, in den Einstellungen änderbar).
+    var certificateName: String = ""
 
     init() {
         self.onboardingDone = false
         self.newCardsPerDay = 10
+        self.certificateName = ""
     }
 
     static func fetchOrCreate(in context: ModelContext) -> UserSettings {

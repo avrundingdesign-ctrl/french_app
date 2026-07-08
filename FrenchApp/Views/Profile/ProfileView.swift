@@ -9,6 +9,7 @@ struct ProfileView: View {
     @Query private var settingsList: [UserSettings]
     @Query private var mistakes: [MistakeRecord]
     @Query private var reviewLog: [ReviewLogEntry]
+    @Query private var certificates: [EarnedCertificate]
 
     private let content = ContentStore.shared
 
@@ -21,6 +22,7 @@ struct ProfileView: View {
             ScrollView {
                 VStack(spacing: 16) {
                     levelRings
+                    certificateSection
                     statGrid
                     forecastSection
                     activitySection
@@ -149,6 +151,48 @@ struct ProfileView: View {
                         }
                         Text(total > 0 ? "\(done)/\(total)" : "bald")
                             .font(.caption2.monospacedDigit())
+                            .foregroundStyle(.secondary)
+                    }
+                    .frame(maxWidth: .infinity)
+                }
+            }
+        }
+        .card()
+    }
+
+    // MARK: - Zertifikate
+
+    private var certificateSection: some View {
+        let earned = Set(certificates.compactMap(\.level))
+        let examLevels = content.exams.map(\.level).sorted()
+
+        return VStack(alignment: .leading, spacing: 12) {
+            HStack {
+                Text("Zertifikate")
+                    .font(.headline)
+                Spacer()
+                NavigationLink("Galerie") {
+                    CertificateGalleryView()
+                }
+                .font(.subheadline)
+            }
+            HStack(spacing: 16) {
+                ForEach(examLevels) { level in
+                    VStack(spacing: 6) {
+                        ZStack {
+                            Image(systemName: earned.contains(level) ? "seal.fill" : "seal")
+                                .font(.system(size: 44))
+                                .foregroundStyle(
+                                    earned.contains(level)
+                                        ? AnyShapeStyle(Theme.levelColor(level).gradient)
+                                        : AnyShapeStyle(Color(.systemFill))
+                                )
+                            Text(level.rawValue)
+                                .font(.caption.bold())
+                                .foregroundStyle(earned.contains(level) ? .white : .secondary)
+                        }
+                        Text(earned.contains(level) ? "bestanden" : "offen")
+                            .font(.caption2)
                             .foregroundStyle(.secondary)
                     }
                     .frame(maxWidth: .infinity)

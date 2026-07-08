@@ -1,0 +1,1299 @@
+{
+  "exams": [
+    {
+      "id": "exam_a1",
+      "level": "A1",
+      "durationMinutes": 30,
+      "sections": [
+        {
+          "kind": "listening",
+          "intro": "Du hörst drei kurze Aufnahmen. Jede Aufnahme kannst du zweimal abspielen. Beantworte die Fragen dazu.",
+          "tasks": [
+            {
+              "context": "Du hörst eine Nachricht auf dem Anrufbeantworter.",
+              "audioScript": "Salut Marie, c'est Thomas. On va au restaurant ce soir à sept heures. Le restaurant est à côté de la gare. À ce soir !",
+              "questions": [
+                {
+                  "type": "mcSentence",
+                  "question": "Wer hat die Nachricht hinterlassen?",
+                  "answer": "Thomas",
+                  "distractors": ["Marie", "Paul"]
+                },
+                {
+                  "type": "mcSentence",
+                  "question": "Wann treffen sie sich?",
+                  "answer": "Um sieben Uhr abends",
+                  "distractors": ["Um fünf Uhr abends", "Um neun Uhr morgens"]
+                },
+                {
+                  "type": "mcSentence",
+                  "question": "Wo ist das Restaurant?",
+                  "answer": "Neben dem Bahnhof",
+                  "distractors": ["Neben der Schule", "Im Stadtzentrum"]
+                }
+              ]
+            },
+            {
+              "context": "Du hörst eine Durchsage im Supermarkt.",
+              "audioScript": "Bonjour ! Aujourd'hui, les pommes coûtent deux euros le kilo et le fromage quatre euros. Le magasin ferme à vingt heures. Bonne journée !",
+              "questions": [
+                {
+                  "type": "mcSentence",
+                  "question": "Was kostet ein Kilo Äpfel?",
+                  "answer": "Zwei Euro",
+                  "distractors": ["Vier Euro", "Zehn Euro"]
+                },
+                {
+                  "type": "mcSentence",
+                  "question": "Um wie viel Uhr schließt das Geschäft?",
+                  "answer": "Um 20 Uhr",
+                  "distractors": ["Um 18 Uhr", "Um 22 Uhr"]
+                }
+              ]
+            },
+            {
+              "context": "Du hörst ein kurzes Gespräch.",
+              "audioScript": "Bonjour, je voudrais un café et un croissant, s'il vous plaît. — Bien sûr. Ça fait cinq euros. — Voilà. Merci, au revoir !",
+              "questions": [
+                {
+                  "type": "mcSentence",
+                  "question": "Wo findet das Gespräch statt?",
+                  "answer": "In einem Café",
+                  "distractors": ["In einer Schule", "Am Bahnhof"]
+                },
+                {
+                  "type": "mcSentence",
+                  "question": "Was bestellt die Person?",
+                  "answer": "Einen Kaffee und ein Croissant",
+                  "distractors": ["Einen Tee und ein Baguette", "Nur einen Kaffee"]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "reading",
+          "intro": "Lies die Texte und beantworte die Fragen. Der Text bleibt bei jeder Frage sichtbar.",
+          "tasks": [
+            {
+              "context": "Julie schreibt eine Postkarte.",
+              "passageTitle": "Une carte postale",
+              "passage": "Salut Paul !\nJe suis en vacances à Nice avec ma famille. Il fait beau et chaud. Le matin, je vais à la plage. Le soir, nous mangeons au restaurant. À bientôt !\nJulie",
+              "questions": [
+                {
+                  "type": "mcSentence",
+                  "question": "Wo ist Julie?",
+                  "answer": "In Nizza",
+                  "distractors": ["In Paris", "In Lyon"]
+                },
+                {
+                  "type": "mcSentence",
+                  "question": "Mit wem ist sie dort?",
+                  "answer": "Mit ihrer Familie",
+                  "distractors": ["Mit Paul", "Allein"]
+                },
+                {
+                  "type": "mcSentence",
+                  "question": "Was macht Julie am Morgen?",
+                  "answer": "Sie geht an den Strand",
+                  "distractors": ["Sie isst im Restaurant", "Sie besucht ein Museum"]
+                }
+              ]
+            },
+            {
+              "context": "Du liest ein Schild an einer Bäckerei.",
+              "passageTitle": "Boulangerie Dupont",
+              "passage": "Boulangerie Dupont\nOuvert du mardi au samedi, de 7 h à 19 h.\nFermé le dimanche et le lundi.",
+              "questions": [
+                {
+                  "type": "mcSentence",
+                  "question": "An welchen Tagen ist die Bäckerei geschlossen?",
+                  "answer": "Sonntag und Montag",
+                  "distractors": ["Samstag und Sonntag", "Nur am Montag"]
+                },
+                {
+                  "type": "mcSentence",
+                  "question": "Um wie viel Uhr öffnet die Bäckerei?",
+                  "answer": "Um 7 Uhr",
+                  "distractors": ["Um 9 Uhr", "Um 19 Uhr"]
+                }
+              ]
+            },
+            {
+              "context": "Du liest eine kurze E-Mail.",
+              "passageTitle": "Le cours de français",
+              "passage": "Bonjour Madame,\nle cours de français commence lundi à neuf heures, salle 12. Apportez un cahier et un stylo, s'il vous plaît.\nCordialement,\nM. Bernard",
+              "questions": [
+                {
+                  "type": "mcSentence",
+                  "question": "Wann beginnt der Kurs?",
+                  "answer": "Montag um 9 Uhr",
+                  "distractors": ["Montag um 12 Uhr", "Dienstag um 9 Uhr"]
+                },
+                {
+                  "type": "mcSentence",
+                  "question": "Was soll man mitbringen?",
+                  "answer": "Ein Heft und einen Stift",
+                  "distractors": ["Ein Buch und ein Wörterbuch", "Einen Computer"]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "language",
+          "intro": "Grammatik und Strukturen: Wähle die richtige Form oder schreibe sie selbst.",
+          "tasks": [
+            {
+              "context": null,
+              "questions": [
+                {
+                  "type": "conjugation",
+                  "verb": "être",
+                  "person": 0,
+                  "tense": "present",
+                  "translation": "Ich bin müde. (je … fatigué)"
+                },
+                {
+                  "type": "conjugation",
+                  "verb": "avoir",
+                  "person": 2,
+                  "tense": "present",
+                  "translation": "Er hat einen Hund. (il … un chien)"
+                },
+                {
+                  "type": "conjugation",
+                  "verb": "habiter",
+                  "person": 3,
+                  "tense": "present",
+                  "translation": "Wir wohnen in Paris. (nous … à Paris)"
+                },
+                {
+                  "type": "cloze",
+                  "text": "___ pomme est rouge.",
+                  "answer": "La",
+                  "choices": ["La", "Le", "Les"],
+                  "translation": "Der Apfel ist rot.",
+                  "hint": "«pomme» ist feminin."
+                },
+                {
+                  "type": "cloze",
+                  "text": "C'est ___ ami de Marie.",
+                  "answer": "un",
+                  "choices": ["un", "une", "des"],
+                  "translation": "Das ist ein Freund von Marie."
+                },
+                {
+                  "type": "errorCorrection",
+                  "text": "Je suis vingt ans.",
+                  "answer": "J'ai vingt ans.",
+                  "distractors": ["Je as vingt ans.", "Je suis vingt an."],
+                  "translation": "Ich bin zwanzig Jahre alt.",
+                  "hint": "Das Alter drückt man im Französischen mit «avoir» aus."
+                },
+                {
+                  "type": "mcSentence",
+                  "question": "Wie fragt man höflich nach dem Namen?",
+                  "answer": "Comment vous appelez-vous ?",
+                  "distractors": ["Quel âge avez-vous ?", "Où habitez-vous ?"]
+                },
+                {
+                  "type": "cloze",
+                  "text": "Tu ___ du café ? (trinken/nehmen: prendre)",
+                  "answer": "prends",
+                  "translation": "Nimmst du Kaffee?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "writing",
+          "intro": "Schreiben: Fülle das Formular aus und bilde kurze Sätze — wie im echten DELF A1, nur ohne freien Aufsatz.",
+          "tasks": [
+            {
+              "context": "Du meldest dich für einen Sprachkurs an. Fülle das Formular aus: Trage das Land auf Französisch ein.",
+              "questions": [
+                {
+                  "type": "cloze",
+                  "text": "Nom : Anna Schmidt — Pays : l'___ (Deutschland)",
+                  "answer": "Allemagne",
+                  "hint": "Das Land auf Französisch, ohne Artikel eintragen."
+                }
+              ]
+            },
+            {
+              "context": "Stelle dich vor.",
+              "questions": [
+                {
+                  "type": "translate",
+                  "de": "Ich heiße Anna und ich wohne in Berlin.",
+                  "fr": "Je m'appelle Anna et j'habite à Berlin.",
+                  "altAnswers": ["Moi, je m'appelle Anna et j'habite à Berlin."]
+                },
+                {
+                  "type": "translate",
+                  "de": "Wie geht es dir?",
+                  "fr": "Comment ça va ?",
+                  "altAnswers": ["Ça va ?", "Comment vas-tu ?", "Comment tu vas ?"]
+                }
+              ]
+            },
+            {
+              "context": "Im Café: Bestelle höflich.",
+              "questions": [
+                {
+                  "type": "translate",
+                  "de": "Ich hätte gern ein Wasser, bitte.",
+                  "fr": "Je voudrais une eau, s'il vous plaît.",
+                  "altAnswers": ["Je voudrais de l'eau, s'il vous plaît.", "Je voudrais un verre d'eau, s'il vous plaît."]
+                },
+                {
+                  "type": "wordOrder",
+                  "fr": "Nous allons au cinéma ce soir",
+                  "de": "Wir gehen heute Abend ins Kino"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam_a2",
+      "level": "A2",
+      "durationMinutes": 40,
+      "sections": [
+        {
+          "kind": "listening",
+          "intro": "Du hörst drei Aufnahmen. Jede Aufnahme kannst du zweimal abspielen. Beantworte die Fragen dazu.",
+          "tasks": [
+            {
+              "context": "Du hörst den Wetterbericht im Radio.",
+              "audioScript": "Bonjour ! Voici la météo pour demain. Le matin, il pleut sur tout le nord du pays. L'après-midi, le soleil revient et il fait dix-huit degrés. Le week-end, il fera très beau et chaud.",
+              "questions": [
+                {
+                  "type": "mcSentence",
+                  "question": "Wie ist das Wetter morgen Vormittag im Norden?",
+                  "answer": "Es regnet",
+                  "distractors": ["Es ist sonnig", "Es schneit"]
+                },
+                {
+                  "type": "mcSentence",
+                  "question": "Wie warm wird es am Nachmittag?",
+                  "answer": "18 Grad",
+                  "distractors": ["8 Grad", "28 Grad"]
+                }
+              ]
+            },
+            {
+              "context": "Léa hinterlässt dir eine Sprachnachricht.",
+              "audioScript": "Salut, c'est Léa. Hier, je suis allée chez le médecin parce que j'avais mal à la tête. Aujourd'hui, ça va mieux, mais je reste à la maison. Tu peux m'apporter les devoirs ce soir ?",
+              "questions": [
+                {
+                  "type": "mcSentence",
+                  "question": "Warum war Léa beim Arzt?",
+                  "answer": "Sie hatte Kopfschmerzen",
+                  "distractors": ["Sie hatte Bauchschmerzen", "Sie hatte Fieber"]
+                },
+                {
+                  "type": "mcSentence",
+                  "question": "Wie geht es ihr heute?",
+                  "answer": "Besser",
+                  "distractors": ["Schlechter", "Genauso schlecht"]
+                },
+                {
+                  "type": "mcSentence",
+                  "question": "Worum bittet sie?",
+                  "answer": "Ihr die Hausaufgaben vorbeizubringen",
+                  "distractors": ["Ihr Medikamente zu kaufen", "Sie beim Arzt zu besuchen"]
+                }
+              ]
+            },
+            {
+              "context": "Du hörst eine Durchsage am Bahnhof.",
+              "audioScript": "Votre attention, s'il vous plaît. Le train pour Lyon part à quinze heures trente, voie sept. Attention : le train pour Marseille a vingt minutes de retard. Merci de votre compréhension.",
+              "questions": [
+                {
+                  "type": "mcSentence",
+                  "question": "Wann fährt der Zug nach Lyon ab?",
+                  "answer": "Um 15:30 Uhr",
+                  "distractors": ["Um 15:00 Uhr", "Um 17:30 Uhr"]
+                },
+                {
+                  "type": "mcSentence",
+                  "question": "Welcher Zug hat Verspätung?",
+                  "answer": "Der Zug nach Marseille",
+                  "distractors": ["Der Zug nach Lyon", "Der Zug nach Paris"]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "reading",
+          "intro": "Lies die Texte und beantworte die Fragen. Der Text bleibt bei jeder Frage sichtbar.",
+          "tasks": [
+            {
+              "context": "Claire schreibt ihrer Freundin über ihr Wochenende.",
+              "passageTitle": "Un week-end à la montagne",
+              "passage": "Coucou Marie,\nle week-end dernier, je suis allée à la montagne avec mon frère. Samedi, nous avons fait une randonnée et le soir, nous avons mangé une raclette. Dimanche, il a plu, alors nous avons visité un petit musée. C'était super !\nEt toi, qu'est-ce que tu as fait ?\nBises, Claire",
+              "questions": [
+                {
+                  "type": "mcSentence",
+                  "question": "Mit wem war Claire in den Bergen?",
+                  "answer": "Mit ihrem Bruder",
+                  "distractors": ["Mit Marie", "Mit ihren Eltern"]
+                },
+                {
+                  "type": "mcSentence",
+                  "question": "Was haben sie am Samstag gemacht?",
+                  "answer": "Eine Wanderung",
+                  "distractors": ["Ein Museum besucht", "Ski gefahren"]
+                },
+                {
+                  "type": "mcSentence",
+                  "question": "Warum waren sie am Sonntag im Museum?",
+                  "answer": "Weil es geregnet hat",
+                  "distractors": ["Weil es zu kalt war", "Weil der Bruder es wollte"]
+                }
+              ]
+            },
+            {
+              "context": "Du liest eine Wohnungsanzeige.",
+              "passageTitle": "À louer",
+              "passage": "À louer : appartement de deux pièces au centre-ville, troisième étage, avec balcon. 650 euros par mois. Libre à partir du premier mars.\nTéléphone : 06 12 34 56 78",
+              "questions": [
+                {
+                  "type": "mcSentence",
+                  "question": "Wie hoch ist die Miete pro Monat?",
+                  "answer": "650 Euro",
+                  "distractors": ["560 Euro", "750 Euro"]
+                },
+                {
+                  "type": "mcSentence",
+                  "question": "Ab wann ist die Wohnung frei?",
+                  "answer": "Ab dem 1. März",
+                  "distractors": ["Ab dem 3. März", "Sofort"]
+                }
+              ]
+            },
+            {
+              "context": "Du liest einen Aushang in deinem Viertel.",
+              "passageTitle": "Fête de quartier",
+              "passage": "Chers voisins,\nla fête de notre quartier a lieu samedi 14 juin, de midi à 22 heures, place de la Mairie. Au programme : concerts, jeux pour les enfants et spécialités de la région. Venez nombreux !",
+              "questions": [
+                {
+                  "type": "mcSentence",
+                  "question": "Wann findet das Fest statt?",
+                  "answer": "Am Samstag, dem 14. Juni",
+                  "distractors": ["Am Sonntag, dem 14. Juni", "Am Samstag, dem 4. Juni"]
+                },
+                {
+                  "type": "mcSentence",
+                  "question": "Was gibt es NICHT auf dem Programm?",
+                  "answer": "Ein Feuerwerk",
+                  "distractors": ["Konzerte", "Spiele für Kinder"]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "language",
+          "intro": "Grammatik und Strukturen: Wähle die richtige Form oder schreibe sie selbst.",
+          "tasks": [
+            {
+              "context": null,
+              "questions": [
+                {
+                  "type": "conjugation",
+                  "verb": "aller",
+                  "person": 2,
+                  "tense": "passeCompose",
+                  "translation": "Er ist ins Kino gegangen. (il … au cinéma)"
+                },
+                {
+                  "type": "conjugation",
+                  "verb": "manger",
+                  "person": 2,
+                  "tense": "imparfait",
+                  "translation": "Als Kind aß er viel Schokolade. (il … beaucoup de chocolat)"
+                },
+                {
+                  "type": "conjugation",
+                  "verb": "finir",
+                  "person": 4,
+                  "tense": "present",
+                  "translation": "Ihr beendet die Übung. (vous … l'exercice)"
+                },
+                {
+                  "type": "conjugation",
+                  "verb": "faire",
+                  "person": 1,
+                  "tense": "futurProche",
+                  "translation": "Du wirst gleich die Einkäufe machen. (tu … les courses)"
+                },
+                {
+                  "type": "cloze",
+                  "text": "Hier, nous ___ au cinéma.",
+                  "answer": "sommes allés",
+                  "choices": ["sommes allés", "allons", "irons"],
+                  "translation": "Gestern sind wir ins Kino gegangen."
+                },
+                {
+                  "type": "errorCorrection",
+                  "text": "Je mange pas de la viande.",
+                  "answer": "Je ne mange pas de viande.",
+                  "distractors": ["Je ne mange pas de la viande.", "Je non mange pas de viande."],
+                  "translation": "Ich esse kein Fleisch.",
+                  "hint": "Verneinung: ne … pas + de ohne Artikel."
+                },
+                {
+                  "type": "cloze",
+                  "text": "Elle se ___ à sept heures. (se lever)",
+                  "answer": "lève",
+                  "translation": "Sie steht um sieben Uhr auf.",
+                  "hint": "Achte auf den Accent."
+                },
+                {
+                  "type": "mcSentence",
+                  "question": "Wie sagt man: «Paul ist größer als Marie»?",
+                  "answer": "Paul est plus grand que Marie.",
+                  "distractors": ["Paul est plus grand de Marie.", "Paul est le plus grand que Marie."]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "writing",
+          "intro": "Schreiben: Bilde Sätze zu Alltagssituationen — wie im DELF A2, nur ohne freien Text.",
+          "tasks": [
+            {
+              "context": "Erzähle von deinem Wochenende.",
+              "questions": [
+                {
+                  "type": "translate",
+                  "de": "Letztes Wochenende habe ich Fußball gespielt.",
+                  "fr": "Le week-end dernier, j'ai joué au foot.",
+                  "altAnswers": ["Le week-end dernier, j'ai joué au football."]
+                },
+                {
+                  "type": "translate",
+                  "de": "Morgen werde ich die Einkäufe machen.",
+                  "fr": "Demain, je vais faire les courses.",
+                  "altAnswers": ["Demain, je ferai les courses."]
+                }
+              ]
+            },
+            {
+              "context": "Schreibe eine kurze Entschuldigung.",
+              "questions": [
+                {
+                  "type": "cloze",
+                  "text": "Désolé, je ne peux pas venir ___ je suis malade.",
+                  "answer": "parce que",
+                  "translation": "Tut mir leid, ich kann nicht kommen, weil ich krank bin.",
+                  "altAnswers": ["car"]
+                },
+                {
+                  "type": "translate",
+                  "de": "Kannst du mir helfen?",
+                  "fr": "Tu peux m'aider ?",
+                  "altAnswers": ["Peux-tu m'aider ?", "Est-ce que tu peux m'aider ?"]
+                }
+              ]
+            },
+            {
+              "context": "Beschreibe deinen Tagesablauf.",
+              "questions": [
+                {
+                  "type": "wordOrder",
+                  "fr": "Je me couche à dix heures",
+                  "de": "Ich gehe um zehn Uhr schlafen"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam_b1",
+      "level": "B1",
+      "durationMinutes": 50,
+      "sections": [
+        {
+          "kind": "listening",
+          "intro": "Du hörst drei Aufnahmen. Jede Aufnahme kannst du zweimal abspielen. Beantworte die Fragen dazu.",
+          "tasks": [
+            {
+              "context": "Du hörst einen kurzen Radiobeitrag.",
+              "audioScript": "Selon une étude publiée cette semaine, les Français font de plus en plus de vélo. Dans les grandes villes, un habitant sur cinq utilise maintenant le vélo tous les jours pour aller au travail. Les villes construisent donc de nouvelles pistes cyclables et proposent des aides pour acheter un vélo électrique.",
+              "questions": [
+                {
+                  "type": "mcSentence",
+                  "question": "Was zeigt die Studie?",
+                  "answer": "Die Franzosen fahren immer mehr Fahrrad",
+                  "distractors": ["Die Franzosen kaufen mehr Autos", "Die Franzosen treiben weniger Sport"]
+                },
+                {
+                  "type": "mcSentence",
+                  "question": "Wie viele Menschen nutzen das Rad in Großstädten täglich für den Arbeitsweg?",
+                  "answer": "Jeder fünfte Einwohner",
+                  "distractors": ["Jeder zweite Einwohner", "Jeder zehnte Einwohner"]
+                },
+                {
+                  "type": "mcSentence",
+                  "question": "Wie reagieren die Städte?",
+                  "answer": "Sie bauen neue Radwege und fördern E-Bikes",
+                  "distractors": ["Sie verbieten Autos im Zentrum", "Sie senken die Ticketpreise für Busse"]
+                }
+              ]
+            },
+            {
+              "context": "Du hörst eine Nachricht auf der Mailbox von Herrn Weber.",
+              "audioScript": "Bonjour Monsieur Weber, c'est Madame Laurent de l'agence Intertravail. Votre entretien est déplacé : ce ne sera pas mercredi matin, mais jeudi à quatorze heures. N'oubliez pas d'apporter votre CV et une lettre de motivation. Merci de me rappeler pour confirmer. Bonne journée !",
+              "questions": [
+                {
+                  "type": "mcSentence",
+                  "question": "Warum ruft Madame Laurent an?",
+                  "answer": "Der Gesprächstermin wurde verschoben",
+                  "distractors": ["Das Gespräch wurde abgesagt", "Herr Weber hat die Stelle bekommen"]
+                },
+                {
+                  "type": "mcSentence",
+                  "question": "Wann findet das Gespräch jetzt statt?",
+                  "answer": "Donnerstag um 14 Uhr",
+                  "distractors": ["Mittwoch um 14 Uhr", "Donnerstag um 10 Uhr"]
+                },
+                {
+                  "type": "mcSentence",
+                  "question": "Was soll Herr Weber mitbringen?",
+                  "answer": "Lebenslauf und Motivationsschreiben",
+                  "distractors": ["Seinen Ausweis und ein Foto", "Seine Zeugnisse und Referenzen"]
+                }
+              ]
+            },
+            {
+              "context": "Zwei Freunde sprechen über die Sommerferien.",
+              "audioScript": "Alors, tu as choisi où tu pars cet été ? — Oui, je vais en Irlande pendant trois semaines. Je veux améliorer mon anglais. — Tu loges à l'hôtel ? — Non, c'est trop cher. Je vais habiter dans une famille. C'est plus sympa et on parle beaucoup plus.",
+              "questions": [
+                {
+                  "type": "mcSentence",
+                  "question": "Warum fährt die Person nach Irland?",
+                  "answer": "Um ihr Englisch zu verbessern",
+                  "distractors": ["Um Verwandte zu besuchen", "Um dort zu arbeiten"]
+                },
+                {
+                  "type": "mcSentence",
+                  "question": "Wo übernachtet sie?",
+                  "answer": "Bei einer Gastfamilie",
+                  "distractors": ["Im Hotel", "Auf dem Campingplatz"]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "reading",
+          "intro": "Lies die Texte und beantworte die Fragen. Der Text bleibt bei jeder Frage sichtbar.",
+          "tasks": [
+            {
+              "context": "Du liest einen kurzen Zeitungsartikel.",
+              "passageTitle": "Le télétravail change la vie",
+              "passage": "Depuis quelques années, de plus en plus d'entreprises permettent à leurs employés de travailler à la maison deux ou trois jours par semaine. Les avantages sont clairs : moins de temps perdu dans les transports et plus de liberté pour organiser sa journée.\nMais certains employés se sentent seuls et ont du mal à séparer travail et vie privée. C'est pourquoi la plupart des entreprises gardent aussi des jours de présence au bureau, pour que les équipes se voient régulièrement.",
+              "questions": [
+                {
+                  "type": "mcSentence",
+                  "question": "Wie oft dürfen viele Angestellte zu Hause arbeiten?",
+                  "answer": "Zwei bis drei Tage pro Woche",
+                  "distractors": ["Jeden Tag", "Einmal im Monat"]
+                },
+                {
+                  "type": "mcSentence",
+                  "question": "Welcher Vorteil wird genannt?",
+                  "answer": "Weniger Zeitverlust im Verkehr",
+                  "distractors": ["Höheres Gehalt", "Mehr Urlaubstage"]
+                },
+                {
+                  "type": "mcSentence",
+                  "question": "Welches Problem haben manche Angestellte?",
+                  "answer": "Sie fühlen sich einsam",
+                  "distractors": ["Sie haben zu wenig Arbeit", "Sie finden keine Wohnung"]
+                },
+                {
+                  "type": "mcSentence",
+                  "question": "Warum behalten Firmen Bürotage bei?",
+                  "answer": "Damit sich die Teams regelmäßig sehen",
+                  "distractors": ["Weil das Gesetz es verlangt", "Weil die Büros schon bezahlt sind"]
+                }
+              ]
+            },
+            {
+              "context": "Du liest einen Beitrag in einem Forum.",
+              "passageTitle": "Apprendre une langue — vos conseils ?",
+              "passage": "Message de Karim :\nPour moi, le plus important, c'est la régularité. Je révise quinze minutes chaque jour au lieu de faire trois heures le dimanche. J'écoute aussi des podcasts pendant que je fais la cuisine.\nPar contre, je trouve que les applications ne suffisent pas : il faut aussi parler avec de vraies personnes, sinon on n'ose jamais ouvrir la bouche.",
+              "questions": [
+                {
+                  "type": "mcSentence",
+                  "question": "Was ist für Karim am wichtigsten?",
+                  "answer": "Regelmäßigkeit",
+                  "distractors": ["Lange Lerneinheiten", "Teure Kurse"]
+                },
+                {
+                  "type": "mcSentence",
+                  "question": "Wann hört Karim Podcasts?",
+                  "answer": "Beim Kochen",
+                  "distractors": ["Im Bus", "Beim Sport"]
+                },
+                {
+                  "type": "mcSentence",
+                  "question": "Was hält Karim von Lern-Apps?",
+                  "answer": "Sie reichen allein nicht aus",
+                  "distractors": ["Sie sind völlig nutzlos", "Sie sind besser als Gespräche"]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "language",
+          "intro": "Grammatik und Strukturen: Wähle die richtige Form oder schreibe sie selbst.",
+          "tasks": [
+            {
+              "context": null,
+              "questions": [
+                {
+                  "type": "conjugation",
+                  "verb": "être",
+                  "person": 0,
+                  "tense": "subjonctifPresent",
+                  "translation": "Er will, dass ich pünktlich bin. (il veut que je … à l'heure)"
+                },
+                {
+                  "type": "conjugation",
+                  "verb": "avoir",
+                  "person": 2,
+                  "tense": "futurSimple",
+                  "translation": "Er wird Zeit haben. (il … le temps)"
+                },
+                {
+                  "type": "conjugation",
+                  "verb": "vouloir",
+                  "person": 0,
+                  "tense": "conditionnel",
+                  "translation": "Ich möchte gern reisen. (je … voyager)"
+                },
+                {
+                  "type": "conjugation",
+                  "verb": "finir",
+                  "person": 4,
+                  "tense": "futurSimple",
+                  "translation": "Ihr werdet morgen fertig sein. (vous … demain)"
+                },
+                {
+                  "type": "cloze",
+                  "text": "Il faut que tu ___ tes devoirs.",
+                  "answer": "fasses",
+                  "choices": ["fasses", "fais", "feras"],
+                  "translation": "Du musst deine Hausaufgaben machen.",
+                  "hint": "Nach «il faut que» steht der Subjonctif."
+                },
+                {
+                  "type": "errorCorrection",
+                  "text": "Si j'aurais de l'argent, je voyagerais.",
+                  "answer": "Si j'avais de l'argent, je voyagerais.",
+                  "distractors": ["Si j'aurai de l'argent, je voyagerais.", "Si j'avais de l'argent, je voyageais."],
+                  "translation": "Wenn ich Geld hätte, würde ich reisen.",
+                  "hint": "Nach «si» steht nie das Conditionnel."
+                },
+                {
+                  "type": "cloze",
+                  "text": "C'est la ville ___ je suis né.",
+                  "answer": "où",
+                  "choices": ["où", "que", "qui"],
+                  "translation": "Das ist die Stadt, in der ich geboren bin."
+                },
+                {
+                  "type": "cloze",
+                  "text": "Tu as vu Marie ? — Oui, je ___ ai vue hier.",
+                  "answer": "l'",
+                  "choices": ["l'", "la", "lui"],
+                  "translation": "Hast du Marie gesehen? — Ja, ich habe sie gestern gesehen."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "writing",
+          "intro": "Schreiben: Formuliere Meinungen und Hypothesen — wie im DELF B1, nur ohne freien Aufsatz.",
+          "tasks": [
+            {
+              "context": "Drücke eine Hypothese aus.",
+              "questions": [
+                {
+                  "type": "translate",
+                  "de": "Wenn ich Zeit hätte, würde ich mehr Sport machen.",
+                  "fr": "Si j'avais le temps, je ferais plus de sport.",
+                  "altAnswers": ["Si j'avais du temps, je ferais plus de sport."]
+                },
+                {
+                  "type": "translate",
+                  "de": "Was würdest du an meiner Stelle tun?",
+                  "fr": "Qu'est-ce que tu ferais à ma place ?",
+                  "altAnswers": ["Que ferais-tu à ma place ?", "Tu ferais quoi à ma place ?"]
+                }
+              ]
+            },
+            {
+              "context": "Gib deine Meinung wieder.",
+              "questions": [
+                {
+                  "type": "translate",
+                  "de": "Ich denke, dass du recht hast.",
+                  "fr": "Je pense que tu as raison.",
+                  "altAnswers": ["Je crois que tu as raison.", "Je trouve que tu as raison."]
+                },
+                {
+                  "type": "cloze",
+                  "text": "J'aime cette ville, ___ les loyers sont trop chers.",
+                  "answer": "pourtant",
+                  "choices": ["pourtant", "parce que", "donc"],
+                  "translation": "Ich mag diese Stadt, dennoch sind die Mieten zu teuer."
+                }
+              ]
+            },
+            {
+              "context": "Formuliere eine Notwendigkeit.",
+              "questions": [
+                {
+                  "type": "wordOrder",
+                  "fr": "Il faut que nous partions avant huit heures",
+                  "de": "Wir müssen vor acht Uhr losfahren"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam_b2",
+      "level": "B2",
+      "durationMinutes": 60,
+      "sections": [
+        {
+          "kind": "listening",
+          "intro": "Du hörst drei längere Aufnahmen. Jede Aufnahme kannst du zweimal abspielen. Beantworte die Fragen dazu.",
+          "tasks": [
+            {
+              "context": "Du hörst einen Radiobeitrag mit einer Soziologin.",
+              "audioScript": "Les réseaux sociaux sont-ils dangereux pour les adolescents ? Pour la sociologue Claire Mathieu, la réponse n'est pas si simple. Selon elle, ces plateformes permettent aux jeunes de rester en contact avec leurs amis et de développer leur créativité. En revanche, elle souligne que la comparaison permanente avec les autres peut nuire à la confiance en soi. Elle recommande donc aux parents de discuter régulièrement avec leurs enfants plutôt que de tout interdire.",
+              "questions": [
+                {
+                  "type": "mcSentence",
+                  "question": "Welche Haltung hat die Soziologin zu sozialen Netzwerken?",
+                  "answer": "Eine differenzierte: Sie sieht Vor- und Nachteile",
+                  "distractors": ["Eine klar ablehnende", "Eine uneingeschränkt positive"]
+                },
+                {
+                  "type": "mcSentence",
+                  "question": "Welche Gefahr nennt sie?",
+                  "answer": "Der ständige Vergleich schadet dem Selbstvertrauen",
+                  "distractors": ["Die Jugendlichen verlernen das Schreiben", "Die Plattformen sind zu teuer"]
+                },
+                {
+                  "type": "mcSentence",
+                  "question": "Was empfiehlt sie den Eltern?",
+                  "answer": "Regelmäßig mit den Kindern zu sprechen statt zu verbieten",
+                  "distractors": ["Die Handys abends einzusammeln", "Die Apps der Kinder zu kontrollieren"]
+                }
+              ]
+            },
+            {
+              "context": "Du hörst die Begrüßung auf einer Konferenz.",
+              "audioScript": "Mesdames et Messieurs, bienvenue à cette conférence sur l'avenir du travail. Notre premier intervenant, le professeur Diallo, parlera de l'intelligence artificielle et de ses conséquences sur l'emploi. Ensuite, une table ronde réunira trois chefs d'entreprise. En raison d'un problème technique, la pause est avancée à dix heures et quart. Nous vous rappelons que la conférence est enregistrée.",
+              "questions": [
+                {
+                  "type": "mcSentence",
+                  "question": "Worüber spricht Professor Diallo?",
+                  "answer": "Über künstliche Intelligenz und ihre Folgen für die Arbeit",
+                  "distractors": ["Über die Geschichte der Gewerkschaften", "Über Steuerpolitik"]
+                },
+                {
+                  "type": "mcSentence",
+                  "question": "Was hat sich wegen eines technischen Problems geändert?",
+                  "answer": "Die Pause wurde vorverlegt",
+                  "distractors": ["Der erste Vortrag fällt aus", "Die Konferenz endet früher"]
+                }
+              ]
+            },
+            {
+              "context": "Du hörst ein Interview mit einer Schriftstellerin.",
+              "audioScript": "Vous venez de publier votre troisième roman. De quoi parle-t-il ? — C'est l'histoire d'une femme qui quitte tout pour reprendre la ferme de ses parents. Je voulais montrer que revenir à la campagne n'est pas un retour en arrière, mais souvent un nouveau départ. — Le livre a déjà beaucoup de succès. — Oui, et cela me surprend ! Je pensais que le sujet n'intéresserait que les lecteurs des régions rurales.",
+              "questions": [
+                {
+                  "type": "mcSentence",
+                  "question": "Was wollte die Autorin mit ihrem Roman zeigen?",
+                  "answer": "Dass die Rückkehr aufs Land oft ein Neuanfang ist",
+                  "distractors": ["Dass das Landleben altmodisch ist", "Dass Bauernhöfe unrentabel sind"]
+                },
+                {
+                  "type": "mcSentence",
+                  "question": "Warum ist sie über den Erfolg überrascht?",
+                  "answer": "Sie dachte, das Thema interessiere nur Leser vom Land",
+                  "distractors": ["Es ist ihr erstes Buch", "Der Verlag hatte keine Werbung gemacht"]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "reading",
+          "intro": "Lies die Texte und beantworte die Fragen. Der Text bleibt bei jeder Frage sichtbar.",
+          "tasks": [
+            {
+              "context": "Du liest einen Artikel über ein Arbeitszeitmodell.",
+              "passageTitle": "La semaine de quatre jours : miracle ou mirage ?",
+              "passage": "Travailler quatre jours au lieu de cinq, sans perte de salaire : l'idée séduit de plus en plus d'entreprises européennes. Les premières expériences montrent des salariés moins fatigués, plus motivés et moins souvent malades. Certaines équipes se disent même plus productives qu'avant.\nPourtant, le modèle ne convient pas à tous les secteurs. Dans les hôpitaux ou la restauration, il faudrait embaucher davantage de personnel, ce qui coûte cher. Des économistes avertissent également que la charge de travail ne disparaît pas : elle est simplement concentrée sur quatre jours, ce qui peut augmenter le stress.\nLa plupart des spécialistes s'accordent sur un point : la semaine de quatre jours n'est ni un miracle ni une catastrophe — tout dépend de la manière dont elle est organisée.",
+              "questions": [
+                {
+                  "type": "mcSentence",
+                  "question": "Welche positiven Effekte zeigen erste Versuche?",
+                  "answer": "Weniger müde, motiviertere und seltener kranke Beschäftigte",
+                  "distractors": ["Höhere Gewinne in allen Branchen", "Weniger Personalkosten"]
+                },
+                {
+                  "type": "mcSentence",
+                  "question": "Warum passt das Modell nicht zu allen Branchen?",
+                  "answer": "In manchen Bereichen müsste teures zusätzliches Personal eingestellt werden",
+                  "distractors": ["Weil es gesetzlich verboten ist", "Weil die Kunden dagegen sind"]
+                },
+                {
+                  "type": "mcSentence",
+                  "question": "Wovor warnen Ökonomen?",
+                  "answer": "Die Arbeit konzentriert sich auf vier Tage und kann den Stress erhöhen",
+                  "distractors": ["Die Gehälter müssten sinken", "Die Unternehmen würden ins Ausland gehen"]
+                },
+                {
+                  "type": "mcSentence",
+                  "question": "Was ist das Fazit der meisten Fachleute?",
+                  "answer": "Der Erfolg hängt von der Organisation ab",
+                  "distractors": ["Das Modell ist ein Wunder", "Das Modell ist eine Katastrophe"]
+                }
+              ]
+            },
+            {
+              "context": "Du liest einen Leserbrief.",
+              "passageTitle": "Courrier des lecteurs : trop d'écrans à l'école ?",
+              "passage": "Madame, Monsieur,\nvotre article sur le numérique à l'école m'a beaucoup intéressée, mais je ne partage pas votre enthousiasme. Bien que les tablettes rendent certains cours plus vivants, elles ne remplacent ni un bon professeur ni un livre. Ma fille passe déjà des heures devant les écrans à la maison ; l'école devrait être un lieu où l'on apprend aussi à s'en passer.\nJe ne suis pas contre le progrès — je demande simplement qu'on l'utilise avec mesure.\nHélène Roussel, Strasbourg",
+              "questions": [
+                {
+                  "type": "mcSentence",
+                  "question": "Wie steht die Leserin zum Artikel?",
+                  "answer": "Sie fand ihn interessant, teilt aber die Begeisterung nicht",
+                  "distractors": ["Sie stimmt ihm voll zu", "Sie hat ihn nicht verstanden"]
+                },
+                {
+                  "type": "mcSentence",
+                  "question": "Was räumt sie ein?",
+                  "answer": "Tablets können manche Stunden lebendiger machen",
+                  "distractors": ["Tablets ersetzen gute Lehrer", "Bücher sind überflüssig geworden"]
+                },
+                {
+                  "type": "mcSentence",
+                  "question": "Was fordert sie am Ende?",
+                  "answer": "Einen maßvollen Umgang mit der Technik",
+                  "distractors": ["Ein völliges Verbot von Bildschirmen", "Mehr Tablets für alle Klassen"]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "language",
+          "intro": "Grammatik und Strukturen: Wähle die richtige Form oder schreibe sie selbst.",
+          "tasks": [
+            {
+              "context": null,
+              "questions": [
+                {
+                  "type": "conjugation",
+                  "verb": "avoir",
+                  "person": 2,
+                  "tense": "plusQueParfait",
+                  "translation": "Er hatte keine Zeit gehabt. (il n'… pas eu le temps — nur die Form von avoir)"
+                },
+                {
+                  "type": "conjugation",
+                  "verb": "vouloir",
+                  "person": 2,
+                  "tense": "conditionnelPasse",
+                  "translation": "Er hätte bleiben wollen. (il … rester)"
+                },
+                {
+                  "type": "conjugation",
+                  "verb": "finir",
+                  "person": 4,
+                  "tense": "futurAnterieur",
+                  "translation": "Ihr werdet vor Mitternacht fertig gewesen sein. (vous … avant minuit)"
+                },
+                {
+                  "type": "cloze",
+                  "text": "Bien qu'il ___ malade, il est venu travailler.",
+                  "answer": "soit",
+                  "choices": ["soit", "est", "était"],
+                  "translation": "Obwohl er krank ist, ist er zur Arbeit gekommen.",
+                  "hint": "Nach «bien que» steht der Subjonctif."
+                },
+                {
+                  "type": "errorCorrection",
+                  "text": "Malgré qu'il pleuve, nous sortons.",
+                  "answer": "Bien qu'il pleuve, nous sortons.",
+                  "distractors": ["Malgré il pleut, nous sortons.", "Bien qu'il pleut, nous sortons."],
+                  "translation": "Obwohl es regnet, gehen wir raus.",
+                  "hint": "«malgré» steht nur mit Nomen, «bien que» mit Subjonctif."
+                },
+                {
+                  "type": "cloze",
+                  "text": "C'est un sujet ___ je pense souvent.",
+                  "answer": "auquel",
+                  "choices": ["auquel", "que", "dont"],
+                  "translation": "Das ist ein Thema, an das ich oft denke.",
+                  "hint": "penser à quelque chose."
+                },
+                {
+                  "type": "cloze",
+                  "text": "Le roman ___ par des millions de lecteurs.",
+                  "answer": "a été lu",
+                  "choices": ["a été lu", "a lu", "était lisant"],
+                  "translation": "Der Roman wurde von Millionen Lesern gelesen.",
+                  "hint": "Passiv: être + Participe passé."
+                },
+                {
+                  "type": "cloze",
+                  "text": "Elle est fière ___ son travail.",
+                  "answer": "de",
+                  "choices": ["de", "pour", "sur"],
+                  "translation": "Sie ist stolz auf ihre Arbeit."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "writing",
+          "intro": "Schreiben: Argumentiere und formuliere komplexe Hypothesen — wie im DELF B2, nur ohne freien Aufsatz.",
+          "tasks": [
+            {
+              "context": "Formuliere eine irreale Hypothese in der Vergangenheit.",
+              "questions": [
+                {
+                  "type": "translate",
+                  "de": "Wenn ich das gewusst hätte, wäre ich nicht gekommen.",
+                  "fr": "Si j'avais su, je ne serais pas venu.",
+                  "altAnswers": ["Si j'avais su, je ne serais pas venue.", "Si je l'avais su, je ne serais pas venu.", "Si je l'avais su, je ne serais pas venue."]
+                },
+                {
+                  "type": "translate",
+                  "de": "An deiner Stelle hätte ich anders reagiert.",
+                  "fr": "À ta place, j'aurais réagi autrement.",
+                  "altAnswers": ["À ta place, j'aurais réagi différemment."]
+                }
+              ]
+            },
+            {
+              "context": "Drücke Überzeugung und Einschränkung aus.",
+              "questions": [
+                {
+                  "type": "translate",
+                  "de": "Ich bin überzeugt, dass sich die Lage verbessern wird.",
+                  "fr": "Je suis convaincu que la situation va s'améliorer.",
+                  "altAnswers": ["Je suis convaincue que la situation va s'améliorer.", "Je suis convaincu que la situation s'améliorera.", "Je suis convaincue que la situation s'améliorera."]
+                },
+                {
+                  "type": "cloze",
+                  "text": "Le projet a échoué ___ du manque de temps.",
+                  "answer": "à cause",
+                  "translation": "Das Projekt ist wegen des Zeitmangels gescheitert.",
+                  "hint": "«wegen» (negativ wertend) + du/de la."
+                }
+              ]
+            },
+            {
+              "context": "Formuliere eine Warnung.",
+              "questions": [
+                {
+                  "type": "wordOrder",
+                  "fr": "Nous devons agir avant qu'il soit trop tard",
+                  "de": "Wir müssen handeln, bevor es zu spät ist"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam_c1",
+      "level": "C1",
+      "durationMinutes": 70,
+      "sections": [
+        {
+          "kind": "listening",
+          "intro": "Du hörst drei anspruchsvolle Aufnahmen (Vortrag, Radiokolumne, Debatte). Jede Aufnahme kannst du zweimal abspielen.",
+          "tasks": [
+            {
+              "context": "Du hörst einen Ausschnitt aus einem Vortrag.",
+              "audioScript": "Dans notre société de l'attention, chaque application est conçue pour capter notre regard le plus longtemps possible. Le professeur Lemaire compare cette économie à une extraction de ressources : ce que les plateformes exploitent, ce n'est pas le pétrole, mais notre temps de cerveau disponible. Il ne s'agit pas, selon lui, de diaboliser la technologie, mais d'exiger des concepteurs qu'ils rendent leurs choix transparents : pourquoi telle notification, pourquoi tel classement des contenus.",
+              "questions": [
+                {
+                  "type": "mcSentence",
+                  "question": "Womit vergleicht Professor Lemaire die Aufmerksamkeitsökonomie?",
+                  "answer": "Mit dem Abbau von Rohstoffen",
+                  "distractors": ["Mit einem Glücksspiel", "Mit einem sportlichen Wettkampf"]
+                },
+                {
+                  "type": "mcSentence",
+                  "question": "Welche Haltung nimmt er zur Technologie ein?",
+                  "answer": "Er will sie nicht verteufeln, fordert aber Transparenz",
+                  "distractors": ["Er lehnt sie grundsätzlich ab", "Er hält Kritik für überflüssig"]
+                },
+                {
+                  "type": "mcSentence",
+                  "question": "Was sollen die Entwickler offenlegen?",
+                  "answer": "Warum Benachrichtigungen und Sortierungen so gestaltet sind",
+                  "distractors": ["Wie viel Geld sie verdienen", "Wer ihre Apps benutzt"]
+                }
+              ]
+            },
+            {
+              "context": "Du hörst eine Radiokolumne über Sprache.",
+              "audioScript": "On dit souvent que le passé simple aurait disparu de la langue française. C'est aller un peu vite en besogne : s'il a presque quitté la conversation, il se porte à merveille dans le roman, où il demeure le temps du récit par excellence. Les auteurs de littérature jeunesse eux-mêmes n'y renoncent pas, preuve que les jeunes lecteurs le comprennent sans difficulté.",
+              "questions": [
+                {
+                  "type": "mcSentence",
+                  "question": "Was sagt die Kolumne über das Passé simple?",
+                  "answer": "Es ist aus Gesprächen fast verschwunden, lebt aber im Roman weiter",
+                  "distractors": ["Es ist vollständig ausgestorben", "Es wird wieder häufiger gesprochen"]
+                },
+                {
+                  "type": "mcSentence",
+                  "question": "Welchen Beleg führt sie an?",
+                  "answer": "Auch Kinder- und Jugendbücher verwenden es weiterhin",
+                  "distractors": ["Eine Umfrage unter Lehrern", "Neue Rechtschreibregeln"]
+                }
+              ]
+            },
+            {
+              "context": "Du hörst einen Ausschnitt aus einer Debatte.",
+              "audioScript": "Faut-il rendre les musées gratuits ? Pour l'économiste invité, la gratuité totale est une fausse bonne idée : elle profite d'abord aux visiteurs qui seraient venus de toute façon, tandis que les publics éloignés de la culture ne franchissent pas davantage les portes. Mieux vaudrait, selon lui, investir dans la médiation culturelle et les transports, quitte à maintenir un tarif modeste.",
+              "questions": [
+                {
+                  "type": "mcSentence",
+                  "question": "Warum hält der Ökonom freien Eintritt für eine Scheinlösung?",
+                  "answer": "Er nützt vor allem denen, die ohnehin gekommen wären",
+                  "distractors": ["Er ist zu teuer für den Staat", "Er führt zu überfüllten Museen"]
+                },
+                {
+                  "type": "mcSentence",
+                  "question": "Was schlägt er stattdessen vor?",
+                  "answer": "In Kulturvermittlung und Verkehrsanbindung zu investieren",
+                  "distractors": ["Die Eintrittspreise zu erhöhen", "Mehr Museen zu bauen"]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "reading",
+          "intro": "Lies die Texte und beantworte die Fragen — achte auch auf implizite Aussagen und die Haltung der Autoren.",
+          "tasks": [
+            {
+              "context": "Du liest einen Meinungsartikel über Stadtplanung.",
+              "passageTitle": "La ville à hauteur d'enfant",
+              "passage": "Concevoir la ville pour les enfants, c'est la concevoir pour tous. Trottoirs élargis, rues apaisées, cours d'école ouvertes le week-end : ces aménagements, pensés d'abord pour les plus jeunes, bénéficient aussi aux personnes âgées et aux personnes à mobilité réduite.\nPourtant, la place de l'enfant en ville n'a cessé de se réduire depuis les années soixante, au profit de l'automobile. Les urbanistes qui défendent aujourd'hui la « ville à hauteur d'enfant » ne cèdent pas à la nostalgie : ils s'appuient sur des études qui montrent qu'un enfant autonome dans ses déplacements devient un adulte plus actif et plus attaché à son quartier.\nReste à convaincre les décideurs, pour qui la fluidité du trafic demeure trop souvent la priorité.",
+              "questions": [
+                {
+                  "type": "mcSentence",
+                  "question": "Was ist die zentrale These des Artikels?",
+                  "answer": "Eine kindgerechte Stadt kommt allen zugute",
+                  "distractors": ["Kinder brauchen mehr Spielplätze", "Autos sollten verboten werden"]
+                },
+                {
+                  "type": "mcSentence",
+                  "question": "Wie hat sich die Stadt seit den Sechzigerjahren verändert?",
+                  "answer": "Der Raum für Kinder schrumpfte zugunsten des Autos",
+                  "distractors": ["Es entstanden mehr Schulhöfe", "Die Straßen wurden ruhiger"]
+                },
+                {
+                  "type": "mcSentence",
+                  "question": "Worauf stützen sich die Stadtplaner laut Text?",
+                  "answer": "Auf Studien, nicht auf Nostalgie",
+                  "distractors": ["Auf Kindheitserinnerungen", "Auf Umfragen unter Eltern"]
+                },
+                {
+                  "type": "mcSentence",
+                  "question": "Welches Hindernis nennt der Schluss des Textes?",
+                  "answer": "Entscheidungsträger priorisieren oft den Verkehrsfluss",
+                  "distractors": ["Es fehlt an technischen Lösungen", "Die Anwohner sind dagegen"]
+                }
+              ]
+            },
+            {
+              "context": "Du liest eine Kolumne.",
+              "passageTitle": "Éloge de l'ennui",
+              "passage": "Nous avons déclaré la guerre à l'ennui, et nous l'avons gagnée : plus une file d'attente, plus un trajet de bus sans écran pour nous distraire. Victoire amère. Car c'est précisément dans ces moments creux que l'esprit vagabonde, relie des idées éloignées, invente.\nLes neurosciences le confirment : le cerveau au repos n'est pas un cerveau éteint. En privant nos enfants d'ennui, nous les privons peut-être d'imagination.",
+              "questions": [
+                {
+                  "type": "mcSentence",
+                  "question": "Welchen «Krieg» haben wir laut der Kolumne gewonnen?",
+                  "answer": "Den Krieg gegen die Langeweile",
+                  "distractors": ["Den Krieg gegen die Bildschirme", "Den Krieg gegen den Lärm"]
+                },
+                {
+                  "type": "mcSentence",
+                  "question": "Warum nennt der Autor den Sieg «bitter»?",
+                  "answer": "Gerade in Leerlaufmomenten entstehen Ideen und Kreativität",
+                  "distractors": ["Weil der Kampf zu lange gedauert hat", "Weil niemand ihn bemerkt hat"]
+                },
+                {
+                  "type": "mcSentence",
+                  "question": "Was bestätigen die Neurowissenschaften?",
+                  "answer": "Ein ruhendes Gehirn ist nicht untätig",
+                  "distractors": ["Bildschirme machen dumm", "Langeweile ist schädlich"]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "language",
+          "intro": "Grammatik und Strukturen auf C1-Niveau: feine Unterschiede, gehobene Konnektoren, Register.",
+          "tasks": [
+            {
+              "context": null,
+              "questions": [
+                {
+                  "type": "cloze",
+                  "text": "Quoi qu'il ___, je partirai demain.",
+                  "answer": "dise",
+                  "choices": ["dise", "dit", "dira"],
+                  "translation": "Was er auch sagen mag, ich fahre morgen.",
+                  "hint": "«quoi que» + Subjonctif."
+                },
+                {
+                  "type": "cloze",
+                  "text": "___ sa fatigue, elle a terminé le rapport.",
+                  "answer": "En dépit de",
+                  "choices": ["En dépit de", "Bien que", "Quoique"],
+                  "translation": "Trotz ihrer Müdigkeit hat sie den Bericht beendet.",
+                  "hint": "Vor einem Nomen steht eine Präposition, keine Konjunktion."
+                },
+                {
+                  "type": "errorCorrection",
+                  "text": "Après qu'il soit parti, nous avons dîné.",
+                  "answer": "Après qu'il est parti, nous avons dîné.",
+                  "distractors": ["Après qu'il serait parti, nous avons dîné.", "Après qu'il parte, nous avons dîné."],
+                  "translation": "Nachdem er gegangen war, haben wir zu Abend gegessen.",
+                  "hint": "Nach «après que» steht der Indikativ — ein sehr häufiger Fehler, sogar bei Muttersprachlern."
+                },
+                {
+                  "type": "conjugation",
+                  "verb": "savoir",
+                  "person": 4,
+                  "tense": "subjonctifPresent",
+                  "translation": "Es ist wichtig, dass Sie es wissen. (il est important que vous le …)"
+                },
+                {
+                  "type": "conjugation",
+                  "verb": "être",
+                  "person": 3,
+                  "tense": "plusQueParfait",
+                  "translation": "Wir waren schon einmal dort gewesen. (nous y … déjà)"
+                },
+                {
+                  "type": "cloze",
+                  "text": "___ arrivant plus tôt, tu aurais eu une place.",
+                  "answer": "En",
+                  "choices": ["En", "Dans", "Pour"],
+                  "translation": "Wärst du früher gekommen, hättest du einen Platz bekommen.",
+                  "hint": "Gérondif: en + Participe présent."
+                },
+                {
+                  "type": "cloze",
+                  "text": "Elle a réussi ___ à son travail acharné.",
+                  "answer": "grâce",
+                  "translation": "Sie hatte dank ihrer harten Arbeit Erfolg.",
+                  "hint": "«dank» (positiv wertend) — ein Wort."
+                },
+                {
+                  "type": "cloze",
+                  "text": "Les mesures ___ le gouvernement a annoncées sont contestées.",
+                  "answer": "que",
+                  "choices": ["que", "qui", "dont"],
+                  "translation": "Die Maßnahmen, die die Regierung angekündigt hat, sind umstritten.",
+                  "hint": "Direktes Objekt vorangestellt — daher auch «annoncées» mit Angleichung."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "writing",
+          "intro": "Schreiben auf C1-Niveau: präzise Umformulierungen, gehobene Wendungen, Nominalisierung.",
+          "tasks": [
+            {
+              "context": "Formuliere gehoben und präzise.",
+              "questions": [
+                {
+                  "type": "translate",
+                  "de": "Je mehr ich lese, desto besser verstehe ich.",
+                  "fr": "Plus je lis, mieux je comprends.",
+                  "altAnswers": ["Plus je lis, et mieux je comprends."]
+                },
+                {
+                  "type": "translate",
+                  "de": "Wie dem auch sei, wir müssen eine Lösung finden.",
+                  "fr": "Quoi qu'il en soit, nous devons trouver une solution.",
+                  "altAnswers": ["Quoi qu'il en soit, il nous faut trouver une solution.", "Quoi qu'il en soit, il faut trouver une solution."]
+                },
+                {
+                  "type": "translate",
+                  "de": "Es sei denn, du hast eine bessere Idee.",
+                  "fr": "À moins que tu aies une meilleure idée.",
+                  "altAnswers": ["À moins que tu n'aies une meilleure idée.", "Sauf si tu as une meilleure idée."]
+                }
+              ]
+            },
+            {
+              "context": "Nominalisierung: Forme das Verb in ein Nomen um.",
+              "questions": [
+                {
+                  "type": "cloze",
+                  "text": "Le projet a été abandonné. → L'___ du projet a surpris tout le monde.",
+                  "answer": "abandon",
+                  "translation": "Die Aufgabe des Projekts hat alle überrascht.",
+                  "hint": "Das Nomen zu «abandonner»."
+                }
+              ]
+            },
+            {
+              "context": "Formuliere eine vorsichtige Einschätzung.",
+              "questions": [
+                {
+                  "type": "wordOrder",
+                  "fr": "Il est peu probable que le projet aboutisse cette année",
+                  "de": "Es ist unwahrscheinlich, dass das Projekt dieses Jahr zum Abschluss kommt"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

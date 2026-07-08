@@ -22,12 +22,50 @@ VALID_TENSES = {
     "futurProche", "futurSimple", "futurAnterieur",
     "conditionnel", "conditionnelPasse", "subjonctifPresent",
 }
-VALID_LEVELS = {"A1", "A2", "B1", "B2"}
+VALID_LEVELS = {"A1", "A2", "B1", "B2", "C1"}
+EXAM_SECTION_KINDS = ["listening", "reading", "language", "writing"]
+# Prüfungsfragen brauchen keinen Lektionskontext — Vokabel-Typen sind tabu.
+EXAM_QUESTION_TYPES = {"mcSentence", "cloze", "translate", "wordOrder", "conjugation", "errorCorrection"}
 
 
 def load(name):
     with open(CONTENT_DIR / f"{name}.json", encoding="utf-8") as f:
         return json.load(f)
+
+
+def check_spec(ex, where, verbs, errors):
+    """Typ-spezifische Prüfung eines Übungs-Specs (Lektion und Prüfung)."""
+    t = ex["type"]
+    if t == "conjugation":
+        if ex["verb"] not in verbs:
+            errors.append(f"{where}: Verb {ex['verb']} fehlt")
+        if ex.get("tense", "present") not in VALID_TENSES:
+            errors.append(f"{where}: unbekanntes Tempus {ex.get('tense')}")
+        if not 0 <= ex.get("person", -1) <= 5:
+            errors.append(f"{where}: person fehlt/ungültig")
+    elif t == "cloze":
+        if "___" not in ex["text"]:
+            errors.append(f"{where}: Cloze ohne ___")
+        if "choices" in ex:
+            if ex["answer"] not in ex["choices"]:
+                errors.append(f"{where}: answer nicht in choices")
+            if len(set(ex["choices"])) < 3:
+                errors.append(f"{where}: weniger als 3 eindeutige choices")
+    elif t in ("mcSentence", "errorCorrection"):
+        distractors = ex.get("distractors") or []
+        if len(set(distractors)) < 2:
+            errors.append(f"{where}: weniger als 2 Distraktoren")
+        if ex["answer"] in distractors:
+            errors.append(f"{where}: answer ist auch Distraktor")
+    elif t == "translate":
+        if not ex.get("de") or not ex.get("fr"):
+            errors.append(f"{where}: translate braucht de und fr")
+    elif t == "wordOrder":
+        if len(ex["fr"].split(" ")) < 3:
+            errors.append(f"{where}: wordOrder unter 3 Wörtern")
+    elif t in ("vocabIntro", "vocabProd"):
+        if not ex.get("vocab"):
+            errors.append(f"{where}: {t} ohne vocab-Liste")
 
 
 def main() -> int:
@@ -90,38 +128,41 @@ def main() -> int:
                 for vocab_id in ex.get("vocab") or []:
                     if vocab_id not in vocab:
                         errors.append(f"{where}: Vokabel {vocab_id} fehlt")
+                check_spec(ex, where, verbs, errors)
 
-                t = ex["type"]
-                if t == "conjugation":
-                    if ex["verb"] not in verbs:
-                        errors.append(f"{where}: Verb {ex['verb']} fehlt")
-                    if ex.get("tense", "present") not in VALID_TENSES:
-                        errors.append(f"{where}: unbekanntes Tempus {ex.get('tense')}")
-                    if not 0 <= ex.get("person", -1) <= 5:
-                        errors.append(f"{where}: person fehlt/ungültig")
-                elif t == "cloze":
-                    if "___" not in ex["text"]:
-                        errors.append(f"{where}: Cloze ohne ___")
-                    if "choices" in ex:
-                        if ex["answer"] not in ex["choices"]:
-                            errors.append(f"{where}: answer nicht in choices")
-                        if len(set(ex["choices"])) < 3:
-                            errors.append(f"{where}: weniger als 3 eindeutige choices")
-                elif t in ("mcSentence", "errorCorrection"):
-                    distractors = ex.get("distractors") or []
-                    if len(set(distractors)) < 2:
-                        errors.append(f"{where}: weniger als 2 Distraktoren")
-                    if ex["answer"] in distractors:
-                        errors.append(f"{where}: answer ist auch Distraktor")
-                elif t == "translate":
-                    if not ex.get("de") or not ex.get("fr"):
-                        errors.append(f"{where}: translate braucht de und fr")
-                elif t == "wordOrder":
-                    if len(ex["fr"].split(" ")) < 3:
-                        errors.append(f"{where}: wordOrder unter 3 Wörtern")
-                elif t in ("vocabIntro", "vocabProd"):
-                    if not ex.get("vocab"):
-                        errors.append(f"{where}: {t} ohne vocab-Liste")
+    # Niveau-Prüfungen (DELF/DALF-Stil)
+    exams = load("exams")["exams"]
+    exam_levels = [e["level"] for e in exams]
+    exam_question_count = 0
+    if len(exam_levels) != len(set(exam_levels)):
+        errors.append("Mehrere Prüfungen für dasselbe Niveau")
+    for exam in exams:
+        if exam["level"] not in VALID_LEVELS:
+            errors.append(f"{exam['id']}: ungültiges Niveau {exam['level']}")
+        if exam.get("durationMinutes", 0) < 10:
+            errors.append(f"{exam['id']}: durationMinutes fehlt/zu kurz")
+        kinds = [s["kind"] for s in exam["sections"]]
+        if kinds != EXAM_SECTION_KINDS:
+            errors.append(f"{exam['id']}: Teile {kinds}, erwartet {EXAM_SECTION_KINDS}")
+        for section in exam["sections"]:
+            if not section.get("intro"):
+                errors.append(f"{exam['id']} {section['kind']}: intro fehlt")
+            question_count = 0
+            for ti, task in enumerate(section["tasks"]):
+                if section["kind"] == "listening" and not task.get("audioScript"):
+                    errors.append(f"{exam['id']} listening t{ti}: audioScript fehlt")
+                if section["kind"] == "reading" and not task.get("passage"):
+                    errors.append(f"{exam['id']} reading t{ti}: passage fehlt")
+                for qi, ex in enumerate(task["questions"]):
+                    question_count += 1
+                    exam_question_count += 1
+                    where = f"{exam['id']} {section['kind']} t{ti} q{qi}"
+                    if ex["type"] not in EXAM_QUESTION_TYPES:
+                        errors.append(f"{where}: Typ {ex['type']} in Prüfungen nicht erlaubt")
+                        continue
+                    check_spec(ex, where, verbs, errors)
+            if question_count < 4:
+                errors.append(f"{exam['id']} {section['kind']}: nur {question_count} Fragen")
 
     dupes = {l for l in lesson_ids if lesson_ids.count(l) > 1}
     if dupes:
@@ -135,7 +176,8 @@ def main() -> int:
 
     print(
         f"{len(vocab)} Vokabeln · {len(verbs)} Verben · {len(rules)} Regeln · "
-        f"{lesson_count} Lektionen {level_counts} · {spec_count} Übungs-Specs"
+        f"{lesson_count} Lektionen {level_counts} · {spec_count} Übungs-Specs · "
+        f"{len(exams)} Prüfungen mit {exam_question_count} Fragen"
     )
     for w in warnings:
         print(f"⚠️  {w}")

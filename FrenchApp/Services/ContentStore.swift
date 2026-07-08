@@ -19,6 +19,8 @@ final class ContentStore {
     let grammarRules: [GrammarRule]
     let grammarByID: [String: GrammarRule]
     let units: [CourseUnit]
+    let exams: [ExamDefinition]
+    let examByLevel: [CEFRLevel: ExamDefinition]
     let conjugator: Conjugator
 
     /// Alle Lektionen in Kurs-Reihenfolge (über Einheiten und Niveaus hinweg).
@@ -47,6 +49,8 @@ final class ContentStore {
         self.verbs = try load("verbs", as: VerbsFile.self).verbs
         self.grammarRules = try load("grammar", as: GrammarFile.self).rules
         self.units = try load("course", as: CourseFile.self).units
+        self.exams = try load("exams", as: ExamFile.self).exams
+        self.examByLevel = Dictionary(uniqueKeysWithValues: exams.map { ($0.level, $0) })
 
         self.vocabByID = Dictionary(uniqueKeysWithValues: vocabulary.map { ($0.id, $0) })
         self.grammarByID = Dictionary(uniqueKeysWithValues: grammarRules.map { ($0.id, $0) })

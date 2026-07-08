@@ -135,6 +135,29 @@ struct ExerciseFactory {
             .first { $0.ref.subIndex == ref.subIndex }
     }
 
+    /// Baut eine Übung aus einem freistehenden Spec (Niveau-Prüfungen) — ohne
+    /// Lektionskontext. Vokabel-Typen (vocabIntro/vocabProd/matching) brauchen
+    /// eine Lektion und sind hier nicht erlaubt.
+    func standaloneExercise(spec: ExerciseSpec, ref: ExerciseRef) -> RuntimeExercise? {
+        switch spec.type {
+        case .cloze:
+            guard let text = spec.text, let answer = spec.answer else { return nil }
+            return clozeExercise(text: text, answer: answer, spec: spec, ref: ref)
+        case .conjugation:
+            return conjugationExercise(spec: spec, ref: ref)
+        case .wordOrder:
+            return wordOrderExercise(spec: spec, ref: ref)
+        case .mcSentence:
+            return mcSentenceExercise(spec: spec, ref: ref)
+        case .translate:
+            return translateExercise(spec: spec, ref: ref)
+        case .errorCorrection:
+            return errorCorrectionExercise(spec: spec, ref: ref)
+        case .vocabIntro, .vocabProd, .matching:
+            return nil
+        }
+    }
+
     // MARK: Aufbau pro Spec-Typ
 
     private func build(spec: ExerciseSpec, lesson: CourseLesson, exerciseIndex: Int) -> [RuntimeExercise] {
@@ -178,92 +201,112 @@ struct ExerciseFactory {
             return [exercise]
 
         case .wordOrder:
-            guard let fr = spec.fr, let de = spec.de else { return [] }
-            let tokens = fr.split(separator: " ").map(String.init)
-            guard tokens.count >= 3 else { return [] }
-            let exercise = WordOrderExercise(
-                instruction: "Bilde den französischen Satz",
-                tokens: tokens,
-                de: de
-            )
-            return [RuntimeExercise(
-                ref: ref(0),
-                kind: .wordOrder(exercise),
-                vocabID: spec.vocab?.first,
-                promptSummary: de,
-                answerSummary: fr
-            )]
+            guard let exercise = wordOrderExercise(spec: spec, ref: ref(0)) else { return [] }
+            return [exercise]
 
         case .mcSentence:
-            guard let question = spec.question,
-                  let answer = spec.answer,
-                  let distractors = spec.distractors,
-                  !distractors.isEmpty
-            else { return [] }
-            var options = ([answer] + distractors).shuffled()
-            options = dedupe(options)
-            guard let correctIndex = options.firstIndex(of: answer) else { return [] }
-            let exercise = MCExercise(
-                instruction: "Wähle die richtige Antwort",
-                prompt: question,
-                promptDetail: nil,
-                options: options,
-                correctIndex: correctIndex,
-                explanation: spec.translation
-            )
-            return [RuntimeExercise(
-                ref: ref(0),
-                kind: .multipleChoice(exercise),
-                vocabID: spec.vocab?.first,
-                promptSummary: question,
-                answerSummary: answer
-            )]
+            guard let exercise = mcSentenceExercise(spec: spec, ref: ref(0)) else { return [] }
+            return [exercise]
 
         case .translate:
-            guard let de = spec.de, let fr = spec.fr else { return [] }
-            let exercise = TextInputExercise(
-                instruction: "Übersetze ins Französische",
-                prefix: "",
-                suffix: "",
-                answer: fr,
-                altAnswers: spec.altAnswers ?? [],
-                hint: spec.hint,
-                translation: de,
-                fullSolution: fr
-            )
-            return [RuntimeExercise(
-                ref: ref(0),
-                kind: .textInput(exercise),
-                vocabID: spec.vocab?.first,
-                promptSummary: de,
-                answerSummary: fr
-            )]
+            guard let exercise = translateExercise(spec: spec, ref: ref(0)) else { return [] }
+            return [exercise]
 
         case .errorCorrection:
-            guard let faulty = spec.text,
-                  let answer = spec.answer,
-                  let distractors = spec.distractors,
-                  !distractors.isEmpty
-            else { return [] }
-            var options = ([answer] + distractors).shuffled()
-            options = dedupe(options)
-            guard let correctIndex = options.firstIndex(of: answer) else { return [] }
-            let exercise = MCExercise(
-                instruction: "Dieser Satz enthält einen Fehler. Wähle die richtige Version:",
-                prompt: "✗ \(faulty)",
-                promptDetail: spec.translation,
-                options: options,
-                correctIndex: correctIndex,
-                explanation: spec.hint
-            )
-            return [RuntimeExercise(
-                ref: ref(0),
-                kind: .multipleChoice(exercise),
-                vocabID: spec.vocab?.first,
-                promptSummary: faulty,
-                answerSummary: answer
-            )]
+            guard let exercise = errorCorrectionExercise(spec: spec, ref: ref(0)) else { return [] }
+            return [exercise]
         }
+    }
+
+    private func wordOrderExercise(spec: ExerciseSpec, ref: ExerciseRef) -> RuntimeExercise? {
+        guard let fr = spec.fr, let de = spec.de else { return nil }
+        let tokens = fr.split(separator: " ").map(String.init)
+        guard tokens.count >= 3 else { return nil }
+        let exercise = WordOrderExercise(
+            instruction: "Bilde den französischen Satz",
+            tokens: tokens,
+            de: de
+        )
+        return RuntimeExercise(
+            ref: ref,
+            kind: .wordOrder(exercise),
+            vocabID: spec.vocab?.first,
+            promptSummary: de,
+            answerSummary: fr
+        )
+    }
+
+    private func mcSentenceExercise(spec: ExerciseSpec, ref: ExerciseRef) -> RuntimeExercise? {
+        guard let question = spec.question,
+              let answer = spec.answer,
+              let distractors = spec.distractors,
+              !distractors.isEmpty
+        else { return nil }
+        var options = ([answer] + distractors).shuffled()
+        options = dedupe(options)
+        guard let correctIndex = options.firstIndex(of: answer) else { return nil }
+        let exercise = MCExercise(
+            instruction: "Wähle die richtige Antwort",
+            prompt: question,
+            promptDetail: nil,
+            options: options,
+            correctIndex: correctIndex,
+            explanation: spec.translation
+        )
+        return RuntimeExercise(
+            ref: ref,
+            kind: .multipleChoice(exercise),
+            vocabID: spec.vocab?.first,
+            promptSummary: question,
+            answerSummary: answer
+        )
+    }
+
+    private func translateExercise(spec: ExerciseSpec, ref: ExerciseRef) -> RuntimeExercise? {
+        guard let de = spec.de, let fr = spec.fr else { return nil }
+        let exercise = TextInputExercise(
+            instruction: "Übersetze ins Französische",
+            prefix: "",
+            suffix: "",
+            answer: fr,
+            altAnswers: spec.altAnswers ?? [],
+            hint: spec.hint,
+            translation: de,
+            fullSolution: fr
+        )
+        return RuntimeExercise(
+            ref: ref,
+            kind: .textInput(exercise),
+            vocabID: spec.vocab?.first,
+            promptSummary: de,
+            answerSummary: fr
+        )
+    }
+
+    private func errorCorrectionExercise(spec: ExerciseSpec, ref: ExerciseRef) -> RuntimeExercise? {
+        guard let faulty = spec.text,
+              let answer = spec.answer,
+              let distractors = spec.distractors,
+              !distractors.isEmpty
+        else { return nil }
+        var options = ([answer] + distractors).shuffled()
+        options = dedupe(options)
+        guard let correctIndex = options.firstIndex(of: answer) else { return nil }
+        let exercise = MCExercise(
+            instruction: "Dieser Satz enthält einen Fehler. Wähle die richtige Version:",
+            prompt: "✗ \(faulty)",
+            promptDetail: spec.translation,
+            options: options,
+            correctIndex: correctIndex,
+            explanation: spec.hint
+        )
+        return RuntimeExercise(
+            ref: ref,
+            kind: .multipleChoice(exercise),
+            vocabID: spec.vocab?.first,
+            promptSummary: faulty,
+            answerSummary: answer
+        )
     }
 
     private func vocabMC(

@@ -4,6 +4,8 @@ import SwiftUI
 
 struct MCExerciseView: View {
     let exercise: MCExercise
+    /// Im Prüfungsmodus false: die Auswahl wird markiert, aber nicht aufgelöst.
+    var revealsSolution = true
     let onAnswered: (AnswerOutcome) -> Void
 
     @State private var selectedIndex: Int?
@@ -26,12 +28,12 @@ struct MCExerciseView: View {
                                 .font(.body.weight(.medium))
                                 .multilineTextAlignment(.leading)
                             Spacer()
-                            if selectedIndex != nil && index == exercise.correctIndex {
+                            if revealsSolution, selectedIndex != nil, index == exercise.correctIndex {
                                 Image(systemName: "checkmark.circle.fill")
                                     .foregroundStyle(Theme.success)
                             } else if selectedIndex == index {
-                                Image(systemName: "xmark.circle.fill")
-                                    .foregroundStyle(Theme.danger)
+                                Image(systemName: revealsSolution ? "xmark.circle.fill" : "checkmark.circle.fill")
+                                    .foregroundStyle(revealsSolution ? Theme.danger : Theme.accent)
                             }
                         }
                         .padding(14)
@@ -62,6 +64,9 @@ struct MCExerciseView: View {
         guard let selected = selectedIndex else {
             return Color(.secondarySystemGroupedBackground)
         }
+        if !revealsSolution {
+            return index == selected ? Theme.accent.opacity(0.12) : Color(.secondarySystemGroupedBackground)
+        }
         if index == exercise.correctIndex { return Theme.success.opacity(0.12) }
         if index == selected { return Theme.danger.opacity(0.12) }
         return Color(.secondarySystemGroupedBackground)
@@ -69,6 +74,9 @@ struct MCExerciseView: View {
 
     private func optionBorder(_ index: Int) -> Color {
         guard let selected = selectedIndex else { return .clear }
+        if !revealsSolution {
+            return index == selected ? Theme.accent : .clear
+        }
         if index == exercise.correctIndex { return Theme.success }
         if index == selected { return Theme.danger }
         return .clear

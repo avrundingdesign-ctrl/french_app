@@ -34,6 +34,18 @@ struct ProgressSnapshot {
         return (done, lessons.count)
     }
 
+    /// Die Niveau-Prüfung öffnet sich, sobald alle Lektionen des Niveaus abgeschlossen
+    /// sind. Niveaus ohne Lektionen (C1) schaltet das Zertifikat des vorherigen
+    /// Niveaus frei.
+    func isExamUnlocked(_ level: CEFRLevel, earnedLevels: Set<CEFRLevel> = []) -> Bool {
+        let (done, total) = levelProgress(level)
+        if total > 0 { return done == total }
+        guard let previous = CEFRLevel.allCases.filter({ $0 < level }).max() else {
+            return false
+        }
+        return earnedLevels.contains(previous)
+    }
+
     /// Grammatikregeln gelten als behandelt, sobald eine verknüpfte Lektion abgeschlossen ist.
     func isGrammarCovered(_ ruleID: String) -> Bool {
         content.lessons(covering: ruleID).contains { isCompleted($0.id) }

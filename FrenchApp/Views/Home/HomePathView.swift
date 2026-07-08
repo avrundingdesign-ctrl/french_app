@@ -7,8 +7,10 @@ struct HomePathView: View {
     @Query private var progress: [LessonProgress]
     @Query private var reviewStates: [ReviewState]
     @Query private var settingsList: [UserSettings]
+    @Query private var certificates: [EarnedCertificate]
 
     @State private var activeLesson: CourseLesson?
+    @State private var activeExam: ExamDefinition?
     @State private var showReview = false
 
     private let content = ContentStore.shared
@@ -34,6 +36,8 @@ struct HomePathView: View {
                         levelSection(level)
                     }
 
+                    examOnlySection
+
                     phase2Teaser
                 }
                 .padding(.horizontal)
@@ -43,6 +47,9 @@ struct HomePathView: View {
             .navigationTitle("Français")
             .fullScreenCover(item: $activeLesson) { lesson in
                 LessonSessionView(mode: .lesson(lesson))
+            }
+            .fullScreenCover(item: $activeExam) { exam in
+                ExamSessionView(exam: exam)
             }
             .fullScreenCover(isPresented: $showReview) {
                 ReviewSessionView()
@@ -94,7 +101,98 @@ struct HomePathView: View {
             ForEach(content.units.filter { $0.level == level }) { unit in
                 unitCard(unit)
             }
+
+            if let exam = content.examByLevel[level] {
+                examCard(exam)
+            }
         }
+    }
+
+    // MARK: - Niveau-Prüfung
+
+    private var earnedLevels: Set<CEFRLevel> {
+        Set(certificates.compactMap(\.level))
+    }
+
+    /// Prüfungen für Niveaus ohne Lektionen (C1) — am Ende des Pfads.
+    private var examOnlySection: some View {
+        let examOnly = content.exams
+            .filter { !content.levels.contains($0.level) }
+            .sorted { $0.level < $1.level }
+        return VStack(alignment: .leading, spacing: 12) {
+            ForEach(examOnly) { exam in
+                HStack {
+                    LevelBadge(level: exam.level)
+                    Text(exam.level.subtitle)
+                        .font(.headline)
+                    Spacer()
+                }
+                examCard(exam)
+            }
+        }
+    }
+
+    private func examCard(_ exam: ExamDefinition) -> some View {
+        let passed = earnedLevels.contains(exam.level)
+        let unlocked = snapshot.isExamUnlocked(exam.level, earnedLevels: earnedLevels)
+        let color = Theme.levelColor(exam.level)
+
+        return Button {
+            if unlocked {
+                activeExam = exam
+            }
+        } label: {
+            HStack(spacing: 12) {
+                ZStack {
+                    Circle()
+                        .fill(passed ? Theme.success : (unlocked ? color : Color(.systemFill)))
+                        .frame(width: 40, height: 40)
+                    Image(systemName: passed ? "checkmark.seal.fill" : (unlocked ? "seal.fill" : "lock.fill"))
+                        .font(.subheadline)
+                        .foregroundStyle(unlocked || passed ? .white : .secondary)
+                }
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("Niveau-Prüfung \(exam.level.rawValue)")
+                        .font(.body.weight(.semibold))
+                        .foregroundStyle(unlocked ? Color.primary : Color.secondary)
+                    Text(examSubtitle(exam, passed: passed, unlocked: unlocked))
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
+                Spacer()
+                if passed {
+                    Text("Wiederholen")
+                        .font(.caption)
+                        .foregroundStyle(color)
+                } else if unlocked {
+                    Image(systemName: "chevron.right")
+                        .font(.caption)
+                        .foregroundStyle(.tertiary)
+                }
+            }
+            .padding(14)
+            .background(Color(.secondarySystemGroupedBackground), in: RoundedRectangle(cornerRadius: 16))
+            .overlay(
+                RoundedRectangle(cornerRadius: 16)
+                    .strokeBorder(unlocked && !passed ? color.opacity(0.45) : .clear, lineWidth: 1.5)
+            )
+        }
+        .buttonStyle(.plain)
+        .disabled(!unlocked)
+    }
+
+    private func examSubtitle(_ exam: ExamDefinition, passed: Bool, unlocked: Bool) -> String {
+        if passed {
+            return "Bestanden — Zertifikat in deiner Galerie"
+        }
+        if unlocked {
+            return "\(exam.level.examBrand)-Stil · 4 Teile · \(exam.durationMinutes) Minuten"
+        }
+        let (_, total) = snapshot.levelProgress(exam.level)
+        if total == 0, let previous = CEFRLevel.allCases.filter({ $0 < exam.level }).max() {
+            return "Bestehe zuerst die Niveau-Prüfung \(previous.rawValue)"
+        }
+        return "Schließe zuerst alle Lektionen von \(exam.level.rawValue) ab"
     }
 
     private func unitCard(_ unit: CourseUnit) -> some View {

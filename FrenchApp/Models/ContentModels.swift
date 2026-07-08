@@ -7,6 +7,8 @@ enum CEFRLevel: String, Codable, CaseIterable, Identifiable, Comparable {
     case a2 = "A2"
     case b1 = "B1"
     case b2 = "B2"
+    /// C1 hat (noch) keine Lektionen — nur die Niveau-Prüfung im DALF-Stil.
+    case c1 = "C1"
 
     var id: String { rawValue }
 
@@ -16,6 +18,7 @@ enum CEFRLevel: String, Codable, CaseIterable, Identifiable, Comparable {
         case .a2: return 1
         case .b1: return 2
         case .b2: return 3
+        case .c1: return 4
         }
     }
 
@@ -25,7 +28,13 @@ enum CEFRLevel: String, Codable, CaseIterable, Identifiable, Comparable {
         case .a2: return "Grundlagen"
         case .b1: return "Schwelle"
         case .b2: return "Fortgeschritten"
+        case .c1: return "Fachkundig"
         }
+    }
+
+    /// Offizielles Vorbild der Niveau-Prüfung: DELF bis B2, DALF ab C1.
+    var examBrand: String {
+        self >= .c1 ? "DALF" : "DELF"
     }
 
     static func < (lhs: CEFRLevel, rhs: CEFRLevel) -> Bool {
