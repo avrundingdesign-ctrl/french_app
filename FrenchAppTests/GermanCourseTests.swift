@@ -57,10 +57,13 @@ final class GermanCourseTests: XCTestCase {
 
     // MARK: - Kursstruktur
 
-    func testGermanCourseHas24A1Lessons() {
-        XCTAssertEqual(german.orderedLessons.count, 24)
-        XCTAssertEqual(german.levels, [.a1])
+    func testGermanCourseHas48LessonsAcrossA1AndA2() {
+        XCTAssertEqual(german.orderedLessons.count, 48)
+        XCTAssertEqual(german.levels, [.a1, .a2])
         XCTAssertTrue(german.orderedLessons.allSatisfy { $0.id.hasPrefix("de_") })
+        // A1 kommt im Pfad vor A2.
+        XCTAssertTrue(german.orderedLessons.prefix(24).allSatisfy { $0.id.hasPrefix("de_a1_") })
+        XCTAssertTrue(german.orderedLessons.suffix(24).allSatisfy { $0.id.hasPrefix("de_a2_") })
         // Kein Überschneiden mit den Lektions-IDs des Französisch-Kurses.
         let frenchIDs = Set(french.orderedLessons.map(\.id))
         XCTAssertTrue(frenchIDs.isDisjoint(with: german.orderedLessons.map(\.id)))
@@ -76,7 +79,7 @@ final class GermanCourseTests: XCTestCase {
             )
         }
         let progress = try context.fetch(FetchDescriptor<LessonProgress>())
-        XCTAssertEqual(progress.count, 24)
+        XCTAssertEqual(progress.count, german.orderedLessons.count)
 
         let snapshot = ProgressSnapshot(progress: progress, content: german)
         XCTAssertNil(snapshot.nextLesson)
@@ -168,11 +171,27 @@ final class GermanCourseTests: XCTestCase {
 
     // MARK: - Prüfung & Hörtraining
 
-    func testGermanExamBuildsAllQuestions() throws {
-        let exam = try XCTUnwrap(german.examByLevel[.a1])
-        let session = ExamSession(exam: exam, content: german)
-        XCTAssertEqual(session.direction, .german)
-        XCTAssertEqual(session.questions.count, 30, "Alle 30 Fragen müssen baubar sein")
+    func testGermanExamsBuildAllQuestions() throws {
+        for level in [CEFRLevel.a1, .a2] {
+            let exam = try XCTUnwrap(german.examByLevel[level], "\(level.rawValue)-Prüfung fehlt")
+            let session = ExamSession(exam: exam, content: german)
+            XCTAssertEqual(session.direction, .german)
+            XCTAssertEqual(session.questions.count, 30, "\(level.rawValue): alle 30 Fragen müssen baubar sein")
+        }
+    }
+
+    func testMirroredPacksResolveAndPrefixCorrectly() throws {
+        XCTAssertEqual(german.packs.count, 4, "Vier gespiegelte A2-Pakete")
+        for pack in german.packs {
+            XCTAssertTrue(pack.id.hasPrefix("de_pack_"))
+            XCTAssertEqual(pack.level, .a2)
+            for vocabID in pack.vocab {
+                XCTAssertNotNil(german.vocab(vocabID), "\(pack.id): \(vocabID) fehlt")
+            }
+            // SRS-Einschreibung liefe über die de:-Präfix-IDs.
+            let srsIDs = pack.vocab.map { german.srsID(for: $0) }
+            XCTAssertTrue(srsIDs.allSatisfy { $0.hasPrefix("de:") })
+        }
     }
 
     func testGermanListeningPoolAndPairs() {

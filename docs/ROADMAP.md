@@ -57,11 +57,21 @@ und 24 Minimalpaaren, SRS-Trennung per `de:`-Präfix, String-Katalog mit
 
 ### Stufe 5b — Vollausbau
 
-- Deutsch-Kurs A2→B2 (72 weitere Lektionen), Grammatik B1/B2
-  (Adjektivdeklination, Passiv, Konjunktiv II, Nebensätze …)
-- Prüfungen im Goethe-/telc-Stil, Zertifikate pro Richtung
-- Wortschatz-Pakete gespiegelt (Notizen/Untertitel auf Französisch)
+**Stand 2026-07-10: A2-Tranche umgesetzt** — 24 weitere Lektionen
+(Dativ, Wechselpräpositionen, Pronomen Akk./Dat., Komparativ/Superlativ,
+Ordinalzahlen, Futur, Reflexivverben, weil/dass/wenn-Nebensätze,
+Modalverben-Präteritum), 18 A2-Grammatikregeln auf Französisch,
+30 neue Verben (inkl. Reflexive „sich waschen" und Futur im
+GermanConjugator), Goethe-Stil-A2-Prüfung, 4 gespiegelte A2-Pakete.
+
+Noch offen in 5b:
+- Deutsch-Kurs B1→B2 (48 weitere Lektionen), Grammatik B1/B2
+  (Adjektivdeklination, Passiv, Konjunktiv II, Relativsätze, Genitiv …)
+  — braucht Konjugator-Ausbau (Präteritum aller Verben, Konjunktiv II,
+  Plusquamperfekt)
+- Prüfungen B1/B2 im Goethe-Stil
 - Vertiefungskapitel für die DE-Richtung
+- Restliche UI-Übersetzungen ins Französische
 
 **Größter Aufwand:** Content (Kurs, Grammatik, Prüfungen auf Französisch);
 Code-Anteil überschaubar (Richtungslogik, Lokalisierung, Konjugator).

@@ -5,13 +5,16 @@ import Foundation
 /// Stamm generiert; starke, gemischte und unregelmäßige Verben liefern
 /// Overrides aus verbs_de.json. Alles selbst verfasst — keine GPL-Quellen.
 ///
-/// A1-Umfang: Präsens, Perfekt, Präteritum (nur sein/haben/werden und
-/// Modalverben, per Datentabelle), Imperativ (du/ihr/Sie).
+/// A1: Präsens, Perfekt, Präteritum (nur sein/haben/werden und Modalverben,
+/// per Datentabelle), Imperativ (du/ihr/Sie).
+/// A2: Futur (werden + Infinitiv) und Reflexivverben ("sich waschen" →
+/// "wasche mich"), erkannt am Infinitiv-Präfix "sich ".
 struct GermanConjugator {
     enum Tense: String, CaseIterable, Identifiable {
         case praesens
         case perfekt
         case praeteritum
+        case futur
         case imperativ
 
         var id: String { rawValue }
@@ -21,10 +24,14 @@ struct GermanConjugator {
             case .praesens: return String(localized: "Präsens")
             case .perfekt: return String(localized: "Perfekt")
             case .praeteritum: return String(localized: "Präteritum")
+            case .futur: return String(localized: "Futur")
             case .imperativ: return String(localized: "Imperativ")
             }
         }
     }
+
+    /// Reflexivpronomen (Akkusativ) je Person: wasche mich, wäschst dich …
+    static let reflexivePronouns = ["mich", "dich", "sich", "uns", "euch", "sich"]
 
     static let tablePronouns = ["ich", "du", "er/sie/es", "wir", "ihr", "sie/Sie"]
     /// Imperativ existiert nur für du (1), ihr (4) und Sie (5).
@@ -48,27 +55,43 @@ struct GermanConjugator {
     // MARK: - Öffentliche API (Spiegel des französischen Conjugators)
 
     /// Finite Form ohne Subjektpronomen; bei trennbaren Verben inklusive
-    /// nachgestelltem Präfix ("stehe auf"). nil, wenn das Tempus für dieses
-    /// Verb nicht verfügbar ist (z. B. Präteritum außerhalb der Tabelle).
+    /// nachgestelltem Präfix ("stehe auf"), bei Reflexiven inklusive Pronomen
+    /// ("wasche mich"). nil, wenn das Tempus für dieses Verb nicht verfügbar
+    /// ist (z. B. Präteritum außerhalb der Tabelle).
     func form(of verb: GermanVerbEntry, tense: Tense, person: Int) -> String? {
         guard (0...5).contains(person) else { return nil }
+        let reflexive = isReflexive(verb) ? Self.reflexivePronouns[person] : nil
+
         switch tense {
         case .praesens:
             guard let finite = presentFinite(verb, person: person) else { return nil }
-            return withPrefix(finite, verb: verb)
+            // wasche mich · ziehe mich an
+            let withReflexive = reflexive.map { "\(finite) \($0)" } ?? finite
+            return withPrefix(withReflexive, verb: verb)
         case .perfekt:
             guard let participle = participle(of: verb),
                   let aux = auxiliaryForm(of: verb, person: person)
             else { return nil }
+            // habe mich gewaschen
+            if let reflexive { return "\(aux) \(reflexive) \(participle)" }
             return "\(aux) \(participle)"
         case .praeteritum:
             guard let forms = verb.praeteritum, forms.count == 6 else { return nil }
-            return withPrefix(forms[person], verb: verb)
+            let withReflexive = reflexive.map { "\(forms[person]) \($0)" } ?? forms[person]
+            return withPrefix(withReflexive, verb: verb)
+        case .futur:
+            // werde arbeiten · werde mich waschen · werde aufstehen
+            guard let werden = werdenForm(person: person) else { return nil }
+            let infinitive = bareInfinitive(verb)
+            if let reflexive { return "\(werden) \(reflexive) \(infinitive)" }
+            return "\(werden) \(infinitive)"
         case .imperativ:
             guard Self.imperativePersons.contains(person),
                   let finite = imperativeFinite(verb, person: person)
             else { return nil }
-            return withPrefix(finite, verb: verb)
+            // wasch dich! · waschen Sie sich! · zieh dich an!
+            let withReflexive = reflexive.map { "\(finite) \($0)" } ?? finite
+            return withPrefix(withReflexive, verb: verb)
         }
     }
 
@@ -95,12 +118,31 @@ struct GermanConjugator {
 
     // MARK: - Stammlogik
 
-    /// Infinitiv ohne trennbares Präfix ("aufstehen" → "stehen").
+    /// "sich waschen" → reflexiv; Pronomen kommt zur Laufzeit dazu.
+    private func isReflexive(_ verb: GermanVerbEntry) -> Bool {
+        verb.infinitive.hasPrefix("sich ")
+    }
+
+    /// Infinitiv ohne "sich " ("sich waschen" → "waschen").
+    private func bareInfinitive(_ verb: GermanVerbEntry) -> String {
+        isReflexive(verb) ? String(verb.infinitive.dropFirst(5)) : verb.infinitive
+    }
+
+    /// Infinitiv ohne "sich " und ohne trennbares Präfix ("sich anziehen" → "ziehen").
     private func baseInfinitive(_ verb: GermanVerbEntry) -> String {
-        guard let prefix = verb.separablePrefix, verb.infinitive.hasPrefix(prefix) else {
-            return verb.infinitive
+        let bare = bareInfinitive(verb)
+        guard let prefix = verb.separablePrefix, bare.hasPrefix(prefix) else {
+            return bare
         }
-        return String(verb.infinitive.dropFirst(prefix.count))
+        return String(bare.dropFirst(prefix.count))
+    }
+
+    /// Präsens von "werden" fürs Futur — aus der eigenen Verbtabelle.
+    private func werdenForm(person: Int) -> String? {
+        guard let werden = byInfinitive["werden"], let forms = werden.present, forms.count == 6 else {
+            return nil
+        }
+        return forms[person]
     }
 
     private func stem(ofBase base: String) -> String {
@@ -128,7 +170,7 @@ struct GermanConjugator {
     }
 
     private func withPrefix(_ finite: String, verb: GermanVerbEntry) -> String {
-        guard let prefix = verb.separablePrefix, verb.infinitive.hasPrefix(prefix) else {
+        guard let prefix = verb.separablePrefix, bareInfinitive(verb).hasPrefix(prefix) else {
             return finite
         }
         return "\(finite) \(prefix)"
@@ -191,7 +233,7 @@ struct GermanConjugator {
         } else {
             core = "ge" + stem + ending                        // gekauft, gearbeitet
         }
-        if let prefix = verb.separablePrefix, verb.infinitive.hasPrefix(prefix) {
+        if let prefix = verb.separablePrefix, bareInfinitive(verb).hasPrefix(prefix) {
             return prefix + core                               // eingekauft
         }
         return core

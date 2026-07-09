@@ -2153,6 +2153,2023 @@
           ]
         }
       ]
+    },
+    {
+      "id": "de_a2_u1",
+      "title": "Zu Hause — Chez soi",
+      "level": "A2",
+      "icon": "house",
+      "lessons": [
+        {
+          "id": "de_a2_u1_l1",
+          "title": "Die Wohnung — Le logement",
+          "newVocab": [
+            "v_lappartement",
+            "v_la_chambre",
+            "v_la_cuisine",
+            "v_la_salle_de_bains",
+            "v_le_salon",
+            "v_la_fenetre",
+            "v_la_porte",
+            "v_le_lit"
+          ],
+          "exercises": [
+            {
+              "type": "vocabIntro",
+              "vocab": [
+                "v_lappartement",
+                "v_la_chambre",
+                "v_la_cuisine",
+                "v_la_salle_de_bains"
+              ]
+            },
+            {
+              "type": "vocabIntro",
+              "vocab": [
+                "v_le_salon",
+                "v_la_fenetre",
+                "v_la_porte",
+                "v_le_lit"
+              ]
+            },
+            {
+              "type": "matching"
+            },
+            {
+              "type": "cloze",
+              "text": "Ich helfe ___ Mann.",
+              "answer": "dem",
+              "translation": "J'aide l'homme. (datif !)",
+              "choices": [
+                "dem",
+                "den",
+                "der"
+              ],
+              "hint": "helfen + datif"
+            },
+            {
+              "type": "cloze",
+              "text": "Das Auto gehört ___ Frau.",
+              "answer": "der",
+              "translation": "La voiture appartient à la femme.",
+              "choices": [
+                "der",
+                "die",
+                "dem"
+              ]
+            },
+            {
+              "type": "conjugation",
+              "verb": "gehören",
+              "person": 2,
+              "translation": "il/elle appartient"
+            },
+            {
+              "type": "wordOrder",
+              "de": "Die Wohnung gefällt mir sehr.",
+              "fr": "L'appartement me plaît beaucoup."
+            },
+            {
+              "type": "translate",
+              "fr": "La cuisine est petite.",
+              "de": "Die Küche ist klein."
+            }
+          ],
+          "grammar": [
+            "de_g_dativ"
+          ]
+        },
+        {
+          "id": "de_a2_u1_l2",
+          "title": "Wo ist der Schlüssel? — Où est la clé ?",
+          "newVocab": [
+            "v_sur",
+            "v_sous",
+            "v_devant",
+            "v_derriere",
+            "v_entre",
+            "v_a_cote_de",
+            "v_chez",
+            "v_la_cle"
+          ],
+          "exercises": [
+            {
+              "type": "vocabIntro",
+              "vocab": [
+                "v_sur",
+                "v_sous",
+                "v_devant",
+                "v_derriere"
+              ]
+            },
+            {
+              "type": "vocabIntro",
+              "vocab": [
+                "v_entre",
+                "v_a_cote_de",
+                "v_chez",
+                "v_la_cle"
+              ]
+            },
+            {
+              "type": "cloze",
+              "text": "Der Schlüssel liegt auf ___ Tisch.",
+              "answer": "dem",
+              "translation": "La clé est sur la table. (position → datif)",
+              "choices": [
+                "dem",
+                "den",
+                "das"
+              ],
+              "hint": "wo? → datif"
+            },
+            {
+              "type": "cloze",
+              "text": "Ich lege den Schlüssel auf ___ Tisch.",
+              "answer": "den",
+              "translation": "Je pose la clé sur la table. (direction → accusatif)",
+              "choices": [
+                "den",
+                "dem",
+                "der"
+              ],
+              "hint": "wohin? → accusatif"
+            },
+            {
+              "type": "cloze",
+              "text": "Die Katze schläft ___ dem Sofa.",
+              "answer": "auf",
+              "translation": "Le chat dort sur le canapé.",
+              "choices": [
+                "auf",
+                "in",
+                "an"
+              ]
+            },
+            {
+              "type": "mcSentence",
+              "question": "« Ich gehe ins Kino » — Warum Akkusativ?",
+              "answer": "Richtung (wohin?)",
+              "distractors": [
+                "Position (wo?)",
+                "Zeit (wann?)"
+              ],
+              "translation": "Pourquoi l'accusatif dans « ins Kino » ?"
+            },
+            {
+              "type": "wordOrder",
+              "de": "Das Bett steht neben der Tür.",
+              "fr": "Le lit est à côté de la porte."
+            },
+            {
+              "type": "errorCorrection",
+              "text": "Ich bin ins Kino.",
+              "answer": "Ich bin im Kino.",
+              "distractors": [
+                "Ich bin ans Kino.",
+                "Ich bin das Kino."
+              ],
+              "translation": "Je suis au cinéma. (position → datif)",
+              "hint": "sein = position → im"
+            }
+          ],
+          "grammar": [
+            "de_g_wechselpraepositionen"
+          ]
+        },
+        {
+          "id": "de_a2_u1_l3",
+          "title": "Früher — Avant",
+          "newVocab": [
+            "v_avant",
+            "v_la_vie",
+            "v_lenfance",
+            "v_souvent",
+            "v_toujours",
+            "v_maintenant",
+            "v_cetait"
+          ],
+          "exercises": [
+            {
+              "type": "vocabIntro",
+              "vocab": [
+                "v_avant",
+                "v_la_vie",
+                "v_lenfance",
+                "v_souvent"
+              ]
+            },
+            {
+              "type": "vocabIntro",
+              "vocab": [
+                "v_toujours",
+                "v_maintenant",
+                "v_cetait"
+              ]
+            },
+            {
+              "type": "conjugation",
+              "verb": "können",
+              "person": 0,
+              "translation": "je pouvais",
+              "tense": "praeteritum"
+            },
+            {
+              "type": "conjugation",
+              "verb": "wollen",
+              "person": 0,
+              "translation": "je voulais",
+              "tense": "praeteritum"
+            },
+            {
+              "type": "conjugation",
+              "verb": "müssen",
+              "person": 3,
+              "translation": "nous devions",
+              "tense": "praeteritum"
+            },
+            {
+              "type": "cloze",
+              "text": "Als Kind ___ ich Pilot werden.",
+              "answer": "wollte",
+              "translation": "Enfant, je voulais devenir pilote.",
+              "choices": [
+                "wollte",
+                "will",
+                "wollen"
+              ],
+              "hint": "prétérit : wollte"
+            },
+            {
+              "type": "wordOrder",
+              "de": "Früher konnte ich gut schwimmen.",
+              "fr": "Avant, je savais bien nager."
+            },
+            {
+              "type": "translate",
+              "fr": "Nous devions attendre longtemps.",
+              "de": "Wir mussten lange warten."
+            }
+          ],
+          "grammar": [
+            "de_g_praeteritum_modal"
+          ]
+        },
+        {
+          "id": "de_a2_u1_l4",
+          "title": "Auf dem Land — À la campagne",
+          "newVocab": [
+            "v_le_village",
+            "v_la_campagne",
+            "v_calme",
+            "v_different",
+            "v_la_tele",
+            "v_le_jardin",
+            "v_jouer"
+          ],
+          "exercises": [
+            {
+              "type": "vocabIntro",
+              "vocab": [
+                "v_le_village",
+                "v_la_campagne",
+                "v_calme",
+                "v_different"
+              ]
+            },
+            {
+              "type": "vocabIntro",
+              "vocab": [
+                "v_la_tele",
+                "v_le_jardin",
+                "v_jouer"
+              ]
+            },
+            {
+              "type": "cloze",
+              "text": "Ich fahre ___ dem Bus.",
+              "answer": "mit",
+              "translation": "Je prends le bus. (mit + datif)",
+              "choices": [
+                "mit",
+                "für",
+                "ohne"
+              ]
+            },
+            {
+              "type": "cloze",
+              "text": "Sie wohnt bei ___ Mutter.",
+              "answer": "ihrer",
+              "translation": "Elle habite chez sa mère.",
+              "choices": [
+                "ihrer",
+                "ihre",
+                "ihrem"
+              ],
+              "hint": "bei + datif, féminin → ihrer"
+            },
+            {
+              "type": "cloze",
+              "text": "Wir gehen ___ Bahnhof.",
+              "answer": "zum",
+              "translation": "Nous allons à la gare.",
+              "choices": [
+                "zum",
+                "zur",
+                "zu"
+              ],
+              "hint": "zu dem → zum"
+            },
+            {
+              "type": "wordOrder",
+              "de": "Er kommt aus der Schweiz.",
+              "fr": "Il vient de Suisse."
+            },
+            {
+              "type": "translate",
+              "fr": "Le village est calme.",
+              "de": "Das Dorf ist ruhig."
+            },
+            {
+              "type": "matching"
+            }
+          ],
+          "grammar": [
+            "de_g_dativ_praepositionen"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "de_a2_u2",
+      "title": "Einkaufen — Les courses",
+      "level": "A2",
+      "icon": "cart",
+      "lessons": [
+        {
+          "id": "de_a2_u2_l1",
+          "title": "Im Geschäft — Au magasin",
+          "newVocab": [
+            "v_le_magasin",
+            "v_le_marche",
+            "v_le_prix",
+            "v_cher",
+            "v_couter",
+            "v_largent",
+            "v_vendre",
+            "v_payer",
+            "v_le_client"
+          ],
+          "exercises": [
+            {
+              "type": "vocabIntro",
+              "vocab": [
+                "v_le_magasin",
+                "v_le_marche",
+                "v_le_prix",
+                "v_cher",
+                "v_couter"
+              ]
+            },
+            {
+              "type": "vocabIntro",
+              "vocab": [
+                "v_largent",
+                "v_vendre",
+                "v_payer",
+                "v_le_client"
+              ]
+            },
+            {
+              "type": "cloze",
+              "text": "Hier kann ___ gut einkaufen.",
+              "answer": "man",
+              "translation": "Ici, on peut bien faire ses courses.",
+              "choices": [
+                "man",
+                "Mann",
+                "wir"
+              ],
+              "hint": "man = on"
+            },
+            {
+              "type": "cloze",
+              "text": "Wie sagt ___ das auf Deutsch?",
+              "answer": "man",
+              "translation": "Comment dit-on ça en allemand ?",
+              "choices": [
+                "man",
+                "er",
+                "ich"
+              ]
+            },
+            {
+              "type": "mcSentence",
+              "question": "« Hier darf man nicht rauchen » bedeutet:",
+              "answer": "Ici, on n'a pas le droit de fumer.",
+              "distractors": [
+                "Ici, un homme ne fume pas.",
+                "Ici, personne ne fume jamais."
+              ],
+              "translation": "Que signifie cette phrase ?"
+            },
+            {
+              "type": "wordOrder",
+              "de": "Man spricht hier auch Französisch.",
+              "fr": "Ici, on parle aussi français."
+            },
+            {
+              "type": "translate",
+              "fr": "Combien coûte le pain ?",
+              "de": "Wie viel kostet das Brot?"
+            },
+            {
+              "type": "matching"
+            }
+          ],
+          "grammar": [
+            "de_g_man"
+          ]
+        },
+        {
+          "id": "de_a2_u2_l2",
+          "title": "Größer, besser — Comparer",
+          "newVocab": [
+            "v_les_vetements",
+            "v_le_pantalon",
+            "v_la_robe",
+            "v_la_chemise",
+            "v_les_chaussures",
+            "v_la_veste",
+            "v_porter",
+            "v_essayer",
+            "v_la_taille"
+          ],
+          "exercises": [
+            {
+              "type": "vocabIntro",
+              "vocab": [
+                "v_les_vetements",
+                "v_le_pantalon",
+                "v_la_robe",
+                "v_la_chemise",
+                "v_les_chaussures"
+              ]
+            },
+            {
+              "type": "vocabIntro",
+              "vocab": [
+                "v_la_veste",
+                "v_porter",
+                "v_essayer",
+                "v_la_taille"
+              ]
+            },
+            {
+              "type": "cloze",
+              "text": "Berlin ist ___ als Lyon.",
+              "answer": "größer",
+              "translation": "Berlin est plus grande que Lyon.",
+              "choices": [
+                "größer",
+                "mehr groß",
+                "großer"
+              ],
+              "hint": "jamais « mehr » devant l'adjectif"
+            },
+            {
+              "type": "cloze",
+              "text": "Ich trinke ___ Tee als Kaffee.",
+              "answer": "lieber",
+              "translation": "Je préfère le thé au café.",
+              "choices": [
+                "lieber",
+                "gerner",
+                "mehr gern"
+              ],
+              "hint": "gern → lieber"
+            },
+            {
+              "type": "cloze",
+              "text": "Diese Jacke ist so teuer ___ die Hose.",
+              "answer": "wie",
+              "translation": "Cette veste est aussi chère que le pantalon.",
+              "choices": [
+                "wie",
+                "als",
+                "dass"
+              ],
+              "hint": "égalité : so … wie"
+            },
+            {
+              "type": "mcSentence",
+              "question": "gut — besser — ?",
+              "answer": "am besten",
+              "distractors": [
+                "am gutesten",
+                "am besseren"
+              ],
+              "translation": "Le superlatif de « gut » ?"
+            },
+            {
+              "type": "conjugation",
+              "verb": "anprobieren",
+              "person": 0,
+              "translation": "j'essaie (un vêtement)"
+            },
+            {
+              "type": "errorCorrection",
+              "text": "Das Kleid ist mehr schön als die Hose.",
+              "answer": "Das Kleid ist schöner als die Hose.",
+              "distractors": [
+                "Das Kleid ist schön als die Hose.",
+                "Das Kleid ist am schöner als die Hose."
+              ],
+              "translation": "La robe est plus belle que le pantalon."
+            }
+          ],
+          "grammar": [
+            "de_g_komparativ"
+          ]
+        },
+        {
+          "id": "de_a2_u2_l3",
+          "title": "Der Erste, bitte! — Les ordinaux",
+          "newVocab": [
+            "v_premier",
+            "v_deuxieme",
+            "v_troisieme",
+            "v_dernier",
+            "v_le_kilo",
+            "v_la_bouteille",
+            "v_beaucoup_de",
+            "v_un_peu_de",
+            "v_trop"
+          ],
+          "exercises": [
+            {
+              "type": "vocabIntro",
+              "vocab": [
+                "v_premier",
+                "v_deuxieme",
+                "v_troisieme",
+                "v_dernier"
+              ]
+            },
+            {
+              "type": "vocabIntro",
+              "vocab": [
+                "v_le_kilo",
+                "v_la_bouteille",
+                "v_beaucoup_de",
+                "v_un_peu_de",
+                "v_trop"
+              ]
+            },
+            {
+              "type": "cloze",
+              "text": "Heute ist der ___ Mai.",
+              "answer": "dritte",
+              "translation": "Nous sommes le 3 mai.",
+              "choices": [
+                "dritte",
+                "dreite",
+                "drei"
+              ],
+              "hint": "3e = dritte (irrégulier)"
+            },
+            {
+              "type": "cloze",
+              "text": "Mein Geburtstag ist am ___ Juni.",
+              "answer": "ersten",
+              "translation": "Mon anniversaire est le premier juin.",
+              "choices": [
+                "ersten",
+                "erste",
+                "einsten"
+              ],
+              "hint": "am + ordinal + n"
+            },
+            {
+              "type": "cloze",
+              "text": "Dieser Weg ist am ___.",
+              "answer": "kürzesten",
+              "translation": "Ce chemin est le plus court.",
+              "choices": [
+                "kürzesten",
+                "kürzer",
+                "kurzesten"
+              ]
+            },
+            {
+              "type": "mcSentence",
+              "question": "Wie sagt man « le septième »?",
+              "answer": "der siebte",
+              "distractors": [
+                "der siebente",
+                "der siebenste"
+              ],
+              "translation": "« le septième » en allemand"
+            },
+            {
+              "type": "wordOrder",
+              "de": "Das ist das beste Restaurant der Stadt.",
+              "fr": "C'est le meilleur restaurant de la ville."
+            },
+            {
+              "type": "translate",
+              "fr": "Une bouteille d'eau, s'il vous plaît.",
+              "de": "Eine Flasche Wasser, bitte."
+            }
+          ],
+          "grammar": [
+            "de_g_ordinalzahlen",
+            "de_g_superlativ"
+          ]
+        },
+        {
+          "id": "de_a2_u2_l4",
+          "title": "Ich werde … — Le futur",
+          "newVocab": [
+            "v_bientot",
+            "v_lannee_prochaine",
+            "v_le_mois",
+            "v_lannee",
+            "v_apres",
+            "v_plus_tard",
+            "v_lavenir"
+          ],
+          "exercises": [
+            {
+              "type": "vocabIntro",
+              "vocab": [
+                "v_bientot",
+                "v_lannee_prochaine",
+                "v_le_mois",
+                "v_lannee"
+              ]
+            },
+            {
+              "type": "vocabIntro",
+              "vocab": [
+                "v_apres",
+                "v_plus_tard",
+                "v_lavenir"
+              ]
+            },
+            {
+              "type": "conjugation",
+              "verb": "lernen",
+              "person": 0,
+              "translation": "j'apprendrai",
+              "tense": "futur"
+            },
+            {
+              "type": "conjugation",
+              "verb": "kaufen",
+              "person": 3,
+              "translation": "nous achèterons",
+              "tense": "futur"
+            },
+            {
+              "type": "conjugation",
+              "verb": "kommen",
+              "person": 1,
+              "translation": "tu viendras",
+              "tense": "futur"
+            },
+            {
+              "type": "cloze",
+              "text": "Ich werde dich morgen ___.",
+              "answer": "anrufen",
+              "translation": "Je t'appellerai demain. (infinitif à la fin)",
+              "choices": [
+                "anrufen",
+                "rufe an",
+                "anrufe"
+              ]
+            },
+            {
+              "type": "wordOrder",
+              "de": "Wir werden ein Haus kaufen.",
+              "fr": "Nous achèterons une maison."
+            },
+            {
+              "type": "errorCorrection",
+              "text": "Ich werde gehe nach Berlin.",
+              "answer": "Ich werde nach Berlin gehen.",
+              "distractors": [
+                "Ich werde nach Berlin gehe.",
+                "Ich gehe werde nach Berlin."
+              ],
+              "translation": "J'irai à Berlin.",
+              "hint": "werden + infinitif à la fin"
+            }
+          ],
+          "grammar": [
+            "de_g_futur"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "de_a2_u3",
+      "title": "Gesund bleiben — La santé",
+      "level": "A2",
+      "icon": "heart",
+      "lessons": [
+        {
+          "id": "de_a2_u3_l1",
+          "title": "Der Körper — Le corps",
+          "newVocab": [
+            "v_le_corps",
+            "v_la_tete",
+            "v_le_ventre",
+            "v_le_dos",
+            "v_la_main",
+            "v_le_pied",
+            "v_le_bras",
+            "v_la_jambe"
+          ],
+          "exercises": [
+            {
+              "type": "vocabIntro",
+              "vocab": [
+                "v_le_corps",
+                "v_la_tete",
+                "v_le_ventre",
+                "v_le_dos"
+              ]
+            },
+            {
+              "type": "vocabIntro",
+              "vocab": [
+                "v_la_main",
+                "v_le_pied",
+                "v_le_bras",
+                "v_la_jambe"
+              ]
+            },
+            {
+              "type": "matching"
+            },
+            {
+              "type": "conjugation",
+              "verb": "wehtun",
+              "person": 2,
+              "translation": "il/elle fait mal"
+            },
+            {
+              "type": "cloze",
+              "text": "Mein Kopf tut ___.",
+              "answer": "weh",
+              "translation": "J'ai mal à la tête. (littéralement : ma tête fait mal)",
+              "choices": [
+                "weh",
+                "schmerz",
+                "leid"
+              ]
+            },
+            {
+              "type": "wordOrder",
+              "de": "Mein Rücken tut heute weh.",
+              "fr": "Mon dos me fait mal aujourd'hui."
+            },
+            {
+              "type": "translate",
+              "fr": "La main est petite.",
+              "de": "Die Hand ist klein."
+            },
+            {
+              "type": "vocabProd",
+              "vocab": [
+                "v_la_tete",
+                "v_la_main",
+                "v_le_pied"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "de_a2_u3_l2",
+          "title": "Beim Arzt — Chez le médecin",
+          "newVocab": [
+            "v_le_medecin",
+            "v_malade",
+            "v_avoir_mal_a",
+            "v_le_rendez_vous",
+            "v_la_pharmacie",
+            "v_le_medicament",
+            "v_la_sante",
+            "v_aller_mieux"
+          ],
+          "exercises": [
+            {
+              "type": "vocabIntro",
+              "vocab": [
+                "v_le_medecin",
+                "v_malade",
+                "v_avoir_mal_a",
+                "v_le_rendez_vous"
+              ]
+            },
+            {
+              "type": "vocabIntro",
+              "vocab": [
+                "v_la_pharmacie",
+                "v_le_medicament",
+                "v_la_sante",
+                "v_aller_mieux"
+              ]
+            },
+            {
+              "type": "cloze",
+              "text": "Kannst du ___ helfen?",
+              "answer": "mir",
+              "translation": "Peux-tu m'aider ? (helfen + datif)",
+              "choices": [
+                "mir",
+                "mich",
+                "ich"
+              ]
+            },
+            {
+              "type": "cloze",
+              "text": "Wie geht es ___? — Danke, gut!",
+              "answer": "Ihnen",
+              "translation": "Comment allez-vous ? (datif de politesse)",
+              "choices": [
+                "Ihnen",
+                "Sie",
+                "Ihr"
+              ]
+            },
+            {
+              "type": "cloze",
+              "text": "Das Geschenk gefällt ___.",
+              "answer": "ihr",
+              "translation": "Le cadeau lui plaît (à elle).",
+              "choices": [
+                "ihr",
+                "ihm",
+                "sie"
+              ],
+              "hint": "à elle → ihr"
+            },
+            {
+              "type": "mcSentence",
+              "question": "« Je lui donne le livre » (à lui):",
+              "answer": "Ich gebe ihm das Buch.",
+              "distractors": [
+                "Ich gebe ihn das Buch.",
+                "Ich gebe er das Buch."
+              ],
+              "translation": "Comment traduire ?"
+            },
+            {
+              "type": "wordOrder",
+              "de": "Der Arzt gibt mir ein Medikament.",
+              "fr": "Le médecin me donne un médicament."
+            },
+            {
+              "type": "translate",
+              "fr": "J'ai un rendez-vous chez le médecin.",
+              "de": "Ich habe einen Termin beim Arzt."
+            }
+          ],
+          "grammar": [
+            "de_g_pronomen_dativ"
+          ]
+        },
+        {
+          "id": "de_a2_u3_l3",
+          "title": "Sich waschen — Les réfléchis",
+          "newVocab": [
+            "v_se_lever",
+            "v_se_coucher",
+            "v_se_laver",
+            "v_shabiller",
+            "v_se_reposer"
+          ],
+          "exercises": [
+            {
+              "type": "vocabIntro",
+              "vocab": [
+                "v_se_lever",
+                "v_se_coucher",
+                "v_se_laver",
+                "v_shabiller",
+                "v_se_reposer"
+              ]
+            },
+            {
+              "type": "conjugation",
+              "verb": "sich waschen",
+              "person": 0,
+              "translation": "je me lave"
+            },
+            {
+              "type": "conjugation",
+              "verb": "sich waschen",
+              "person": 1,
+              "translation": "tu te laves"
+            },
+            {
+              "type": "conjugation",
+              "verb": "sich anziehen",
+              "person": 0,
+              "translation": "je m'habille"
+            },
+            {
+              "type": "conjugation",
+              "verb": "sich ausruhen",
+              "person": 3,
+              "translation": "nous nous reposons"
+            },
+            {
+              "type": "cloze",
+              "text": "Er freut ___ auf das Wochenende.",
+              "answer": "sich",
+              "translation": "Il se réjouit du week-end.",
+              "choices": [
+                "sich",
+                "ihm",
+                "er"
+              ]
+            },
+            {
+              "type": "wordOrder",
+              "de": "Ich wasche mich am Morgen.",
+              "fr": "Je me lave le matin."
+            },
+            {
+              "type": "errorCorrection",
+              "text": "Ich mich wasche am Morgen.",
+              "answer": "Ich wasche mich am Morgen.",
+              "distractors": [
+                "Ich wasche am Morgen mich.",
+                "Mich wasche ich am Morgen."
+              ],
+              "translation": "Je me lave le matin.",
+              "hint": "pronom réfléchi après le verbe"
+            }
+          ],
+          "grammar": [
+            "de_g_reflexiv"
+          ]
+        },
+        {
+          "id": "de_a2_u3_l4",
+          "title": "Der Tagesablauf — La journée",
+          "newVocab": [
+            "v_se_reveiller",
+            "v_se_doucher",
+            "v_tot",
+            "v_tard",
+            "v_dhabitude",
+            "v_ensuite",
+            "v_le_petit_dejeuner"
+          ],
+          "exercises": [
+            {
+              "type": "vocabIntro",
+              "vocab": [
+                "v_se_reveiller",
+                "v_se_doucher",
+                "v_tot",
+                "v_tard"
+              ]
+            },
+            {
+              "type": "vocabIntro",
+              "vocab": [
+                "v_dhabitude",
+                "v_ensuite",
+                "v_le_petit_dejeuner"
+              ]
+            },
+            {
+              "type": "conjugation",
+              "verb": "aufwachen",
+              "person": 0,
+              "translation": "je me réveille"
+            },
+            {
+              "type": "conjugation",
+              "verb": "sich beeilen",
+              "person": 1,
+              "translation": "tu te dépêches"
+            },
+            {
+              "type": "cloze",
+              "text": "Der Kurs beginnt ___ neun Uhr.",
+              "answer": "um",
+              "translation": "Le cours commence à neuf heures.",
+              "choices": [
+                "um",
+                "am",
+                "im"
+              ]
+            },
+            {
+              "type": "cloze",
+              "text": "___ Samstag gehen wir einkaufen.",
+              "answer": "Am",
+              "translation": "Samedi, nous faisons les courses.",
+              "choices": [
+                "Am",
+                "Um",
+                "Im"
+              ]
+            },
+            {
+              "type": "cloze",
+              "text": "___ Sommer fahren wir ans Meer.",
+              "answer": "Im",
+              "translation": "En été, nous allons à la mer.",
+              "choices": [
+                "Im",
+                "Am",
+                "Um"
+              ]
+            },
+            {
+              "type": "wordOrder",
+              "de": "Ich dusche mich immer am Morgen.",
+              "fr": "Je me douche toujours le matin."
+            },
+            {
+              "type": "translate",
+              "fr": "D'habitude, je me lève tôt.",
+              "de": "Normalerweise stehe ich früh auf.",
+              "altAnswers": [
+                "Gewöhnlich stehe ich früh auf."
+              ]
+            }
+          ],
+          "grammar": [
+            "de_g_temporal"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "de_a2_u4",
+      "title": "Freizeit — Le temps libre",
+      "level": "A2",
+      "icon": "gamecontroller",
+      "lessons": [
+        {
+          "id": "de_a2_u4_l1",
+          "title": "Hobbys — Les loisirs",
+          "newVocab": [
+            "v_lire",
+            "v_ecrire",
+            "v_le_livre",
+            "v_le_film",
+            "v_la_plage",
+            "v_nager",
+            "v_adorer",
+            "v_le_jeu"
+          ],
+          "exercises": [
+            {
+              "type": "vocabIntro",
+              "vocab": [
+                "v_lire",
+                "v_ecrire",
+                "v_le_livre",
+                "v_le_film"
+              ]
+            },
+            {
+              "type": "vocabIntro",
+              "vocab": [
+                "v_la_plage",
+                "v_nager",
+                "v_adorer",
+                "v_le_jeu"
+              ]
+            },
+            {
+              "type": "cloze",
+              "text": "Ich bin müde, ___ ich arbeite weiter.",
+              "answer": "aber",
+              "translation": "Je suis fatigué, mais je continue à travailler.",
+              "choices": [
+                "aber",
+                "weil",
+                "dass"
+              ],
+              "hint": "aber : position zéro"
+            },
+            {
+              "type": "cloze",
+              "text": "Er bleibt zu Hause, ___ er ist krank.",
+              "answer": "denn",
+              "translation": "Il reste à la maison, car il est malade.",
+              "choices": [
+                "denn",
+                "weil",
+                "wenn"
+              ],
+              "hint": "denn : le verbe reste en 2e position"
+            },
+            {
+              "type": "mcSentence",
+              "question": "Nach « denn » steht das Verb:",
+              "answer": "an zweiter Position",
+              "distractors": [
+                "am Ende",
+                "am Anfang"
+              ],
+              "translation": "Où va le verbe après « denn » ?"
+            },
+            {
+              "type": "wordOrder",
+              "de": "Kommst du mit, oder bleibst du hier?",
+              "fr": "Tu viens ou tu restes ici ?"
+            },
+            {
+              "type": "translate",
+              "fr": "J'adore lire.",
+              "de": "Ich lese sehr gern.",
+              "altAnswers": [
+                "Ich liebe es zu lesen."
+              ]
+            },
+            {
+              "type": "matching"
+            }
+          ],
+          "grammar": [
+            "de_g_konnektoren"
+          ]
+        },
+        {
+          "id": "de_a2_u4_l2",
+          "title": "Sport & Musik",
+          "newVocab": [
+            "v_le_football",
+            "v_le_tennis",
+            "v_le_velo",
+            "v_la_natation",
+            "v_la_guitare",
+            "v_le_piano",
+            "v_lequipe"
+          ],
+          "exercises": [
+            {
+              "type": "vocabIntro",
+              "vocab": [
+                "v_le_football",
+                "v_le_tennis",
+                "v_le_velo",
+                "v_la_natation"
+              ]
+            },
+            {
+              "type": "vocabIntro",
+              "vocab": [
+                "v_la_guitare",
+                "v_le_piano",
+                "v_lequipe"
+              ]
+            },
+            {
+              "type": "conjugation",
+              "verb": "gewinnen",
+              "person": 0,
+              "translation": "j'ai gagné",
+              "tense": "perfekt"
+            },
+            {
+              "type": "conjugation",
+              "verb": "verlieren",
+              "person": 3,
+              "translation": "nous avons perdu",
+              "tense": "perfekt"
+            },
+            {
+              "type": "conjugation",
+              "verb": "schwimmen",
+              "person": 2,
+              "translation": "il a nagé",
+              "tense": "perfekt"
+            },
+            {
+              "type": "cloze",
+              "text": "Unsere Mannschaft hat das Spiel ___.",
+              "answer": "gewonnen",
+              "translation": "Notre équipe a gagné le match.",
+              "choices": [
+                "gewonnen",
+                "gewinnt",
+                "gewinnen"
+              ]
+            },
+            {
+              "type": "wordOrder",
+              "de": "Ich habe früher Gitarre gespielt.",
+              "fr": "Avant, je jouais de la guitare."
+            },
+            {
+              "type": "translate",
+              "fr": "Il a perdu le match.",
+              "de": "Er hat das Spiel verloren."
+            }
+          ]
+        },
+        {
+          "id": "de_a2_u4_l3",
+          "title": "ihn, sie, es — le, la, les",
+          "newVocab": [
+            "v_voir",
+            "v_inviter",
+            "v_appeler",
+            "v_le_message",
+            "v_le_telephone"
+          ],
+          "exercises": [
+            {
+              "type": "vocabIntro",
+              "vocab": [
+                "v_voir",
+                "v_inviter",
+                "v_appeler",
+                "v_le_message",
+                "v_le_telephone"
+              ]
+            },
+            {
+              "type": "cloze",
+              "text": "Ich sehe ___ morgen.",
+              "answer": "ihn",
+              "translation": "Je le vois demain.",
+              "choices": [
+                "ihn",
+                "ihm",
+                "er"
+              ],
+              "hint": "accusatif masculin"
+            },
+            {
+              "type": "cloze",
+              "text": "Sie ruft ___ heute an.",
+              "answer": "mich",
+              "translation": "Elle m'appelle aujourd'hui.",
+              "choices": [
+                "mich",
+                "mir",
+                "ich"
+              ]
+            },
+            {
+              "type": "cloze",
+              "text": "Wir laden ___ ein.",
+              "answer": "euch",
+              "translation": "Nous vous invitons.",
+              "choices": [
+                "euch",
+                "ihr",
+                "sie"
+              ]
+            },
+            {
+              "type": "mcSentence",
+              "question": "« Je la vois » heißt:",
+              "answer": "Ich sehe sie.",
+              "distractors": [
+                "Ich sehe ihr.",
+                "Ich sie sehe."
+              ],
+              "translation": "Comment dit-on « je la vois » ?"
+            },
+            {
+              "type": "wordOrder",
+              "de": "Hast du ihn gestern gesehen?",
+              "fr": "L'as-tu vu hier ?"
+            },
+            {
+              "type": "errorCorrection",
+              "text": "Ich ihn sehe morgen.",
+              "answer": "Ich sehe ihn morgen.",
+              "distractors": [
+                "Ich sehe morgen er.",
+                "Ihn ich sehe morgen."
+              ],
+              "translation": "Je le vois demain.",
+              "hint": "pronom après le verbe"
+            }
+          ],
+          "grammar": [
+            "de_g_pronomen_akkusativ"
+          ]
+        },
+        {
+          "id": "de_a2_u4_l4",
+          "title": "mir, dir, ihm — lui & leur",
+          "newVocab": [
+            "v_repondre",
+            "v_demander",
+            "v_donner",
+            "v_montrer",
+            "v_expliquer",
+            "v_le_cadeau"
+          ],
+          "exercises": [
+            {
+              "type": "vocabIntro",
+              "vocab": [
+                "v_repondre",
+                "v_demander",
+                "v_donner",
+                "v_montrer",
+                "v_expliquer",
+                "v_le_cadeau"
+              ]
+            },
+            {
+              "type": "conjugation",
+              "verb": "schenken",
+              "person": 0,
+              "translation": "j'offre (en cadeau)"
+            },
+            {
+              "type": "cloze",
+              "text": "Ich gebe ___ das Buch.",
+              "answer": "ihm",
+              "translation": "Je lui donne le livre (à lui).",
+              "choices": [
+                "ihm",
+                "ihn",
+                "er"
+              ]
+            },
+            {
+              "type": "cloze",
+              "text": "Sie antwortet ___ nicht.",
+              "answer": "mir",
+              "translation": "Elle ne me répond pas.",
+              "choices": [
+                "mir",
+                "mich",
+                "ich"
+              ],
+              "hint": "antworten + datif"
+            },
+            {
+              "type": "cloze",
+              "text": "Er zeigt ___ die Stadt.",
+              "answer": "ihnen",
+              "translation": "Il leur montre la ville.",
+              "choices": [
+                "ihnen",
+                "sie",
+                "ihre"
+              ]
+            },
+            {
+              "type": "wordOrder",
+              "de": "Kannst du mir das erklären?",
+              "fr": "Peux-tu m'expliquer ça ?"
+            },
+            {
+              "type": "translate",
+              "fr": "Je lui montre la photo (à elle).",
+              "de": "Ich zeige ihr das Foto."
+            }
+          ],
+          "grammar": [
+            "de_g_pronomen_dativ"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "de_a2_u5",
+      "title": "Unterwegs — En voyage",
+      "level": "A2",
+      "icon": "airplane",
+      "lessons": [
+        {
+          "id": "de_a2_u5_l1",
+          "title": "Abfahrt! — Départ !",
+          "newVocab": [
+            "v_lavion",
+            "v_laeroport",
+            "v_le_billet",
+            "v_le_vol",
+            "v_la_valise",
+            "v_partir",
+            "v_le_depart",
+            "v_larrivee",
+            "v_arriver"
+          ],
+          "exercises": [
+            {
+              "type": "vocabIntro",
+              "vocab": [
+                "v_lavion",
+                "v_laeroport",
+                "v_le_billet",
+                "v_le_vol",
+                "v_la_valise"
+              ]
+            },
+            {
+              "type": "vocabIntro",
+              "vocab": [
+                "v_partir",
+                "v_le_depart",
+                "v_larrivee",
+                "v_arriver"
+              ]
+            },
+            {
+              "type": "conjugation",
+              "verb": "abfahren",
+              "person": 2,
+              "translation": "il part (transport)"
+            },
+            {
+              "type": "conjugation",
+              "verb": "einsteigen",
+              "person": 0,
+              "translation": "je suis monté (dans le train)",
+              "tense": "perfekt"
+            },
+            {
+              "type": "conjugation",
+              "verb": "umsteigen",
+              "person": 1,
+              "translation": "tu as changé (de train)",
+              "tense": "perfekt"
+            },
+            {
+              "type": "cloze",
+              "text": "Der Zug ist schon ___.",
+              "answer": "abgefahren",
+              "translation": "Le train est déjà parti.",
+              "choices": [
+                "abgefahren",
+                "abfahren",
+                "abgefahrt"
+              ]
+            },
+            {
+              "type": "wordOrder",
+              "de": "Wir sind in München umgestiegen.",
+              "fr": "Nous avons changé de train à Munich."
+            },
+            {
+              "type": "translate",
+              "fr": "L'avion est arrivé tard.",
+              "de": "Das Flugzeug ist spät angekommen."
+            }
+          ],
+          "grammar": [
+            "de_g_perfekt_stark"
+          ]
+        },
+        {
+          "id": "de_a2_u5_l2",
+          "title": "Der Weg — Le chemin",
+          "newVocab": [
+            "v_a_gauche",
+            "v_a_droite",
+            "v_tout_droit",
+            "v_tourner",
+            "v_traverser",
+            "v_la_place",
+            "v_le_pont",
+            "v_loin",
+            "v_pres_de"
+          ],
+          "exercises": [
+            {
+              "type": "vocabIntro",
+              "vocab": [
+                "v_a_gauche",
+                "v_a_droite",
+                "v_tout_droit",
+                "v_tourner",
+                "v_traverser"
+              ]
+            },
+            {
+              "type": "vocabIntro",
+              "vocab": [
+                "v_la_place",
+                "v_le_pont",
+                "v_loin",
+                "v_pres_de"
+              ]
+            },
+            {
+              "type": "conjugation",
+              "verb": "gehen",
+              "person": 5,
+              "translation": "allez ! (forme de politesse)",
+              "tense": "imperativ"
+            },
+            {
+              "type": "cloze",
+              "text": "Gehen Sie über ___ Brücke!",
+              "answer": "die",
+              "translation": "Traversez le pont ! (direction → accusatif)",
+              "choices": [
+                "die",
+                "der",
+                "dem"
+              ]
+            },
+            {
+              "type": "cloze",
+              "text": "Das Hotel ist neben ___ Bahnhof.",
+              "answer": "dem",
+              "translation": "L'hôtel est à côté de la gare. (position → datif)",
+              "choices": [
+                "dem",
+                "den",
+                "das"
+              ]
+            },
+            {
+              "type": "mcSentence",
+              "question": "« tout droit » heißt:",
+              "answer": "geradeaus",
+              "distractors": [
+                "rechts",
+                "zurück"
+              ],
+              "translation": "Comment dit-on « tout droit » ?"
+            },
+            {
+              "type": "wordOrder",
+              "de": "Gehen Sie hier links und dann geradeaus.",
+              "fr": "Prenez à gauche ici, puis tout droit."
+            },
+            {
+              "type": "translate",
+              "fr": "La gare est loin d'ici ?",
+              "de": "Ist der Bahnhof weit von hier?"
+            }
+          ],
+          "grammar": [
+            "de_g_wechselpraepositionen"
+          ]
+        },
+        {
+          "id": "de_a2_u5_l3",
+          "title": "Warum? Weil … — Parce que",
+          "newVocab": [
+            "v_encore",
+            "v_ensemble",
+            "v_le_voyage",
+            "v_pendant"
+          ],
+          "exercises": [
+            {
+              "type": "vocabIntro",
+              "vocab": [
+                "v_encore",
+                "v_ensemble",
+                "v_le_voyage",
+                "v_pendant"
+              ]
+            },
+            {
+              "type": "cloze",
+              "text": "Ich bleibe zu Hause, weil ich krank ___.",
+              "answer": "bin",
+              "translation": "Je reste à la maison parce que je suis malade. (verbe à la fin !)",
+              "choices": [
+                "bin",
+                "ist",
+                "bist"
+              ]
+            },
+            {
+              "type": "cloze",
+              "text": "Er lernt Deutsch, weil er in Berlin ___.",
+              "answer": "wohnt",
+              "translation": "Il apprend l'allemand parce qu'il habite à Berlin.",
+              "choices": [
+                "wohnt",
+                "wohnen",
+                "wohnst"
+              ]
+            },
+            {
+              "type": "mcSentence",
+              "question": "« weil ich bin krank » ist:",
+              "answer": "falsch — das Verb muss ans Ende",
+              "distractors": [
+                "richtig",
+                "nur mündlich richtig"
+              ],
+              "translation": "Cette phrase est-elle correcte ?"
+            },
+            {
+              "type": "wordOrder",
+              "de": "Wir bleiben hier, weil es regnet.",
+              "fr": "Nous restons ici parce qu'il pleut."
+            },
+            {
+              "type": "errorCorrection",
+              "text": "Ich komme nicht, weil ich habe keine Zeit.",
+              "answer": "Ich komme nicht, weil ich keine Zeit habe.",
+              "distractors": [
+                "Ich komme nicht, weil habe ich keine Zeit.",
+                "Ich komme nicht, weil keine Zeit ich habe."
+              ],
+              "translation": "Je ne viens pas parce que je n'ai pas le temps.",
+              "hint": "weil : verbe à la fin"
+            },
+            {
+              "type": "translate",
+              "fr": "Je suis fatigué parce que je travaille beaucoup.",
+              "de": "Ich bin müde, weil ich viel arbeite."
+            }
+          ],
+          "grammar": [
+            "de_g_weil"
+          ]
+        },
+        {
+          "id": "de_a2_u5_l4",
+          "title": "Im Hotel — À l'hôtel",
+          "newVocab": [
+            "v_reserver",
+            "v_la_reception",
+            "v_la_nuit",
+            "v_libre",
+            "v_la_piscine"
+          ],
+          "exercises": [
+            {
+              "type": "vocabIntro",
+              "vocab": [
+                "v_reserver",
+                "v_la_reception",
+                "v_la_nuit",
+                "v_libre",
+                "v_la_piscine"
+              ]
+            },
+            {
+              "type": "conjugation",
+              "verb": "reservieren",
+              "person": 0,
+              "translation": "j'ai réservé",
+              "tense": "perfekt"
+            },
+            {
+              "type": "cloze",
+              "text": "Ich glaube, dass das Hotel gut ___.",
+              "answer": "ist",
+              "translation": "Je crois que l'hôtel est bien. (verbe à la fin)",
+              "choices": [
+                "ist",
+                "sein",
+                "bin"
+              ]
+            },
+            {
+              "type": "cloze",
+              "text": "Ich hoffe, ___ du Zeit hast.",
+              "answer": "dass",
+              "translation": "J'espère que tu as le temps.",
+              "choices": [
+                "dass",
+                "das",
+                "weil"
+              ],
+              "hint": "dass avec ss"
+            },
+            {
+              "type": "mcSentence",
+              "question": "« dass » oder « das »? — Ich weiß, ___ das Auto rot ist.",
+              "answer": "dass",
+              "distractors": [
+                "das",
+                "den"
+              ],
+              "translation": "Conjonction ou article ?"
+            },
+            {
+              "type": "wordOrder",
+              "de": "Ich hoffe, dass das Zimmer frei ist.",
+              "fr": "J'espère que la chambre est libre."
+            },
+            {
+              "type": "translate",
+              "fr": "Elle dit que la piscine est belle.",
+              "de": "Sie sagt, dass das Schwimmbad schön ist."
+            }
+          ],
+          "grammar": [
+            "de_g_dass"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "de_a2_u6",
+      "title": "Arbeit & Zukunft — Travail et avenir",
+      "level": "A2",
+      "icon": "briefcase",
+      "lessons": [
+        {
+          "id": "de_a2_u6_l1",
+          "title": "Berufe — Les métiers",
+          "newVocab": [
+            "v_le_metier",
+            "v_le_professeur",
+            "v_le_vendeur",
+            "v_le_bureau",
+            "v_lentreprise",
+            "v_le_salaire",
+            "v_le_collegue",
+            "v_le_chef"
+          ],
+          "exercises": [
+            {
+              "type": "vocabIntro",
+              "vocab": [
+                "v_le_metier",
+                "v_le_professeur",
+                "v_le_vendeur",
+                "v_le_bureau"
+              ]
+            },
+            {
+              "type": "vocabIntro",
+              "vocab": [
+                "v_lentreprise",
+                "v_le_salaire",
+                "v_le_collegue",
+                "v_le_chef"
+              ]
+            },
+            {
+              "type": "conjugation",
+              "verb": "verdienen",
+              "person": 2,
+              "translation": "il/elle gagne (de l'argent)"
+            },
+            {
+              "type": "conjugation",
+              "verb": "bekommen",
+              "person": 0,
+              "translation": "j'ai reçu",
+              "tense": "perfekt"
+            },
+            {
+              "type": "cloze",
+              "text": "Mein Vater ist Lehrer ___ Beruf.",
+              "answer": "von",
+              "translation": "Mon père est professeur de métier.",
+              "choices": [
+                "von",
+                "im",
+                "als"
+              ]
+            },
+            {
+              "type": "wordOrder",
+              "de": "Sie arbeitet bei einer großen Firma.",
+              "fr": "Elle travaille dans une grande entreprise."
+            },
+            {
+              "type": "translate",
+              "fr": "Le chef est gentil.",
+              "de": "Der Chef ist nett."
+            },
+            {
+              "type": "matching"
+            }
+          ]
+        },
+        {
+          "id": "de_a2_u6_l2",
+          "title": "Ich werde Ärztin — Devenir",
+          "newVocab": [
+            "v_devenir",
+            "v_esperer",
+            "v_penser",
+            "v_sur_adj",
+            "v_important"
+          ],
+          "exercises": [
+            {
+              "type": "vocabIntro",
+              "vocab": [
+                "v_devenir",
+                "v_esperer",
+                "v_penser",
+                "v_sur_adj",
+                "v_important"
+              ]
+            },
+            {
+              "type": "conjugation",
+              "verb": "werden",
+              "person": 0,
+              "translation": "je deviens"
+            },
+            {
+              "type": "conjugation",
+              "verb": "werden",
+              "person": 1,
+              "translation": "tu deviens"
+            },
+            {
+              "type": "conjugation",
+              "verb": "arbeiten",
+              "person": 0,
+              "translation": "je travaillerai",
+              "tense": "futur"
+            },
+            {
+              "type": "cloze",
+              "text": "Meine Schwester ___ Ärztin.",
+              "answer": "wird",
+              "translation": "Ma sœur devient médecin.",
+              "choices": [
+                "wird",
+                "werdet",
+                "werden"
+              ]
+            },
+            {
+              "type": "wordOrder",
+              "de": "Ich werde nächstes Jahr viel reisen.",
+              "fr": "L'année prochaine, je voyagerai beaucoup."
+            },
+            {
+              "type": "translate",
+              "fr": "C'est important pour moi.",
+              "de": "Das ist wichtig für mich."
+            }
+          ],
+          "grammar": [
+            "de_g_futur"
+          ]
+        },
+        {
+          "id": "de_a2_u6_l3",
+          "title": "Wenn …, dann — Conditions",
+          "newVocab": [
+            "v_si_cond",
+            "v_peut_etre",
+            "v_lidee",
+            "v_le_probleme",
+            "v_la_solution",
+            "v_proposer"
+          ],
+          "exercises": [
+            {
+              "type": "vocabIntro",
+              "vocab": [
+                "v_si_cond",
+                "v_peut_etre",
+                "v_lidee",
+                "v_le_probleme",
+                "v_la_solution",
+                "v_proposer"
+              ]
+            },
+            {
+              "type": "cloze",
+              "text": "Wenn es regnet, ___ ich zu Hause.",
+              "answer": "bleibe",
+              "translation": "S'il pleut, je reste à la maison. (verbe direct après la virgule)",
+              "choices": [
+                "bleibe",
+                "ich bleibe",
+                "bleiben"
+              ]
+            },
+            {
+              "type": "cloze",
+              "text": "Wenn ich Zeit ___, rufe ich dich an.",
+              "answer": "habe",
+              "translation": "Si j'ai le temps, je t'appelle.",
+              "choices": [
+                "habe",
+                "habt",
+                "haben"
+              ]
+            },
+            {
+              "type": "mcSentence",
+              "question": "Nach dem wenn-Satz kommt:",
+              "answer": "zuerst das Verb",
+              "distractors": [
+                "zuerst das Subjekt",
+                "ein Komma und nichts"
+              ],
+              "translation": "Après la subordonnée en wenn ?"
+            },
+            {
+              "type": "wordOrder",
+              "de": "Ich freue mich, wenn du kommst.",
+              "fr": "Je me réjouis quand tu viens."
+            },
+            {
+              "type": "errorCorrection",
+              "text": "Wenn es regnet, ich bleibe zu Hause.",
+              "answer": "Wenn es regnet, bleibe ich zu Hause.",
+              "distractors": [
+                "Wenn es regnet, zu Hause bleibe ich.",
+                "Wenn regnet es, bleibe ich zu Hause."
+              ],
+              "translation": "S'il pleut, je reste à la maison."
+            },
+            {
+              "type": "translate",
+              "fr": "Si tu veux, nous mangeons ensemble.",
+              "de": "Wenn du willst, essen wir zusammen."
+            }
+          ],
+          "grammar": [
+            "de_g_wenn"
+          ]
+        },
+        {
+          "id": "de_a2_u6_l4",
+          "title": "Leute kennenlernen — Rencontres",
+          "newVocab": [
+            "v_la_chose",
+            "v_quelque_chose",
+            "v_quelquun",
+            "v_tout",
+            "v_le_monde",
+            "v_connaitre"
+          ],
+          "exercises": [
+            {
+              "type": "vocabIntro",
+              "vocab": [
+                "v_la_chose",
+                "v_quelque_chose",
+                "v_quelquun",
+                "v_tout",
+                "v_le_monde",
+                "v_connaitre"
+              ]
+            },
+            {
+              "type": "conjugation",
+              "verb": "kennenlernen",
+              "person": 0,
+              "translation": "j'ai fait la connaissance",
+              "tense": "perfekt"
+            },
+            {
+              "type": "conjugation",
+              "verb": "sich freuen",
+              "person": 0,
+              "translation": "je me réjouis"
+            },
+            {
+              "type": "cloze",
+              "text": "Ich habe ___ Interessantes gehört.",
+              "answer": "etwas",
+              "translation": "J'ai entendu quelque chose d'intéressant.",
+              "choices": [
+                "etwas",
+                "jemand",
+                "alles"
+              ]
+            },
+            {
+              "type": "cloze",
+              "text": "Kennst du ___ in Berlin?",
+              "answer": "jemanden",
+              "translation": "Connais-tu quelqu'un à Berlin ?",
+              "choices": [
+                "jemanden",
+                "jemand",
+                "etwas"
+              ],
+              "hint": "accusatif : jemanden"
+            },
+            {
+              "type": "wordOrder",
+              "de": "Ich habe sie im Urlaub kennengelernt.",
+              "fr": "J'ai fait sa connaissance en vacances."
+            },
+            {
+              "type": "translate",
+              "fr": "Tout est possible.",
+              "de": "Alles ist möglich."
+            }
+          ]
+        }
+      ]
     }
   ]
 }

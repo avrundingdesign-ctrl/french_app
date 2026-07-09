@@ -24,7 +24,7 @@ VALID_TENSES = {
 }
 VALID_LEVELS = {"A1", "A2", "B1", "B2", "C1"}
 # Deutsch-Kurs (Gegenrichtung): eigene Tempora des GermanConjugator.
-VALID_TENSES_DE = {"praesens", "perfekt", "praeteritum", "imperativ"}
+VALID_TENSES_DE = {"praesens", "perfekt", "praeteritum", "futur", "imperativ"}
 VALID_GERMAN_VERB_TYPES = {"weak", "strong", "mixed", "modal", "irregular"}
 INSEPARABLE_PREFIXES = ("be", "ge", "er", "ver", "zer", "ent", "emp", "miss")
 EXAM_SECTION_KINDS = ["listening", "reading", "language", "writing"]
@@ -136,7 +136,8 @@ def validate_german_course(vocab, errors, warnings):
         if verb.get("imperative") and len(verb["imperative"]) != 3:
             errors.append(f"verbs_de {name}: imperative braucht 3 Formen (du/ihr/Sie)")
         prefix = verb.get("separablePrefix")
-        if prefix and not verb["infinitive"].startswith(prefix):
+        bare = name[5:] if name.startswith("sich ") else name  # Reflexive: "sich anziehen" → "anziehen"
+        if prefix and not bare.startswith(prefix):
             errors.append(f"verbs_de {name}: separablePrefix ist kein Präfix des Infinitivs")
 
     rules_de = {r["id"]: r for r in load("grammar_de")["rules"]}
@@ -232,16 +233,39 @@ def validate_german_course(vocab, errors, warnings):
             errors.append(f"{where}: Paar {key} doppelt")
         seen_pairs.add(key)
 
-    # packs_de/challenges_de sind in 5a bewusst leer, müssen aber laden.
-    load("packs_de")
+    # Gespiegelte Wortschatz-Pakete des Deutsch-Kurses.
+    packs_de = load("packs_de")["packs"]
+    pack_ids = [p["id"] for p in packs_de]
+    if len(pack_ids) != len(set(pack_ids)):
+        errors.append("Doppelte DE-Paket-IDs")
+    pack_vocab_de: list[str] = []
+    for pack in packs_de:
+        if not pack["id"].startswith("de_pack_"):
+            errors.append(f"{pack['id']}: de_pack_-Präfix fehlt")
+        if pack["level"] not in VALID_LEVELS:
+            errors.append(f"{pack['id']}: ungültiges Niveau")
+        if len(pack["vocab"]) < 15:
+            errors.append(f"{pack['id']}: nur {len(pack['vocab'])} Wörter — mindestens 15")
+        for vocab_id in pack["vocab"]:
+            pack_vocab_de.append(vocab_id)
+            if vocab_id not in vocab:
+                errors.append(f"{pack['id']}: Vokabel {vocab_id} fehlt")
+            if vocab_id in new_vocab:
+                errors.append(f"{pack['id']}: {vocab_id} wird schon von einer DE-Lektion eingeführt")
+    dupes = {v for v in pack_vocab_de if pack_vocab_de.count(v) > 1}
+    if dupes:
+        errors.append(f"Vokabeln in mehreren DE-Paketen: {sorted(dupes)}")
+
+    # challenges_de ist in 5b bewusst leer, muss aber laden.
     load("challenges_de")
 
     print(
         f"DE-Kurs: {len(verbs_de)} Verben · {len(rules_de)} Regeln · "
         f"{lesson_count} Lektionen · {spec_count} Übungs-Specs · "
-        f"{len(exams)} Prüfung(en) mit {exam_question_count} Fragen · {len(pairs)} Minimal-Paare"
+        f"{len(exams)} Prüfung(en) mit {exam_question_count} Fragen · {len(pairs)} Minimal-Paare · "
+        f"{len(packs_de)} Pakete mit {len(pack_vocab_de)} Wörtern"
     )
-    return set(new_vocab)
+    return set(new_vocab) | set(pack_vocab_de)
 
 
 def main() -> int:

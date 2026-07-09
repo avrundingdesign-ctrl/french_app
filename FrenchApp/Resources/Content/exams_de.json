@@ -363,6 +363,367 @@
           ]
         }
       ]
+    },
+    {
+      "id": "de_exam_a2",
+      "level": "A2",
+      "durationMinutes": 40,
+      "sections": [
+        {
+          "kind": "listening",
+          "intro": "Tu entends chaque document deux fois au maximum. Choisis la bonne réponse.",
+          "tasks": [
+            {
+              "context": "Tu entends une annonce au supermarché.",
+              "audioScript": "Liebe Kundinnen und Kunden! Heute im Angebot: ein Kilo Äpfel für nur zwei Euro. Sie finden die Äpfel gleich am Eingang neben dem Brot. Unser Markt schließt heute um zwanzig Uhr.",
+              "questions": [
+                {
+                  "type": "mcSentence",
+                  "question": "Qu'est-ce qui est en promotion ?",
+                  "answer": "Les pommes",
+                  "distractors": [
+                    "Le pain",
+                    "Les œufs"
+                  ]
+                },
+                {
+                  "type": "mcSentence",
+                  "question": "Où trouve-t-on l'offre ?",
+                  "answer": "À l'entrée, à côté du pain",
+                  "distractors": [
+                    "Au fond du magasin",
+                    "À la caisse"
+                  ]
+                },
+                {
+                  "type": "mcSentence",
+                  "question": "À quelle heure ferme le magasin ?",
+                  "answer": "À 20 heures",
+                  "distractors": [
+                    "À 18 heures",
+                    "À 22 heures"
+                  ]
+                }
+              ]
+            },
+            {
+              "context": "Tu entends un message d'une collègue.",
+              "audioScript": "Hallo Peter, hier ist Sandra. Ich kann morgen leider nicht ins Büro kommen, weil ich krank bin. Ich war heute beim Arzt und muss drei Tage zu Hause bleiben. Kannst du bitte dem Chef Bescheid sagen? Danke dir!",
+              "questions": [
+                {
+                  "type": "mcSentence",
+                  "question": "Pourquoi Sandra ne vient-elle pas ?",
+                  "answer": "Elle est malade",
+                  "distractors": [
+                    "Elle est en vacances",
+                    "Elle a un rendez-vous"
+                  ]
+                },
+                {
+                  "type": "mcSentence",
+                  "question": "Combien de temps doit-elle rester chez elle ?",
+                  "answer": "Trois jours",
+                  "distractors": [
+                    "Une semaine",
+                    "Un jour"
+                  ]
+                },
+                {
+                  "type": "mcSentence",
+                  "question": "Que doit faire Peter ?",
+                  "answer": "Prévenir le chef",
+                  "distractors": [
+                    "Appeler le médecin",
+                    "Venir la voir"
+                  ]
+                }
+              ]
+            },
+            {
+              "context": "Tu entends une annonce à l'aéroport.",
+              "audioScript": "Achtung, eine Durchsage für alle Passagiere des Fluges nach Paris: Der Abflug hat heute sechzig Minuten Verspätung. Bitte steigen Sie erst um vierzehn Uhr ein. Wir danken für Ihr Verständnis.",
+              "questions": [
+                {
+                  "type": "mcSentence",
+                  "question": "Quel est le problème ?",
+                  "answer": "Le vol a du retard",
+                  "distractors": [
+                    "Le vol est annulé",
+                    "La porte a changé"
+                  ]
+                },
+                {
+                  "type": "mcSentence",
+                  "question": "Combien de retard ?",
+                  "answer": "60 minutes",
+                  "distractors": [
+                    "30 minutes",
+                    "2 heures"
+                  ]
+                },
+                {
+                  "type": "mcSentence",
+                  "question": "À quelle heure faut-il embarquer ?",
+                  "answer": "À 14 heures",
+                  "distractors": [
+                    "À 13 heures",
+                    "À 16 heures"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "reading",
+          "intro": "Lis les textes et réponds aux questions.",
+          "tasks": [
+            {
+              "context": "Tu lis une annonce dans le journal.",
+              "passageTitle": "Wohnung zu vermieten",
+              "passage": "Schöne 3-Zimmer-Wohnung im Zentrum, 75 m², mit Balkon und neuer Küche. Miete: 950 Euro plus Nebenkosten. Keine Haustiere. Besichtigung am Samstag von 10 bis 12 Uhr. Kontakt: Frau Weber, Telefon 0171 234567.",
+              "questions": [
+                {
+                  "type": "mcSentence",
+                  "question": "Combien coûte le loyer ?",
+                  "answer": "950 euros plus charges",
+                  "distractors": [
+                    "950 euros tout compris",
+                    "750 euros"
+                  ]
+                },
+                {
+                  "type": "mcSentence",
+                  "question": "Qu'est-ce qui est interdit ?",
+                  "answer": "Les animaux",
+                  "distractors": [
+                    "Fumer",
+                    "Les enfants"
+                  ]
+                },
+                {
+                  "type": "mcSentence",
+                  "question": "Quand peut-on visiter ?",
+                  "answer": "Samedi de 10 h à 12 h",
+                  "distractors": [
+                    "Dimanche matin",
+                    "Tous les jours"
+                  ]
+                }
+              ]
+            },
+            {
+              "context": "Tu lis un e-mail d'un ami.",
+              "passageTitle": "E-Mail von Lukas",
+              "passage": "Hallo! Wie geht es dir? Ich habe tolle Neuigkeiten: Ich habe eine neue Arbeit gefunden! Ich arbeite jetzt bei einer kleinen Firma im Zentrum. Die Kollegen sind sehr nett und ich verdiene mehr als früher. Aber ich muss jeden Tag um sechs Uhr aufstehen, weil die Arbeit um sieben beginnt. Wollen wir am Wochenende etwas zusammen machen? Dein Lukas",
+              "questions": [
+                {
+                  "type": "mcSentence",
+                  "question": "Quelle est la nouvelle de Lukas ?",
+                  "answer": "Il a un nouveau travail",
+                  "distractors": [
+                    "Il déménage",
+                    "Il se marie"
+                  ]
+                },
+                {
+                  "type": "mcSentence",
+                  "question": "Pourquoi se lève-t-il à six heures ?",
+                  "answer": "Le travail commence à sept heures",
+                  "distractors": [
+                    "Il fait du sport",
+                    "Il prend le train"
+                  ]
+                },
+                {
+                  "type": "mcSentence",
+                  "question": "Que propose-t-il ?",
+                  "answer": "Faire quelque chose ensemble le week-end",
+                  "distractors": [
+                    "Visiter sa firme",
+                    "Dîner ce soir"
+                  ]
+                }
+              ]
+            },
+            {
+              "context": "Tu lis un panneau à la piscine.",
+              "passageTitle": "Schwimmbad — Regeln",
+              "passage": "Herzlich willkommen! Öffnungszeiten: täglich 7–21 Uhr. Kinder unter 8 Jahren dürfen nur mit den Eltern schwimmen. Man darf im Schwimmbad nicht essen und nicht rauchen. Duschen Sie sich bitte, bevor Sie ins Wasser gehen.",
+              "questions": [
+                {
+                  "type": "mcSentence",
+                  "question": "Que doivent faire les enfants de moins de 8 ans ?",
+                  "answer": "Nager avec leurs parents",
+                  "distractors": [
+                    "Porter un bonnet",
+                    "Rester dehors"
+                  ]
+                },
+                {
+                  "type": "mcSentence",
+                  "question": "Qu'est-ce qui est interdit ?",
+                  "answer": "Manger et fumer",
+                  "distractors": [
+                    "Plonger",
+                    "Écouter de la musique"
+                  ]
+                },
+                {
+                  "type": "mcSentence",
+                  "question": "Que faut-il faire avant d'entrer dans l'eau ?",
+                  "answer": "Se doucher",
+                  "distractors": [
+                    "Payer",
+                    "S'inscrire"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "language",
+          "intro": "Complète les phrases — grammaire et structures.",
+          "tasks": [
+            {
+              "context": "Choisis ou écris la forme correcte.",
+              "questions": [
+                {
+                  "type": "cloze",
+                  "text": "Ich fahre ___ dem Fahrrad zur Arbeit.",
+                  "answer": "mit",
+                  "choices": [
+                    "mit",
+                    "auf",
+                    "für"
+                  ],
+                  "translation": "Je vais au travail à vélo."
+                },
+                {
+                  "type": "cloze",
+                  "text": "Kannst du ___ helfen?",
+                  "answer": "mir",
+                  "choices": [
+                    "mir",
+                    "mich",
+                    "ich"
+                  ],
+                  "translation": "Peux-tu m'aider ?"
+                },
+                {
+                  "type": "cloze",
+                  "text": "Berlin ist ___ als München.",
+                  "answer": "größer",
+                  "choices": [
+                    "größer",
+                    "mehr groß",
+                    "am größten"
+                  ],
+                  "translation": "Berlin est plus grande que Munich."
+                },
+                {
+                  "type": "cloze",
+                  "text": "Er bleibt zu Hause, weil er krank ___.",
+                  "answer": "ist",
+                  "choices": [
+                    "ist",
+                    "sein",
+                    "war ist"
+                  ],
+                  "translation": "Il reste à la maison parce qu'il est malade."
+                },
+                {
+                  "type": "conjugation",
+                  "verb": "sich waschen",
+                  "person": 0,
+                  "translation": "je me lave"
+                },
+                {
+                  "type": "conjugation",
+                  "verb": "können",
+                  "person": 0,
+                  "tense": "praeteritum",
+                  "translation": "je pouvais"
+                },
+                {
+                  "type": "conjugation",
+                  "verb": "lernen",
+                  "person": 3,
+                  "tense": "futur",
+                  "translation": "nous apprendrons"
+                },
+                {
+                  "type": "cloze",
+                  "text": "Das Buch liegt ___ dem Tisch.",
+                  "answer": "auf",
+                  "choices": [
+                    "auf",
+                    "in",
+                    "um"
+                  ],
+                  "translation": "Le livre est sur la table."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "writing",
+          "intro": "Écris les phrases demandées — en allemand.",
+          "tasks": [
+            {
+              "context": "Décris ta routine.",
+              "questions": [
+                {
+                  "type": "translate",
+                  "fr": "Je me lève à sept heures et je me douche.",
+                  "de": "Ich stehe um sieben Uhr auf und ich dusche mich.",
+                  "altAnswers": [
+                    "Ich stehe um sieben Uhr auf und dusche mich."
+                  ]
+                }
+              ]
+            },
+            {
+              "context": "Remets la phrase dans le bon ordre.",
+              "questions": [
+                {
+                  "type": "wordOrder",
+                  "de": "Ich lerne Deutsch, weil ich in Berlin wohne.",
+                  "fr": "J'apprends l'allemand parce que j'habite à Berlin."
+                }
+              ]
+            },
+            {
+              "context": "Réponds à l'e-mail de Lukas.",
+              "questions": [
+                {
+                  "type": "translate",
+                  "fr": "Super ! Nous pouvons aller au cinéma samedi.",
+                  "de": "Super! Wir können am Samstag ins Kino gehen.",
+                  "altAnswers": [
+                    "Super! Am Samstag können wir ins Kino gehen."
+                  ]
+                }
+              ]
+            },
+            {
+              "context": "Parle de tes projets.",
+              "questions": [
+                {
+                  "type": "translate",
+                  "fr": "L'année prochaine, je voyagerai en Allemagne.",
+                  "de": "Nächstes Jahr werde ich nach Deutschland reisen.",
+                  "altAnswers": [
+                    "Ich werde nächstes Jahr nach Deutschland reisen."
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
   ]
 }

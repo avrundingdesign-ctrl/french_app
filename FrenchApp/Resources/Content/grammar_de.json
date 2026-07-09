@@ -6,12 +6,23 @@
       "level": "A1",
       "explanation": "**sein** (être) est le verbe le plus important — et le plus irrégulier : **ich bin, du bist, er/sie/es ist, wir sind, ihr seid, sie sind**.\n\nLes pronoms : **ich** (je), **du** (tu), **er/sie/es** (il/elle + neutre), **wir** (nous), **ihr** (vous, pluriel familier), **sie/Sie** (ils/elles — et **Sie** avec majuscule : vous de politesse).\n\nContrairement au français, le pronom est **toujours obligatoire** : on dit « ich bin », jamais « bin » tout seul.",
       "examples": [
-        { "de": "Ich bin Anna.", "fr": "Je suis Anna." },
-        { "de": "Du bist nett.", "fr": "Tu es gentil." },
-        { "de": "Wir sind hier.", "fr": "Nous sommes ici." }
+        {
+          "de": "Ich bin Anna.",
+          "fr": "Je suis Anna."
+        },
+        {
+          "de": "Du bist nett.",
+          "fr": "Tu es gentil."
+        },
+        {
+          "de": "Wir sind hier.",
+          "fr": "Nous sommes ici."
+        }
       ],
       "typicalMistake": "Attention au vouvoiement : **Sie** (avec majuscule) + verbe au pluriel — « Sind Sie Herr Meier? », pas « Bist du Herr Meier? » avec un inconnu.",
-      "verbTables": ["sein"]
+      "verbTables": [
+        "sein"
+      ]
     },
     {
       "id": "de_g_praesens_schwach",
@@ -19,12 +30,25 @@
       "level": "A1",
       "explanation": "On prend le radical (l'infinitif sans **-en**) et on ajoute les terminaisons : **-e, -st, -t, -en, -t, -en**.\n\n*wohnen* → ich wohn**e**, du wohn**st**, er wohn**t**, wir wohn**en**, ihr wohn**t**, sie wohn**en**.\n\nSi le radical se termine par **-t** ou **-d**, on insère un **e** : du arbeit**est**, er arbeit**et**.",
       "examples": [
-        { "de": "Ich wohne in Paris.", "fr": "J'habite à Paris." },
-        { "de": "Du lernst Deutsch.", "fr": "Tu apprends l'allemand." },
-        { "de": "Er arbeitet viel.", "fr": "Il travaille beaucoup." }
+        {
+          "de": "Ich wohne in Paris.",
+          "fr": "J'habite à Paris."
+        },
+        {
+          "de": "Du lernst Deutsch.",
+          "fr": "Tu apprends l'allemand."
+        },
+        {
+          "de": "Er arbeitet viel.",
+          "fr": "Il travaille beaucoup."
+        }
       ],
       "typicalMistake": "Ne pas oublier le **-t** à la 3e personne : « er wohnt », pas « er wohne ». En français « il habite » n'a pas de consonne finale audible — en allemand, si !",
-      "verbTables": ["wohnen", "lernen", "arbeiten"]
+      "verbTables": [
+        "wohnen",
+        "lernen",
+        "arbeiten"
+      ]
     },
     {
       "id": "de_g_heissen",
@@ -32,12 +56,24 @@
       "level": "A1",
       "explanation": "Trois verbes pour se présenter :\n\n**heißen** (s'appeler) : Ich heiße Paul. Wie heißt du ?\n**kommen aus** (venir de) : Ich komme aus Frankreich.\n**wohnen in** (habiter à) : Ich wohne in Lyon.\n\nAttention : *heißen* se termine en **-ß**, donc du heiß**t** (pas « heißst »).",
       "examples": [
-        { "de": "Wie heißt du?", "fr": "Comment t'appelles-tu ?" },
-        { "de": "Ich komme aus Frankreich.", "fr": "Je viens de France." },
-        { "de": "Sie wohnt in Berlin.", "fr": "Elle habite à Berlin." }
+        {
+          "de": "Wie heißt du?",
+          "fr": "Comment t'appelles-tu ?"
+        },
+        {
+          "de": "Ich komme aus Frankreich.",
+          "fr": "Je viens de France."
+        },
+        {
+          "de": "Sie wohnt in Berlin.",
+          "fr": "Elle habite à Berlin."
+        }
       ],
       "typicalMistake": "En allemand, pas de pronom réfléchi : « ich heiße », littéralement « je m'appelle » **sans** le « me ». Ne pas dire « ich mich heiße ».",
-      "verbTables": ["heißen", "kommen"]
+      "verbTables": [
+        "heißen",
+        "kommen"
+      ]
     },
     {
       "id": "de_g_wfragen",
@@ -45,9 +81,18 @@
       "level": "A1",
       "explanation": "Les mots interrogatifs commencent presque tous par **W** : **wer** (qui), **was** (que/quoi), **wie** (comment), **wo** (où), **woher** (d'où), **wann** (quand), **warum** (pourquoi), **wie viel** (combien).\n\nStructure : **mot en W + verbe + sujet** — « Wo wohnst du? » (Où habites-tu ?). Le verbe reste en deuxième position.",
       "examples": [
-        { "de": "Wo wohnst du?", "fr": "Où habites-tu ?" },
-        { "de": "Woher kommen Sie?", "fr": "D'où venez-vous ?" },
-        { "de": "Was machst du heute?", "fr": "Que fais-tu aujourd'hui ?" }
+        {
+          "de": "Wo wohnst du?",
+          "fr": "Où habites-tu ?"
+        },
+        {
+          "de": "Woher kommen Sie?",
+          "fr": "D'où venez-vous ?"
+        },
+        {
+          "de": "Was machst du heute?",
+          "fr": "Que fais-tu aujourd'hui ?"
+        }
       ],
       "typicalMistake": "Ne pas confondre **wer** (qui) et **wo** (où) — c'est trompeur ! « Wer ist das? » = « Qui est-ce ? », « Wo bist du? » = « Où es-tu ? »."
     },
@@ -57,12 +102,23 @@
       "level": "A1",
       "explanation": "**haben** (avoir) est irrégulier au singulier : **ich habe, du hast, er/sie/es hat**, wir haben, ihr habt, sie haben.\n\nComme en français, il sert à exprimer la possession — et plus tard à former le passé (Perfekt).\n\nMais attention : pour l'âge, l'allemand utilise **sein** : « Ich **bin** 20 Jahre alt » (j'ai 20 ans, littéralement « je suis vieux de 20 ans »).",
       "examples": [
-        { "de": "Ich habe einen Hund.", "fr": "J'ai un chien." },
-        { "de": "Du hast Zeit.", "fr": "Tu as le temps." },
-        { "de": "Ich bin zwanzig Jahre alt.", "fr": "J'ai vingt ans." }
+        {
+          "de": "Ich habe einen Hund.",
+          "fr": "J'ai un chien."
+        },
+        {
+          "de": "Du hast Zeit.",
+          "fr": "Tu as le temps."
+        },
+        {
+          "de": "Ich bin zwanzig Jahre alt.",
+          "fr": "J'ai vingt ans."
+        }
       ],
       "typicalMistake": "L'âge se dit avec **sein**, pas avec haben : « Ich bin 30 » et non « Ich habe 30 » — le piège classique pour les francophones.",
-      "verbTables": ["haben"]
+      "verbTables": [
+        "haben"
+      ]
     },
     {
       "id": "de_g_artikel",
@@ -70,9 +126,18 @@
       "level": "A1",
       "explanation": "L'allemand a **trois genres** : **der** (masculin), **die** (féminin), **das** (neutre). Le pluriel prend toujours **die**.\n\nLe genre allemand ne correspond pas toujours au français : *la lune* → **der** Mond (masculin !), *le soleil* → **die** Sonne (féminin !), *la fille* → **das** Mädchen (neutre !).\n\nConseil : apprends chaque nom **avec son article**, comme un tout.",
       "examples": [
-        { "de": "Der Vater ist groß.", "fr": "Le père est grand." },
-        { "de": "Die Mutter arbeitet.", "fr": "La mère travaille." },
-        { "de": "Das Kind spielt.", "fr": "L'enfant joue." }
+        {
+          "de": "Der Vater ist groß.",
+          "fr": "Le père est grand."
+        },
+        {
+          "de": "Die Mutter arbeitet.",
+          "fr": "La mère travaille."
+        },
+        {
+          "de": "Das Kind spielt.",
+          "fr": "L'enfant joue."
+        }
       ],
       "typicalMistake": "Deviner le genre d'après le français ne marche pas : « die Sonne » (féminin) mais « le soleil », « der Mond » (masculin) mais « la lune ». Mémorise l'article avec le mot."
     },
@@ -82,9 +147,18 @@
       "level": "A1",
       "explanation": "L'article indéfini : **ein** (masculin et neutre), **eine** (féminin) — « ein Mann, eine Frau, ein Kind ».\n\nPour nier un nom avec article indéfini (ou sans article), on utilise **kein/keine** : « Ich habe **kein** Auto » (je n'ai pas de voiture), « Das ist **keine** gute Idee ».\n\nkein se décline comme ein.",
       "examples": [
-        { "de": "Das ist ein Hund.", "fr": "C'est un chien." },
-        { "de": "Ich habe keine Schwester.", "fr": "Je n'ai pas de sœur." },
-        { "de": "Er hat kein Auto.", "fr": "Il n'a pas de voiture." }
+        {
+          "de": "Das ist ein Hund.",
+          "fr": "C'est un chien."
+        },
+        {
+          "de": "Ich habe keine Schwester.",
+          "fr": "Je n'ai pas de sœur."
+        },
+        {
+          "de": "Er hat kein Auto.",
+          "fr": "Il n'a pas de voiture."
+        }
       ],
       "typicalMistake": "Ne pas traduire « pas de » par « nicht ein » — l'allemand dit **kein** : « Ich habe kein Geld », jamais « Ich habe nicht ein Geld »."
     },
@@ -94,9 +168,18 @@
       "level": "A1",
       "explanation": "**mein** (mon/ma), **dein** (ton/ta), **sein** (son/sa — possesseur masculin), **ihr** (son/sa — possesseur féminin), **unser** (notre), **euer** (votre).\n\nLa terminaison s'accorde avec le nom possédé, comme ein/eine : « mein Bruder » (m), « mein**e** Schwester » (f), « mein Kind » (n).\n\nGrande différence avec le français : **sein** vs **ihr** dépend du **possesseur**, pas de l'objet — « sein Auto » = sa voiture (à lui), « ihr Auto » = sa voiture (à elle).",
       "examples": [
-        { "de": "Meine Schwester heißt Marie.", "fr": "Ma sœur s'appelle Marie." },
-        { "de": "Sein Vater ist Lehrer.", "fr": "Son père (à lui) est professeur." },
-        { "de": "Ihre Mutter wohnt hier.", "fr": "Sa mère (à elle) habite ici." }
+        {
+          "de": "Meine Schwester heißt Marie.",
+          "fr": "Ma sœur s'appelle Marie."
+        },
+        {
+          "de": "Sein Vater ist Lehrer.",
+          "fr": "Son père (à lui) est professeur."
+        },
+        {
+          "de": "Ihre Mutter wohnt hier.",
+          "fr": "Sa mère (à elle) habite ici."
+        }
       ],
       "typicalMistake": "« sein » ou « ihr » ? En français « son/sa » ne dit pas qui possède — en allemand si : *le frère de Paul* → **sein** Bruder, *le frère de Marie* → **ihr** Bruder."
     },
@@ -106,9 +189,18 @@
       "level": "A1",
       "explanation": "Pas de règle unique comme le « -s » français ! Les pluriels allemands se forment de plusieurs façons : **-e** (der Tag → die Tage), **-en/-n** (die Frau → die Frauen), **-er** (das Kind → die Kinder), **-s** (das Auto → die Autos), parfois avec Umlaut (der Vater → die V**ä**ter).\n\nAu pluriel, l'article est toujours **die**.\n\nConseil : apprends le pluriel avec le mot, comme le genre.",
       "examples": [
-        { "de": "Die Kinder spielen im Park.", "fr": "Les enfants jouent dans le parc." },
-        { "de": "Meine Eltern wohnen in Lyon.", "fr": "Mes parents habitent à Lyon." },
-        { "de": "Die Tage sind lang.", "fr": "Les jours sont longs." }
+        {
+          "de": "Die Kinder spielen im Park.",
+          "fr": "Les enfants jouent dans le parc."
+        },
+        {
+          "de": "Meine Eltern wohnen in Lyon.",
+          "fr": "Mes parents habitent à Lyon."
+        },
+        {
+          "de": "Die Tage sind lang.",
+          "fr": "Les jours sont longs."
+        }
       ],
       "typicalMistake": "Ne pas ajouter automatiquement un « -s » comme en français : « die Kinds » n'existe pas — c'est « die Kinder »."
     },
@@ -118,9 +210,18 @@
       "level": "A1",
       "explanation": "0–12 : null, eins, zwei, drei, vier, fünf, sechs, sieben, acht, neun, zehn, elf, zwölf.\n\n13–19 : chiffre + **zehn** (dreizehn, vierzehn …).\n\nLes dizaines : zwanzig, dreißig, vierzig … Et la particularité allemande : on dit l'unité **avant** la dizaine, reliées par **und** : 21 = **einundzwanzig** (« un-et-vingt »), 45 = **fünfundvierzig**.\n\nBonne nouvelle : pas de « quatre-vingt-dix » : 90 = neunzig, tout simplement.",
       "examples": [
-        { "de": "Ich bin einundzwanzig Jahre alt.", "fr": "J'ai vingt-et-un ans." },
-        { "de": "Das kostet fünfundvierzig Euro.", "fr": "Ça coûte quarante-cinq euros." },
-        { "de": "Wir sind zwölf Personen.", "fr": "Nous sommes douze personnes." }
+        {
+          "de": "Ich bin einundzwanzig Jahre alt.",
+          "fr": "J'ai vingt-et-un ans."
+        },
+        {
+          "de": "Das kostet fünfundvierzig Euro.",
+          "fr": "Ça coûte quarante-cinq euros."
+        },
+        {
+          "de": "Wir sind zwölf Personen.",
+          "fr": "Nous sommes douze personnes."
+        }
       ],
       "typicalMistake": "L'ordre inversé : 32 = **zweiunddreißig** (deux-et-trente), pas « dreißigzwei ». Il faut lire les nombres « à l'envers » par rapport au français."
     },
@@ -130,9 +231,18 @@
       "level": "A1",
       "explanation": "**Wie viel Uhr ist es?** / **Wie spät ist es?** — Quelle heure est-il ?\n\nOfficiel : « Es ist vierzehn Uhr dreißig » (14 h 30).\n\nCourant : **halb** + heure suivante ! « halb drei » = 2 h 30 (littéralement « à moitié vers trois heures ») — le grand piège. **Viertel nach** (et quart), **Viertel vor** (moins le quart) : « Viertel nach acht » = 8 h 15.",
       "examples": [
-        { "de": "Es ist halb drei.", "fr": "Il est deux heures et demie." },
-        { "de": "Es ist Viertel nach acht.", "fr": "Il est huit heures et quart." },
-        { "de": "Der Zug kommt um zehn Uhr.", "fr": "Le train arrive à dix heures." }
+        {
+          "de": "Es ist halb drei.",
+          "fr": "Il est deux heures et demie."
+        },
+        {
+          "de": "Es ist Viertel nach acht.",
+          "fr": "Il est huit heures et quart."
+        },
+        {
+          "de": "Der Zug kommt um zehn Uhr.",
+          "fr": "Le train arrive à dix heures."
+        }
       ],
       "typicalMistake": "**halb drei** = 2 h 30, PAS 3 h 30 ! L'allemand regarde vers l'heure qui vient, le français vers l'heure passée."
     },
@@ -142,9 +252,18 @@
       "level": "A1",
       "explanation": "Le complément d'objet direct se met à l'**accusatif**. Seul le **masculin** change : **der → den**, **ein → einen**, **kein → keinen**, **mein → meinen**.\n\nFéminin, neutre et pluriel restent identiques.\n\n« Ich sehe **den** Mann » (je vois l'homme), « Ich habe **einen** Bruder » (j'ai un frère). Après *es gibt*, *haben*, *essen*, *trinken*, *kaufen* … : accusatif.",
       "examples": [
-        { "de": "Ich habe einen Bruder.", "fr": "J'ai un frère." },
-        { "de": "Er trinkt den Kaffee.", "fr": "Il boit le café." },
-        { "de": "Wir kaufen keinen Wein.", "fr": "Nous n'achetons pas de vin." }
+        {
+          "de": "Ich habe einen Bruder.",
+          "fr": "J'ai un frère."
+        },
+        {
+          "de": "Er trinkt den Kaffee.",
+          "fr": "Il boit le café."
+        },
+        {
+          "de": "Wir kaufen keinen Wein.",
+          "fr": "Nous n'achetons pas de vin."
+        }
       ],
       "typicalMistake": "Oublier le **-en** au masculin : « Ich habe ein Bruder » est faux — c'est « Ich habe ein**en** Bruder ». Le français n'a pas de cas, il faut y penser activement."
     },
@@ -154,9 +273,18 @@
       "level": "A1",
       "explanation": "Règle d'or de la phrase allemande : le verbe conjugué occupe **toujours la deuxième position**.\n\nSi la phrase commence par autre chose que le sujet (un complément de temps par exemple), le sujet passe **après** le verbe : « **Heute** gehe **ich** ins Kino » (Aujourd'hui, je vais au cinéma) — littéralement « Aujourd'hui vais je au cinéma ».",
       "examples": [
-        { "de": "Heute arbeite ich nicht.", "fr": "Aujourd'hui, je ne travaille pas." },
-        { "de": "Morgen kommt meine Mutter.", "fr": "Demain, ma mère vient." },
-        { "de": "Am Abend essen wir zusammen.", "fr": "Le soir, nous mangeons ensemble." }
+        {
+          "de": "Heute arbeite ich nicht.",
+          "fr": "Aujourd'hui, je ne travaille pas."
+        },
+        {
+          "de": "Morgen kommt meine Mutter.",
+          "fr": "Demain, ma mère vient."
+        },
+        {
+          "de": "Am Abend essen wir zusammen.",
+          "fr": "Le soir, nous mangeons ensemble."
+        }
       ],
       "typicalMistake": "Garder l'ordre français : « Heute ich gehe … » est faux. Après un complément en tête de phrase, il faut inverser : « Heute gehe ich … »."
     },
@@ -166,9 +294,18 @@
       "level": "A1",
       "explanation": "Pour une question fermée, le **verbe passe en première position** — pas besoin de « est-ce que » :\n\n« **Kommst** du mit? » (Tu viens ?), « **Hast** du Zeit? » (Tu as le temps ?).\n\nPour répondre à une question négative par l'affirmative, l'allemand a un mot spécial : **doch** — « Hast du keine Zeit? » – « **Doch!** » (Si !).",
       "examples": [
-        { "de": "Kommst du mit?", "fr": "Tu viens avec nous ?" },
-        { "de": "Hast du Hunger?", "fr": "Tu as faim ?" },
-        { "de": "Wohnt sie in Berlin?", "fr": "Est-ce qu'elle habite à Berlin ?" }
+        {
+          "de": "Kommst du mit?",
+          "fr": "Tu viens avec nous ?"
+        },
+        {
+          "de": "Hast du Hunger?",
+          "fr": "Tu as faim ?"
+        },
+        {
+          "de": "Wohnt sie in Berlin?",
+          "fr": "Est-ce qu'elle habite à Berlin ?"
+        }
       ],
       "typicalMistake": "Chercher un équivalent de « est-ce que » : il n'y en a pas. On inverse simplement : verbe d'abord, sujet ensuite."
     },
@@ -178,9 +315,18 @@
       "level": "A1",
       "explanation": "**nicht** nie un verbe, un adjectif ou toute la phrase : « Ich rauche **nicht** » (je ne fume pas), « Das ist **nicht** gut ».\n\nUn seul mot suffit — pas de « ne … pas » en deux parties !\n\nnicht se place généralement **après** le verbe et l'objet : « Ich kaufe das Buch nicht ». Rappel : pour nier un nom indéfini, on utilise **kein**.",
       "examples": [
-        { "de": "Ich rauche nicht.", "fr": "Je ne fume pas." },
-        { "de": "Er kommt heute nicht.", "fr": "Il ne vient pas aujourd'hui." },
-        { "de": "Das ist nicht teuer.", "fr": "Ce n'est pas cher." }
+        {
+          "de": "Ich rauche nicht.",
+          "fr": "Je ne fume pas."
+        },
+        {
+          "de": "Er kommt heute nicht.",
+          "fr": "Il ne vient pas aujourd'hui."
+        },
+        {
+          "de": "Das ist nicht teuer.",
+          "fr": "Ce n'est pas cher."
+        }
       ],
       "typicalMistake": "nicht vs kein : « Ich habe nicht Zeit » est faux — on dit « Ich habe **keine** Zeit ». nicht pour les verbes et adjectifs, kein pour les noms."
     },
@@ -190,12 +336,27 @@
       "level": "A1",
       "explanation": "Certains verbes changent leur voyelle aux **2e et 3e personnes du singulier** — uniquement là !\n\n**a → ä** : fahren → du f**ä**hrst, er f**ä**hrt. schlafen → du schläfst.\n**e → i** : essen → du **i**sst, er **i**sst. sprechen → du sprichst.\n**e → ie** : sehen → du s**ie**hst, er s**ie**ht. lesen → du liest.\n\nAux autres personnes, tout est régulier : ich fahre, wir fahren.",
       "examples": [
-        { "de": "Du fährst nach Berlin.", "fr": "Tu vas à Berlin en train." },
-        { "de": "Er isst einen Apfel.", "fr": "Il mange une pomme." },
-        { "de": "Sie liest ein Buch.", "fr": "Elle lit un livre." }
+        {
+          "de": "Du fährst nach Berlin.",
+          "fr": "Tu vas à Berlin en train."
+        },
+        {
+          "de": "Er isst einen Apfel.",
+          "fr": "Il mange une pomme."
+        },
+        {
+          "de": "Sie liest ein Buch.",
+          "fr": "Elle lit un livre."
+        }
       ],
       "typicalMistake": "Appliquer le changement partout : « wir fähren » n'existe pas ! Le changement de voyelle ne touche que **du** et **er/sie/es**.",
-      "verbTables": ["fahren", "essen", "sehen", "lesen", "sprechen"]
+      "verbTables": [
+        "fahren",
+        "essen",
+        "sehen",
+        "lesen",
+        "sprechen"
+      ]
     },
     {
       "id": "de_g_modalverben",
@@ -203,12 +364,26 @@
       "level": "A1",
       "explanation": "**können** (pouvoir/savoir faire), **müssen** (devoir), **wollen** (vouloir), **möchten** (vouloir poliment), **dürfen** (avoir le droit), **sollen** (devoir/être censé).\n\nParticularité 1 : au singulier, ich et er sont identiques et sans terminaison : ich **kann**, er **kann**.\n\nParticularité 2 : l'infinitif se place **à la fin de la phrase** : « Ich möchte einen Kaffee **trinken** » (je voudrais boire un café) — le deuxième verbe attend à la fin !",
       "examples": [
-        { "de": "Ich kann gut kochen.", "fr": "Je sais bien cuisiner." },
-        { "de": "Wir müssen jetzt gehen.", "fr": "Nous devons partir maintenant." },
-        { "de": "Möchtest du einen Tee trinken?", "fr": "Veux-tu boire un thé ?" }
+        {
+          "de": "Ich kann gut kochen.",
+          "fr": "Je sais bien cuisiner."
+        },
+        {
+          "de": "Wir müssen jetzt gehen.",
+          "fr": "Nous devons partir maintenant."
+        },
+        {
+          "de": "Möchtest du einen Tee trinken?",
+          "fr": "Veux-tu boire un thé ?"
+        }
       ],
       "typicalMistake": "Placer l'infinitif juste après le modal comme en français : « Ich möchte trinken einen Kaffee » est faux — l'infinitif va **à la fin** : « Ich möchte einen Kaffee trinken ».",
-      "verbTables": ["können", "müssen", "wollen", "möchten"]
+      "verbTables": [
+        "können",
+        "müssen",
+        "wollen",
+        "möchten"
+      ]
     },
     {
       "id": "de_g_trennbar",
@@ -216,12 +391,26 @@
       "level": "A1",
       "explanation": "Beaucoup de verbes ont un préfixe qui **se détache** et part à la fin de la phrase :\n\n**auf**stehen (se lever) → « Ich stehe um sieben Uhr **auf** » (je me lève à sept heures).\n**ein**kaufen (faire les courses) → « Wir kaufen heute **ein** ».\n**fern**sehen (regarder la télé) → « Er sieht abends **fern** ».\n\nAvec un modal, le verbe reste entier à la fin : « Ich muss früh **aufstehen** ».",
       "examples": [
-        { "de": "Ich stehe um sieben Uhr auf.", "fr": "Je me lève à sept heures." },
-        { "de": "Wir kaufen am Samstag ein.", "fr": "Nous faisons les courses le samedi." },
-        { "de": "Sie ruft ihre Mutter an.", "fr": "Elle appelle sa mère." }
+        {
+          "de": "Ich stehe um sieben Uhr auf.",
+          "fr": "Je me lève à sept heures."
+        },
+        {
+          "de": "Wir kaufen am Samstag ein.",
+          "fr": "Nous faisons les courses le samedi."
+        },
+        {
+          "de": "Sie ruft ihre Mutter an.",
+          "fr": "Elle appelle sa mère."
+        }
       ],
       "typicalMistake": "Oublier la particule à la fin : « Ich stehe um sieben Uhr » ne veut pas dire « je me lève » ! La particule **auf** est obligatoire : « Ich stehe um sieben Uhr auf ».",
-      "verbTables": ["aufstehen", "einkaufen", "anrufen", "fernsehen"]
+      "verbTables": [
+        "aufstehen",
+        "einkaufen",
+        "anrufen",
+        "fernsehen"
+      ]
     },
     {
       "id": "de_g_imperativ",
@@ -229,12 +418,25 @@
       "level": "A1",
       "explanation": "Trois formes :\n\n**du** : radical sans terminaison — « Komm! » (viens !), « Frag! ». Les verbes en e→i gardent le changement : « Iss! » (mange !), « Lies! ».\n\n**ihr** : comme le présent — « Kommt! », « Esst! ».\n\n**Sie** : infinitif + Sie — « Kommen Sie! », « Nehmen Sie Platz! » (asseyez-vous).",
       "examples": [
-        { "de": "Komm bitte her!", "fr": "Viens ici, s'il te plaît !" },
-        { "de": "Nehmen Sie Platz!", "fr": "Asseyez-vous !" },
-        { "de": "Iss dein Brot!", "fr": "Mange ton pain !" }
+        {
+          "de": "Komm bitte her!",
+          "fr": "Viens ici, s'il te plaît !"
+        },
+        {
+          "de": "Nehmen Sie Platz!",
+          "fr": "Asseyez-vous !"
+        },
+        {
+          "de": "Iss dein Brot!",
+          "fr": "Mange ton pain !"
+        }
       ],
       "typicalMistake": "Utiliser le pronom : « Komm du! » est inhabituel — l'impératif familier s'emploie **sans** pronom : « Komm! ».",
-      "verbTables": ["kommen", "nehmen", "essen"]
+      "verbTables": [
+        "kommen",
+        "nehmen",
+        "essen"
+      ]
     },
     {
       "id": "de_g_perfekt_haben",
@@ -242,12 +444,25 @@
       "level": "A1",
       "explanation": "Le **Perfekt** est le passé de la conversation (comme le passé composé) : **haben** + participe passé **à la fin de la phrase**.\n\nParticipe des verbes réguliers : **ge** + radical + **t** — machen → **ge**mach**t**, kaufen → **ge**kauf**t**.\n\nPas de « ge- » pour les verbes en **-ieren** (studiert, telefoniert) et les préfixes be-, ver-, er- (besucht, verkauft).\n\n« Ich **habe** Pizza **gegessen** » — le participe attend à la fin !",
       "examples": [
-        { "de": "Ich habe viel gearbeitet.", "fr": "J'ai beaucoup travaillé." },
-        { "de": "Wir haben Fußball gespielt.", "fr": "Nous avons joué au football." },
-        { "de": "Sie hat mit Anna telefoniert.", "fr": "Elle a téléphoné avec Anna." }
+        {
+          "de": "Ich habe viel gearbeitet.",
+          "fr": "J'ai beaucoup travaillé."
+        },
+        {
+          "de": "Wir haben Fußball gespielt.",
+          "fr": "Nous avons joué au football."
+        },
+        {
+          "de": "Sie hat mit Anna telefoniert.",
+          "fr": "Elle a téléphoné avec Anna."
+        }
       ],
       "typicalMistake": "Placer le participe après l'auxiliaire comme en français : « Ich habe gegessen eine Pizza » est faux — le participe va **à la fin** : « Ich habe eine Pizza gegessen ».",
-      "verbTables": ["machen", "kaufen", "arbeiten"]
+      "verbTables": [
+        "machen",
+        "kaufen",
+        "arbeiten"
+      ]
     },
     {
       "id": "de_g_perfekt_sein",
@@ -255,12 +470,26 @@
       "level": "A1",
       "explanation": "Les verbes de **déplacement** (gehen, kommen, fahren, fliegen) et de **changement d'état** forment leur Perfekt avec **sein** :\n\n« Ich **bin** nach Berlin **gefahren** » (je suis allé à Berlin), « Sie **ist** früh **aufgestanden** ».\n\nC'est proche du français « être » avec les verbes de mouvement — mais la liste n'est pas identique : *bleiben* (rester) prend **sein** : « Ich bin zu Hause geblieben ».",
       "examples": [
-        { "de": "Ich bin nach Hause gegangen.", "fr": "Je suis rentré à la maison." },
-        { "de": "Er ist spät gekommen.", "fr": "Il est venu tard." },
-        { "de": "Wir sind in Paris geblieben.", "fr": "Nous sommes restés à Paris." }
+        {
+          "de": "Ich bin nach Hause gegangen.",
+          "fr": "Je suis rentré à la maison."
+        },
+        {
+          "de": "Er ist spät gekommen.",
+          "fr": "Il est venu tard."
+        },
+        {
+          "de": "Wir sind in Paris geblieben.",
+          "fr": "Nous sommes restés à Paris."
+        }
       ],
       "typicalMistake": "Beaucoup de participes forts sont irréguliers et finissent en **-en** : gegangen, gekommen, gefahren — pas « gegeht » ni « gekommt ».",
-      "verbTables": ["gehen", "kommen", "fahren", "bleiben"]
+      "verbTables": [
+        "gehen",
+        "kommen",
+        "fahren",
+        "bleiben"
+      ]
     },
     {
       "id": "de_g_praeteritum_sein_haben",
@@ -268,12 +497,24 @@
       "level": "A1",
       "explanation": "Pour **sein** et **haben**, on n'utilise presque jamais le Perfekt — on préfère le **Präteritum** (prétérit), même à l'oral :\n\n**sein** : ich **war**, du warst, er war, wir waren, ihr wart, sie waren.\n**haben** : ich **hatte**, du hattest, er hatte, wir hatten, ihr hattet, sie hatten.\n\n« Ich **war** gestern im Kino » (j'étais au cinéma hier), « Wir **hatten** keine Zeit » (nous n'avions pas le temps).",
       "examples": [
-        { "de": "Ich war gestern im Kino.", "fr": "J'étais au cinéma hier." },
-        { "de": "Wir hatten keine Zeit.", "fr": "Nous n'avions pas le temps." },
-        { "de": "Das Wetter war schön.", "fr": "Il faisait beau." }
+        {
+          "de": "Ich war gestern im Kino.",
+          "fr": "J'étais au cinéma hier."
+        },
+        {
+          "de": "Wir hatten keine Zeit.",
+          "fr": "Nous n'avions pas le temps."
+        },
+        {
+          "de": "Das Wetter war schön.",
+          "fr": "Il faisait beau."
+        }
       ],
       "typicalMistake": "Dire « Ich bin gewesen » pour « j'étais » : c'est correct mais lourd — les Allemands disent simplement « Ich war ».",
-      "verbTables": ["sein", "haben"]
+      "verbTables": [
+        "sein",
+        "haben"
+      ]
     },
     {
       "id": "de_g_es_gibt",
@@ -281,11 +522,423 @@
       "level": "A1",
       "explanation": "**es gibt** = « il y a ». Toujours suivi de l'**accusatif** :\n\n« Es gibt **einen** Park » (il y a un parc), « Gibt es hier ein Café? » (y a-t-il un café ici ?).\n\nInvariable : même au pluriel, on dit « es gibt » — « Es gibt viele Restaurants ».",
       "examples": [
-        { "de": "Es gibt einen Park in der Stadt.", "fr": "Il y a un parc dans la ville." },
-        { "de": "Gibt es hier ein Hotel?", "fr": "Y a-t-il un hôtel ici ?" },
-        { "de": "Es gibt keinen Zug am Sonntag.", "fr": "Il n'y a pas de train le dimanche." }
+        {
+          "de": "Es gibt einen Park in der Stadt.",
+          "fr": "Il y a un parc dans la ville."
+        },
+        {
+          "de": "Gibt es hier ein Hotel?",
+          "fr": "Y a-t-il un hôtel ici ?"
+        },
+        {
+          "de": "Es gibt keinen Zug am Sonntag.",
+          "fr": "Il n'y a pas de train le dimanche."
+        }
       ],
       "typicalMistake": "Traduire mot à mot « il y a » : « es hat » n'existe pas — c'est toujours **es gibt**, avec l'objet à l'accusatif : « es gibt ein**en** Park »."
+    },
+    {
+      "id": "de_g_dativ",
+      "title": "Le datif",
+      "level": "A2",
+      "explanation": "Troisième cas de l'allemand — pour le complément d'attribution (à qui ?) et après certaines prépositions.\n\nArticles au datif : **der → dem**, **die → der**, **das → dem**, pluriel **die → den** (+ **-n** au nom !).\n\n« Ich helfe **dem** Mann » (j'aide l'homme), « Sie gibt **der** Frau das Buch » (elle donne le livre à la femme).\n\nCertains verbes veulent toujours le datif : **helfen, danken, gehören, gefallen, antworten**.",
+      "examples": [
+        {
+          "de": "Ich helfe dem Mann.",
+          "fr": "J'aide l'homme."
+        },
+        {
+          "de": "Das Auto gehört der Frau.",
+          "fr": "La voiture appartient à la femme."
+        },
+        {
+          "de": "Der Film gefällt den Kindern.",
+          "fr": "Le film plaît aux enfants."
+        }
+      ],
+      "typicalMistake": "« helfen » se construit avec le datif, pas l'accusatif : « Ich helfe dem Mann », jamais « Ich helfe den Mann ».",
+      "verbTables": [
+        "helfen",
+        "gefallen",
+        "gehören"
+      ]
+    },
+    {
+      "id": "de_g_dativ_praepositionen",
+      "title": "Les prépositions + datif",
+      "level": "A2",
+      "explanation": "Ces prépositions sont **toujours** suivies du datif : **mit** (avec), **nach** (après, vers), **bei** (chez), **von** (de), **zu** (chez, vers), **aus** (de, hors de), **seit** (depuis).\n\n« Ich fahre **mit dem** Bus » (je prends le bus), « Sie wohnt **bei ihrer** Mutter » (elle habite chez sa mère).\n\nContractions courantes : **zu dem → zum**, **zu der → zur**, **bei dem → beim**, **von dem → vom**.",
+      "examples": [
+        {
+          "de": "Ich fahre mit dem Bus.",
+          "fr": "Je prends le bus."
+        },
+        {
+          "de": "Wir gehen zum Bahnhof.",
+          "fr": "Nous allons à la gare."
+        },
+        {
+          "de": "Er kommt aus der Schweiz.",
+          "fr": "Il vient de Suisse."
+        }
+      ],
+      "typicalMistake": "Après « mit », toujours le datif : « mit dem Auto », jamais « mit das Auto ». Mémorise la liste comme une comptine : mit-nach-bei-von-zu-aus-seit."
+    },
+    {
+      "id": "de_g_wechselpraepositionen",
+      "title": "in, an, auf : accusatif ou datif ?",
+      "level": "A2",
+      "explanation": "Neuf prépositions changent de cas selon le sens : **in, an, auf, über, unter, vor, hinter, neben, zwischen**.\n\n**Où ? (position)** → datif : « Das Buch liegt **auf dem** Tisch » (le livre est sur la table).\n\n**Où va-t-on ? (direction)** → accusatif : « Ich lege das Buch **auf den** Tisch » (je pose le livre sur la table).\n\nContractions : **in dem → im**, **in das → ins**, **an dem → am**, **an das → ans**.",
+      "examples": [
+        {
+          "de": "Die Katze schläft auf dem Sofa.",
+          "fr": "Le chat dort sur le canapé. (position → datif)"
+        },
+        {
+          "de": "Ich gehe ins Kino.",
+          "fr": "Je vais au cinéma. (direction → accusatif)"
+        },
+        {
+          "de": "Der Schlüssel liegt neben der Tür.",
+          "fr": "La clé est à côté de la porte."
+        }
+      ],
+      "typicalMistake": "Pose-toi la question : **wo?** (où, statique) → datif ; **wohin?** (vers où, mouvement) → accusatif. « Ich bin im Kino » mais « Ich gehe ins Kino »."
+    },
+    {
+      "id": "de_g_pronomen_akkusativ",
+      "title": "Les pronoms à l'accusatif : mich, dich, ihn",
+      "level": "A2",
+      "explanation": "Comme le/la/les en français : **mich** (me), **dich** (te), **ihn** (le), **sie** (la), **es** (le, neutre), **uns** (nous), **euch** (vous), **sie** (les).\n\n« Ich sehe **ihn** » (je le vois), « Er ruft **mich** an » (il m'appelle).\n\nContrairement au français, le pronom vient **après** le verbe : « Je le vois » → « Ich sehe ihn ».",
+      "examples": [
+        {
+          "de": "Ich sehe ihn morgen.",
+          "fr": "Je le vois demain."
+        },
+        {
+          "de": "Sie ruft mich heute an.",
+          "fr": "Elle m'appelle aujourd'hui."
+        },
+        {
+          "de": "Wir laden euch ein.",
+          "fr": "Nous vous invitons."
+        }
+      ],
+      "typicalMistake": "Position du pronom : en français il précède le verbe (« je le vois »), en allemand il le suit (« ich sehe ihn ») — ne pas calquer l'ordre français."
+    },
+    {
+      "id": "de_g_pronomen_dativ",
+      "title": "Les pronoms au datif : mir, dir, ihm",
+      "level": "A2",
+      "explanation": "L'équivalent de lui/leur : **mir** (me/à moi), **dir** (te/à toi), **ihm** (lui, masculin/neutre), **ihr** (lui, féminin), **uns**, **euch**, **ihnen** (leur).\n\n« Ich gebe **ihm** das Buch » (je lui donne le livre), « Sie antwortet **mir** nicht » (elle ne me répond pas).\n\nAvec les verbes à datif (helfen, danken, gefallen) : « Kannst du **mir** helfen? » (peux-tu m'aider ?).",
+      "examples": [
+        {
+          "de": "Ich gebe ihm das Buch.",
+          "fr": "Je lui donne le livre."
+        },
+        {
+          "de": "Kannst du mir helfen?",
+          "fr": "Peux-tu m'aider ?"
+        },
+        {
+          "de": "Das Geschenk gefällt ihr.",
+          "fr": "Le cadeau lui plaît (à elle)."
+        }
+      ],
+      "typicalMistake": "« lui » a deux traductions : **ihm** (à lui) et **ihr** (à elle) — l'allemand distingue le genre là où le français ne le fait pas."
+    },
+    {
+      "id": "de_g_komparativ",
+      "title": "Le comparatif : größer als",
+      "level": "A2",
+      "explanation": "Comparatif = adjectif + **-er** : klein → klein**er**, schnell → schnell**er**. Beaucoup d'adjectifs courts prennent un Umlaut : groß → gr**ö**ßer, alt → **ä**lter, jung → j**ü**nger.\n\nLa comparaison se fait avec **als** (que) : « Er ist größer **als** ich » (il est plus grand que moi).\n\nIrréguliers : gut → **besser**, viel → **mehr**, gern → **lieber**.\n\nÉgalité : **so … wie** — « Er ist so groß wie ich ».",
+      "examples": [
+        {
+          "de": "Berlin ist größer als Lyon.",
+          "fr": "Berlin est plus grande que Lyon."
+        },
+        {
+          "de": "Ich trinke lieber Tee.",
+          "fr": "Je préfère boire du thé."
+        },
+        {
+          "de": "Sie ist so alt wie ich.",
+          "fr": "Elle a le même âge que moi."
+        }
+      ],
+      "typicalMistake": "Pas de « mehr » devant l'adjectif ! « plus grand » = **größer**, jamais « mehr groß » — le -er suffit."
+    },
+    {
+      "id": "de_g_superlativ",
+      "title": "Le superlatif : am größten",
+      "level": "A2",
+      "explanation": "Deux formes :\n\n**am + -sten** (après un verbe) : « Dieser Zug fährt **am schnellsten** » (ce train est le plus rapide).\n\n**der/die/das + -ste** (devant un nom) : « der schnell**ste** Zug » (le train le plus rapide).\n\nMêmes Umlauts qu'au comparatif : am größten, am ältesten (+e après -t). Irréguliers : gut → am **besten**, viel → am **meisten**, gern → am **liebsten**.",
+      "examples": [
+        {
+          "de": "Dieser Weg ist am kürzesten.",
+          "fr": "Ce chemin est le plus court."
+        },
+        {
+          "de": "Das ist das beste Restaurant der Stadt.",
+          "fr": "C'est le meilleur restaurant de la ville."
+        },
+        {
+          "de": "Ich esse am liebsten Pizza.",
+          "fr": "Ce que je préfère manger, c'est la pizza."
+        }
+      ],
+      "typicalMistake": "Ne pas oublier « am » après un verbe : « Er läuft am schnellsten », pas « Er läuft schnellsten »."
+    },
+    {
+      "id": "de_g_ordinalzahlen",
+      "title": "Les nombres ordinaux et la date",
+      "level": "A2",
+      "explanation": "1–19 : nombre + **-te** — der zwei**te**, der vier**te**. Exceptions : der **erste** (1er), der **dritte** (3e), der **siebte** (7e).\n\nÀ partir de 20 : nombre + **-ste** — der zwanzig**ste**.\n\nLa date : « Heute ist der **dritte** Mai » (nous sommes le 3 mai), « **am** vierten Juli » (le 4 juillet — datif après am !).",
+      "examples": [
+        {
+          "de": "Heute ist der erste April.",
+          "fr": "Nous sommes le premier avril."
+        },
+        {
+          "de": "Mein Geburtstag ist am dritten Juni.",
+          "fr": "Mon anniversaire est le 3 juin."
+        },
+        {
+          "de": "Das ist mein zweites Bier.",
+          "fr": "C'est ma deuxième bière."
+        }
+      ],
+      "typicalMistake": "« le premier » = der **erste** (irrégulier), pas « der einste ». Et après « am », l'ordinal prend -n : am erste**n** Mai."
+    },
+    {
+      "id": "de_g_futur",
+      "title": "Le futur : werden + infinitif",
+      "level": "A2",
+      "explanation": "Le futur se forme avec **werden** conjugué + **infinitif à la fin** :\n\n« Ich **werde** nächstes Jahr Deutsch **lernen** » (j'apprendrai l'allemand l'année prochaine).\n\nwerden : ich werde, du wirst, er wird, wir werden, ihr werdet, sie werden.\n\nAstuce : pour un futur proche et certain, les Allemands utilisent souvent le **présent** + indication de temps : « Morgen fahre ich nach Berlin » (demain, je vais à Berlin).",
+      "examples": [
+        {
+          "de": "Ich werde dich morgen anrufen.",
+          "fr": "Je t'appellerai demain."
+        },
+        {
+          "de": "Wir werden ein Haus kaufen.",
+          "fr": "Nous achèterons une maison."
+        },
+        {
+          "de": "Nächstes Jahr fahre ich nach Wien.",
+          "fr": "L'année prochaine, je vais à Vienne. (présent à valeur de futur)"
+        }
+      ],
+      "typicalMistake": "werden n'est pas « aller » : le futur français « je vais manger » ne se traduit pas par « ich gehe essen » (= je vais à pied manger !) mais par « ich werde essen » ou simplement le présent.",
+      "verbTables": [
+        "werden"
+      ]
+    },
+    {
+      "id": "de_g_reflexiv",
+      "title": "Les verbes réfléchis : sich waschen",
+      "level": "A2",
+      "explanation": "Comme les verbes pronominaux français : **sich waschen** (se laver), **sich freuen** (se réjouir), **sich beeilen** (se dépêcher).\n\nPronoms réfléchis (accusatif) : **mich, dich, sich, uns, euch, sich** — « Ich wasche **mich** », « Er freut **sich** ».\n\nLe pronom vient **après le verbe conjugué** : « Ich freue mich » (je me réjouis). Au parfait, tous avec **haben** : « Ich habe mich gewaschen ».",
+      "examples": [
+        {
+          "de": "Ich wasche mich am Morgen.",
+          "fr": "Je me lave le matin."
+        },
+        {
+          "de": "Wir freuen uns auf das Wochenende.",
+          "fr": "Nous nous réjouissons du week-end."
+        },
+        {
+          "de": "Beeil dich, der Zug kommt!",
+          "fr": "Dépêche-toi, le train arrive !"
+        }
+      ],
+      "typicalMistake": "Position : « je me lave » → « ich wasche **mich** » — le pronom réfléchi suit le verbe, il ne le précède pas comme en français.",
+      "verbTables": [
+        "sich waschen",
+        "sich freuen",
+        "sich anziehen"
+      ]
+    },
+    {
+      "id": "de_g_weil",
+      "title": "La subordonnée avec weil",
+      "level": "A2",
+      "explanation": "**weil** (parce que) introduit une subordonnée — et là, révolution : le **verbe conjugué part à la fin** !\n\n« Ich bleibe zu Hause, **weil ich krank bin** » (je reste à la maison parce que je suis malade) — littéralement « parce que je malade suis ».\n\nAvec un verbe séparable, il se ressoude à la fin : « … weil ich früh **aufstehe** ». Avec le parfait : « … weil ich viel **gearbeitet habe** ».",
+      "examples": [
+        {
+          "de": "Ich lerne Deutsch, weil ich in Berlin wohne.",
+          "fr": "J'apprends l'allemand parce que j'habite à Berlin."
+        },
+        {
+          "de": "Er kommt nicht, weil er krank ist.",
+          "fr": "Il ne vient pas parce qu'il est malade."
+        },
+        {
+          "de": "Wir bleiben hier, weil es regnet.",
+          "fr": "Nous restons ici parce qu'il pleut."
+        }
+      ],
+      "typicalMistake": "Garder le verbe en 2e position après weil : « weil ich bin krank » est LA faute classique — c'est « weil ich krank **bin** », verbe à la fin."
+    },
+    {
+      "id": "de_g_dass",
+      "title": "La subordonnée avec dass",
+      "level": "A2",
+      "explanation": "**dass** (que) fonctionne comme weil : **verbe à la fin** de la subordonnée.\n\n« Ich glaube, **dass er kommt** » (je crois qu'il vient), « Ich hoffe, **dass du Zeit hast** » (j'espère que tu as le temps).\n\nAprès les verbes d'opinion : glauben, denken, hoffen, wissen, sagen. La virgule avant dass est obligatoire.",
+      "examples": [
+        {
+          "de": "Ich glaube, dass er morgen kommt.",
+          "fr": "Je crois qu'il vient demain."
+        },
+        {
+          "de": "Ich hoffe, dass du Zeit hast.",
+          "fr": "J'espère que tu as le temps."
+        },
+        {
+          "de": "Sie sagt, dass das Essen gut ist.",
+          "fr": "Elle dit que le repas est bon."
+        }
+      ],
+      "typicalMistake": "Ne pas confondre **dass** (conjonction, avec ß/ss) et **das** (article/pronom) : « Ich weiß, dass das Auto rot ist »."
+    },
+    {
+      "id": "de_g_wenn",
+      "title": "wenn : quand et si",
+      "level": "A2",
+      "explanation": "**wenn** couvre deux sens français : **quand** (répétition) et **si** (condition) — toujours avec le **verbe à la fin**.\n\n« **Wenn** es regnet, bleibe ich zu Hause » (quand/s'il pleut, je reste à la maison).\n\nAttention à l'ordre après la subordonnée : le verbe principal vient **directement** — « Wenn es regnet, **bleibe ich** … » (le wenn-Satz occupe la position 1).",
+      "examples": [
+        {
+          "de": "Wenn es regnet, bleibe ich zu Hause.",
+          "fr": "S'il pleut, je reste à la maison."
+        },
+        {
+          "de": "Wenn ich Zeit habe, rufe ich dich an.",
+          "fr": "Si j'ai le temps, je t'appelle."
+        },
+        {
+          "de": "Ich freue mich, wenn du kommst.",
+          "fr": "Je me réjouis quand tu viens."
+        }
+      ],
+      "typicalMistake": "Après le wenn-Satz, verbe d'abord : « Wenn es regnet, **bleibe ich** zu Hause », pas « Wenn es regnet, ich bleibe … »."
+    },
+    {
+      "id": "de_g_praeteritum_modal",
+      "title": "konnte, musste, wollte : les modaux au passé",
+      "level": "A2",
+      "explanation": "Comme sein et haben, les modaux s'utilisent au **Präteritum** (pas au parfait) :\n\n**können → konnte**, **müssen → musste**, **wollen → wollte**, **dürfen → durfte**, **sollen → sollte**, **mögen → mochte**.\n\nL'Umlaut disparaît ! Terminaisons : ich konnte, du konntest, er konnte, wir konnten, ihr konntet, sie konnten.\n\n« Ich **konnte** gestern nicht kommen » (je ne pouvais pas venir hier).",
+      "examples": [
+        {
+          "de": "Ich konnte gestern nicht kommen.",
+          "fr": "Je ne pouvais pas venir hier."
+        },
+        {
+          "de": "Wir mussten lange warten.",
+          "fr": "Nous avons dû attendre longtemps."
+        },
+        {
+          "de": "Als Kind wollte ich Pilot werden.",
+          "fr": "Enfant, je voulais devenir pilote."
+        }
+      ],
+      "typicalMistake": "Pas d'Umlaut au prétérit : **konnte**, pas « könnte » — « könnte » existe aussi, mais c'est le conditionnel (je pourrais) !",
+      "verbTables": [
+        "können",
+        "müssen",
+        "wollen",
+        "dürfen"
+      ]
+    },
+    {
+      "id": "de_g_perfekt_stark",
+      "title": "Participes forts : gegangen, getrunken",
+      "level": "A2",
+      "explanation": "Les verbes forts changent de voyelle au participe et finissent en **-en** :\n\ntrinken → **getrunken**, finden → **gefunden**, schreiben → **geschrieben**, sprechen → **gesprochen**, essen → **gegessen**, nehmen → **genommen**.\n\nVerbes séparables : particule + ge — **ein**geladen, **an**gerufen, **mit**genommen.\n\nSans ge- : bekommen → **bekommen**, vergessen → **vergessen**, verlieren → **verloren**.",
+      "examples": [
+        {
+          "de": "Ich habe zu viel Kaffee getrunken.",
+          "fr": "J'ai bu trop de café."
+        },
+        {
+          "de": "Er hat mich gestern angerufen.",
+          "fr": "Il m'a appelé hier."
+        },
+        {
+          "de": "Ich habe meinen Schlüssel verloren.",
+          "fr": "J'ai perdu ma clé."
+        }
+      ],
+      "typicalMistake": "Chaque participe fort s'apprend par cœur avec son verbe — « getrinkt » ou « gefindet » n'existent pas.",
+      "verbTables": [
+        "trinken",
+        "finden",
+        "vergessen",
+        "verlieren"
+      ]
+    },
+    {
+      "id": "de_g_konnektoren",
+      "title": "und, aber, oder, denn : position zéro",
+      "level": "A2",
+      "explanation": "Quatre conjonctions relient deux phrases **sans changer l'ordre des mots** — on dit qu'elles occupent la « position zéro » :\n\n**und** (et), **aber** (mais), **oder** (ou), **denn** (car).\n\n« Ich bin müde, **aber** ich arbeite weiter » (je suis fatigué, mais je continue à travailler) — après aber, le sujet reste devant le verbe.\n\nContraste avec weil/dass/wenn qui envoient le verbe à la fin !",
+      "examples": [
+        {
+          "de": "Ich bin müde, aber ich arbeite weiter.",
+          "fr": "Je suis fatigué, mais je continue à travailler."
+        },
+        {
+          "de": "Kommst du mit, oder bleibst du hier?",
+          "fr": "Tu viens avec nous ou tu restes ici ?"
+        },
+        {
+          "de": "Er bleibt zu Hause, denn er ist krank.",
+          "fr": "Il reste à la maison, car il est malade."
+        }
+      ],
+      "typicalMistake": "**denn** (position zéro : « denn er ist krank ») et **weil** (verbe à la fin : « weil er krank ist ») signifient presque pareil mais construisent la phrase différemment."
+    },
+    {
+      "id": "de_g_temporal",
+      "title": "am, im, um : les indications de temps",
+      "level": "A2",
+      "explanation": "Trois petites prépositions à ne pas mélanger :\n\n**um** + heure : « um 8 Uhr » (à 8 heures).\n**am** + jour/moment de la journée : « am Montag », « am Morgen », « am Wochenende ».\n**im** + mois/saison/année : « im Juli », « im Winter », « im Jahr 2026 ».\n\nException : « **in der** Nacht » (la nuit).",
+      "examples": [
+        {
+          "de": "Der Kurs beginnt um neun Uhr.",
+          "fr": "Le cours commence à neuf heures."
+        },
+        {
+          "de": "Am Samstag gehen wir einkaufen.",
+          "fr": "Samedi, nous faisons les courses."
+        },
+        {
+          "de": "Im Sommer fahren wir ans Meer.",
+          "fr": "En été, nous allons à la mer."
+        }
+      ],
+      "typicalMistake": "« le lundi » = **am** Montag, « en juillet » = **im** Juli, « à 8 heures » = **um** 8 Uhr — trois prépositions là où le français n'en a parfois aucune."
+    },
+    {
+      "id": "de_g_man",
+      "title": "Le pronom man",
+      "level": "A2",
+      "explanation": "**man** = « on » : « **Man** spricht hier Deutsch » (ici, on parle allemand).\n\nToujours avec le verbe à la **3e personne du singulier** : man kann, man muss, man darf.\n\nTrès courant pour les règles et généralités : « Hier darf man nicht rauchen » (ici, on ne peut pas fumer). Ne pas confondre avec **der Mann** (l'homme) !",
+      "examples": [
+        {
+          "de": "Man spricht hier Deutsch.",
+          "fr": "Ici, on parle allemand."
+        },
+        {
+          "de": "Hier darf man nicht rauchen.",
+          "fr": "Ici, on n'a pas le droit de fumer."
+        },
+        {
+          "de": "Wie sagt man das auf Deutsch?",
+          "fr": "Comment dit-on ça en allemand ?"
+        }
+      ],
+      "typicalMistake": "man (minuscule, un n) = « on » ; Mann (majuscule, deux n) = « homme ». « Man isst » (on mange) ≠ « Mann isst » (un homme mange)."
     }
   ]
 }

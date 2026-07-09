@@ -46,7 +46,11 @@ final class GermanConjugatorTests: XCTestCase {
     func testSeparablePrefixesArePrefixesOfTheInfinitive() throws {
         for entry in conjugator.verbs {
             if let prefix = entry.separablePrefix {
-                XCTAssertTrue(entry.infinitive.hasPrefix(prefix), entry.infinitive)
+                // Reflexive tragen "sich " vor dem eigentlichen Infinitiv.
+                let bare = entry.infinitive.hasPrefix("sich ")
+                    ? String(entry.infinitive.dropFirst(5))
+                    : entry.infinitive
+                XCTAssertTrue(bare.hasPrefix(prefix), entry.infinitive)
             }
         }
     }
@@ -179,6 +183,52 @@ final class GermanConjugatorTests: XCTestCase {
     func testImperativeOnlyForDuIhrSie() throws {
         XCTAssertNil(conjugator.form(of: try verb("kommen"), tense: .imperativ, person: 0))
         XCTAssertNil(conjugator.form(of: try verb("kommen"), tense: .imperativ, person: 3))
+    }
+
+    // MARK: - Futur (A2)
+
+    func testFutur() throws {
+        XCTAssertEqual(try form("arbeiten", .futur, 0), "werde arbeiten")
+        XCTAssertEqual(try form("kommen", .futur, 1), "wirst kommen")
+        XCTAssertEqual(try form("aufstehen", .futur, 2), "wird aufstehen", "Trennbares Verb bleibt im Futur ganz")
+        XCTAssertEqual(try form("sein", .futur, 3), "werden sein")
+    }
+
+    // MARK: - Reflexive Verben (A2)
+
+    func testReflexivePresent() throws {
+        XCTAssertEqual(try form("sich waschen", .praesens, 0), "wasche mich")
+        XCTAssertEqual(try form("sich waschen", .praesens, 1), "wäschst dich")
+        XCTAssertEqual(try form("sich freuen", .praesens, 2), "freut sich")
+        XCTAssertEqual(try form("sich anziehen", .praesens, 0), "ziehe mich an", "Reflexiv + trennbar")
+        XCTAssertEqual(try form("sich ausruhen", .praesens, 3), "ruhen uns aus")
+    }
+
+    func testReflexivePerfektAndFutur() throws {
+        XCTAssertEqual(try form("sich waschen", .perfekt, 0), "habe mich gewaschen")
+        XCTAssertEqual(try form("sich freuen", .perfekt, 2), "hat sich gefreut")
+        XCTAssertEqual(try form("sich beeilen", .perfekt, 1), "hast dich beeilt", "be-Präfix ohne ge-")
+        XCTAssertEqual(try form("sich anziehen", .perfekt, 0), "habe mich angezogen")
+        XCTAssertEqual(try form("sich waschen", .futur, 0), "werde mich waschen")
+    }
+
+    func testReflexiveImperative() throws {
+        XCTAssertEqual(try form("sich waschen", .imperativ, 1), "wasch dich")
+        XCTAssertEqual(try form("sich beeilen", .imperativ, 5), "beeilen Sie sich")
+        XCTAssertEqual(try form("sich anziehen", .imperativ, 1), "zieh dich an")
+    }
+
+    func testNewA2Verbs() throws {
+        XCTAssertEqual(try form("einsteigen", .praesens, 0), "steige ein")
+        XCTAssertEqual(try form("umsteigen", .perfekt, 1), "bist umgestiegen")
+        XCTAssertEqual(try form("gefallen", .praesens, 2), "gefällt")
+        XCTAssertEqual(try form("vergessen", .praesens, 1), "vergisst")
+        XCTAssertEqual(try form("wehtun", .praesens, 2), "tut weh")
+        XCTAssertEqual(try form("wehtun", .perfekt, 2), "hat wehgetan")
+        XCTAssertEqual(try form("kennenlernen", .perfekt, 0), "habe kennengelernt")
+        XCTAssertEqual(try form("gehören", .perfekt, 2), "hat gehört", "ge-Präfix: kein doppeltes ge-")
+        XCTAssertEqual(try form("passieren", .perfekt, 2), "ist passiert")
+        XCTAssertEqual(try form("anprobieren", .perfekt, 0), "habe anprobiert")
     }
 
     // MARK: - Tabellen & verfügbare Tempora
