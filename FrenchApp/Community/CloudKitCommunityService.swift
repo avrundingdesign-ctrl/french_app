@@ -83,10 +83,15 @@ final class CloudKitCommunityService: CommunityService {
         let existingPartners = Set(
             try await matches(for: profile).map { $0.otherProfileID(for: profile.id) }
         )
+        let blocked = try await blockedProfileIDs(for: profile)
         return results
             .compactMap { try? $0.1.get() }
             .compactMap(Self.profile(from:))
-            .filter { $0.id != profile.id && !existingPartners.contains($0.id) }
+            .filter {
+                $0.id != profile.id
+                    && !existingPartners.contains($0.id)
+                    && !blocked.contains($0.id)
+            }
     }
 
     func profiles(ids: [String]) async throws -> [String: CommunityProfile] {
@@ -148,6 +153,17 @@ final class CloudKitCommunityService: CommunityService {
             .compactMap(Self.message(from:))
     }
 
+    func latestMessage(for match: TandemMatch) async throws -> ChatMessage? {
+        let predicate = NSPredicate(format: "matchID == %@", match.id)
+        let query = CKQuery(recordType: "Message", predicate: predicate)
+        query.sortDescriptors = [NSSortDescriptor(key: "sentAt", ascending: false)]
+        let (results, _) = try await database.records(matching: query, resultsLimit: 1)
+        return results
+            .compactMap { try? $0.1.get() }
+            .compactMap(Self.message(from:))
+            .first
+    }
+
     func send(
         text: String,
         language: TandemLanguage,
@@ -165,6 +181,111 @@ final class CloudKitCommunityService: CommunityService {
             throw CommunityError.network("Nachricht konnte nicht gesendet werden.")
         }
         return message
+    }
+
+    // MARK: - Moderation
+
+    func blockedProfileIDs(for profile: CommunityProfile) async throws -> Set<String> {
+        // CloudKit kann kein OR in einem Query — zwei Abfragen, beide Richtungen.
+        var ids: Set<String> = []
+        let byMe = CKQuery(
+            recordType: "Block",
+            predicate: NSPredicate(format: "blockerID == %@", profile.id)
+        )
+        let (blockedByMe, _) = try await database.records(matching: byMe, resultsLimit: 200)
+        for result in blockedByMe {
+            if let record = try? result.1.get(), let id = record["blockedID"] as? String {
+                ids.insert(id)
+            }
+        }
+        let againstMe = CKQuery(
+            recordType: "Block",
+            predicate: NSPredicate(format: "blockedID == %@", profile.id)
+        )
+        let (blockingMe, _) = try await database.records(matching: againstMe, resultsLimit: 200)
+        for result in blockingMe {
+            if let record = try? result.1.get(), let id = record["blockerID"] as? String {
+                ids.insert(id)
+            }
+        }
+        return ids
+    }
+
+    func block(profileID: String, by profile: CommunityProfile) async throws {
+        let record = CKRecord(recordType: "Block")
+        record["blockerID"] = profile.id
+        record["blockedID"] = profileID
+        record["createdAt"] = Date()
+        _ = try await database.save(record)
+
+        // Gemeinsames Match samt Verlauf für beide Seiten auflösen.
+        for match in try await matches(for: profile) where match.involves(profileID) {
+            try await endMatch(match)
+        }
+    }
+
+    func unblock(profileID: String, by profile: CommunityProfile) async throws {
+        let query = CKQuery(
+            recordType: "Block",
+            predicate: NSPredicate(
+                format: "blockerID == %@ AND blockedID == %@", profile.id, profileID
+            )
+        )
+        let (results, _) = try await database.records(matching: query, resultsLimit: 10)
+        for result in results {
+            if let record = try? result.1.get() {
+                try await database.deleteRecord(withID: record.recordID)
+            }
+        }
+    }
+
+    func report(
+        profileID: String,
+        matchID: String?,
+        reason: ReportReason,
+        details: String,
+        by profile: CommunityProfile
+    ) async throws {
+        let record = CKRecord(recordType: "Report")
+        record["reporterID"] = profile.id
+        record["reportedProfileID"] = profileID
+        record["matchID"] = matchID
+        record["reason"] = reason.rawValue
+        record["details"] = details
+        record["createdAt"] = Date()
+        _ = try await database.save(record)
+    }
+
+    func endMatch(_ match: TandemMatch) async throws {
+        // Verlauf portionsweise löschen (Queries liefern max. 200 Records).
+        while true {
+            let query = CKQuery(
+                recordType: "Message",
+                predicate: NSPredicate(format: "matchID == %@", match.id)
+            )
+            let (results, _) = try await database.records(matching: query, resultsLimit: 200)
+            let recordIDs = results.compactMap { try? $0.1.get().recordID }
+            guard !recordIDs.isEmpty else { break }
+            _ = try await database.modifyRecords(saving: [], deleting: recordIDs)
+        }
+        try await database.deleteRecord(withID: CKRecord.ID(recordName: match.id))
+    }
+
+    func deleteMyProfile(_ profile: CommunityProfile) async throws {
+        for match in try await matches(for: profile) {
+            try await endMatch(match)
+        }
+        // Eigene Block-Einträge entfernen (Blocks anderer gegen mich bleiben).
+        let blocks = CKQuery(
+            recordType: "Block",
+            predicate: NSPredicate(format: "blockerID == %@", profile.id)
+        )
+        let (results, _) = try await database.records(matching: blocks, resultsLimit: 200)
+        let blockIDs = results.compactMap { try? $0.1.get().recordID }
+        if !blockIDs.isEmpty {
+            _ = try await database.modifyRecords(saving: [], deleting: blockIDs)
+        }
+        try await database.deleteRecord(withID: CKRecord.ID(recordName: profile.id))
     }
 
     // MARK: - Record-Mapping

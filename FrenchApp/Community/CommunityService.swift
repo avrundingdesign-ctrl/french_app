@@ -51,6 +51,10 @@ protocol CommunityService {
 
     func messages(for match: TandemMatch) async throws -> [ChatMessage]
 
+    /// Neueste Nachricht eines Matches — für Vorschau und Ungelesen-Status
+    /// in der Chat-Liste.
+    func latestMessage(for match: TandemMatch) async throws -> ChatMessage?
+
     @discardableResult
     func send(
         text: String,
@@ -58,4 +62,33 @@ protocol CommunityService {
         in match: TandemMatch,
         from profile: CommunityProfile
     ) async throws -> ChatMessage
+
+    // MARK: Moderation (App-Review-Guideline 1.2)
+
+    /// IDs aller Profile, die dieses Profil blockiert hat oder von denen es
+    /// blockiert wurde — beide Richtungen verschwinden aus den Vorschlägen.
+    func blockedProfileIDs(for profile: CommunityProfile) async throws -> Set<String>
+
+    /// Blockiert ein Profil und löst ein gemeinsames Match samt Verlauf auf.
+    func block(profileID: String, by profile: CommunityProfile) async throws
+
+    func unblock(profileID: String, by profile: CommunityProfile) async throws
+
+    /// Meldet ein Profil (optional mit Match-Bezug) — landet als Report
+    /// beim Betreiber, nicht beim gemeldeten Nutzer.
+    func report(
+        profileID: String,
+        matchID: String?,
+        reason: ReportReason,
+        details: String,
+        by profile: CommunityProfile
+    ) async throws
+
+    /// Beendet ein Tandem: Match und kompletter Nachrichtenverlauf werden
+    /// für beide Seiten gelöscht.
+    func endMatch(_ match: TandemMatch) async throws
+
+    /// Löscht das eigene Profil vollständig (Guideline 5.1.1(v)):
+    /// Profil, alle eigenen Matches samt Verläufen und Block-Einträge.
+    func deleteMyProfile(_ profile: CommunityProfile) async throws
 }

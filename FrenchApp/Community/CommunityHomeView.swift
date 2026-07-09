@@ -17,9 +17,14 @@ struct CommunityHomeView: View {
     @State private var candidates: [CommunityProfile] = []
     @State private var matches: [TandemMatch] = []
     @State private var partnerProfiles: [String: CommunityProfile] = [:]
+    @State private var latestMessages: [String: ChatMessage] = [:]
     @State private var loading = true
     @State private var errorMessage: String?
     @State private var requestedIDs: Set<String> = []
+    @State private var reportTarget: CommunityProfile?
+    @State private var blockTarget: CommunityProfile?
+
+    private let readTracker = ChatReadTracker()
 
     var body: some View {
         VStack(spacing: 0) {
@@ -47,22 +52,61 @@ struct CommunityHomeView: View {
                 }
             }
         }
-        .task { await reload() }
+        // onAppear statt task: lädt auch beim Zurückkehren aus einem Chat neu
+        // (Gelesen-Status, letzte Nachricht, beendete Tandems).
+        .onAppear { Task { await reload() } }
         .refreshable { await reload() }
+        .sheet(item: $reportTarget) { target in
+            ReportSheetView(service: service, reporter: profile, reported: target, matchID: nil)
+        }
+        .confirmationDialog(
+            "\(blockTarget?.displayName ?? "Profil") blockieren?",
+            isPresented: .init(
+                get: { blockTarget != nil },
+                set: { if !$0 { blockTarget = nil } }
+            ),
+            titleVisibility: .visible
+        ) {
+            Button("Blockieren", role: .destructive) {
+                if let blockTarget { block(blockTarget) }
+            }
+        } message: {
+            Text("Ihr seht euch nicht mehr in den Vorschlägen; ein bestehendes Tandem wird beendet.")
+        }
     }
 
     private func reload() async {
-        loading = true
+        // Spinner nur beim Erststart — danach still im Hintergrund aktualisieren.
+        if matches.isEmpty && candidates.isEmpty { loading = true }
         errorMessage = nil
         do {
             candidates = try await service.candidates(for: profile)
             matches = try await service.matches(for: profile)
             let partnerIDs = matches.map { $0.otherProfileID(for: profile.id) }
             partnerProfiles = try await service.profiles(ids: partnerIDs)
+            var latest: [String: ChatMessage] = [:]
+            for match in matches where match.status == .accepted {
+                latest[match.id] = try? await service.latestMessage(for: match)
+            }
+            latestMessages = latest
+            if !isDemo {
+                await CommunityPush.updateSubscriptions(for: profile, matches: matches)
+            }
         } catch {
             errorMessage = error.localizedDescription
         }
         loading = false
+    }
+
+    private func block(_ target: CommunityProfile) {
+        Task {
+            do {
+                try await service.block(profileID: target.id, by: profile)
+                await reload()
+            } catch {
+                errorMessage = error.localizedDescription
+            }
+        }
     }
 
     // MARK: - Partnersuche
@@ -157,6 +201,18 @@ struct CommunityHomeView: View {
         }
         .padding(14)
         .background(Color(.secondarySystemGroupedBackground), in: RoundedRectangle(cornerRadius: 16))
+        .contextMenu {
+            Button {
+                reportTarget = candidate
+            } label: {
+                Label("Melden …", systemImage: "flag")
+            }
+            Button(role: .destructive) {
+                blockTarget = candidate
+            } label: {
+                Label("Blockieren …", systemImage: "hand.raised")
+            }
+        }
     }
 
     private func request(_ candidate: CommunityProfile) {
@@ -187,13 +243,27 @@ struct CommunityHomeView: View {
                         text: "Frage unter «Partner finden» ein Tandem an — angenommene Anfragen landen hier."
                     )
                 } else {
-                    ForEach(matches) { match in
+                    ForEach(sortedMatches) { match in
                         matchRow(match)
                     }
                 }
             }
             .padding()
         }
+    }
+
+    /// Eingehende Anfragen zuerst, danach nach letzter Aktivität.
+    private var sortedMatches: [TandemMatch] {
+        matches.sorted { first, second in
+            let firstIncoming = first.isIncoming(for: profile.id)
+            let secondIncoming = second.isIncoming(for: profile.id)
+            if firstIncoming != secondIncoming { return firstIncoming }
+            return activityDate(first) > activityDate(second)
+        }
+    }
+
+    private func activityDate(_ match: TandemMatch) -> Date {
+        latestMessages[match.id]?.sentAt ?? match.createdAt
     }
 
     @ViewBuilder
@@ -203,7 +273,13 @@ struct CommunityHomeView: View {
 
         if match.status == .accepted, let partner {
             NavigationLink {
-                ChatView(service: service, profile: profile, partner: partner, match: match)
+                ChatView(
+                    service: service,
+                    profile: profile,
+                    partner: partner,
+                    match: match,
+                    onMatchEnded: { Task { await reload() } }
+                )
             } label: {
                 matchRowContent(match, partner: partner)
             }
@@ -214,7 +290,10 @@ struct CommunityHomeView: View {
     }
 
     private func matchRowContent(_ match: TandemMatch, partner: CommunityProfile?) -> some View {
-        HStack(spacing: 12) {
+        let latest = latestMessages[match.id]
+        let unread = readTracker.isUnread(match: match, latestMessage: latest, viewerID: profile.id)
+
+        return HStack(spacing: 12) {
             ProfileAvatar(
                 photoData: partner?.photoData,
                 initials: partner?.initials ?? "?",
@@ -222,10 +301,12 @@ struct CommunityHomeView: View {
             )
             VStack(alignment: .leading, spacing: 2) {
                 Text(partner?.displayName ?? "Unbekanntes Profil")
-                    .font(.body.weight(.semibold))
-                Text(statusLabel(match))
+                    .font(.body.weight(unread ? .bold : .semibold))
+                Text(statusLabel(match, latest: latest))
                     .font(.caption)
-                    .foregroundStyle(.secondary)
+                    .fontWeight(unread ? .semibold : .regular)
+                    .foregroundStyle(unread ? .primary : .secondary)
+                    .lineLimit(1)
             }
             Spacer()
             if match.isIncoming(for: profile.id) {
@@ -238,19 +319,34 @@ struct CommunityHomeView: View {
                 .font(.subheadline.weight(.semibold))
                 .buttonStyle(.borderedProminent)
             } else if match.status == .accepted {
-                Image(systemName: "chevron.right")
-                    .font(.caption)
-                    .foregroundStyle(.tertiary)
+                VStack(alignment: .trailing, spacing: 4) {
+                    if let latest {
+                        Text(latest.sentAt.formatted(.relative(presentation: .named)))
+                            .font(.caption2)
+                            .foregroundStyle(.tertiary)
+                    }
+                    if unread {
+                        Circle()
+                            .fill(Theme.accent)
+                            .frame(width: 10, height: 10)
+                    } else {
+                        Image(systemName: "chevron.right")
+                            .font(.caption)
+                            .foregroundStyle(.tertiary)
+                    }
+                }
             }
         }
         .padding(14)
         .background(Color(.secondarySystemGroupedBackground), in: RoundedRectangle(cornerRadius: 16))
     }
 
-    private func statusLabel(_ match: TandemMatch) -> String {
+    private func statusLabel(_ match: TandemMatch, latest: ChatMessage?) -> String {
         switch match.status {
         case .accepted:
-            return "Tandem aktiv — tippe zum Chatten"
+            guard let latest else { return "Tandem aktiv — sag Bonjour!" }
+            let prefix = latest.senderProfileID == profile.id ? "Du: " : ""
+            return prefix + latest.text
         case .pending:
             return match.isIncoming(for: profile.id)
                 ? "Möchte dein Tandem-Partner werden"

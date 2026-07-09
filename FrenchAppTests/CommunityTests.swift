@@ -134,4 +134,148 @@ final class CommunityTests: XCTestCase {
         XCTAssertEqual(TandemLanguage.german.localeIdentifier, "de-DE")
         XCTAssertEqual(TandemLanguage.french.localeIdentifier, "fr-FR")
     }
+
+    // MARK: - Chat-Liste
+
+    func testLatestMessageReturnsNewest() async throws {
+        let (service, me) = try await makeMyProfile()
+        let partner = try await service.candidates(for: me)[0]
+        let match = try await service.requestMatch(from: me, to: partner)
+        _ = try await service.send(text: "Deuxième message", language: me.learningLanguage, in: match, from: me)
+
+        let latest = try await service.latestMessage(for: match)
+        XCTAssertEqual(latest?.text, "Deuxième message")
+    }
+
+    func testChatReadTracker() {
+        let suite = "test.community.readtracker"
+        let defaults = UserDefaults(suiteName: suite)!
+        defaults.removePersistentDomain(forName: suite)
+        let tracker = ChatReadTracker(defaults: defaults)
+
+        let match = TandemMatch(
+            id: "m1", requesterID: "me", partnerID: "them",
+            status: .accepted, createdAt: .now
+        )
+        let incoming = ChatMessage(
+            id: "msg1", matchID: "m1", senderProfileID: "them",
+            text: "Salut !", language: .german, sentAt: .now
+        )
+
+        XCTAssertTrue(tracker.isUnread(match: match, latestMessage: incoming, viewerID: "me"))
+        XCTAssertFalse(
+            tracker.isUnread(match: match, latestMessage: incoming, viewerID: "them"),
+            "Eigene Nachrichten zählen nie als ungelesen"
+        )
+        XCTAssertFalse(tracker.isUnread(match: match, latestMessage: nil, viewerID: "me"))
+
+        tracker.markRead(matchID: "m1", at: incoming.sentAt)
+        XCTAssertFalse(tracker.isUnread(match: match, latestMessage: incoming, viewerID: "me"))
+
+        // Ein älterer Zeitpunkt darf den Lesestand nicht zurückdrehen.
+        tracker.markRead(matchID: "m1", at: incoming.sentAt.addingTimeInterval(-100))
+        XCTAssertFalse(tracker.isUnread(match: match, latestMessage: incoming, viewerID: "me"))
+
+        tracker.forget(matchID: "m1")
+        XCTAssertTrue(tracker.isUnread(match: match, latestMessage: incoming, viewerID: "me"))
+    }
+
+    // MARK: - Moderation
+
+    func testBlockEndsMatchAndHidesBothDirections() async throws {
+        let (service, me) = try await makeMyProfile()
+        let partner = try await service.candidates(for: me)[0]
+        let match = try await service.requestMatch(from: me, to: partner)
+        _ = try await service.send(text: "Salut", language: me.learningLanguage, in: match, from: me)
+
+        try await service.block(profileID: partner.id, by: me)
+
+        let candidates = try await service.candidates(for: me)
+        XCTAssertFalse(candidates.contains { $0.id == partner.id })
+
+        let matches = try await service.matches(for: me)
+        XCTAssertTrue(matches.isEmpty, "Blockieren beendet das gemeinsame Tandem")
+
+        let messages = try await service.messages(for: match)
+        XCTAssertTrue(messages.isEmpty, "Der Verlauf wird gelöscht")
+
+        // Auch die Gegenseite sieht mich nicht mehr.
+        let blockedForPartner = try await service.blockedProfileIDs(for: partner)
+        XCTAssertTrue(blockedForPartner.contains(me.id))
+    }
+
+    func testUnblockRestoresCandidate() async throws {
+        let (service, me) = try await makeMyProfile()
+        let partner = try await service.candidates(for: me)[0]
+        try await service.block(profileID: partner.id, by: me)
+        try await service.unblock(profileID: partner.id, by: me)
+
+        let candidates = try await service.candidates(for: me)
+        XCTAssertTrue(candidates.contains { $0.id == partner.id })
+    }
+
+    func testReportIsRecorded() async throws {
+        let (service, me) = try await makeMyProfile()
+        let partner = try await service.candidates(for: me)[0]
+        try await service.report(
+            profileID: partner.id, matchID: nil,
+            reason: .spam, details: "Nur Werbung", by: me
+        )
+
+        let reports = await service.reports
+        XCTAssertEqual(reports.count, 1)
+        XCTAssertEqual(reports[0].profileID, partner.id)
+        XCTAssertEqual(reports[0].reason, .spam)
+        XCTAssertEqual(reports[0].details, "Nur Werbung")
+    }
+
+    func testEndMatchDeletesMatchAndHistory() async throws {
+        let (service, me) = try await makeMyProfile()
+        let partner = try await service.candidates(for: me)[0]
+        let match = try await service.requestMatch(from: me, to: partner)
+
+        try await service.endMatch(match)
+
+        let matches = try await service.matches(for: me)
+        XCTAssertTrue(matches.isEmpty)
+        let messages = try await service.messages(for: match)
+        XCTAssertTrue(messages.isEmpty)
+
+        // Ohne Block taucht der Partner wieder in den Vorschlägen auf.
+        let candidates = try await service.candidates(for: me)
+        XCTAssertTrue(candidates.contains { $0.id == partner.id })
+    }
+
+    func testDeleteMyProfileRemovesEverything() async throws {
+        let (service, me) = try await makeMyProfile()
+        let partner = try await service.candidates(for: me)[0]
+        let match = try await service.requestMatch(from: me, to: partner)
+
+        try await service.deleteMyProfile(me)
+
+        let loaded = try await service.loadMyProfile()
+        XCTAssertNil(loaded, "Profil ist gelöscht")
+        let messages = try await service.messages(for: match)
+        XCTAssertTrue(messages.isEmpty, "Verläufe sind gelöscht")
+    }
+
+    // MARK: - Wortfilter
+
+    func testContentFilterBlocksProfanityAcrossLanguages() {
+        XCTAssertFalse(ContentFilter.isAcceptable("Du bist ein Arschloch"))
+        XCTAssertFalse(ContentFilter.isAcceptable("T'es qu'un connard !"))
+        XCTAssertFalse(ContentFilter.isAcceptable("Espèce d'enculé"), "Akzente werden gefaltet")
+        XCTAssertFalse(ContentFilter.isAcceptable("CONNARD"), "Großschreibung wird ignoriert")
+        XCTAssertFalse(ContentFilter.isAcceptable("fuck"))
+    }
+
+    func testContentFilterAllowsNormalAndTrickyText() {
+        XCTAssertTrue(ContentFilter.isAcceptable("Bonjour, comment ça va ?"))
+        XCTAssertTrue(ContentFilter.isAcceptable("Ich habe heute viel gelernt!"))
+        XCTAssertTrue(
+            ContentFilter.isAcceptable("On fait un pique-nique samedi ?"),
+            "Keine False Positives durch Teilwörter beim Tokenisieren"
+        )
+        XCTAssertNil(ContentFilter.firstBlockedWord(in: ""))
+    }
 }

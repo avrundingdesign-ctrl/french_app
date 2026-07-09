@@ -7,7 +7,8 @@ struct CommunityRootView: View {
     enum Phase {
         case checking
         case needsAccount
-        case needsProfile
+        /// Profil anlegen (nil) oder bestehendes bearbeiten.
+        case needsProfile(existing: CommunityProfile?)
         case ready(CommunityProfile)
     }
 
@@ -25,13 +26,21 @@ struct CommunityRootView: View {
                     ProgressView("Verbinde …")
                 case .needsAccount:
                     accountHint
-                case .needsProfile:
-                    ProfileEditorView(service: service, draft: ProfileDraft()) { profile in
-                        phase = .ready(profile)
-                    }
+                case .needsProfile(let existing):
+                    ProfileEditorView(
+                        service: service,
+                        draft: existing.map(ProfileDraft.init) ?? ProfileDraft(),
+                        existingProfile: existing,
+                        onSaved: { profile in
+                            phase = .ready(profile)
+                        },
+                        onDeleted: {
+                            phase = .needsProfile(existing: nil)
+                        }
+                    )
                 case .ready(let profile):
                     CommunityHomeView(service: service, profile: profile, isDemo: isDemo) {
-                        phase = .needsProfile
+                        phase = .needsProfile(existing: profile)
                     }
                 }
             }
@@ -55,7 +64,7 @@ struct CommunityRootView: View {
     private func start() async {
         if await service.accountAvailable() {
             let profile = try? await service.loadMyProfile()
-            phase = profile.flatMap { $0 }.map(Phase.ready) ?? .needsProfile
+            phase = profile.flatMap { $0 }.map(Phase.ready) ?? .needsProfile(existing: nil)
         } else {
             phase = .needsAccount
         }
@@ -76,7 +85,7 @@ struct CommunityRootView: View {
             Button {
                 service = MockCommunityService()
                 isDemo = true
-                phase = .needsProfile
+                phase = .needsProfile(existing: nil)
             } label: {
                 Text("Demo-Modus starten")
                     .font(.headline)
@@ -94,12 +103,18 @@ struct CommunityRootView: View {
 struct ProfileEditorView: View {
     let service: CommunityService
     @State var draft: ProfileDraft
+    /// Gesetzt, wenn ein bestehendes Profil bearbeitet wird — schaltet die
+    /// Lösch-Sektion frei (Konto-Löschung in der App, Guideline 5.1.1(v)).
+    var existingProfile: CommunityProfile?
     let onSaved: (CommunityProfile) -> Void
+    var onDeleted: () -> Void = {}
 
     @State private var hobbyInput = ""
     @State private var photoItem: PhotosPickerItem?
     @State private var saving = false
     @State private var errorMessage: String?
+    @State private var confirmDelete = false
+    @State private var deleting = false
 
     var body: some View {
         Form {
@@ -187,6 +202,33 @@ struct ProfileEditorView: View {
                     Text(errorMessage).foregroundStyle(Theme.danger)
                 }
             }
+
+            if existingProfile != nil {
+                Section {
+                    Button(role: .destructive) {
+                        confirmDelete = true
+                    } label: {
+                        if deleting {
+                            ProgressView().frame(maxWidth: .infinity)
+                        } else {
+                            Text("Profil endgültig löschen")
+                                .frame(maxWidth: .infinity)
+                        }
+                    }
+                    .disabled(deleting)
+                } footer: {
+                    Text("Löscht dein Tandem-Profil, alle Matches und sämtliche Nachrichtenverläufe. Dein Lernfortschritt in der App bleibt erhalten.")
+                }
+            }
+        }
+        .confirmationDialog(
+            "Profil wirklich löschen?",
+            isPresented: $confirmDelete,
+            titleVisibility: .visible
+        ) {
+            Button("Endgültig löschen", role: .destructive) { deleteProfile() }
+        } message: {
+            Text("Das kann nicht rückgängig gemacht werden.")
         }
         .onChange(of: photoItem) { _, item in
             guard let item else { return }
@@ -222,6 +264,21 @@ struct ProfileEditorView: View {
                 errorMessage = error.localizedDescription
             }
             saving = false
+        }
+    }
+
+    private func deleteProfile() {
+        guard let existingProfile else { return }
+        deleting = true
+        errorMessage = nil
+        Task {
+            do {
+                try await service.deleteMyProfile(existingProfile)
+                onDeleted()
+            } catch {
+                errorMessage = error.localizedDescription
+            }
+            deleting = false
         }
     }
 }

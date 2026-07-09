@@ -8,6 +8,8 @@ actor MockCommunityService: CommunityService {
     private var others: [CommunityProfile]
     private var matchList: [TandemMatch] = []
     private var messageList: [ChatMessage] = []
+    private var blocks: [(blockerID: String, blockedID: String)] = []
+    private(set) var reports: [(profileID: String, reason: ReportReason, details: String)] = []
 
     init() {
         others = [
@@ -70,8 +72,11 @@ actor MockCommunityService: CommunityService {
 
     func candidates(for profile: CommunityProfile) async throws -> [CommunityProfile] {
         let matched = Set(matchList.filter { $0.involves(profile.id) }.map { $0.otherProfileID(for: profile.id) })
+        let blocked = try await blockedProfileIDs(for: profile)
         return others.filter {
-            $0.nativeLanguage == profile.learningLanguage && !matched.contains($0.id)
+            $0.nativeLanguage == profile.learningLanguage
+                && !matched.contains($0.id)
+                && !blocked.contains($0.id)
         }
     }
 
@@ -125,6 +130,10 @@ actor MockCommunityService: CommunityService {
         messageList.filter { $0.matchID == match.id }.sorted { $0.sentAt < $1.sentAt }
     }
 
+    func latestMessage(for match: TandemMatch) async throws -> ChatMessage? {
+        try await messages(for: match).last
+    }
+
     func send(
         text: String,
         language: TandemLanguage,
@@ -176,5 +185,50 @@ actor MockCommunityService: CommunityService {
 
     private func append(_ message: ChatMessage) {
         messageList.append(message)
+    }
+
+    // MARK: - Moderation
+
+    func blockedProfileIDs(for profile: CommunityProfile) async throws -> Set<String> {
+        var ids: Set<String> = []
+        for block in blocks {
+            if block.blockerID == profile.id { ids.insert(block.blockedID) }
+            if block.blockedID == profile.id { ids.insert(block.blockerID) }
+        }
+        return ids
+    }
+
+    func block(profileID: String, by profile: CommunityProfile) async throws {
+        blocks.append((blockerID: profile.id, blockedID: profileID))
+        for match in matchList where match.involves(profile.id) && match.involves(profileID) {
+            try await endMatch(match)
+        }
+    }
+
+    func unblock(profileID: String, by profile: CommunityProfile) async throws {
+        blocks.removeAll { $0.blockerID == profile.id && $0.blockedID == profileID }
+    }
+
+    func report(
+        profileID: String,
+        matchID: String?,
+        reason: ReportReason,
+        details: String,
+        by profile: CommunityProfile
+    ) async throws {
+        reports.append((profileID: profileID, reason: reason, details: details))
+    }
+
+    func endMatch(_ match: TandemMatch) async throws {
+        matchList.removeAll { $0.id == match.id }
+        messageList.removeAll { $0.matchID == match.id }
+    }
+
+    func deleteMyProfile(_ profile: CommunityProfile) async throws {
+        for match in matchList where match.involves(profile.id) {
+            try await endMatch(match)
+        }
+        blocks.removeAll { $0.blockerID == profile.id }
+        myProfile = nil
     }
 }
