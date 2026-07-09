@@ -1,5 +1,107 @@
 import Foundation
 
+// MARK: - Kursrichtung (Phase 5: Deutsch-Integration)
+
+/// Welche Sprache gelernt wird. `.french` ist der Bestand (Deutschsprachige
+/// lernen Französisch), `.german` die Gegenrichtung für Frankophone —
+/// Voraussetzung dafür, dass die Tandem-Community auf beiden Seiten echte
+/// Lernende hat.
+enum CourseDirection: String, Codable, CaseIterable, Identifiable {
+    case french = "fr"
+    case german = "de"
+
+    var id: String { rawValue }
+
+    /// Präfix für persistierte IDs (ReviewState, Zertifikate …) dieser Richtung.
+    /// Französisch bleibt unpräfixiert — Bestandsdaten bleiben unverändert gültig.
+    var idPrefix: String { self == .german ? "de:" : "" }
+
+    func storageID(_ raw: String) -> String { idPrefix + raw }
+
+    func owns(storageID: String) -> Bool {
+        self == .german ? storageID.hasPrefix("de:") : !storageID.contains(":")
+    }
+
+    func contentID(fromStorageID id: String) -> String {
+        id.hasPrefix("de:") ? String(id.dropFirst(3)) : id
+    }
+
+    /// Dateisuffix der richtungseigenen Content-JSONs (course_de.json …).
+    var contentSuffix: String { self == .german ? "_de" : "" }
+
+    /// TTS-Stimme der Lernsprache.
+    var targetLocaleID: String { self == .german ? "de-DE" : "fr-FR" }
+
+    var certificateSerialPrefix: String { self == .german ? "DE" : "FR" }
+
+    /// Offizielles Vorbild der Niveau-Prüfungen dieser Richtung.
+    func examBrand(for level: CEFRLevel) -> String {
+        switch self {
+        case .german: return "Goethe-Zertifikat"
+        case .french: return level >= .c1 ? "DALF" : "DELF"
+        }
+    }
+
+    var flag: String { self == .german ? "🇩🇪" : "🇫🇷" }
+
+    /// Name der Lernsprache, lokalisiert in der UI-Sprache.
+    var targetLanguageName: String {
+        self == .german
+            ? String(localized: "Deutsch")
+            : String(localized: "Französisch")
+    }
+
+    /// Name der Muttersprache der Lernenden dieser Richtung.
+    var nativeLanguageName: String {
+        self == .german
+            ? String(localized: "Französisch")
+            : String(localized: "Deutsch")
+    }
+}
+
+/// Entscheidet pro Richtung, welche Seite eines Vokabel-/Satzpaars Lernziel
+/// und welche Muttersprache ist. Die JSON-Feldnamen bleiben sprachbezogen
+/// (`fr`/`de`) — die Richtung bestimmt, was Prompt und was Lösung ist.
+struct LanguagePair {
+    let direction: CourseDirection
+
+    func target(_ item: VocabItem) -> String {
+        direction == .german ? item.de : item.fr
+    }
+
+    func native(_ item: VocabItem) -> String {
+        direction == .german ? item.fr : item.de
+    }
+
+    func targetExample(_ item: VocabItem) -> String? {
+        direction == .german ? item.exampleDE : item.exampleFR
+    }
+
+    func nativeExample(_ item: VocabItem) -> String? {
+        direction == .german ? item.exampleFR : item.exampleDE
+    }
+
+    func targetText(fr: String?, de: String?) -> String? {
+        direction == .german ? de : fr
+    }
+
+    func nativeText(fr: String?, de: String?) -> String? {
+        direction == .german ? fr : de
+    }
+
+    /// Lernhinweise sind auf Deutsch für Deutschsprachige verfasst —
+    /// im Deutsch-Kurs werden sie nicht angezeigt.
+    func note(_ item: VocabItem) -> String? {
+        direction == .french ? item.note : nil
+    }
+
+    /// Genus-Anzeige nur im Französisch-Kurs; im Deutschen steckt der
+    /// Artikel bereits im Wort ("der Herr").
+    func genderDetail(_ item: VocabItem) -> String? {
+        direction == .french ? item.genderLabel : nil
+    }
+}
+
 // MARK: - CEFR
 
 enum CEFRLevel: String, Codable, CaseIterable, Identifiable, Comparable {
@@ -24,17 +126,12 @@ enum CEFRLevel: String, Codable, CaseIterable, Identifiable, Comparable {
 
     var subtitle: String {
         switch self {
-        case .a1: return "Einstieg"
-        case .a2: return "Grundlagen"
-        case .b1: return "Schwelle"
-        case .b2: return "Fortgeschritten"
-        case .c1: return "Fachkundig"
+        case .a1: return String(localized: "Einstieg")
+        case .a2: return String(localized: "Grundlagen")
+        case .b1: return String(localized: "Schwelle")
+        case .b2: return String(localized: "Fortgeschritten")
+        case .c1: return String(localized: "Fachkundig")
         }
-    }
-
-    /// Offizielles Vorbild der Niveau-Prüfung: DELF bis B2, DALF ab C1.
-    var examBrand: String {
-        self >= .c1 ? "DALF" : "DELF"
     }
 
     static func < (lhs: CEFRLevel, rhs: CEFRLevel) -> Bool {
@@ -56,18 +153,18 @@ enum PartOfSpeech: String, Codable {
     case interjection
     case conjunction
 
-    var germanLabel: String {
+    var label: String {
         switch self {
-        case .noun: return "Nomen"
-        case .verb: return "Verb"
-        case .adjective: return "Adjektiv"
-        case .adverb: return "Adverb"
-        case .pronoun: return "Pronomen"
-        case .preposition: return "Präposition"
-        case .number: return "Zahl"
-        case .phrase: return "Wendung"
-        case .interjection: return "Ausruf"
-        case .conjunction: return "Konjunktion"
+        case .noun: return String(localized: "Nomen")
+        case .verb: return String(localized: "Verb")
+        case .adjective: return String(localized: "Adjektiv")
+        case .adverb: return String(localized: "Adverb")
+        case .pronoun: return String(localized: "Pronomen")
+        case .preposition: return String(localized: "Präposition")
+        case .number: return String(localized: "Zahl")
+        case .phrase: return String(localized: "Wendung")
+        case .interjection: return String(localized: "Ausruf")
+        case .conjunction: return String(localized: "Konjunktion")
         }
     }
 }
@@ -87,8 +184,8 @@ struct VocabItem: Codable, Identifiable, Hashable {
 
     var genderLabel: String? {
         switch gender {
-        case "m": return "maskulin"
-        case "f": return "feminin"
+        case "m": return String(localized: "maskulin")
+        case "f": return String(localized: "feminin")
         default: return nil
         }
     }
@@ -121,6 +218,37 @@ struct VerbEntry: Codable, Identifiable, Hashable {
 
 struct VerbsFile: Codable {
     let verbs: [VerbEntry]
+}
+
+/// Deutsches Verb für die Gegenrichtung (verbs_de.json). Regelmäßige
+/// (schwache) Verben brauchen nur `infinitive`/`fr`/`type`; alles Weitere
+/// sind Overrides für starke, gemischte und unregelmäßige Verben.
+struct GermanVerbEntry: Codable, Identifiable, Hashable {
+    var id: String { infinitive }
+    let infinitive: String
+    /// Übersetzung in die Sprache der Lernenden (Französisch).
+    let fr: String
+    /// "weak" | "strong" | "mixed" | "modal" | "irregular"
+    let type: String
+    /// Trennbares Präfix ("auf" bei aufstehen) — Präsens: "stehe … auf".
+    let separablePrefix: String?
+    /// Stamm der 2./3. Person Singular bei Vokalwechsel (fahren → "fähr").
+    let presentStem23: String?
+    /// Sechs Präsensformen (ich, du, er/sie/es, wir, ihr, sie/Sie) —
+    /// nur für unregelmäßige Verben (sein, haben, werden, wissen, Modalverben).
+    let present: [String]?
+    /// Partizip II, falls nicht schwach regelbildbar (ge… t).
+    let participle: String?
+    /// "sein", falls das Perfekt-Hilfsverb nicht "haben" ist.
+    let auxiliary: String?
+    /// Sechs Präteritumformen — auf A1 nur für sein/haben/werden/Modalverben.
+    let praeteritum: [String]?
+    /// Imperativ [du, ihr, Sie], falls unregelmäßig (sei!, iss!).
+    let imperative: [String]?
+}
+
+struct GermanVerbsFile: Codable {
+    let verbs: [GermanVerbEntry]
 }
 
 // MARK: - Grammatik

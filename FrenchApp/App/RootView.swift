@@ -20,9 +20,12 @@ struct RootView: View {
         }
         .task {
             let settings = settingsList.first ?? UserSettings.fetchOrCreate(in: context)
-            // Dev-Flag für Screenshots/UI-Tests.
+            // Dev-Flags für Screenshots/UI-Tests.
             if ProcessInfo.processInfo.arguments.contains("--skip-onboarding") {
                 settings.onboardingDone = true
+            }
+            if ProcessInfo.processInfo.arguments.contains("--course-de") {
+                settings.courseDirection = .german
             }
         }
         .preferredColorScheme(colorScheme)
@@ -44,7 +47,9 @@ struct MainTabView: View {
 
     private var dueCount: Int {
         guard let settings = settingsList.first else { return 0 }
-        return SRSService.dueCount(states: reviewStates, settings: settings)
+        // Nur Karten der aktiven Kursrichtung zählen.
+        let mine = reviewStates.filter { settings.courseDirection.owns(storageID: $0.vocabID) }
+        return SRSService.dueCount(states: mine, settings: settings)
     }
 
     var body: some View {

@@ -6,6 +6,7 @@ import SwiftUI
 struct ListeningSessionView: View {
     let mode: ListeningTrainer.Mode
     let level: CEFRLevel
+    var content: ContentStore = .shared
 
     @Environment(\.dismiss) private var dismiss
     @State private var exercises: [ListeningTrainer.Exercise] = []
@@ -38,7 +39,7 @@ struct ListeningSessionView: View {
     private func build() {
         guard !built else { return }
         built = true
-        let trainer = ListeningTrainer()
+        let trainer = ListeningTrainer(content: content)
         exercises = trainer.exercises(mode: mode, upTo: level, count: Self.exerciseCount)
     }
 
@@ -120,7 +121,7 @@ struct ListeningSessionView: View {
     private func play(_ exercise: ListeningTrainer.Exercise) {
         guard !isPlaying else { return }
         isPlaying = true
-        SpeechService.shared.speak(exercise.audio, level: level) {
+        SpeechService.shared.speak(exercise.audio, level: level, language: content.direction.targetLocaleID) {
             isPlaying = false
         }
     }

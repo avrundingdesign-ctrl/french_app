@@ -12,17 +12,23 @@ struct ReviewHubView: View {
     @State private var listeningMode: ListeningTrainer.Mode?
     @AppStorage("listeningLevel") private var listeningLevelRaw = CEFRLevel.a1.rawValue
 
-    private let content = ContentStore.shared
+    private var content: ContentStore { settingsList.first?.content ?? .shared }
+
+    /// Nur Karten der aktiven Kursrichtung.
+    private var myStates: [ReviewState] {
+        states.filter { content.direction.owns(storageID: $0.vocabID) }
+    }
 
     private var queue: SRSService.Queue {
         guard let settings = settingsList.first else {
             return SRSService.Queue(due: [], fresh: [])
         }
-        return SRSService.buildQueue(states: states, settings: settings)
+        return SRSService.buildQueue(states: myStates, settings: settings)
     }
 
+    /// Offene Fehler des aktiven Kurses (Lektions-IDs sind kursspezifisch).
     private var unresolvedMistakes: [MistakeRecord] {
-        mistakes.filter { !$0.isResolved }
+        mistakes.filter { !$0.isResolved && content.lessonByID[$0.lessonID] != nil }
     }
 
     var body: some View {
@@ -31,7 +37,9 @@ struct ReviewHubView: View {
                 VStack(spacing: 16) {
                     reviewCard
                     mistakeCard
-                    packsCard
+                    if !content.packs.isEmpty {
+                        packsCard
+                    }
                     listeningCard
                     infoCard
                 }
@@ -43,10 +51,10 @@ struct ReviewHubView: View {
                 ReviewSessionView()
             }
             .fullScreenCover(isPresented: $showMistakePractice) {
-                LessonSessionView(mode: .mistakes(unresolvedMistakes))
+                LessonSessionView(mode: .mistakes(unresolvedMistakes), content: content)
             }
             .fullScreenCover(item: $listeningMode) { mode in
-                ListeningSessionView(mode: mode, level: listeningLevel)
+                ListeningSessionView(mode: mode, level: listeningLevel, content: content)
             }
         }
     }
@@ -119,10 +127,10 @@ struct ReviewHubView: View {
     // MARK: - Wortschatz-Pakete
 
     private var packsCard: some View {
-        let enrolledIDs = Set(states.map(\.vocabID))
+        let enrolledIDs = Set(myStates.map(\.vocabID))
         let totalWords = content.packs.reduce(0) { $0 + $1.vocab.count }
         let enrolledWords = content.packs.reduce(0) { sum, pack in
-            sum + pack.vocab.filter { enrolledIDs.contains($0) }.count
+            sum + pack.vocab.filter { enrolledIDs.contains(content.srsID(for: $0)) }.count
         }
 
         return VStack(alignment: .leading, spacing: 12) {
@@ -167,7 +175,7 @@ struct ReviewHubView: View {
             Label("Hörtraining", systemImage: "ear")
                 .font(.headline)
 
-            Text("Trainiere dein Ohr mit der französischen Sprachausgabe — die beste Vorbereitung auf das Hörverstehen der Niveau-Prüfungen.")
+            Text("Trainiere dein Ohr mit der Sprachausgabe auf \(content.direction.targetLanguageName) — die beste Vorbereitung auf das Hörverstehen der Niveau-Prüfungen.")
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
 
@@ -187,7 +195,7 @@ struct ReviewHubView: View {
                             .frame(width: 28)
                             .foregroundStyle(Theme.accent)
                         VStack(alignment: .leading, spacing: 1) {
-                            Text(mode.germanTitle)
+                            Text(mode.title)
                                 .font(.subheadline.weight(.semibold))
                                 .foregroundStyle(Color.primary)
                             Text(mode.description)
@@ -234,7 +242,7 @@ struct ReviewHubView: View {
     }
 
     private var nextDueDate: Date? {
-        states
+        myStates
             .filter { !$0.isNew }
             .map(\.nextReview)
             .filter { $0 > .now }

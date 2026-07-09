@@ -5,11 +5,17 @@ import SwiftData
 /// Pakets ins SRS-Training — das Tagespensum verteilt sie dann über die Tage.
 struct VocabPacksView: View {
     @Query private var states: [ReviewState]
+    @Query private var settingsList: [UserSettings]
 
-    private let content = ContentStore.shared
+    private var content: ContentStore { settingsList.first?.content ?? .shared }
 
+    /// Persistierte (ggf. richtungs-präfixierte) IDs der Trainingskarten.
     private var enrolledIDs: Set<String> {
         Set(states.map(\.vocabID))
+    }
+
+    private func isEnrolled(_ vocabID: String) -> Bool {
+        enrolledIDs.contains(content.srsID(for: vocabID))
     }
 
     var body: some View {
@@ -46,7 +52,7 @@ struct VocabPacksView: View {
     }
 
     private func packRow(_ pack: VocabPack) -> some View {
-        let enrolled = pack.vocab.filter { enrolledIDs.contains($0) }.count
+        let enrolled = pack.vocab.filter { isEnrolled($0) }.count
         let complete = enrolled == pack.vocab.count
 
         return HStack(spacing: 12) {
@@ -92,8 +98,9 @@ struct VocabPackDetailView: View {
 
     @Environment(\.modelContext) private var context
     @Query private var states: [ReviewState]
+    @Query private var settingsList: [UserSettings]
 
-    private let content = ContentStore.shared
+    private var content: ContentStore { settingsList.first?.content ?? .shared }
 
     private var items: [VocabItem] {
         pack.vocab.compactMap { content.vocab($0) }
@@ -104,7 +111,7 @@ struct VocabPackDetailView: View {
     }
 
     private var missing: [String] {
-        pack.vocab.filter { !enrolledIDs.contains($0) }
+        pack.vocab.filter { !enrolledIDs.contains(content.srsID(for: $0)) }
     }
 
     var body: some View {
@@ -122,7 +129,7 @@ struct VocabPackDetailView: View {
                         .foregroundStyle(Theme.success)
                 } else {
                     Button {
-                        SRSService.enroll(vocabIDs: missing, context: context)
+                        SRSService.enroll(vocabIDs: missing.map { content.srsID(for: $0) }, context: context)
                     } label: {
                         Label(
                             missing.count == pack.vocab.count
@@ -170,7 +177,7 @@ struct VocabPackDetailView: View {
                 }
             }
             Spacer()
-            if enrolledIDs.contains(item.id) {
+            if enrolledIDs.contains(content.srsID(for: item.id)) {
                 Image(systemName: "checkmark.circle.fill")
                     .font(.subheadline)
                     .foregroundStyle(Theme.success)

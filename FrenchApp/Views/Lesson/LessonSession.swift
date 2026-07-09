@@ -172,8 +172,9 @@ final class LessonSession {
             context.insert(LessonProgress(lessonID: lesson.id, completedAt: now, bestScore: summary.score))
         }
 
-        // Neue Vokabeln in den SRS-Pool (Spec §3).
-        SRSService.enroll(vocabIDs: lesson.newVocab, context: context, now: now)
+        // Neue Vokabeln in den SRS-Pool (Spec §3) — unter der richtungs-
+        // präfixierten ID, damit beide Kurse getrennte Lernstände haben.
+        SRSService.enroll(vocabIDs: lesson.newVocab.map { content.srsID(for: $0) }, context: context, now: now)
         summary.newWordsEnrolled = lesson.newVocab.compactMap { content.vocab($0) }
 
         // Fehler protokollieren + SRS-Zustand der betroffenen Vokabel zurücksetzen.
@@ -188,7 +189,7 @@ final class LessonSession {
                 timestamp: now
             ))
             if let vocabID = exercise.vocabID {
-                SRSService.resetForMistake(vocabID: vocabID, context: context, now: now)
+                SRSService.resetForMistake(vocabID: content.srsID(for: vocabID), context: context, now: now)
             }
         }
 

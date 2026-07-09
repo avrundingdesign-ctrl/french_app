@@ -28,12 +28,12 @@ enum ExamSectionKind: String, Codable, CaseIterable {
     case language
     case writing
 
-    var germanTitle: String {
+    var title: String {
         switch self {
-        case .listening: return "Hörverstehen"
-        case .reading: return "Leseverstehen"
-        case .language: return "Grammatik & Strukturen"
-        case .writing: return "Schreiben"
+        case .listening: return String(localized: "Hörverstehen")
+        case .reading: return String(localized: "Leseverstehen")
+        case .language: return String(localized: "Grammatik & Strukturen")
+        case .writing: return String(localized: "Schreiben")
         }
     }
 

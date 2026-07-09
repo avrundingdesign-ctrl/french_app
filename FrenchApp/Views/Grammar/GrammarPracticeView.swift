@@ -5,6 +5,7 @@ import SwiftUI
 /// ohne Auswirkung auf Lektionsfortschritt oder SRS.
 struct GrammarPracticeView: View {
     let rules: [GrammarRule]
+    var content: ContentStore = .shared
     var title = "Grammatik-Training"
 
     @Environment(\.dismiss) private var dismiss
@@ -31,7 +32,7 @@ struct GrammarPracticeView: View {
         .onAppear {
             guard !built else { return }
             built = true
-            exercises = GrammarPractice().session(rules: rules)
+            exercises = GrammarPractice(content: content).session(rules: rules)
         }
     }
 

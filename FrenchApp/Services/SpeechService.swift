@@ -1,7 +1,7 @@
 import AVFoundation
 
-/// Französische Sprachausgabe für das Hörverstehen der Niveau-Prüfungen.
-/// Nutzt die System-TTS-Stimme (fr-FR) — funktioniert offline.
+/// Sprachausgabe für das Hörverstehen der Niveau-Prüfungen — Stimme der
+/// jeweiligen Lernsprache (fr-FR bzw. de-DE), funktioniert offline.
 /// @unchecked Sendable: wird nur vom Main Thread benutzt (UI-Callbacks).
 final class SpeechService: NSObject, AVSpeechSynthesizerDelegate, @unchecked Sendable {
     static let shared = SpeechService()
@@ -16,8 +16,8 @@ final class SpeechService: NSObject, AVSpeechSynthesizerDelegate, @unchecked Sen
 
     var isSpeaking: Bool { synthesizer.isSpeaking }
 
-    /// Liest den Text vor; auf A1/A2 etwas langsamer (wie im DELF-Audio).
-    func speak(_ text: String, level: CEFRLevel, onFinish: (() -> Void)? = nil) {
+    /// Liest den Text vor; auf A1/A2 etwas langsamer (wie im Prüfungs-Audio).
+    func speak(_ text: String, level: CEFRLevel, language: String = "fr-FR", onFinish: (() -> Void)? = nil) {
         stop()
         self.onFinish = onFinish
 
@@ -25,7 +25,7 @@ final class SpeechService: NSObject, AVSpeechSynthesizerDelegate, @unchecked Sen
         try? AVAudioSession.sharedInstance().setActive(true)
 
         let utterance = AVSpeechUtterance(string: text)
-        utterance.voice = AVSpeechSynthesisVoice(language: "fr-FR")
+        utterance.voice = AVSpeechSynthesisVoice(language: language)
         utterance.rate = level <= .a2 ? 0.42 : 0.48
         utterance.preUtteranceDelay = 0.3
         synthesizer.speak(utterance)

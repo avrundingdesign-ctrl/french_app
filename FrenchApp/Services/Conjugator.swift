@@ -24,7 +24,7 @@ struct Conjugator {
         case conditionnelPasse
         case subjonctifPresent
 
-        var germanLabel: String {
+        var label: String {
             switch self {
             case .present: return "Präsens"
             case .imparfait: return "Imparfait"

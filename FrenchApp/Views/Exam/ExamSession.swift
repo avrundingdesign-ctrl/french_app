@@ -70,6 +70,8 @@ final class ExamSession {
     private(set) var result: Result?
     private(set) var startedAt: Date?
     private(set) var deadline: Date?
+    /// Kursrichtung der Prüfung — bestimmt TTS-Stimme und Zertifikat-Namensraum.
+    let direction: CourseDirection
 
     private var outcomes: [String: AnswerOutcome] = [:]
     /// Verbleibende Abspielvorgänge je Hör-Aufgabe (wie DELF: zweimal hören).
@@ -79,6 +81,7 @@ final class ExamSession {
 
     init(exam: ExamDefinition, content: ContentStore = .shared) {
         self.exam = exam
+        self.direction = content.direction
         let factory = ExerciseFactory(content: content)
 
         var built: [ExamQuestion] = []
@@ -191,6 +194,7 @@ final class ExamSession {
         let attempt = ExamAttempt(
             examID: exam.id,
             level: exam.level,
+            direction: direction,
             date: now,
             listeningScore: sections.first { $0.kind == .listening }?.points ?? 0,
             readingScore: sections.first { $0.kind == .reading }?.points ?? 0,
@@ -203,12 +207,13 @@ final class ExamSession {
         context.insert(attempt)
 
         if result.passed {
-            let levelRaw = exam.level.rawValue
+            // Zertifikate sind pro Richtung getrennt ("A1" bzw. "de:A1").
+            let levelRaw = direction.storageID(exam.level.rawValue)
             let descriptor = FetchDescriptor<EarnedCertificate>(
                 predicate: #Predicate { $0.levelRaw == levelRaw }
             )
             if ((try? context.fetch(descriptor)) ?? []).isEmpty {
-                context.insert(EarnedCertificate(level: exam.level, date: now, score: result.total))
+                context.insert(EarnedCertificate(level: exam.level, direction: direction, date: now, score: result.total))
                 result.certificateAwarded = true
             }
         }

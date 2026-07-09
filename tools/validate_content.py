@@ -23,6 +23,10 @@ VALID_TENSES = {
     "conditionnel", "conditionnelPasse", "subjonctifPresent",
 }
 VALID_LEVELS = {"A1", "A2", "B1", "B2", "C1"}
+# Deutsch-Kurs (Gegenrichtung): eigene Tempora des GermanConjugator.
+VALID_TENSES_DE = {"praesens", "perfekt", "praeteritum", "imperativ"}
+VALID_GERMAN_VERB_TYPES = {"weak", "strong", "mixed", "modal", "irregular"}
+INSEPARABLE_PREFIXES = ("be", "ge", "er", "ver", "zer", "ent", "emp", "miss")
 EXAM_SECTION_KINDS = ["listening", "reading", "language", "writing"]
 # Prüfungsfragen brauchen keinen Lektionskontext — Vokabel-Typen sind tabu.
 EXAM_QUESTION_TYPES = {"mcSentence", "cloze", "translate", "wordOrder", "conjugation", "errorCorrection"}
@@ -66,6 +70,178 @@ def check_spec(ex, where, verbs, errors):
     elif t in ("vocabIntro", "vocabProd"):
         if not ex.get("vocab"):
             errors.append(f"{where}: {t} ohne vocab-Liste")
+
+
+def check_spec_de(ex, where, verbs_de, errors):
+    """Spec-Prüfung für den Deutsch-Kurs: de ist Zielsprache, Tempora
+    und Personenregeln folgen dem GermanConjugator."""
+    t = ex["type"]
+    if t == "conjugation":
+        verb = verbs_de.get(ex["verb"])
+        if verb is None:
+            errors.append(f"{where}: Verb {ex['verb']} fehlt in verbs_de")
+            return
+        tense = ex.get("tense", "praesens")
+        if tense not in VALID_TENSES_DE:
+            errors.append(f"{where}: unbekanntes Tempus {tense}")
+        person = ex.get("person", -1)
+        if tense == "imperativ":
+            if person not in (1, 4, 5):
+                errors.append(f"{where}: Imperativ nur für du/ihr/Sie (1/4/5)")
+            if verb["type"] in ("modal",) or (verb.get("present") and not verb.get("imperative")):
+                errors.append(f"{where}: {ex['verb']} hat keinen Imperativ")
+        elif not 0 <= person <= 5:
+            errors.append(f"{where}: person fehlt/ungültig")
+        if tense == "praeteritum" and not verb.get("praeteritum"):
+            errors.append(f"{where}: {ex['verb']} hat keine Präteritum-Tabelle (A1: nur sein/haben/werden/Modalverben)")
+        if tense == "perfekt" and verb["type"] != "weak" and not verb.get("participle"):
+            errors.append(f"{where}: {ex['verb']} hat kein Partizip für das Perfekt")
+    elif t == "cloze":
+        if "___" not in ex["text"]:
+            errors.append(f"{where}: Cloze ohne ___")
+        if "choices" in ex:
+            if ex["answer"] not in ex["choices"]:
+                errors.append(f"{where}: answer nicht in choices")
+    elif t in ("mcSentence", "errorCorrection"):
+        distractors = ex.get("distractors") or []
+        if len(set(distractors)) < 2:
+            errors.append(f"{where}: weniger als 2 Distraktoren")
+        if ex["answer"] in distractors:
+            errors.append(f"{where}: answer ist auch Distraktor")
+    elif t == "translate":
+        if not ex.get("de") or not ex.get("fr"):
+            errors.append(f"{where}: translate braucht de und fr")
+    elif t == "wordOrder":
+        # Zielsatz ist hier das de-Feld.
+        if len(ex["de"].split(" ")) < 3:
+            errors.append(f"{where}: wordOrder unter 3 Wörtern")
+    elif t in ("vocabIntro", "vocabProd"):
+        if not ex.get("vocab"):
+            errors.append(f"{where}: {t} ohne vocab-Liste")
+
+
+def validate_german_course(vocab, errors, warnings):
+    """Prüft das _de-Dateiset der Gegenrichtung (Frankophone lernen Deutsch)."""
+    verbs_de = {v["infinitive"]: v for v in load("verbs_de")["verbs"]}
+    for name, verb in verbs_de.items():
+        if verb["type"] not in VALID_GERMAN_VERB_TYPES:
+            errors.append(f"verbs_de {name}: unbekannter Typ {verb['type']}")
+        if verb["type"] in ("strong", "mixed") and not verb.get("participle"):
+            errors.append(f"verbs_de {name}: starkes/gemischtes Verb ohne Partizip")
+        if verb["type"] == "irregular" and not verb.get("present"):
+            errors.append(f"verbs_de {name}: unregelmäßig ohne Präsenstabelle")
+        for key in ("present", "praeteritum"):
+            if verb.get(key) and len(verb[key]) != 6:
+                errors.append(f"verbs_de {name}: {key} braucht 6 Formen")
+        if verb.get("imperative") and len(verb["imperative"]) != 3:
+            errors.append(f"verbs_de {name}: imperative braucht 3 Formen (du/ihr/Sie)")
+        prefix = verb.get("separablePrefix")
+        if prefix and not verb["infinitive"].startswith(prefix):
+            errors.append(f"verbs_de {name}: separablePrefix ist kein Präfix des Infinitivs")
+
+    rules_de = {r["id"]: r for r in load("grammar_de")["rules"]}
+    for rule_id, rule in rules_de.items():
+        if not rule_id.startswith("de_g_"):
+            errors.append(f"Regel {rule_id}: de_g_-Präfix fehlt")
+        if rule["level"] not in VALID_LEVELS:
+            errors.append(f"Regel {rule_id}: ungültiges Niveau")
+        for infinitive in rule.get("verbTables") or []:
+            if infinitive not in verbs_de:
+                errors.append(f"Regel {rule_id}: Verb {infinitive} fehlt in verbs_de")
+
+    course = load("course_de")
+    lesson_count = spec_count = 0
+    new_vocab: list[str] = []
+    lesson_ids: list[str] = []
+    for unit in course["units"]:
+        if unit["level"] not in VALID_LEVELS:
+            errors.append(f"Einheit {unit['id']}: ungültiges Niveau")
+        for lesson in unit["lessons"]:
+            lesson_count += 1
+            lesson_ids.append(lesson["id"])
+            if not lesson["id"].startswith("de_"):
+                errors.append(f"{lesson['id']}: de_-Präfix fehlt (Kollisionsgefahr mit FR-Kurs)")
+            new_vocab += lesson["newVocab"]
+            for grammar_id in lesson.get("grammar") or []:
+                if grammar_id not in rules_de:
+                    errors.append(f"{lesson['id']}: Regel {grammar_id} fehlt")
+            for vocab_id in lesson["newVocab"]:
+                if vocab_id not in vocab:
+                    errors.append(f"{lesson['id']}: Vokabel {vocab_id} fehlt")
+            if len(lesson["exercises"]) < 5:
+                errors.append(f"{lesson['id']}: nur {len(lesson['exercises'])} Übungs-Specs")
+            for i, ex in enumerate(lesson["exercises"]):
+                spec_count += 1
+                where = f"{lesson['id']} ex{i}"
+                for vocab_id in ex.get("vocab") or []:
+                    if vocab_id not in vocab:
+                        errors.append(f"{where}: Vokabel {vocab_id} fehlt")
+                check_spec_de(ex, where, verbs_de, errors)
+
+    dupes = {l for l in lesson_ids if lesson_ids.count(l) > 1}
+    if dupes:
+        errors.append(f"Doppelte DE-Lektions-IDs: {sorted(dupes)}")
+    # Duplikatprüfung pro Kurs — der DE-Kurs darf FR-Vokabeln erneut einführen.
+    dupes = {v for v in new_vocab if new_vocab.count(v) > 1}
+    if dupes:
+        errors.append(f"DE-Kurs: Vokabeln mehrfach eingeführt: {sorted(dupes)}")
+
+    exams = load("exams_de")["exams"]
+    exam_question_count = 0
+    for exam in exams:
+        if exam["level"] not in VALID_LEVELS:
+            errors.append(f"{exam['id']}: ungültiges Niveau")
+        if exam.get("durationMinutes", 0) < 10:
+            errors.append(f"{exam['id']}: durationMinutes fehlt/zu kurz")
+        kinds = [s["kind"] for s in exam["sections"]]
+        if kinds != EXAM_SECTION_KINDS:
+            errors.append(f"{exam['id']}: Teile {kinds}, erwartet {EXAM_SECTION_KINDS}")
+        for section in exam["sections"]:
+            if not section.get("intro"):
+                errors.append(f"{exam['id']} {section['kind']}: intro fehlt")
+            question_count = 0
+            for ti, task in enumerate(section["tasks"]):
+                if section["kind"] == "listening" and not task.get("audioScript"):
+                    errors.append(f"{exam['id']} listening t{ti}: audioScript fehlt")
+                if section["kind"] == "reading" and not task.get("passage"):
+                    errors.append(f"{exam['id']} reading t{ti}: passage fehlt")
+                for qi, ex in enumerate(task["questions"]):
+                    question_count += 1
+                    exam_question_count += 1
+                    where = f"{exam['id']} {section['kind']} t{ti} q{qi}"
+                    if ex["type"] not in EXAM_QUESTION_TYPES:
+                        errors.append(f"{where}: Typ {ex['type']} in Prüfungen nicht erlaubt")
+                        continue
+                    check_spec_de(ex, where, verbs_de, errors)
+            if question_count < 4:
+                errors.append(f"{exam['id']} {section['kind']}: nur {question_count} Fragen")
+
+    pairs = load("listening_de")["minimalPairs"]
+    if len(pairs) < 20:
+        errors.append(f"listening_de: nur {len(pairs)} Minimal-Paare — mindestens 20")
+    seen_pairs = set()
+    for i, pair in enumerate(pairs):
+        where = f"listening_de[{i}]"
+        if not all(pair.get(k) for k in ("a", "b", "deA", "deB", "contrast")):
+            errors.append(f"{where}: Feld fehlt/leer")
+            continue
+        if pair["a"] == pair["b"]:
+            errors.append(f"{where}: a und b identisch")
+        key = tuple(sorted((pair["a"], pair["b"])))
+        if key in seen_pairs:
+            errors.append(f"{where}: Paar {key} doppelt")
+        seen_pairs.add(key)
+
+    # packs_de/challenges_de sind in 5a bewusst leer, müssen aber laden.
+    load("packs_de")
+    load("challenges_de")
+
+    print(
+        f"DE-Kurs: {len(verbs_de)} Verben · {len(rules_de)} Regeln · "
+        f"{lesson_count} Lektionen · {spec_count} Übungs-Specs · "
+        f"{len(exams)} Prüfung(en) mit {exam_question_count} Fragen · {len(pairs)} Minimal-Paare"
+    )
+    return set(new_vocab)
 
 
 def main() -> int:
@@ -230,7 +406,11 @@ def main() -> int:
     dupes = {v for v in all_new_vocab if all_new_vocab.count(v) > 1}
     if dupes:
         errors.append(f"Vokabeln mehrfach eingeführt: {sorted(dupes)}")
-    unused = vocab - set(all_new_vocab) - set(pack_vocab)
+
+    # Gegenrichtung (Frankophone lernen Deutsch) — eigenes Dateiset.
+    german_vocab = validate_german_course(vocab, errors, warnings)
+
+    unused = vocab - set(all_new_vocab) - set(pack_vocab) - german_vocab
     if unused:
         warnings.append(f"{len(unused)} Vokabeln weder in Lektion noch Paket: {sorted(unused)[:10]} …")
 

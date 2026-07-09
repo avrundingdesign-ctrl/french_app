@@ -8,15 +8,21 @@ struct MistakesView: View {
     @Query(sort: \MistakeRecord.timestamp, order: .reverse) private var mistakes: [MistakeRecord]
 
     @State private var showPractice = false
+    @Query private var settingsList: [UserSettings]
 
-    private let content = ContentStore.shared
+    private var content: ContentStore { settingsList.first?.content ?? .shared }
+
+    /// Nur Fehler des aktiven Kurses (Lektions-IDs sind kursspezifisch).
+    private var courseMistakes: [MistakeRecord] {
+        mistakes.filter { content.lessonByID[$0.lessonID] != nil }
+    }
 
     private var unresolved: [MistakeRecord] {
-        mistakes.filter { !$0.isResolved }
+        courseMistakes.filter { !$0.isResolved }
     }
 
     private var resolved: [MistakeRecord] {
-        mistakes.filter(\.isResolved)
+        courseMistakes.filter(\.isResolved)
     }
 
     var body: some View {
@@ -68,7 +74,7 @@ struct MistakesView: View {
             }
         }
         .fullScreenCover(isPresented: $showPractice) {
-            LessonSessionView(mode: .mistakes(unresolved))
+            LessonSessionView(mode: .mistakes(unresolved), content: content)
         }
     }
 

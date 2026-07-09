@@ -149,6 +149,7 @@ final class ExamAttempt {
     init(
         examID: String,
         level: CEFRLevel,
+        direction: CourseDirection = .french,
         date: Date = .now,
         listeningScore: Double,
         readingScore: Double,
@@ -159,7 +160,8 @@ final class ExamAttempt {
         duration: Int
     ) {
         self.examID = examID
-        self.levelRaw = level.rawValue
+        // Richtungsgetrennt: Deutsch-Versuche speichern "de:A1" (Bestand: "A1").
+        self.levelRaw = direction.storageID(level.rawValue)
         self.date = date
         self.listeningScore = listeningScore
         self.readingScore = readingScore
@@ -170,7 +172,9 @@ final class ExamAttempt {
         self.duration = duration
     }
 
-    var level: CEFRLevel? { CEFRLevel(rawValue: levelRaw) }
+    var level: CEFRLevel? { CEFRLevel(rawValue: CourseDirection.german.contentID(fromStorageID: levelRaw)) }
+
+    var direction: CourseDirection { levelRaw.hasPrefix("de:") ? .german : .french }
 
     func score(for kind: ExamSectionKind) -> Double {
         switch kind {
@@ -210,20 +214,25 @@ final class EarnedCertificate {
     /// Anzeige-Seriennummer, z. B. "FR-A1-2607-4821".
     var serial: String
 
-    init(level: CEFRLevel, date: Date = .now, score: Double) {
-        self.levelRaw = level.rawValue
+    init(level: CEFRLevel, direction: CourseDirection = .french, date: Date = .now, score: Double) {
+        // Richtungsgetrennt: "de:A1" für den Deutsch-Kurs — die unique-Constraint
+        // erlaubt so korrekt ein Zertifikat pro Niveau UND Richtung.
+        self.levelRaw = direction.storageID(level.rawValue)
         self.date = date
         self.score = score
         let calendar = Calendar.current
         let year = calendar.component(.year, from: date) % 100
         let month = calendar.component(.month, from: date)
         self.serial = String(
-            format: "FR-%@-%02d%02d-%04d",
-            level.rawValue, year, month, Int.random(in: 1000...9999)
+            format: "%@-%@-%02d%02d-%04d",
+            direction.certificateSerialPrefix, level.rawValue, year, month,
+            Int.random(in: 1000...9999)
         )
     }
 
-    var level: CEFRLevel? { CEFRLevel(rawValue: levelRaw) }
+    var level: CEFRLevel? { CEFRLevel(rawValue: CourseDirection.german.contentID(fromStorageID: levelRaw)) }
+
+    var direction: CourseDirection { levelRaw.hasPrefix("de:") ? .german : .french }
 }
 
 // MARK: - Einstellungen (Singleton-Datensatz)
@@ -235,11 +244,23 @@ final class UserSettings {
     var newCardsPerDay: Int
     /// Name auf Zertifikaten (optional, in den Einstellungen änderbar).
     var certificateName: String = ""
+    /// Kursrichtung — Default-Wert hält die Lightweight-Migration
+    /// für Bestandsnutzer intakt (alle waren Französisch-Lerner).
+    var courseDirectionRaw: String = CourseDirection.french.rawValue
+
+    var courseDirection: CourseDirection {
+        get { CourseDirection(rawValue: courseDirectionRaw) ?? .french }
+        set { courseDirectionRaw = newValue.rawValue }
+    }
+
+    /// Der Content-Store des gewählten Kurses.
+    var content: ContentStore { .store(for: courseDirection) }
 
     init() {
         self.onboardingDone = false
         self.newCardsPerDay = 10
         self.certificateName = ""
+        self.courseDirectionRaw = CourseDirection.french.rawValue
     }
 
     static func fetchOrCreate(in context: ModelContext) -> UserSettings {

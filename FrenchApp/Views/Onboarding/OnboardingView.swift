@@ -2,31 +2,38 @@ import SwiftUI
 import SwiftData
 
 /// Ersteinstieg ohne Reibung (Spec Screen 1): kein Login, Anfänger starten
-/// automatisch bei A1, nur das Tagespensum wird abgefragt.
+/// automatisch bei A1. Abgefragt werden nur Kursrichtung und Tagespensum.
 struct OnboardingView: View {
     @Bindable var settings: UserSettings
     @State private var page = 0
     @State private var pensum = 10
+    /// Vorbelegt aus der Systemsprache: Frankophone lernen Deutsch.
+    @State private var direction: CourseDirection =
+        Locale.current.language.languageCode?.identifier == "fr" ? .german : .french
+
+    private let lastPage = 3
 
     var body: some View {
         VStack(spacing: 0) {
             TabView(selection: $page) {
-                welcomePage.tag(0)
-                methodPage.tag(1)
-                pensumPage.tag(2)
+                directionPage.tag(0)
+                welcomePage.tag(1)
+                methodPage.tag(2)
+                pensumPage.tag(3)
             }
             .tabViewStyle(.page(indexDisplayMode: .always))
             .indexViewStyle(.page(backgroundDisplayMode: .always))
 
             Button {
-                if page < 2 {
+                if page < lastPage {
                     withAnimation { page += 1 }
                 } else {
+                    settings.courseDirection = direction
                     settings.newCardsPerDay = pensum
                     settings.onboardingDone = true
                 }
             } label: {
-                Text(page < 2 ? "Weiter" : "Los geht's!")
+                Text(page < lastPage ? String(localized: "Weiter") : String(localized: "Los geht's!"))
                     .font(.headline)
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 6)
@@ -38,19 +45,85 @@ struct OnboardingView: View {
         .background(Color(.systemGroupedBackground))
     }
 
+    // MARK: - Kursrichtung
+
+    private var directionPage: some View {
+        VStack(spacing: 24) {
+            Spacer()
+            Image(systemName: "globe.europe.africa")
+                .font(.system(size: 56))
+                .foregroundStyle(Theme.accent)
+            Text("Was möchtest du lernen?")
+                .font(.title.bold())
+            Text("Wähle deine Lernsprache — die Erklärungen kommen in deiner Muttersprache.")
+                .multilineTextAlignment(.center)
+                .foregroundStyle(.secondary)
+                .padding(.horizontal, 32)
+
+            VStack(spacing: 12) {
+                directionCard(
+                    .french,
+                    title: "Französisch lernen",
+                    subtitle: "Ich spreche Deutsch · A1–B2"
+                )
+                directionCard(
+                    .german,
+                    title: "Apprendre l'allemand",
+                    subtitle: "Je parle français · A1"
+                )
+            }
+            .padding(.horizontal, 24)
+            Spacer()
+            Spacer()
+        }
+    }
+
+    private func directionCard(_ candidate: CourseDirection, title: String, subtitle: String) -> some View {
+        Button {
+            direction = candidate
+        } label: {
+            HStack(spacing: 14) {
+                Text(candidate.flag)
+                    .font(.system(size: 34))
+                VStack(alignment: .leading, spacing: 2) {
+                    Text(title)
+                        .font(.headline)
+                    Text(subtitle)
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
+                Spacer()
+                Image(systemName: direction == candidate ? "checkmark.circle.fill" : "circle")
+                    .font(.title3)
+                    .foregroundStyle(direction == candidate ? Theme.accent : Color.secondary)
+            }
+            .padding(14)
+            .background(
+                RoundedRectangle(cornerRadius: 16)
+                    .fill(Color(.secondarySystemGroupedBackground))
+                    .stroke(direction == candidate ? Theme.accent : .clear, lineWidth: 2)
+            )
+        }
+        .buttonStyle(.plain)
+    }
+
+    // MARK: - Info-Seiten
+
     private var welcomePage: some View {
         OnboardingPage(
             symbol: "book.fill",
-            title: "Bienvenue !",
-            text: "Französisch lernen von A1 bis B2 — Schritt für Schritt, komplett offline.\n\nDu startest ganz vorne: keine Vorkenntnisse nötig."
+            title: direction == .german ? "Willkommen ! Bienvenue !" : "Bienvenue !",
+            text: direction == .german
+                ? String(localized: "Deutsch lernen — Schritt für Schritt, komplett offline.\n\nDu startest ganz vorne: keine Vorkenntnisse nötig.")
+                : String(localized: "Französisch lernen von A1 bis B2 — Schritt für Schritt, komplett offline.\n\nDu startest ganz vorne: keine Vorkenntnisse nötig.")
         )
     }
 
     private var methodPage: some View {
         OnboardingPage(
             symbol: "brain.head.profile",
-            title: "Ohne Druck, mit System",
-            text: "Kurze Lektionen führen dich durch Vokabeln und Grammatik — mit Erklärungen auf Deutsch.\n\nGelernte Wörter wiederholst du genau dann, wenn du sie zu vergessen drohst (Spaced Repetition).\n\nKeine Streaks, keine Ligen, keine Leben — nur dein Fortschritt zählt."
+            title: String(localized: "Ohne Druck, mit System"),
+            text: String(localized: "Kurze Lektionen führen dich durch Vokabeln und Grammatik — mit Erklärungen in deiner Muttersprache.\n\nGelernte Wörter wiederholst du genau dann, wenn du sie zu vergessen drohst (Spaced Repetition).\n\nKeine Streaks, keine Ligen, keine Leben — nur dein Fortschritt zählt.")
         )
     }
 

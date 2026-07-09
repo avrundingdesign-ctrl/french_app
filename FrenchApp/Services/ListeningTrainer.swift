@@ -5,8 +5,10 @@ import Foundation
 /// Hörunterscheidung aus den kuratierten Minimal-Paaren.
 struct ListeningTrainer {
     struct Sentence: Hashable {
-        let fr: String
-        let de: String
+        /// Satz in der Lernsprache (wird vorgelesen und getippt).
+        let target: String
+        /// Übersetzung in der Muttersprache (Feedback).
+        let native: String
         let level: CEFRLevel
     }
 
@@ -17,11 +19,11 @@ struct ListeningTrainer {
 
         var id: String { rawValue }
 
-        var germanTitle: String {
+        var title: String {
             switch self {
-            case .dictation: return "Dictée"
-            case .cloze: return "Hör-Lückentext"
-            case .minimalPairs: return "Wortpaare"
+            case .dictation: return String(localized: "Diktat")
+            case .cloze: return String(localized: "Hör-Lückentext")
+            case .minimalPairs: return String(localized: "Wortpaare")
             }
         }
 
@@ -35,9 +37,9 @@ struct ListeningTrainer {
 
         var description: String {
             switch self {
-            case .dictation: return "Schreibe ganze Sätze nach Gehör — der Klassiker aus Frankreich."
-            case .cloze: return "Höre den Satz und ergänze das fehlende Wort."
-            case .minimalPairs: return "rue oder roue? Trainiere Laute, die ähnlich klingen."
+            case .dictation: return String(localized: "Schreibe ganze Sätze nach Gehör — der Klassiker des Sprachunterrichts.")
+            case .cloze: return String(localized: "Höre den Satz und ergänze das fehlende Wort.")
+            case .minimalPairs: return String(localized: "Trainiere Laute, die ähnlich klingen.")
             }
         }
 
@@ -54,9 +56,10 @@ struct ListeningTrainer {
         let translation: String?
     }
 
-    /// Nur mit iOS-Tastatur + Akzentleiste tippbare Sätze kommen in den Pool.
+    /// Nur mit iOS-Tastatur + Akzentleiste tippbare Sätze kommen in den Pool
+    /// (inkl. deutscher Umlaute/ß für die Gegenrichtung).
     static let typeable = CharacterSet(
-        charactersIn: "abcdefghijklmnopqrstuvwxyz0123456789 éèêàçùâîôûëïöüœ'-"
+        charactersIn: "abcdefghijklmnopqrstuvwxyz0123456789 éèêàçùâîôûëïöüœäß'-"
     )
 
     let content: ContentStore
@@ -64,29 +67,32 @@ struct ListeningTrainer {
 
     init(content: ContentStore = .shared) {
         self.content = content
+        let pair = content.pair
 
         var seen = Set<String>()
         var pool: [Sentence] = []
-        func add(_ fr: String, _ de: String, _ level: CEFRLevel?) {
-            guard let level else { return }
-            let normalized = AnswerChecker.normalize(fr)
+        func add(_ target: String?, _ native: String?, _ level: CEFRLevel?) {
+            guard let target, let native, let level else { return }
+            let normalized = AnswerChecker.normalize(target)
             let wordCount = normalized.split(separator: " ").count
             guard (3...12).contains(wordCount),
                   normalized.unicodeScalars.allSatisfy({ Self.typeable.contains($0) }),
                   seen.insert(normalized).inserted
             else { return }
-            pool.append(Sentence(fr: fr, de: de, level: level))
+            pool.append(Sentence(target: target, native: native, level: level))
         }
 
         for rule in content.grammarRules {
             for example in rule.examples {
-                add(example.fr, example.de, rule.level)
+                add(
+                    pair.targetText(fr: example.fr, de: example.de),
+                    pair.nativeText(fr: example.fr, de: example.de),
+                    rule.level
+                )
             }
         }
         for item in content.vocabulary {
-            if let fr = item.exampleFR, let de = item.exampleDE {
-                add(fr, de, content.vocabLevelByID[item.id])
-            }
+            add(pair.targetExample(item), pair.nativeExample(item), content.vocabLevelByID[item.id])
         }
         self.sentences = pool
     }
@@ -100,19 +106,19 @@ struct ListeningTrainer {
     func dictationExercises(upTo level: CEFRLevel, count: Int) -> [Exercise] {
         sentences(upTo: level).shuffled().prefix(count).enumerated().map { index, sentence in
             let input = TextInputExercise(
-                instruction: "Dictée: Schreibe den Satz, den du hörst",
+                instruction: String(localized: "Diktat: Schreibe den Satz, den du hörst"),
                 prefix: "",
                 suffix: "",
-                answer: sentence.fr,
+                answer: sentence.target,
                 hint: nil,
                 translation: nil,
-                fullSolution: sentence.fr
+                fullSolution: sentence.target
             )
             return Exercise(
                 id: "dictation#\(index)",
-                audio: sentence.fr,
+                audio: sentence.target,
                 kind: .textInput(input),
-                translation: sentence.de
+                translation: sentence.native
             )
         }
     }
@@ -121,34 +127,36 @@ struct ListeningTrainer {
         var result: [Exercise] = []
         for (index, sentence) in sentences(upTo: level).shuffled().enumerated() {
             guard result.count < count else { break }
-            guard let split = Self.gapSplit(sentence.fr) else { continue }
+            guard let split = Self.gapSplit(sentence.target) else { continue }
             let input = TextInputExercise(
-                instruction: "Höre den Satz und setze das fehlende Wort ein",
+                instruction: String(localized: "Höre den Satz und setze das fehlende Wort ein"),
                 prefix: split.prefix,
                 suffix: split.suffix,
                 answer: split.word,
                 hint: nil,
                 translation: nil,
-                fullSolution: sentence.fr
+                fullSolution: sentence.target
             )
             result.append(Exercise(
                 id: "cloze#\(index)",
-                audio: sentence.fr,
+                audio: sentence.target,
                 kind: .textInput(input),
-                translation: sentence.de
+                translation: sentence.native
             ))
         }
         return result
     }
 
     func minimalPairExercises(count: Int) -> [Exercise] {
+        // deA/deB sind per Konvention Glossen in der Muttersprache der
+        // Lernenden (listening_de.json trägt dort französische Übersetzungen).
         content.minimalPairs.shuffled().prefix(count).enumerated().map { index, pair in
             let firstIsSpoken = Bool.random()
             let spoken = firstIsSpoken ? pair.a : pair.b
             let mc = MCExercise(
-                instruction: "Welches Wort hörst du?",
-                prompt: "Kontrast: \(pair.contrast)",
-                promptDetail: "Die beiden Wörter klingen ähnlich — höre genau hin.",
+                instruction: String(localized: "Welches Wort hörst du?"),
+                prompt: String(localized: "Kontrast: \(pair.contrast)"),
+                promptDetail: String(localized: "Die beiden Wörter klingen ähnlich — höre genau hin."),
                 options: ["\(pair.a) — \(pair.deA)", "\(pair.b) — \(pair.deB)"],
                 correctIndex: firstIsSpoken ? 0 : 1,
                 explanation: "\(pair.a) (\(pair.deA)) ↔ \(pair.b) (\(pair.deB))"

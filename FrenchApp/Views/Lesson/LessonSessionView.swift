@@ -8,8 +8,8 @@ struct LessonSessionView: View {
     @State private var session: LessonSession
     @State private var showQuitConfirm = false
 
-    init(mode: SessionMode) {
-        _session = State(initialValue: LessonSession(mode: mode))
+    init(mode: SessionMode, content: ContentStore = .shared) {
+        _session = State(initialValue: LessonSession(mode: mode, content: content))
     }
 
     var body: some View {

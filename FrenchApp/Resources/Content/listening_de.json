@@ -1,0 +1,172 @@
+{
+  "minimalPairs": [
+    {
+      "a": "Haus",
+      "b": "aus",
+      "deA": "la maison",
+      "deB": "de (provenance)",
+      "contrast": "h aspiré – sans h"
+    },
+    {
+      "a": "Hund",
+      "b": "und",
+      "deA": "le chien",
+      "deB": "et",
+      "contrast": "h aspiré – sans h"
+    },
+    {
+      "a": "Stadt",
+      "b": "Staat",
+      "deA": "la ville",
+      "deB": "l'État",
+      "contrast": "a bref – a long"
+    },
+    {
+      "a": "bitten",
+      "b": "bieten",
+      "deA": "prier, demander",
+      "deB": "offrir",
+      "contrast": "i bref – ie long"
+    },
+    {
+      "a": "Ofen",
+      "b": "offen",
+      "deA": "le four",
+      "deB": "ouvert",
+      "contrast": "o long – o bref"
+    },
+    {
+      "a": "Tür",
+      "b": "Tier",
+      "deA": "la porte",
+      "deB": "l'animal",
+      "contrast": "ü – ie"
+    },
+    {
+      "a": "vier",
+      "b": "für",
+      "deA": "quatre",
+      "deB": "pour",
+      "contrast": "ie – ü"
+    },
+    {
+      "a": "schön",
+      "b": "schon",
+      "deA": "beau",
+      "deB": "déjà",
+      "contrast": "ö – o"
+    },
+    {
+      "a": "können",
+      "b": "kennen",
+      "deA": "pouvoir",
+      "deB": "connaître",
+      "contrast": "ö – e"
+    },
+    {
+      "a": "Kirche",
+      "b": "Kirsche",
+      "deA": "l'église",
+      "deB": "la cerise",
+      "contrast": "ch – sch"
+    },
+    {
+      "a": "Nacht",
+      "b": "nackt",
+      "deA": "la nuit",
+      "deB": "nu",
+      "contrast": "ch guttural – ck"
+    },
+    {
+      "a": "Wein",
+      "b": "fein",
+      "deA": "le vin",
+      "deB": "fin, raffiné",
+      "contrast": "w – f"
+    },
+    {
+      "a": "Wald",
+      "b": "bald",
+      "deA": "la forêt",
+      "deB": "bientôt",
+      "contrast": "w – b"
+    },
+    {
+      "a": "Rad",
+      "b": "Rat",
+      "deA": "la roue, le vélo",
+      "deB": "le conseil",
+      "contrast": "d final – t final"
+    },
+    {
+      "a": "Mus",
+      "b": "muss",
+      "deA": "la compote",
+      "deB": "doit (müssen)",
+      "contrast": "u long – u bref"
+    },
+    {
+      "a": "Miete",
+      "b": "Mitte",
+      "deA": "le loyer",
+      "deB": "le milieu",
+      "contrast": "ie long – i bref"
+    },
+    {
+      "a": "Wort",
+      "b": "Ort",
+      "deA": "le mot",
+      "deB": "le lieu",
+      "contrast": "w initial – voyelle"
+    },
+    {
+      "a": "Bein",
+      "b": "Wein",
+      "deA": "la jambe",
+      "deB": "le vin",
+      "contrast": "b – w"
+    },
+    {
+      "a": "leben",
+      "b": "lieben",
+      "deA": "vivre",
+      "deB": "aimer",
+      "contrast": "e long – ie"
+    },
+    {
+      "a": "Sohn",
+      "b": "Sonne",
+      "deA": "le fils",
+      "deB": "le soleil",
+      "contrast": "o long – o bref"
+    },
+    {
+      "a": "Bahn",
+      "b": "Bann",
+      "deA": "le train, la voie",
+      "deB": "le bannissement",
+      "contrast": "a long – a bref"
+    },
+    {
+      "a": "Hütte",
+      "b": "Hüte",
+      "deA": "la cabane",
+      "deB": "les chapeaux",
+      "contrast": "ü bref – ü long"
+    },
+    {
+      "a": "denn",
+      "b": "den",
+      "deA": "car",
+      "deB": "le (accusatif)",
+      "contrast": "e bref – e long"
+    },
+    {
+      "a": "Wetter",
+      "b": "Vetter",
+      "deA": "le temps (météo)",
+      "deB": "le cousin",
+      "contrast": "w – f (v)"
+    }
+  ]
+}

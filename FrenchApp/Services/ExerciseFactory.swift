@@ -119,6 +119,9 @@ struct RuntimeExercise: Identifiable {
 struct ExerciseFactory {
     let content: ContentStore
 
+    /// Prompt-/Lösungsseite je Kursrichtung (Deutsch-Kurs: de ist Ziel).
+    private var pair: LanguagePair { content.pair }
+
     func exercises(for lesson: CourseLesson) -> [RuntimeExercise] {
         lesson.exercises.enumerated().flatMap { index, spec in
             build(spec: spec, lesson: lesson, exerciseIndex: index)
@@ -183,7 +186,7 @@ struct ExerciseFactory {
                 return MatchingExercise.Pair(id: item.id, fr: item.fr, de: item.de)
             }
             guard pairs.count >= 3 else { return [] }
-            let exercise = MatchingExercise(instruction: "Ordne die Paare zu", pairs: pairs)
+            let exercise = MatchingExercise(instruction: String(localized: "Ordne die Paare zu"), pairs: pairs)
             return [RuntimeExercise(
                 ref: ref(0),
                 kind: .matching(exercise),
@@ -219,20 +222,24 @@ struct ExerciseFactory {
     }
 
     private func wordOrderExercise(spec: ExerciseSpec, ref: ExerciseRef) -> RuntimeExercise? {
-        guard let fr = spec.fr, let de = spec.de else { return nil }
-        let tokens = fr.split(separator: " ").map(String.init)
+        guard let target = pair.targetText(fr: spec.fr, de: spec.de),
+              let native = pair.nativeText(fr: spec.fr, de: spec.de)
+        else { return nil }
+        let tokens = target.split(separator: " ").map(String.init)
         guard tokens.count >= 3 else { return nil }
         let exercise = WordOrderExercise(
-            instruction: "Bilde den französischen Satz",
+            instruction: content.direction == .german
+                ? String(localized: "Bilde den deutschen Satz")
+                : String(localized: "Bilde den französischen Satz"),
             tokens: tokens,
-            de: de
+            de: native
         )
         return RuntimeExercise(
             ref: ref,
             kind: .wordOrder(exercise),
             vocabID: spec.vocab?.first,
-            promptSummary: de,
-            answerSummary: fr
+            promptSummary: native,
+            answerSummary: target
         )
     }
 
@@ -246,7 +253,7 @@ struct ExerciseFactory {
         options = dedupe(options)
         guard let correctIndex = options.firstIndex(of: answer) else { return nil }
         let exercise = MCExercise(
-            instruction: "Wähle die richtige Antwort",
+            instruction: String(localized: "Wähle die richtige Antwort"),
             prompt: question,
             promptDetail: nil,
             options: options,
@@ -263,23 +270,27 @@ struct ExerciseFactory {
     }
 
     private func translateExercise(spec: ExerciseSpec, ref: ExerciseRef) -> RuntimeExercise? {
-        guard let de = spec.de, let fr = spec.fr else { return nil }
+        guard let target = pair.targetText(fr: spec.fr, de: spec.de),
+              let native = pair.nativeText(fr: spec.fr, de: spec.de)
+        else { return nil }
         let exercise = TextInputExercise(
-            instruction: "Übersetze ins Französische",
+            instruction: content.direction == .german
+                ? String(localized: "Übersetze ins Deutsche")
+                : String(localized: "Übersetze ins Französische"),
             prefix: "",
             suffix: "",
-            answer: fr,
+            answer: target,
             altAnswers: spec.altAnswers ?? [],
             hint: spec.hint,
-            translation: de,
-            fullSolution: fr
+            translation: native,
+            fullSolution: target
         )
         return RuntimeExercise(
             ref: ref,
             kind: .textInput(exercise),
             vocabID: spec.vocab?.first,
-            promptSummary: de,
-            answerSummary: fr
+            promptSummary: native,
+            answerSummary: target
         )
     }
 
@@ -293,7 +304,7 @@ struct ExerciseFactory {
         options = dedupe(options)
         guard let correctIndex = options.firstIndex(of: answer) else { return nil }
         let exercise = MCExercise(
-            instruction: "Dieser Satz enthält einen Fehler. Wähle die richtige Version:",
+            instruction: String(localized: "Dieser Satz enthält einen Fehler. Wähle die richtige Version:"),
             prompt: "✗ \(faulty)",
             promptDetail: spec.translation,
             options: options,
@@ -319,24 +330,27 @@ struct ExerciseFactory {
         let distractors = content.distractors(for: item, count: 3, preferring: lesson.newVocab)
         guard distractors.count >= 2 else { return nil }
 
-        let correct = production ? item.fr : item.de
-        var options = ([correct] + distractors.map { production ? $0.fr : $0.de }).shuffled()
+        let correct = production ? pair.target(item) : pair.native(item)
+        var options = ([correct] + distractors.map { production ? pair.target($0) : pair.native($0) }).shuffled()
         options = dedupe(options)
         guard let correctIndex = options.firstIndex(of: correct) else { return nil }
 
-        var detailParts: [String] = [item.pos.germanLabel]
-        if let genderLabel = item.genderLabel, !production { detailParts.append(genderLabel) }
+        var detailParts: [String] = [item.pos.label]
+        if let genderDetail = pair.genderDetail(item), !production { detailParts.append(genderDetail) }
 
         var explanation: String?
-        if let exampleFR = item.exampleFR, let exampleDE = item.exampleDE {
-            explanation = "\(exampleFR) — \(exampleDE)"
-        } else if let note = item.note {
+        if let targetExample = pair.targetExample(item), let nativeExample = pair.nativeExample(item) {
+            explanation = "\(targetExample) — \(nativeExample)"
+        } else if let note = pair.note(item) {
             explanation = note
         }
 
+        let productionInstruction = content.direction == .german
+            ? String(localized: "Wie heißt das auf Deutsch?")
+            : String(localized: "Wie heißt das auf Französisch?")
         let exercise = MCExercise(
-            instruction: production ? "Wie heißt das auf Französisch?" : "Was bedeutet das?",
-            prompt: production ? item.de : item.fr,
+            instruction: production ? productionInstruction : String(localized: "Was bedeutet das?"),
+            prompt: production ? pair.native(item) : pair.target(item),
             promptDetail: production ? nil : detailParts.joined(separator: " · "),
             options: options,
             correctIndex: correctIndex,
@@ -360,7 +374,7 @@ struct ExerciseFactory {
             options = dedupe(options.shuffled())
             let correctIndex = options.firstIndex(of: answer) ?? 0
             let exercise = MCExercise(
-                instruction: "Was gehört in die Lücke?",
+                instruction: String(localized: "Was gehört in die Lücke?"),
                 prompt: text,
                 promptDetail: spec.translation,
                 options: options,
@@ -378,7 +392,7 @@ struct ExerciseFactory {
 
         let parts = text.components(separatedBy: "___")
         let exercise = TextInputExercise(
-            instruction: "Setze das fehlende Wort ein",
+            instruction: String(localized: "Setze das fehlende Wort ein"),
             prefix: parts.first ?? "",
             suffix: parts.count > 1 ? parts[1] : "",
             answer: answer,
@@ -397,6 +411,9 @@ struct ExerciseFactory {
     }
 
     private func conjugationExercise(spec: ExerciseSpec, ref: ExerciseRef) -> RuntimeExercise? {
+        if content.direction == .german {
+            return germanConjugationExercise(spec: spec, ref: ref)
+        }
         guard let infinitive = spec.verb,
               let verb = content.conjugator.verb(infinitive),
               let person = spec.person,
@@ -443,7 +460,7 @@ struct ExerciseFactory {
         }
 
         let exercise = TextInputExercise(
-            instruction: "Konjugiere «\(infinitive)» (\(verb.de)) — \(tense.germanLabel)",
+            instruction: String(localized: "Konjugiere «\(infinitive)» (\(verb.de)) — \(tense.label)"),
             prefix: prefix,
             suffix: "",
             answer: answer,
@@ -456,8 +473,60 @@ struct ExerciseFactory {
             ref: ref,
             kind: .textInput(exercise),
             vocabID: vocabID,
-            promptSummary: "\(pronoun) … (\(infinitive), \(tense.germanLabel))",
+            promptSummary: "\(pronoun) … (\(infinitive), \(tense.label))",
             answerSummary: fullSolution
+        )
+    }
+
+    /// Konjugationsübung des Deutsch-Kurses: Tempora und Pronomen aus dem
+    /// GermanConjugator; Imperativ ohne Subjektpronomen (Personenhinweis in
+    /// der Anweisung). Kein Vokabel-Link — die Vokabel-IDs sind FR-basiert.
+    private func germanConjugationExercise(spec: ExerciseSpec, ref: ExerciseRef) -> RuntimeExercise? {
+        guard let infinitive = spec.verb,
+              let verb = content.germanConjugator.verb(infinitive),
+              let person = spec.person,
+              (0...5).contains(person)
+        else { return nil }
+
+        let tense = GermanConjugator.Tense(rawValue: spec.tense ?? "praesens") ?? .praesens
+        guard let answer = content.germanConjugator.form(of: verb, tense: tense, person: person) else {
+            return nil
+        }
+
+        let instruction: String
+        let prefix: String
+        let pronoun: String
+        if tense == .imperativ {
+            let personHint = person == 1 ? "du" : person == 4 ? "ihr" : "Sie"
+            instruction = String(localized: "Imperativ von „\(infinitive)“ (\(verb.fr)) — \(personHint)-Form")
+            prefix = ""
+            pronoun = "(\(personHint))"
+        } else {
+            switch person {
+            case 2: pronoun = "er"
+            case 5: pronoun = "sie"
+            default: pronoun = GermanConjugator.tablePronouns[person]
+            }
+            instruction = String(localized: "Konjugiere „\(infinitive)“ (\(verb.fr)) — \(tense.label)")
+            prefix = pronoun + " "
+        }
+
+        let exercise = TextInputExercise(
+            instruction: instruction,
+            prefix: prefix,
+            suffix: "",
+            answer: answer,
+            altAnswers: spec.altAnswers ?? [],
+            hint: spec.hint,
+            translation: spec.translation,
+            fullSolution: prefix + answer
+        )
+        return RuntimeExercise(
+            ref: ref,
+            kind: .textInput(exercise),
+            vocabID: nil,
+            promptSummary: "\(pronoun) … (\(infinitive), \(tense.label))",
+            answerSummary: prefix + answer
         )
     }
 
@@ -500,7 +569,10 @@ enum AnswerChecker {
     }
 
     static func stripDiacritics(_ s: String) -> String {
-        s.folding(options: .diacriticInsensitive, locale: Locale(identifier: "fr_FR"))
+        // ß→ss vor dem Falten: Umlaut-/Eszett-Fehler zählen im Deutsch-Kurs
+        // wie Akzentfehler im Französischen als „richtig mit Hinweis".
+        s.replacingOccurrences(of: "ß", with: "ss")
+            .folding(options: .diacriticInsensitive, locale: Locale(identifier: "fr_FR"))
             .replacingOccurrences(of: "œ", with: "oe")
     }
 }

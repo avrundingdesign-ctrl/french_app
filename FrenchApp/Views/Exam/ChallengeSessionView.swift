@@ -17,6 +17,7 @@ struct ChallengeSessionView: View {
     }
 
     let chapter: ChallengeChapter
+    var content: ContentStore = .shared
 
     @Environment(\.dismiss) private var dismiss
     @Environment(\.modelContext) private var modelContext
@@ -49,7 +50,7 @@ struct ChallengeSessionView: View {
     private func build() {
         guard !built else { return }
         built = true
-        let factory = ExerciseFactory(content: .shared)
+        let factory = ExerciseFactory(content: content)
         var result: [Question] = []
         for (taskIndex, task) in chapter.tasks.enumerated() {
             for (questionIndex, spec) in task.questions.enumerated() {
@@ -158,7 +159,7 @@ struct ChallengeSessionView: View {
     private func play(_ question: Question) {
         guard !isPlaying, let script = question.audioScript else { return }
         isPlaying = true
-        SpeechService.shared.speak(script, level: chapter.level) {
+        SpeechService.shared.speak(script, level: chapter.level, language: content.direction.targetLocaleID) {
             isPlaying = false
         }
     }

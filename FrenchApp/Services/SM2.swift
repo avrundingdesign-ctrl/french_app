@@ -51,10 +51,10 @@ enum ReviewGrade: Int, CaseIterable, Identifiable {
 
     var label: String {
         switch self {
-        case .again: return "Nochmal"
-        case .hard: return "Schwer"
-        case .good: return "Gut"
-        case .easy: return "Einfach"
+        case .again: return String(localized: "Nochmal")
+        case .hard: return String(localized: "Schwer")
+        case .good: return String(localized: "Gut")
+        case .easy: return String(localized: "Einfach")
         }
     }
 

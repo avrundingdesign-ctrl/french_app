@@ -11,10 +11,19 @@ struct ProfileView: View {
     @Query private var reviewLog: [ReviewLogEntry]
     @Query private var certificates: [EarnedCertificate]
 
-    private let content = ContentStore.shared
+    private var content: ContentStore { settingsList.first?.content ?? .shared }
 
     private var snapshot: ProgressSnapshot {
         ProgressSnapshot(progress: progress, content: content)
+    }
+
+    /// Karten, Log-Einträge und Fehler der aktiven Kursrichtung.
+    private var myStates: [ReviewState] {
+        states.filter { content.direction.owns(storageID: $0.vocabID) }
+    }
+
+    private var myReviewLog: [ReviewLogEntry] {
+        reviewLog.filter { content.direction.owns(storageID: $0.vocabID) }
     }
 
     var body: some View {
@@ -52,7 +61,7 @@ struct ProfileView: View {
         let days: [(label: String, count: Int)] = (0..<7).map { offset in
             let dayStart = calendar.date(byAdding: .day, value: offset, to: today) ?? today
             let dayEnd = calendar.date(byAdding: .day, value: 1, to: dayStart) ?? dayStart
-            let count = states.filter {
+            let count = myStates.filter {
                 !$0.isNew && (offset == 0 ? $0.nextReview < dayEnd : ($0.nextReview >= dayStart && $0.nextReview < dayEnd))
             }.count
             let label = offset == 0 ? "heute" : dayStart.formatted(.dateTime.weekday(.abbreviated))
@@ -88,19 +97,19 @@ struct ProfileView: View {
     private var activitySection: some View {
         let calendar = Calendar.current
         let weekAgo = calendar.date(byAdding: .day, value: -7, to: .now) ?? .now
-        let reviewsThisWeek = reviewLog.filter { $0.timestamp >= weekAgo }.count
+        let reviewsThisWeek = myReviewLog.filter { $0.timestamp >= weekAgo }.count
 
         return VStack(alignment: .leading, spacing: 10) {
             Text("Training")
                 .font(.headline)
             HStack {
-                statInline(value: "\(reviewLog.count)", label: "Bewertungen gesamt")
+                statInline(value: "\(myReviewLog.count)", label: "Bewertungen gesamt")
                 Divider().frame(height: 32)
                 statInline(value: "\(reviewsThisWeek)", label: "in den letzten 7 Tagen")
             }
             Divider()
             ForEach(content.levels) { level in
-                let ids = Set(states.map(\.vocabID))
+                let ids = Set(myStates.map { content.direction.contentID(fromStorageID: $0.vocabID) })
                 let count = ids.filter { content.vocabLevelByID[$0] == level }.count
                 let total = content.vocabLevelByID.values.filter { $0 == level }.count
                 HStack {
@@ -163,7 +172,7 @@ struct ProfileView: View {
     // MARK: - Zertifikate
 
     private var certificateSection: some View {
-        let earned = Set(certificates.compactMap(\.level))
+        let earned = Set(certificates.filter { $0.direction == content.direction }.compactMap(\.level))
         let examLevels = content.exams.map(\.level).sorted()
 
         return VStack(alignment: .leading, spacing: 12) {
@@ -205,15 +214,16 @@ struct ProfileView: View {
     // MARK: - Statistik
 
     private var statGrid: some View {
-        let learned = states.filter { $0.repetitions >= 1 }.count
-        let mature = states.filter(\.isMature).count
+        let learned = myStates.filter { $0.repetitions >= 1 }.count
+        let mature = myStates.filter(\.isMature).count
         let due = settingsList.first.map {
-            SRSService.dueCount(states: states, settings: $0)
+            SRSService.dueCount(states: myStates, settings: $0)
         } ?? 0
+        let lessonsDone = progress.filter { content.lessonByID[$0.lessonID] != nil }.count
 
         return LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 12) {
             StatTile(
-                value: "\(states.count)",
+                value: "\(myStates.count)",
                 label: "Wörter im Training",
                 symbol: "rectangle.stack",
                 color: Theme.accent
@@ -237,7 +247,7 @@ struct ProfileView: View {
                 color: Theme.danger
             )
             StatTile(
-                value: "\(progress.count)",
+                value: "\(lessonsDone)",
                 label: "Lektionen abgeschlossen",
                 symbol: "book.closed",
                 color: Theme.levelColor(.a2)
@@ -254,7 +264,7 @@ struct ProfileView: View {
     // MARK: - Fehler
 
     private var mistakeSection: some View {
-        let unresolved = mistakes.filter { !$0.isResolved }
+        let unresolved = mistakes.filter { !$0.isResolved && content.lessonByID[$0.lessonID] != nil }
         return VStack(alignment: .leading, spacing: 10) {
             HStack {
                 Text("Fehlerübersicht")

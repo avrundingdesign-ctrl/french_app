@@ -28,12 +28,12 @@ final class ListeningTests: XCTestCase {
 
     func testPoolSentencesAreTypeable() {
         for sentence in trainer.sentences {
-            let normalized = AnswerChecker.normalize(sentence.fr)
+            let normalized = AnswerChecker.normalize(sentence.target)
             XCTAssertTrue(
                 normalized.unicodeScalars.allSatisfy { ListeningTrainer.typeable.contains($0) },
-                "«\(sentence.fr)» enthält untippbare Zeichen"
+                "«\(sentence.target)» enthält untippbare Zeichen"
             )
-            XCTAssertFalse(sentence.de.isEmpty, "«\(sentence.fr)» ohne Übersetzung")
+            XCTAssertFalse(sentence.native.isEmpty, "«\(sentence.target)» ohne Übersetzung")
         }
     }
 

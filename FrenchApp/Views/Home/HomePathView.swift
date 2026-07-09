@@ -16,7 +16,7 @@ struct HomePathView: View {
     @State private var showReview = false
     @State private var showGrammarPractice = false
 
-    private let content = ContentStore.shared
+    private var content: ContentStore { settingsList.first?.content ?? .shared }
 
     private var snapshot: ProgressSnapshot {
         ProgressSnapshot(progress: progress, content: content)
@@ -24,7 +24,8 @@ struct HomePathView: View {
 
     private var dueCount: Int {
         guard let settings = settingsList.first else { return 0 }
-        return SRSService.dueCount(states: reviewStates, settings: settings)
+        let mine = reviewStates.filter { content.direction.owns(storageID: $0.vocabID) }
+        return SRSService.dueCount(states: mine, settings: settings)
     }
 
     var body: some View {
@@ -51,21 +52,21 @@ struct HomePathView: View {
                 .padding(.bottom, 24)
             }
             .background(Color(.systemGroupedBackground))
-            .navigationTitle("Français")
+            .navigationTitle(content.direction == .german ? "Allemand" : "Français")
             .fullScreenCover(item: $activeLesson) { lesson in
-                LessonSessionView(mode: .lesson(lesson))
+                LessonSessionView(mode: .lesson(lesson), content: content)
             }
             .fullScreenCover(item: $activeExam) { exam in
-                ExamSessionView(exam: exam)
+                ExamSessionView(exam: exam, content: content)
             }
             .fullScreenCover(item: $activeChallenge) { chapter in
-                ChallengeSessionView(chapter: chapter)
+                ChallengeSessionView(chapter: chapter, content: content)
             }
             .fullScreenCover(isPresented: $showReview) {
                 ReviewSessionView()
             }
             .fullScreenCover(isPresented: $showGrammarPractice) {
-                GrammarPracticeView(rules: unlockedGrammarRules)
+                GrammarPracticeView(rules: unlockedGrammarRules, content: content)
             }
         }
     }
@@ -226,7 +227,8 @@ struct HomePathView: View {
     // MARK: - Niveau-Prüfung
 
     private var earnedLevels: Set<CEFRLevel> {
-        Set(certificates.compactMap(\.level))
+        // Zertifikate zählen nur innerhalb der eigenen Kursrichtung.
+        Set(certificates.filter { $0.direction == content.direction }.compactMap(\.level))
     }
 
     /// Prüfungen für Niveaus ohne Lektionen (C1) — am Ende des Pfads.
@@ -301,7 +303,7 @@ struct HomePathView: View {
             return "Bestanden — Zertifikat in deiner Galerie"
         }
         if unlocked {
-            return "\(exam.level.examBrand)-Stil · 4 Teile · \(exam.durationMinutes) Minuten"
+            return "\(content.direction.examBrand(for: exam.level))-Stil · 4 Teile · \(exam.durationMinutes) Minuten"
         }
         let (_, total) = snapshot.levelProgress(exam.level)
         if total == 0, let previous = CEFRLevel.allCases.filter({ $0 < exam.level }).max() {
@@ -401,7 +403,9 @@ struct HomePathView: View {
         VStack(spacing: 8) {
             Image(systemName: "flag.checkered")
                 .foregroundStyle(.secondary)
-            Text("Der komplette Pfad von A1 bis B2 — bonne route !")
+            Text(content.direction == .german
+                 ? "Der Deutsch-Pfad wächst — weitere Niveaus folgen. Gute Reise !"
+                 : "Der komplette Pfad von A1 bis B2 — bonne route !")
                 .font(.footnote)
                 .foregroundStyle(.secondary)
         }

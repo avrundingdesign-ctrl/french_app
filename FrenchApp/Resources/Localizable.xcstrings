@@ -1,0 +1,1456 @@
+{
+  "sourceLanguage": "de",
+  "strings": {
+    "%@ %@ lernen": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ Apprendre : %2$@"
+          }
+        }
+      }
+    },
+    "%lld neue Wörter": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld nouveaux mots"
+          }
+        }
+      }
+    },
+    "Abbrechen": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Annuler"
+          }
+        }
+      }
+    },
+    "Abgeben": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rendre"
+          }
+        }
+      }
+    },
+    "Adjektiv": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Adjectif"
+          }
+        }
+      }
+    },
+    "Adverb": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Adverbe"
+          }
+        }
+      }
+    },
+    "Alle anzeigen": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tout afficher"
+          }
+        }
+      }
+    },
+    "Alles erledigt! Zurzeit ist keine Karte fällig.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tout est fait ! Aucune carte à réviser pour le moment."
+          }
+        }
+      }
+    },
+    "Ambitioniert · 20": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ambitieux · 20"
+          }
+        }
+      }
+    },
+    "Antwort gespeichert — die Auswertung siehst du am Ende.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Réponse enregistrée — tu verras le résultat à la fin."
+          }
+        }
+      }
+    },
+    "Antwort zeigen": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Voir la réponse"
+          }
+        }
+      }
+    },
+    "Ausruf": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Interjection"
+          }
+        }
+      }
+    },
+    "Behandelt in": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Traité dans"
+          }
+        }
+      }
+    },
+    "Beispiele": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exemples"
+          }
+        }
+      }
+    },
+    "Beliebig oft abspielbar — das ist Training, keine Prüfung.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Réécoute autant que tu veux — c'est de l'entraînement, pas un examen."
+          }
+        }
+      }
+    },
+    "Bestanden — Zertifikat in deiner Galerie": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Réussi — certificat dans ta galerie"
+          }
+        }
+      }
+    },
+    "Bilde den deutschen Satz": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Forme la phrase allemande"
+          }
+        }
+      }
+    },
+    "Bilde den französischen Satz": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Forme la phrase française"
+          }
+        }
+      }
+    },
+    "Dein Tagespensum": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ton rythme quotidien"
+          }
+        }
+      }
+    },
+    "Der Wechsel ist verlustfrei: Lernstand, Lektionen und Zertifikate des anderen Kurses bleiben gespeichert und erscheinen wieder, sobald du zurückwechselst.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le changement est sans perte : la progression, les leçons et les certificats de l'autre cours restent enregistrés et réapparaissent dès que tu reviens."
+          }
+        }
+      }
+    },
+    "Deutsch": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Allemand"
+          }
+        }
+      }
+    },
+    "Deutsch lernen — Schritt für Schritt, komplett offline.\n\nDu startest ganz vorne: keine Vorkenntnisse nötig.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apprendre l'allemand — pas à pas, entièrement hors ligne.\n\nTu commences depuis le début : aucun prérequis."
+          }
+        }
+      }
+    },
+    "Die beiden Wörter klingen ähnlich — höre genau hin.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les deux mots se ressemblent — écoute bien."
+          }
+        }
+      }
+    },
+    "Dieser Satz enthält einen Fehler. Wähle die richtige Version:": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cette phrase contient une erreur. Choisis la version correcte :"
+          }
+        }
+      }
+    },
+    "Dieser Versuch wird nicht gewertet.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cette tentative ne sera pas comptée."
+          }
+        }
+      }
+    },
+    "Dieses Thema üben": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "S'entraîner sur ce thème"
+          }
+        }
+      }
+    },
+    "Diktat": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dictée"
+          }
+        }
+      }
+    },
+    "Diktat: Schreibe den Satz, den du hörst": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dictée : écris la phrase que tu entends"
+          }
+        }
+      }
+    },
+    "Dunkel": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sombre"
+          }
+        }
+      }
+    },
+    "Einfach": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Facile"
+          }
+        }
+      }
+    },
+    "Einstellungen": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Réglages"
+          }
+        }
+      }
+    },
+    "Einstieg": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Débutant"
+          }
+        }
+      }
+    },
+    "Erscheinungsbild": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apparence"
+          }
+        }
+      }
+    },
+    "Fachkundig": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Autonome"
+          }
+        }
+      }
+    },
+    "Fehler": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erreurs"
+          }
+        }
+      }
+    },
+    "Fehler üben": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Réviser les erreurs"
+          }
+        }
+      }
+    },
+    "Fehlerübersicht": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aperçu des erreurs"
+          }
+        }
+      }
+    },
+    "Fertig": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Terminé"
+          }
+        }
+      }
+    },
+    "Fortgeschritten": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Avancé"
+          }
+        }
+      }
+    },
+    "Französisch": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Français"
+          }
+        }
+      }
+    },
+    "Fällige Wiederholungen": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Révisions à faire"
+          }
+        }
+      }
+    },
+    "Galerie": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Galerie"
+          }
+        }
+      }
+    },
+    "Grammatik": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grammaire"
+          }
+        }
+      }
+    },
+    "Grammatik & Strukturen": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Structures de la langue"
+          }
+        }
+      }
+    },
+    "Grammatik-Training": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Entraînement de grammaire"
+          }
+        }
+      }
+    },
+    "Grammatikthemen": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "thèmes de grammaire"
+          }
+        }
+      }
+    },
+    "Grundlagen": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Élémentaire"
+          }
+        }
+      }
+    },
+    "Gut": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bien"
+          }
+        }
+      }
+    },
+    "Hell": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clair"
+          }
+        }
+      }
+    },
+    "Hör-Lückentext": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Texte à trous audio"
+          }
+        }
+      }
+    },
+    "Höre den Satz und ergänze das fehlende Wort.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Écoute la phrase et complète le mot manquant."
+          }
+        }
+      }
+    },
+    "Höre den Satz und setze das fehlende Wort ein": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Écoute la phrase et complète le mot manquant"
+          }
+        }
+      }
+    },
+    "Hörtraining": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Entraînement d'écoute"
+          }
+        }
+      }
+    },
+    "Hörverstehen": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compréhension de l'oral"
+          }
+        }
+      }
+    },
+    "Imperativ": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impératif"
+          }
+        }
+      }
+    },
+    "Imperativ von „%@“ (%@) — %@-Form": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impératif de « %1$@ » (%2$@) — forme « %3$@ »"
+          }
+        }
+      }
+    },
+    "Keine Karten fällig": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aucune carte à réviser"
+          }
+        }
+      }
+    },
+    "Keine offenen Fehler — stark!": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aucune erreur en attente — bravo !"
+          }
+        }
+      }
+    },
+    "Konjugation": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conjugaison"
+          }
+        }
+      }
+    },
+    "Konjugiere «%@» (%@) — %@": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conjugue « %1$@ » (%2$@) — %3$@"
+          }
+        }
+      }
+    },
+    "Konjugiere „%@“ (%@) — %@": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conjugue « %1$@ » (%2$@) — %3$@"
+          }
+        }
+      }
+    },
+    "Konjunktion": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conjonction"
+          }
+        }
+      }
+    },
+    "Kontrast: %@": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Contraste : %@"
+          }
+        }
+      }
+    },
+    "Kurs": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cours"
+          }
+        }
+      }
+    },
+    "Kurze Lektionen führen dich durch Vokabeln und Grammatik — mit Erklärungen in deiner Muttersprache.\n\nGelernte Wörter wiederholst du genau dann, wenn du sie zu vergessen drohst (Spaced Repetition).\n\nKeine Streaks, keine Ligen, keine Leben — nur dein Fortschritt zählt.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "De courtes leçons te guident à travers le vocabulaire et la grammaire — avec des explications dans ta langue maternelle.\n\nTu révises les mots appris juste avant de les oublier (répétition espacée).\n\nPas de séries, pas de ligues, pas de vies — seul ton progrès compte."
+          }
+        }
+      }
+    },
+    "Lektionen abgeschlossen": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "leçons terminées"
+          }
+        }
+      }
+    },
+    "Lernen": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apprendre"
+          }
+        }
+      }
+    },
+    "Leseverstehen": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compréhension des écrits"
+          }
+        }
+      }
+    },
+    "Locker · 5": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tranquille · 5"
+          }
+        }
+      }
+    },
+    "Los geht's!": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "C'est parti !"
+          }
+        }
+      }
+    },
+    "Läuft …": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lecture …"
+          }
+        }
+      }
+    },
+    "Modalverb": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "verbe modal"
+          }
+        }
+      }
+    },
+    "NEU": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "NOUVEAU"
+          }
+        }
+      }
+    },
+    "Nach dem Vorbild der offiziellen %@-Prüfung": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sur le modèle de l'examen officiel %@"
+          }
+        }
+      }
+    },
+    "Neue Karten pro Tag": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nouvelles cartes par jour"
+          }
+        }
+      }
+    },
+    "Niveau-Fortschritt": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Progression par niveau"
+          }
+        }
+      }
+    },
+    "Niveau-Prüfung %@": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Examen de niveau %@"
+          }
+        }
+      }
+    },
+    "Niveau-Prüfung %@ bestanden!": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Examen de niveau %@ réussi !"
+          }
+        }
+      }
+    },
+    "Noch %lld": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Encore %lld"
+          }
+        }
+      }
+    },
+    "Nochmal": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "À revoir"
+          }
+        }
+      }
+    },
+    "Nochmal anhören": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Réécouter"
+          }
+        }
+      }
+    },
+    "Nomen": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nom"
+          }
+        }
+      }
+    },
+    "Ohne Druck, mit System": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sans pression, avec méthode"
+          }
+        }
+      }
+    },
+    "Ordne die Paare zu": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Associe les paires"
+          }
+        }
+      }
+    },
+    "Perfekt": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Parfait (Perfekt)"
+          }
+        }
+      }
+    },
+    "Profil": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Profil"
+          }
+        }
+      }
+    },
+    "Pronomen": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pronom"
+          }
+        }
+      }
+    },
+    "Präposition": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Préposition"
+          }
+        }
+      }
+    },
+    "Präsens": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Présent"
+          }
+        }
+      }
+    },
+    "Präteritum": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prétérit (Präteritum)"
+          }
+        }
+      }
+    },
+    "Prüfung abbrechen?": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abandonner l'examen ?"
+          }
+        }
+      }
+    },
+    "Schließe deine erste Lektion ab, dann landen neue Wörter hier im Training.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Termine ta première leçon et les nouveaux mots arriveront ici."
+          }
+        }
+      }
+    },
+    "Schreibe ganze Sätze nach Gehör — der Klassiker des Sprachunterrichts.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Écris des phrases entières à l'oreille — le grand classique."
+          }
+        }
+      }
+    },
+    "Schreiben": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Production écrite"
+          }
+        }
+      }
+    },
+    "Schwelle": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seuil"
+          }
+        }
+      }
+    },
+    "Schwer": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Difficile"
+          }
+        }
+      }
+    },
+    "Session beendet!": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Session terminée !"
+          }
+        }
+      }
+    },
+    "Setze das fehlende Wort ein": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Complète le mot manquant"
+          }
+        }
+      }
+    },
+    "Solide · 10": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Solide · 10"
+          }
+        }
+      }
+    },
+    "System": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Système"
+          }
+        }
+      }
+    },
+    "Tagespensum": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rythme quotidien"
+          }
+        }
+      }
+    },
+    "Tandem": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tandem"
+          }
+        }
+      }
+    },
+    "Tandem aktiv — tippe zum Chatten": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tandem actif — appuie pour discuter"
+          }
+        }
+      }
+    },
+    "Teil %lld · %@": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Partie %lld · %@"
+          }
+        }
+      }
+    },
+    "Themen schalten sich frei, sobald du die passende Lektion im Lernpfad abgeschlossen hast.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les thèmes se débloquent dès que tu as terminé la leçon correspondante."
+          }
+        }
+      }
+    },
+    "Trainiere Laute, die ähnlich klingen.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Entraîne-toi aux sons qui se ressemblent."
+          }
+        }
+      }
+    },
+    "Training": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Entraînement"
+          }
+        }
+      }
+    },
+    "Training starten": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Commencer l'entraînement"
+          }
+        }
+      }
+    },
+    "Typischer Fehler": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erreur typique"
+          }
+        }
+      }
+    },
+    "Tägliches Pensum": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rythme quotidien"
+          }
+        }
+      }
+    },
+    "Verb": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verbe"
+          }
+        }
+      }
+    },
+    "Vokabeltraining": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Entraînement de vocabulaire"
+          }
+        }
+      }
+    },
+    "Was bedeutet das?": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Que signifie ce mot ?"
+          }
+        }
+      }
+    },
+    "Was gehört in die Lücke?": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Que faut-il mettre dans le trou ?"
+          }
+        }
+      }
+    },
+    "Was möchtest du lernen?": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Que veux-tu apprendre ?"
+          }
+        }
+      }
+    },
+    "Weiter": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Continuer"
+          }
+        }
+      }
+    },
+    "Weitermachen": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Poursuivre"
+          }
+        }
+      }
+    },
+    "Welches Wort hörst du?": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quel mot entends-tu ?"
+          }
+        }
+      }
+    },
+    "Wendung": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Expression"
+          }
+        }
+      }
+    },
+    "Wie heißt das auf Deutsch?": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Comment dit-on en allemand ?"
+          }
+        }
+      }
+    },
+    "Wie heißt das auf Französisch?": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Comment dit-on en français ?"
+          }
+        }
+      }
+    },
+    "Wie viele neue Wörter möchtest du pro Tag im Training dazunehmen? Du kannst das jederzeit in den Einstellungen ändern.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Combien de nouveaux mots veux-tu ajouter à l'entraînement chaque jour ? Tu peux changer cela à tout moment dans les réglages."
+          }
+        }
+      }
+    },
+    "Wiederholen": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Refaire"
+          }
+        }
+      }
+    },
+    "Wortpaare": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paires de mots"
+          }
+        }
+      }
+    },
+    "Wähle deine Lernsprache — die Erklärungen kommen in deiner Muttersprache.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choisis ta langue d'apprentissage — les explications sont dans ta langue maternelle."
+          }
+        }
+      }
+    },
+    "Wähle die richtige Antwort": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choisis la bonne réponse"
+          }
+        }
+      }
+    },
+    "Wörter im Training": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mots à l'entraînement"
+          }
+        }
+      }
+    },
+    "Zahl": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nombre"
+          }
+        }
+      }
+    },
+    "Zeit": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Temps"
+          }
+        }
+      }
+    },
+    "Zeitform": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Temps"
+          }
+        }
+      }
+    },
+    "Zertifikate": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Certificats"
+          }
+        }
+      }
+    },
+    "davon gelernt": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "dont appris"
+          }
+        }
+      }
+    },
+    "feminin": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "féminin"
+          }
+        }
+      }
+    },
+    "fällig": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "à réviser"
+          }
+        }
+      }
+    },
+    "gefestigt (21+ Tage)": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "consolidés (21+ jours)"
+          }
+        }
+      }
+    },
+    "gemischt": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "mixte"
+          }
+        }
+      }
+    },
+    "heute fällig": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "à réviser aujourd'hui"
+          }
+        }
+      }
+    },
+    "maskulin": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "masculin"
+          }
+        }
+      }
+    },
+    "neu": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "nouveaux"
+          }
+        }
+      }
+    },
+    "optional": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "optionnel"
+          }
+        }
+      }
+    },
+    "regelmäßig": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "régulier"
+          }
+        }
+      }
+    },
+    "stark": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "fort"
+          }
+        }
+      }
+    },
+    "unregelmäßig": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "irrégulier"
+          }
+        }
+      }
+    },
+    "Übersetze ins Deutsche": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Traduis en allemand"
+          }
+        }
+      }
+    },
+    "Übersetze ins Französische": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Traduis en français"
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}

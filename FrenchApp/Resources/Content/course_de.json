@@ -1,0 +1,2158 @@
+{
+  "units": [
+    {
+      "id": "de_a1_u1",
+      "title": "Hallo! — Premiers pas",
+      "level": "A1",
+      "icon": "hand.wave",
+      "lessons": [
+        {
+          "id": "de_a1_u1_l1",
+          "title": "Hallo und Tschüs — Saluer",
+          "newVocab": [
+            "v_bonjour",
+            "v_salut",
+            "v_bonsoir",
+            "v_au_revoir",
+            "v_merci",
+            "v_oui",
+            "v_non",
+            "v_pardon"
+          ],
+          "exercises": [
+            {
+              "type": "vocabIntro",
+              "vocab": [
+                "v_bonjour",
+                "v_salut",
+                "v_bonsoir",
+                "v_au_revoir"
+              ]
+            },
+            {
+              "type": "vocabIntro",
+              "vocab": [
+                "v_merci",
+                "v_oui",
+                "v_non",
+                "v_pardon"
+              ]
+            },
+            {
+              "type": "matching"
+            },
+            {
+              "type": "cloze",
+              "text": "Guten ___, Herr Meier!",
+              "answer": "Tag",
+              "translation": "Bonjour, monsieur Meier ! (le jour)",
+              "choices": [
+                "Tag",
+                "Abend",
+                "Nacht"
+              ]
+            },
+            {
+              "type": "cloze",
+              "text": "Guten ___! Es ist 20 Uhr.",
+              "answer": "Abend",
+              "translation": "Bonsoir ! Il est 20 heures.",
+              "choices": [
+                "Abend",
+                "Morgen",
+                "Tag"
+              ]
+            },
+            {
+              "type": "vocabProd",
+              "vocab": [
+                "v_bonjour",
+                "v_merci",
+                "v_au_revoir"
+              ]
+            },
+            {
+              "type": "mcSentence",
+              "question": "Was sagt man beim Abschied?",
+              "answer": "Auf Wiedersehen!",
+              "distractors": [
+                "Guten Tag!",
+                "Danke!"
+              ],
+              "translation": "Que dit-on en partant ?"
+            },
+            {
+              "type": "translate",
+              "fr": "merci",
+              "de": "danke"
+            }
+          ],
+          "grammar": [
+            "de_g_sein"
+          ]
+        },
+        {
+          "id": "de_a1_u1_l2",
+          "title": "Ich heiße … — Se présenter",
+          "newVocab": [
+            "v_je_mappelle",
+            "v_tu_tappelles",
+            "v_comment",
+            "v_monsieur",
+            "v_madame",
+            "v_et",
+            "v_moi",
+            "v_toi"
+          ],
+          "exercises": [
+            {
+              "type": "vocabIntro",
+              "vocab": [
+                "v_je_mappelle",
+                "v_tu_tappelles",
+                "v_comment",
+                "v_monsieur",
+                "v_madame"
+              ]
+            },
+            {
+              "type": "conjugation",
+              "verb": "heißen",
+              "person": 0,
+              "translation": "je m'appelle"
+            },
+            {
+              "type": "conjugation",
+              "verb": "heißen",
+              "person": 1,
+              "translation": "tu t'appelles",
+              "hint": "heißen + -st : le ß et le s fusionnent"
+            },
+            {
+              "type": "wordOrder",
+              "de": "Wie heißt du?",
+              "fr": "Comment t'appelles-tu ?"
+            },
+            {
+              "type": "cloze",
+              "text": "Ich ___ Marie.",
+              "answer": "heiße",
+              "translation": "Je m'appelle Marie.",
+              "choices": [
+                "heiße",
+                "heißt",
+                "heißen"
+              ]
+            },
+            {
+              "type": "translate",
+              "fr": "Je m'appelle Paul.",
+              "de": "Ich heiße Paul."
+            },
+            {
+              "type": "matching"
+            },
+            {
+              "type": "mcSentence",
+              "question": "„Wie heißen Sie?“ — Was antwortet man?",
+              "answer": "Ich heiße Anna Dupont.",
+              "distractors": [
+                "Du heißt Anna.",
+                "Ja, bitte."
+              ],
+              "translation": "Que répond-on à « Comment vous appelez-vous ? » ?"
+            }
+          ],
+          "grammar": [
+            "de_g_heissen"
+          ]
+        },
+        {
+          "id": "de_a1_u1_l3",
+          "title": "Woher kommst du? — Origines",
+          "newVocab": [
+            "v_allemand",
+            "v_francais_adj",
+            "v_ici",
+            "v_aussi",
+            "v_enchante",
+            "v_ca_va"
+          ],
+          "exercises": [
+            {
+              "type": "vocabIntro",
+              "vocab": [
+                "v_allemand",
+                "v_francais_adj",
+                "v_ici",
+                "v_aussi",
+                "v_enchante",
+                "v_ca_va"
+              ]
+            },
+            {
+              "type": "conjugation",
+              "verb": "kommen",
+              "person": 0,
+              "translation": "je viens"
+            },
+            {
+              "type": "conjugation",
+              "verb": "wohnen",
+              "person": 1,
+              "translation": "tu habites"
+            },
+            {
+              "type": "cloze",
+              "text": "Ich komme ___ Frankreich.",
+              "answer": "aus",
+              "translation": "Je viens de France.",
+              "choices": [
+                "aus",
+                "in",
+                "nach"
+              ]
+            },
+            {
+              "type": "wordOrder",
+              "de": "Woher kommst du?",
+              "fr": "D'où viens-tu ?"
+            },
+            {
+              "type": "translate",
+              "fr": "J'habite ici.",
+              "de": "Ich wohne hier."
+            },
+            {
+              "type": "mcSentence",
+              "question": "„Woher kommen Sie?“",
+              "answer": "Ich komme aus Paris.",
+              "distractors": [
+                "Ich wohne gut.",
+                "Ich heiße Paris."
+              ],
+              "translation": "« D'où venez-vous ? »"
+            },
+            {
+              "type": "vocabProd",
+              "vocab": [
+                "v_ici",
+                "v_aussi"
+              ]
+            }
+          ],
+          "grammar": [
+            "de_g_wfragen"
+          ]
+        },
+        {
+          "id": "de_a1_u1_l4",
+          "title": "Wie geht's? — Ça va ?",
+          "newVocab": [
+            "v_etre",
+            "v_fatigue",
+            "v_content",
+            "v_tres",
+            "v_sil_vous_plait"
+          ],
+          "exercises": [
+            {
+              "type": "vocabIntro",
+              "vocab": [
+                "v_etre",
+                "v_fatigue",
+                "v_content",
+                "v_tres",
+                "v_sil_vous_plait"
+              ]
+            },
+            {
+              "type": "conjugation",
+              "verb": "sein",
+              "person": 0,
+              "translation": "je suis"
+            },
+            {
+              "type": "conjugation",
+              "verb": "sein",
+              "person": 1,
+              "translation": "tu es"
+            },
+            {
+              "type": "conjugation",
+              "verb": "sein",
+              "person": 3,
+              "translation": "nous sommes"
+            },
+            {
+              "type": "cloze",
+              "text": "Ich ___ müde.",
+              "answer": "bin",
+              "translation": "Je suis fatigué.",
+              "choices": [
+                "bin",
+                "bist",
+                "ist"
+              ]
+            },
+            {
+              "type": "cloze",
+              "text": "Wie geht es ___?",
+              "answer": "dir",
+              "translation": "Comment vas-tu ?",
+              "choices": [
+                "dir",
+                "du",
+                "dich"
+              ]
+            },
+            {
+              "type": "wordOrder",
+              "de": "Ich bin sehr müde.",
+              "fr": "Je suis très fatigué."
+            },
+            {
+              "type": "errorCorrection",
+              "text": "Ich bist müde.",
+              "answer": "Ich bin müde.",
+              "distractors": [
+                "Ich bin müde sein.",
+                "Ich müde bin."
+              ],
+              "translation": "Je suis fatigué.",
+              "hint": "ich → bin"
+            },
+            {
+              "type": "translate",
+              "fr": "Je suis content.",
+              "de": "Ich bin froh.",
+              "altAnswers": [
+                "Ich bin zufrieden."
+              ]
+            }
+          ],
+          "grammar": [
+            "de_g_sein"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "de_a1_u2",
+      "title": "Die Familie — La famille",
+      "level": "A1",
+      "icon": "person.3",
+      "lessons": [
+        {
+          "id": "de_a1_u2_l1",
+          "title": "Meine Familie — Ma famille",
+          "newVocab": [
+            "v_la_famille",
+            "v_le_pere",
+            "v_la_mere",
+            "v_les_parents",
+            "v_le_frere",
+            "v_la_soeur",
+            "v_le_fils",
+            "v_la_fille",
+            "v_avoir"
+          ],
+          "exercises": [
+            {
+              "type": "vocabIntro",
+              "vocab": [
+                "v_la_famille",
+                "v_le_pere",
+                "v_la_mere",
+                "v_les_parents"
+              ]
+            },
+            {
+              "type": "vocabIntro",
+              "vocab": [
+                "v_le_frere",
+                "v_la_soeur",
+                "v_le_fils",
+                "v_la_fille"
+              ]
+            },
+            {
+              "type": "conjugation",
+              "verb": "haben",
+              "person": 0,
+              "translation": "j'ai"
+            },
+            {
+              "type": "conjugation",
+              "verb": "haben",
+              "person": 1,
+              "translation": "tu as"
+            },
+            {
+              "type": "conjugation",
+              "verb": "haben",
+              "person": 2,
+              "translation": "il a"
+            },
+            {
+              "type": "matching"
+            },
+            {
+              "type": "cloze",
+              "text": "Ich ___ einen Bruder.",
+              "answer": "habe",
+              "translation": "J'ai un frère.",
+              "choices": [
+                "habe",
+                "hast",
+                "hat"
+              ]
+            },
+            {
+              "type": "wordOrder",
+              "de": "Hast du eine Schwester?",
+              "fr": "As-tu une sœur ?"
+            },
+            {
+              "type": "translate",
+              "fr": "La famille est grande.",
+              "de": "Die Familie ist groß."
+            }
+          ],
+          "grammar": [
+            "de_g_haben"
+          ]
+        },
+        {
+          "id": "de_a1_u2_l2",
+          "title": "der, die, das — Le genre",
+          "newVocab": [
+            "v_lenfant",
+            "v_un_homme",
+            "v_une_femme",
+            "v_un_ami",
+            "v_une_amie",
+            "v_un_garcon",
+            "v_les_gens",
+            "v_une_personne"
+          ],
+          "exercises": [
+            {
+              "type": "vocabIntro",
+              "vocab": [
+                "v_lenfant",
+                "v_un_homme",
+                "v_une_femme",
+                "v_un_ami",
+                "v_une_amie"
+              ]
+            },
+            {
+              "type": "vocabIntro",
+              "vocab": [
+                "v_un_garcon",
+                "v_les_gens",
+                "v_une_personne"
+              ]
+            },
+            {
+              "type": "mcSentence",
+              "question": "Welcher Artikel? ___ Kind",
+              "answer": "das",
+              "distractors": [
+                "der",
+                "die"
+              ],
+              "translation": "Quel article pour « Kind » ?",
+              "hint": "Kind est neutre"
+            },
+            {
+              "type": "mcSentence",
+              "question": "Welcher Artikel? ___ Mann",
+              "answer": "der",
+              "distractors": [
+                "die",
+                "das"
+              ],
+              "translation": "Quel article pour « Mann » ?"
+            },
+            {
+              "type": "mcSentence",
+              "question": "Welcher Artikel? ___ Frau",
+              "answer": "die",
+              "distractors": [
+                "der",
+                "das"
+              ],
+              "translation": "Quel article pour « Frau » ?"
+            },
+            {
+              "type": "cloze",
+              "text": "Das ist ___ Freund.",
+              "answer": "ein",
+              "translation": "C'est un ami.",
+              "choices": [
+                "ein",
+                "eine",
+                "einen"
+              ]
+            },
+            {
+              "type": "cloze",
+              "text": "Ich habe ___ Auto.",
+              "answer": "kein",
+              "translation": "Je n'ai pas de voiture.",
+              "choices": [
+                "kein",
+                "keine",
+                "nicht"
+              ]
+            },
+            {
+              "type": "errorCorrection",
+              "text": "Die Mann ist nett.",
+              "answer": "Der Mann ist nett.",
+              "distractors": [
+                "Das Mann ist nett.",
+                "Den Mann ist nett."
+              ],
+              "translation": "L'homme est gentil."
+            },
+            {
+              "type": "matching"
+            }
+          ],
+          "grammar": [
+            "de_g_artikel",
+            "de_g_kein",
+            "de_g_plural"
+          ]
+        },
+        {
+          "id": "de_a1_u2_l3",
+          "title": "mein und dein — Les possessifs",
+          "newVocab": [
+            "v_mon",
+            "v_ma",
+            "v_mes",
+            "v_ton",
+            "v_ta",
+            "v_tes",
+            "v_son",
+            "v_sa"
+          ],
+          "exercises": [
+            {
+              "type": "vocabIntro",
+              "vocab": [
+                "v_mon",
+                "v_ma",
+                "v_ton",
+                "v_ta",
+                "v_son",
+                "v_sa"
+              ]
+            },
+            {
+              "type": "cloze",
+              "text": "___ Bruder heißt Tom.",
+              "answer": "Mein",
+              "translation": "Mon frère s'appelle Tom.",
+              "choices": [
+                "Mein",
+                "Meine",
+                "Meinen"
+              ]
+            },
+            {
+              "type": "cloze",
+              "text": "___ Schwester wohnt in Lyon.",
+              "answer": "Meine",
+              "translation": "Ma sœur habite à Lyon.",
+              "choices": [
+                "Meine",
+                "Mein",
+                "Meiner"
+              ]
+            },
+            {
+              "type": "cloze",
+              "text": "Das ist Paul. ___ Mutter ist Lehrerin.",
+              "answer": "Seine",
+              "translation": "Voici Paul. Sa mère est professeure.",
+              "choices": [
+                "Seine",
+                "Ihre",
+                "Sein"
+              ],
+              "hint": "possesseur masculin → sein-"
+            },
+            {
+              "type": "cloze",
+              "text": "Das ist Marie. ___ Vater arbeitet hier.",
+              "answer": "Ihr",
+              "translation": "Voici Marie. Son père travaille ici.",
+              "choices": [
+                "Ihr",
+                "Sein",
+                "Ihre"
+              ],
+              "hint": "possesseur féminin → ihr-"
+            },
+            {
+              "type": "wordOrder",
+              "de": "Meine Familie wohnt in Paris.",
+              "fr": "Ma famille habite à Paris."
+            },
+            {
+              "type": "translate",
+              "fr": "Ton frère est jeune.",
+              "de": "Dein Bruder ist jung."
+            },
+            {
+              "type": "vocabProd",
+              "vocab": [
+                "v_mon",
+                "v_ta"
+              ]
+            }
+          ],
+          "grammar": [
+            "de_g_possessiv"
+          ]
+        },
+        {
+          "id": "de_a1_u2_l4",
+          "title": "Wie alt bist du? — L'âge",
+          "newVocab": [
+            "v_le_chat",
+            "v_le_chien",
+            "v_un_an",
+            "v_quel",
+            "v_lage",
+            "v_avoir_faim",
+            "v_avoir_soif",
+            "v_cest"
+          ],
+          "exercises": [
+            {
+              "type": "vocabIntro",
+              "vocab": [
+                "v_le_chat",
+                "v_le_chien",
+                "v_un_an",
+                "v_quel",
+                "v_lage"
+              ]
+            },
+            {
+              "type": "vocabIntro",
+              "vocab": [
+                "v_avoir_faim",
+                "v_avoir_soif",
+                "v_cest"
+              ]
+            },
+            {
+              "type": "cloze",
+              "text": "Ich ___ zwanzig Jahre alt.",
+              "answer": "bin",
+              "translation": "J'ai vingt ans — attention : avec « sein » !",
+              "choices": [
+                "bin",
+                "habe",
+                "ist"
+              ],
+              "hint": "L'âge se dit avec sein"
+            },
+            {
+              "type": "mcSentence",
+              "question": "Wie sagt man « j'ai faim »?",
+              "answer": "Ich habe Hunger.",
+              "distractors": [
+                "Ich bin Hunger.",
+                "Ich habe hungrig."
+              ],
+              "translation": "« j'ai faim » en allemand"
+            },
+            {
+              "type": "wordOrder",
+              "de": "Wie alt bist du?",
+              "fr": "Quel âge as-tu ?"
+            },
+            {
+              "type": "translate",
+              "fr": "Le chien est vieux.",
+              "de": "Der Hund ist alt."
+            },
+            {
+              "type": "errorCorrection",
+              "text": "Ich habe 30 Jahre alt.",
+              "answer": "Ich bin 30 Jahre alt.",
+              "distractors": [
+                "Ich bin 30 Jahre haben.",
+                "Ich habe 30 alt."
+              ],
+              "translation": "J'ai 30 ans.",
+              "hint": "sein, pas haben !"
+            },
+            {
+              "type": "matching"
+            }
+          ],
+          "grammar": [
+            "de_g_haben"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "de_a1_u3",
+      "title": "Zahlen & Zeit — Nombres et temps",
+      "level": "A1",
+      "icon": "clock",
+      "lessons": [
+        {
+          "id": "de_a1_u3_l1",
+          "title": "Null bis zwölf — Compter",
+          "newVocab": [
+            "v_zero",
+            "v_un_num",
+            "v_deux",
+            "v_trois",
+            "v_quatre",
+            "v_cinq",
+            "v_six",
+            "v_sept",
+            "v_huit",
+            "v_neuf",
+            "v_dix",
+            "v_onze",
+            "v_douze"
+          ],
+          "exercises": [
+            {
+              "type": "vocabIntro",
+              "vocab": [
+                "v_un_num",
+                "v_deux",
+                "v_trois",
+                "v_quatre",
+                "v_cinq",
+                "v_six"
+              ]
+            },
+            {
+              "type": "vocabIntro",
+              "vocab": [
+                "v_sept",
+                "v_huit",
+                "v_neuf",
+                "v_dix",
+                "v_onze",
+                "v_douze"
+              ]
+            },
+            {
+              "type": "mcSentence",
+              "question": "drei + vier = ?",
+              "answer": "sieben",
+              "distractors": [
+                "sechs",
+                "acht"
+              ],
+              "translation": "3 + 4 = ?"
+            },
+            {
+              "type": "mcSentence",
+              "question": "fünf + fünf = ?",
+              "answer": "zehn",
+              "distractors": [
+                "elf",
+                "neun"
+              ],
+              "translation": "5 + 5 = ?"
+            },
+            {
+              "type": "cloze",
+              "text": "Zwei, vier, sechs, ___, zehn.",
+              "answer": "acht",
+              "translation": "Deux, quatre, six, huit, dix.",
+              "choices": [
+                "acht",
+                "sieben",
+                "neun"
+              ]
+            },
+            {
+              "type": "vocabProd",
+              "vocab": [
+                "v_trois",
+                "v_sept",
+                "v_douze"
+              ]
+            },
+            {
+              "type": "matching"
+            }
+          ],
+          "grammar": [
+            "de_g_zahlen"
+          ]
+        },
+        {
+          "id": "de_a1_u3_l2",
+          "title": "Bis hundert — Jusqu'à cent",
+          "newVocab": [
+            "v_treize",
+            "v_quatorze",
+            "v_quinze",
+            "v_seize",
+            "v_dix_sept",
+            "v_dix_huit",
+            "v_dix_neuf",
+            "v_vingt",
+            "v_trente",
+            "v_quarante",
+            "v_cinquante",
+            "v_soixante",
+            "v_combien"
+          ],
+          "exercises": [
+            {
+              "type": "vocabIntro",
+              "vocab": [
+                "v_treize",
+                "v_quatorze",
+                "v_quinze",
+                "v_seize",
+                "v_vingt"
+              ]
+            },
+            {
+              "type": "vocabIntro",
+              "vocab": [
+                "v_trente",
+                "v_quarante",
+                "v_cinquante",
+                "v_soixante",
+                "v_combien"
+              ]
+            },
+            {
+              "type": "mcSentence",
+              "question": "Wie sagt man 21?",
+              "answer": "einundzwanzig",
+              "distractors": [
+                "zwanzigeins",
+                "zweiundzehn"
+              ],
+              "translation": "Comment dit-on 21 ?",
+              "hint": "l'unité d'abord : ein-und-zwanzig"
+            },
+            {
+              "type": "mcSentence",
+              "question": "Wie sagt man 45?",
+              "answer": "fünfundvierzig",
+              "distractors": [
+                "vierzigfünf",
+                "vierundfünfzig"
+              ],
+              "translation": "Comment dit-on 45 ?"
+            },
+            {
+              "type": "cloze",
+              "text": "Dreißig plus zehn ist ___.",
+              "answer": "vierzig",
+              "translation": "Trente plus dix font quarante.",
+              "choices": [
+                "vierzig",
+                "fünfzig",
+                "vierzehn"
+              ]
+            },
+            {
+              "type": "translate",
+              "fr": "Combien ça coûte ?",
+              "de": "Wie viel kostet das?",
+              "hint": "wie viel = combien"
+            },
+            {
+              "type": "matching"
+            }
+          ],
+          "grammar": [
+            "de_g_zahlen"
+          ]
+        },
+        {
+          "id": "de_a1_u3_l3",
+          "title": "Wie spät ist es? — L'heure",
+          "newVocab": [
+            "v_soixante_dix",
+            "v_soixante_quinze",
+            "v_quatre_vingts",
+            "v_quatre_vingt_dix",
+            "v_cent",
+            "v_mille",
+            "v_lheure",
+            "v_le_jour"
+          ],
+          "exercises": [
+            {
+              "type": "vocabIntro",
+              "vocab": [
+                "v_soixante_dix",
+                "v_quatre_vingts",
+                "v_quatre_vingt_dix",
+                "v_cent",
+                "v_mille"
+              ]
+            },
+            {
+              "type": "vocabIntro",
+              "vocab": [
+                "v_lheure",
+                "v_le_jour"
+              ]
+            },
+            {
+              "type": "mcSentence",
+              "question": "Es ist halb drei. Wie spät ist es?",
+              "answer": "2:30 Uhr",
+              "distractors": [
+                "3:30 Uhr",
+                "2:03 Uhr"
+              ],
+              "translation": "« halb drei » = quelle heure ?",
+              "hint": "halb = à moitié vers l'heure suivante"
+            },
+            {
+              "type": "mcSentence",
+              "question": "Es ist Viertel nach acht.",
+              "answer": "8:15 Uhr",
+              "distractors": [
+                "8:45 Uhr",
+                "7:45 Uhr"
+              ],
+              "translation": "« Viertel nach acht » = ?"
+            },
+            {
+              "type": "cloze",
+              "text": "Wie viel ___ ist es?",
+              "answer": "Uhr",
+              "translation": "Quelle heure est-il ?",
+              "choices": [
+                "Uhr",
+                "Stunde",
+                "Zeit"
+              ]
+            },
+            {
+              "type": "wordOrder",
+              "de": "Der Zug kommt um zehn Uhr.",
+              "fr": "Le train arrive à dix heures."
+            },
+            {
+              "type": "translate",
+              "fr": "Il est neuf heures.",
+              "de": "Es ist neun Uhr."
+            }
+          ],
+          "grammar": [
+            "de_g_uhrzeit"
+          ]
+        },
+        {
+          "id": "de_a1_u3_l4",
+          "title": "Die Woche — La semaine",
+          "newVocab": [
+            "v_la_semaine",
+            "v_aujourdhui",
+            "v_demain",
+            "v_le_matin",
+            "v_le_soir",
+            "v_lundi",
+            "v_mardi",
+            "v_mercredi",
+            "v_jeudi",
+            "v_vendredi",
+            "v_samedi",
+            "v_dimanche"
+          ],
+          "exercises": [
+            {
+              "type": "vocabIntro",
+              "vocab": [
+                "v_lundi",
+                "v_mardi",
+                "v_mercredi",
+                "v_jeudi",
+                "v_vendredi"
+              ]
+            },
+            {
+              "type": "vocabIntro",
+              "vocab": [
+                "v_samedi",
+                "v_dimanche",
+                "v_la_semaine",
+                "v_aujourdhui",
+                "v_demain"
+              ]
+            },
+            {
+              "type": "cloze",
+              "text": "Heute ist Montag, morgen ist ___.",
+              "answer": "Dienstag",
+              "translation": "Aujourd'hui lundi, demain mardi.",
+              "choices": [
+                "Dienstag",
+                "Mittwoch",
+                "Sonntag"
+              ]
+            },
+            {
+              "type": "wordOrder",
+              "de": "Heute arbeite ich nicht.",
+              "fr": "Aujourd'hui, je ne travaille pas."
+            },
+            {
+              "type": "cloze",
+              "text": "Morgen ___ meine Mutter.",
+              "answer": "kommt",
+              "translation": "Demain, ma mère vient. (verbe en 2e position !)",
+              "choices": [
+                "kommt",
+                "meine Mutter kommt",
+                "kommen"
+              ],
+              "hint": "Le verbe reste en 2e position"
+            },
+            {
+              "type": "errorCorrection",
+              "text": "Heute ich gehe ins Kino.",
+              "answer": "Heute gehe ich ins Kino.",
+              "distractors": [
+                "Heute ich ins Kino gehe.",
+                "Ins Kino heute ich gehe."
+              ],
+              "translation": "Aujourd'hui, je vais au cinéma.",
+              "hint": "verbe en position 2"
+            },
+            {
+              "type": "translate",
+              "fr": "Le matin, je travaille.",
+              "de": "Am Morgen arbeite ich.",
+              "altAnswers": [
+                "Morgens arbeite ich."
+              ]
+            },
+            {
+              "type": "matching"
+            }
+          ],
+          "grammar": [
+            "de_g_verbzweit"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "de_a1_u4",
+      "title": "Guten Appetit! — À table",
+      "level": "A1",
+      "icon": "fork.knife",
+      "lessons": [
+        {
+          "id": "de_a1_u4_l1",
+          "title": "Frühstück — Le petit-déjeuner",
+          "newVocab": [
+            "v_le_pain",
+            "v_le_cafe",
+            "v_le_the",
+            "v_leau",
+            "v_le_lait",
+            "v_le_sucre",
+            "v_un_croissant",
+            "v_le_fromage"
+          ],
+          "exercises": [
+            {
+              "type": "vocabIntro",
+              "vocab": [
+                "v_le_pain",
+                "v_le_cafe",
+                "v_le_the",
+                "v_leau"
+              ]
+            },
+            {
+              "type": "vocabIntro",
+              "vocab": [
+                "v_le_lait",
+                "v_le_sucre",
+                "v_un_croissant",
+                "v_le_fromage"
+              ]
+            },
+            {
+              "type": "matching"
+            },
+            {
+              "type": "cloze",
+              "text": "Ich trinke ___ Kaffee.",
+              "answer": "einen",
+              "translation": "Je bois un café. (accusatif masculin !)",
+              "choices": [
+                "einen",
+                "ein",
+                "eine"
+              ],
+              "hint": "der Kaffee → accusatif : einen"
+            },
+            {
+              "type": "cloze",
+              "text": "Er kauft ___ Brot.",
+              "answer": "das",
+              "translation": "Il achète le pain.",
+              "choices": [
+                "das",
+                "den",
+                "dem"
+              ],
+              "hint": "das Brot est neutre — pas de changement"
+            },
+            {
+              "type": "wordOrder",
+              "de": "Ich trinke einen Tee mit Zucker.",
+              "fr": "Je bois un thé avec du sucre."
+            },
+            {
+              "type": "translate",
+              "fr": "L'eau est froide.",
+              "de": "Das Wasser ist kalt."
+            },
+            {
+              "type": "vocabProd",
+              "vocab": [
+                "v_le_pain",
+                "v_leau",
+                "v_le_cafe"
+              ]
+            }
+          ],
+          "grammar": [
+            "de_g_akkusativ"
+          ]
+        },
+        {
+          "id": "de_a1_u4_l2",
+          "title": "Essen und trinken — Manger et boire",
+          "newVocab": [
+            "v_la_viande",
+            "v_le_poisson",
+            "v_les_legumes",
+            "v_les_fruits",
+            "v_la_salade",
+            "v_le_riz",
+            "v_le_vin",
+            "v_manger"
+          ],
+          "exercises": [
+            {
+              "type": "vocabIntro",
+              "vocab": [
+                "v_la_viande",
+                "v_le_poisson",
+                "v_les_legumes",
+                "v_les_fruits"
+              ]
+            },
+            {
+              "type": "vocabIntro",
+              "vocab": [
+                "v_la_salade",
+                "v_le_riz",
+                "v_le_vin",
+                "v_manger"
+              ]
+            },
+            {
+              "type": "conjugation",
+              "verb": "essen",
+              "person": 1,
+              "translation": "tu manges",
+              "hint": "e → i : du isst"
+            },
+            {
+              "type": "conjugation",
+              "verb": "essen",
+              "person": 2,
+              "translation": "il mange"
+            },
+            {
+              "type": "conjugation",
+              "verb": "trinken",
+              "person": 0,
+              "translation": "je bois"
+            },
+            {
+              "type": "cloze",
+              "text": "Er ___ einen Apfel.",
+              "answer": "isst",
+              "translation": "Il mange une pomme.",
+              "choices": [
+                "isst",
+                "esst",
+                "esst"
+              ]
+            },
+            {
+              "type": "errorCorrection",
+              "text": "Du esst kein Fleisch.",
+              "answer": "Du isst kein Fleisch.",
+              "distractors": [
+                "Du essen kein Fleisch.",
+                "Du isst keinen Fleisch."
+              ],
+              "translation": "Tu ne manges pas de viande.",
+              "hint": "essen : du isst (e→i)"
+            },
+            {
+              "type": "wordOrder",
+              "de": "Wir essen heute Fisch mit Reis.",
+              "fr": "Nous mangeons du poisson avec du riz aujourd'hui."
+            },
+            {
+              "type": "matching"
+            }
+          ],
+          "grammar": [
+            "de_g_praesens_stark"
+          ]
+        },
+        {
+          "id": "de_a1_u4_l3",
+          "title": "Im Restaurant — Au restaurant",
+          "newVocab": [
+            "v_je_voudrais",
+            "v_commander",
+            "v_la_carte",
+            "v_laddition",
+            "v_prendre",
+            "v_boire",
+            "v_le_menu",
+            "v_une_table",
+            "v_le_serveur"
+          ],
+          "exercises": [
+            {
+              "type": "vocabIntro",
+              "vocab": [
+                "v_je_voudrais",
+                "v_commander",
+                "v_la_carte",
+                "v_laddition"
+              ]
+            },
+            {
+              "type": "vocabIntro",
+              "vocab": [
+                "v_prendre",
+                "v_le_menu",
+                "v_une_table",
+                "v_le_serveur"
+              ]
+            },
+            {
+              "type": "conjugation",
+              "verb": "möchten",
+              "person": 0,
+              "translation": "je voudrais"
+            },
+            {
+              "type": "cloze",
+              "text": "Ich möchte einen Kaffee ___.",
+              "answer": "trinken",
+              "translation": "Je voudrais boire un café. (infinitif à la fin !)",
+              "choices": [
+                "trinken",
+                "trinke",
+                "trinkt"
+              ],
+              "hint": "L'infinitif va à la fin"
+            },
+            {
+              "type": "wordOrder",
+              "de": "Ich möchte eine Pizza bestellen.",
+              "fr": "Je voudrais commander une pizza."
+            },
+            {
+              "type": "mcSentence",
+              "question": "Was sagt man am Ende des Essens?",
+              "answer": "Die Rechnung, bitte!",
+              "distractors": [
+                "Die Karte, bitte!",
+                "Guten Appetit!"
+              ],
+              "translation": "Que dit-on à la fin du repas ?"
+            },
+            {
+              "type": "translate",
+              "fr": "La carte, s'il vous plaît.",
+              "de": "Die Karte, bitte."
+            },
+            {
+              "type": "errorCorrection",
+              "text": "Ich möchte trinken einen Tee.",
+              "answer": "Ich möchte einen Tee trinken.",
+              "distractors": [
+                "Ich möchte einen Tee trinke.",
+                "Ich einen Tee möchte trinken."
+              ],
+              "translation": "Je voudrais boire un thé.",
+              "hint": "infinitif à la fin"
+            }
+          ],
+          "grammar": [
+            "de_g_modalverben"
+          ]
+        },
+        {
+          "id": "de_a1_u4_l4",
+          "title": "Nein danke — Dire non",
+          "newVocab": [
+            "v_ne_pas",
+            "v_jamais",
+            "v_fumer",
+            "v_danser",
+            "v_chanter",
+            "v_faire",
+            "v_le_sport",
+            "v_la_musique"
+          ],
+          "exercises": [
+            {
+              "type": "vocabIntro",
+              "vocab": [
+                "v_ne_pas",
+                "v_jamais",
+                "v_fumer",
+                "v_danser"
+              ]
+            },
+            {
+              "type": "vocabIntro",
+              "vocab": [
+                "v_chanter",
+                "v_faire",
+                "v_le_sport",
+                "v_la_musique"
+              ]
+            },
+            {
+              "type": "cloze",
+              "text": "Ich rauche ___.",
+              "answer": "nicht",
+              "translation": "Je ne fume pas.",
+              "choices": [
+                "nicht",
+                "kein",
+                "nein"
+              ]
+            },
+            {
+              "type": "cloze",
+              "text": "Ich habe ___ Zeit.",
+              "answer": "keine",
+              "translation": "Je n'ai pas le temps.",
+              "choices": [
+                "keine",
+                "nicht",
+                "kein"
+              ],
+              "hint": "Zeit est un nom féminin → keine"
+            },
+            {
+              "type": "mcSentence",
+              "question": "« Je ne danse jamais » heißt:",
+              "answer": "Ich tanze nie.",
+              "distractors": [
+                "Ich tanze nicht nie.",
+                "Ich nie tanze."
+              ],
+              "translation": "Comment dit-on « je ne danse jamais » ?"
+            },
+            {
+              "type": "wordOrder",
+              "de": "Er macht keinen Sport.",
+              "fr": "Il ne fait pas de sport."
+            },
+            {
+              "type": "translate",
+              "fr": "Je n'écoute pas de musique.",
+              "de": "Ich höre keine Musik."
+            },
+            {
+              "type": "errorCorrection",
+              "text": "Ich habe nicht Hunger.",
+              "answer": "Ich habe keinen Hunger.",
+              "distractors": [
+                "Ich habe nein Hunger.",
+                "Ich nicht habe Hunger."
+              ],
+              "translation": "Je n'ai pas faim.",
+              "hint": "nom → kein, pas nicht"
+            }
+          ],
+          "grammar": [
+            "de_g_nicht"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "de_a1_u5",
+      "title": "Der Alltag — Le quotidien",
+      "level": "A1",
+      "icon": "sun.max",
+      "lessons": [
+        {
+          "id": "de_a1_u5_l1",
+          "title": "Fragen stellen — Poser des questions",
+          "newVocab": [
+            "v_est_ce_que",
+            "v_quest_ce_que",
+            "v_ou_question",
+            "v_quand",
+            "v_pourquoi",
+            "v_qui",
+            "v_parce_que",
+            "v_la_question"
+          ],
+          "exercises": [
+            {
+              "type": "vocabIntro",
+              "vocab": [
+                "v_ou_question",
+                "v_quand",
+                "v_pourquoi",
+                "v_qui"
+              ]
+            },
+            {
+              "type": "vocabIntro",
+              "vocab": [
+                "v_est_ce_que",
+                "v_quest_ce_que",
+                "v_parce_que",
+                "v_la_question"
+              ]
+            },
+            {
+              "type": "wordOrder",
+              "de": "Kommst du heute mit?",
+              "fr": "Tu viens avec nous aujourd'hui ?"
+            },
+            {
+              "type": "mcSentence",
+              "question": "Wie fragt man « as-tu le temps ? »",
+              "answer": "Hast du Zeit?",
+              "distractors": [
+                "Du hast Zeit?",
+                "Ist du Zeit?"
+              ],
+              "translation": "Question oui/non : verbe d'abord"
+            },
+            {
+              "type": "cloze",
+              "text": "___ wohnst du? — In Berlin.",
+              "answer": "Wo",
+              "translation": "Où habites-tu ? — À Berlin.",
+              "choices": [
+                "Wo",
+                "Wer",
+                "Was"
+              ]
+            },
+            {
+              "type": "cloze",
+              "text": "___ ist das? — Das ist mein Bruder.",
+              "answer": "Wer",
+              "translation": "Qui est-ce ? — C'est mon frère.",
+              "choices": [
+                "Wer",
+                "Wo",
+                "Wie"
+              ],
+              "hint": "wer = qui, wo = où"
+            },
+            {
+              "type": "translate",
+              "fr": "Pourquoi apprends-tu l'allemand ?",
+              "de": "Warum lernst du Deutsch?"
+            },
+            {
+              "type": "errorCorrection",
+              "text": "Du kommst mit?",
+              "answer": "Kommst du mit?",
+              "distractors": [
+                "Mit du kommst?",
+                "Kommst mit du?"
+              ],
+              "translation": "Tu viens ? (question : verbe d'abord)"
+            }
+          ],
+          "grammar": [
+            "de_g_janein_fragen"
+          ]
+        },
+        {
+          "id": "de_a1_u5_l2",
+          "title": "Mein Tag — Ma journée",
+          "newVocab": [
+            "v_parler",
+            "v_aimer",
+            "v_habiter",
+            "v_travailler",
+            "v_ecouter",
+            "v_regarder",
+            "v_aider",
+            "v_chercher"
+          ],
+          "exercises": [
+            {
+              "type": "vocabIntro",
+              "vocab": [
+                "v_parler",
+                "v_aimer",
+                "v_habiter",
+                "v_travailler"
+              ]
+            },
+            {
+              "type": "vocabIntro",
+              "vocab": [
+                "v_ecouter",
+                "v_regarder",
+                "v_aider",
+                "v_chercher"
+              ]
+            },
+            {
+              "type": "conjugation",
+              "verb": "aufstehen",
+              "person": 0,
+              "translation": "je me lève",
+              "hint": "verbe séparable : la particule part à la fin"
+            },
+            {
+              "type": "conjugation",
+              "verb": "einkaufen",
+              "person": 3,
+              "translation": "nous faisons les courses"
+            },
+            {
+              "type": "conjugation",
+              "verb": "fernsehen",
+              "person": 2,
+              "translation": "il regarde la télé"
+            },
+            {
+              "type": "cloze",
+              "text": "Ich stehe um sieben Uhr ___.",
+              "answer": "auf",
+              "translation": "Je me lève à sept heures.",
+              "choices": [
+                "auf",
+                "an",
+                "aus"
+              ],
+              "hint": "aufstehen — la particule à la fin"
+            },
+            {
+              "type": "wordOrder",
+              "de": "Sie ruft ihre Mutter an.",
+              "fr": "Elle appelle sa mère."
+            },
+            {
+              "type": "errorCorrection",
+              "text": "Ich aufstehe um acht Uhr.",
+              "answer": "Ich stehe um acht Uhr auf.",
+              "distractors": [
+                "Ich stehe auf um acht Uhr.",
+                "Ich um acht Uhr aufstehe."
+              ],
+              "translation": "Je me lève à huit heures.",
+              "hint": "particule séparée, à la fin"
+            },
+            {
+              "type": "matching"
+            }
+          ],
+          "grammar": [
+            "de_g_trennbar",
+            "de_g_praesens_schwach"
+          ]
+        },
+        {
+          "id": "de_a1_u5_l3",
+          "title": "Komm mit! — L'impératif",
+          "newVocab": [
+            "v_aller",
+            "v_la_maison",
+            "v_lecole",
+            "v_le_cinema",
+            "v_le_travail",
+            "v_la_boulangerie",
+            "v_le_parc",
+            "v_le_supermarche"
+          ],
+          "exercises": [
+            {
+              "type": "vocabIntro",
+              "vocab": [
+                "v_aller",
+                "v_la_maison",
+                "v_lecole",
+                "v_le_cinema"
+              ]
+            },
+            {
+              "type": "vocabIntro",
+              "vocab": [
+                "v_le_travail",
+                "v_la_boulangerie",
+                "v_le_parc",
+                "v_le_supermarche"
+              ]
+            },
+            {
+              "type": "conjugation",
+              "verb": "kommen",
+              "person": 1,
+              "translation": "viens ! (impératif du)",
+              "tense": "imperativ"
+            },
+            {
+              "type": "conjugation",
+              "verb": "nehmen",
+              "person": 5,
+              "translation": "prenez ! (forme de politesse)",
+              "tense": "imperativ"
+            },
+            {
+              "type": "conjugation",
+              "verb": "essen",
+              "person": 1,
+              "translation": "mange ! (impératif du)",
+              "tense": "imperativ",
+              "hint": "e→i reste à l'impératif : iss !"
+            },
+            {
+              "type": "cloze",
+              "text": "___ bitte langsam!",
+              "answer": "Sprich",
+              "translation": "Parle lentement, s'il te plaît !",
+              "choices": [
+                "Sprich",
+                "Sprichst",
+                "Sprechen"
+              ],
+              "hint": "impératif du de sprechen"
+            },
+            {
+              "type": "wordOrder",
+              "de": "Kommen Sie bitte mit!",
+              "fr": "Venez avec moi, s'il vous plaît !"
+            },
+            {
+              "type": "translate",
+              "fr": "Va à la maison !",
+              "de": "Geh nach Hause!"
+            }
+          ],
+          "grammar": [
+            "de_g_imperativ"
+          ]
+        },
+        {
+          "id": "de_a1_u5_l4",
+          "title": "Pläne machen — Faire des projets",
+          "newVocab": [
+            "v_ce_soir",
+            "v_ce_weekend",
+            "v_la_semaine_prochaine",
+            "v_voyager",
+            "v_visiter",
+            "v_rester",
+            "v_acheter",
+            "v_venir"
+          ],
+          "exercises": [
+            {
+              "type": "vocabIntro",
+              "vocab": [
+                "v_ce_soir",
+                "v_ce_weekend",
+                "v_la_semaine_prochaine",
+                "v_voyager"
+              ]
+            },
+            {
+              "type": "vocabIntro",
+              "vocab": [
+                "v_visiter",
+                "v_rester",
+                "v_acheter",
+                "v_venir"
+              ]
+            },
+            {
+              "type": "conjugation",
+              "verb": "wollen",
+              "person": 0,
+              "translation": "je veux"
+            },
+            {
+              "type": "conjugation",
+              "verb": "können",
+              "person": 1,
+              "translation": "tu peux"
+            },
+            {
+              "type": "conjugation",
+              "verb": "müssen",
+              "person": 3,
+              "translation": "nous devons"
+            },
+            {
+              "type": "cloze",
+              "text": "Wir wollen nach Berlin ___.",
+              "answer": "fahren",
+              "translation": "Nous voulons aller à Berlin. (infinitif à la fin)",
+              "choices": [
+                "fahren",
+                "fahre",
+                "fährt"
+              ]
+            },
+            {
+              "type": "wordOrder",
+              "de": "Kannst du heute Abend kommen?",
+              "fr": "Peux-tu venir ce soir ?"
+            },
+            {
+              "type": "translate",
+              "fr": "Je dois travailler ce week-end.",
+              "de": "Ich muss dieses Wochenende arbeiten."
+            },
+            {
+              "type": "mcSentence",
+              "question": "« Ich kann gut kochen » bedeutet:",
+              "answer": "Je sais bien cuisiner.",
+              "distractors": [
+                "Je dois bien cuisiner.",
+                "Je veux bien cuisiner."
+              ],
+              "translation": "Que signifie « Ich kann gut kochen » ?"
+            }
+          ],
+          "grammar": [
+            "de_g_modalverben"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "de_a1_u6",
+      "title": "In der Stadt — En ville et au passé",
+      "level": "A1",
+      "icon": "building.2",
+      "lessons": [
+        {
+          "id": "de_a1_u6_l1",
+          "title": "Es gibt … — Il y a",
+          "newVocab": [
+            "v_il_y_a",
+            "v_la_ville",
+            "v_la_rue",
+            "v_la_gare",
+            "v_le_train",
+            "v_le_metro",
+            "v_lhotel",
+            "v_dans"
+          ],
+          "exercises": [
+            {
+              "type": "vocabIntro",
+              "vocab": [
+                "v_il_y_a",
+                "v_la_ville",
+                "v_la_rue",
+                "v_la_gare"
+              ]
+            },
+            {
+              "type": "vocabIntro",
+              "vocab": [
+                "v_le_train",
+                "v_le_metro",
+                "v_lhotel",
+                "v_dans"
+              ]
+            },
+            {
+              "type": "cloze",
+              "text": "Es gibt ___ Park in der Stadt.",
+              "answer": "einen",
+              "translation": "Il y a un parc dans la ville. (accusatif !)",
+              "choices": [
+                "einen",
+                "ein",
+                "eine"
+              ]
+            },
+            {
+              "type": "cloze",
+              "text": "___ es hier ein Hotel?",
+              "answer": "Gibt",
+              "translation": "Y a-t-il un hôtel ici ?",
+              "choices": [
+                "Gibt",
+                "Gibst",
+                "Geben"
+              ]
+            },
+            {
+              "type": "wordOrder",
+              "de": "Es gibt keinen Zug am Sonntag.",
+              "fr": "Il n'y a pas de train le dimanche."
+            },
+            {
+              "type": "translate",
+              "fr": "Où est la gare ?",
+              "de": "Wo ist der Bahnhof?"
+            },
+            {
+              "type": "mcSentence",
+              "question": "« il y a » heißt auf Deutsch:",
+              "answer": "es gibt",
+              "distractors": [
+                "es hat",
+                "es ist"
+              ],
+              "translation": "Comment dit-on « il y a » ?"
+            },
+            {
+              "type": "matching"
+            }
+          ],
+          "grammar": [
+            "de_g_es_gibt"
+          ]
+        },
+        {
+          "id": "de_a1_u6_l2",
+          "title": "Können, wollen, müssen — Les modaux",
+          "newVocab": [
+            "v_pouvoir",
+            "v_vouloir",
+            "v_devoir",
+            "v_trouver",
+            "v_finir",
+            "v_choisir",
+            "v_reussir",
+            "v_lexamen"
+          ],
+          "exercises": [
+            {
+              "type": "vocabIntro",
+              "vocab": [
+                "v_pouvoir",
+                "v_vouloir",
+                "v_devoir",
+                "v_lexamen"
+              ]
+            },
+            {
+              "type": "vocabIntro",
+              "vocab": [
+                "v_trouver",
+                "v_finir",
+                "v_choisir",
+                "v_reussir"
+              ]
+            },
+            {
+              "type": "conjugation",
+              "verb": "können",
+              "person": 0,
+              "translation": "je peux"
+            },
+            {
+              "type": "conjugation",
+              "verb": "dürfen",
+              "person": 2,
+              "translation": "il a le droit"
+            },
+            {
+              "type": "conjugation",
+              "verb": "wollen",
+              "person": 4,
+              "translation": "vous voulez (ihr)"
+            },
+            {
+              "type": "cloze",
+              "text": "Er ___ heute nicht kommen.",
+              "answer": "kann",
+              "translation": "Il ne peut pas venir aujourd'hui.",
+              "choices": [
+                "kann",
+                "kannst",
+                "können"
+              ],
+              "hint": "er kann — sans terminaison"
+            },
+            {
+              "type": "wordOrder",
+              "de": "Ich muss die Prüfung machen.",
+              "fr": "Je dois passer l'examen."
+            },
+            {
+              "type": "errorCorrection",
+              "text": "Ich wille nach Hause gehen.",
+              "answer": "Ich will nach Hause gehen.",
+              "distractors": [
+                "Ich wollen nach Hause gehen.",
+                "Ich will nach Hause gehe."
+              ],
+              "translation": "Je veux rentrer à la maison.",
+              "hint": "ich will — sans e"
+            }
+          ],
+          "grammar": [
+            "de_g_modalverben"
+          ]
+        },
+        {
+          "id": "de_a1_u6_l3",
+          "title": "Was hast du gemacht? — Le parfait",
+          "newVocab": [
+            "v_hier",
+            "v_deja",
+            "v_le_weekend",
+            "v_la_fete",
+            "v_rencontrer",
+            "v_gagner",
+            "v_le_projet",
+            "v_reflechir"
+          ],
+          "exercises": [
+            {
+              "type": "vocabIntro",
+              "vocab": [
+                "v_hier",
+                "v_deja",
+                "v_le_weekend",
+                "v_la_fete"
+              ]
+            },
+            {
+              "type": "vocabIntro",
+              "vocab": [
+                "v_rencontrer",
+                "v_gagner",
+                "v_le_projet",
+                "v_reflechir"
+              ]
+            },
+            {
+              "type": "conjugation",
+              "verb": "machen",
+              "person": 0,
+              "translation": "j'ai fait",
+              "tense": "perfekt"
+            },
+            {
+              "type": "conjugation",
+              "verb": "spielen",
+              "person": 3,
+              "translation": "nous avons joué",
+              "tense": "perfekt"
+            },
+            {
+              "type": "conjugation",
+              "verb": "arbeiten",
+              "person": 2,
+              "translation": "elle a travaillé",
+              "tense": "perfekt"
+            },
+            {
+              "type": "conjugation",
+              "verb": "sein",
+              "person": 0,
+              "translation": "j'étais",
+              "tense": "praeteritum"
+            },
+            {
+              "type": "conjugation",
+              "verb": "haben",
+              "person": 3,
+              "translation": "nous avions",
+              "tense": "praeteritum"
+            },
+            {
+              "type": "cloze",
+              "text": "Ich habe Fußball ___.",
+              "answer": "gespielt",
+              "translation": "J'ai joué au football.",
+              "choices": [
+                "gespielt",
+                "spielt",
+                "gespielen"
+              ]
+            },
+            {
+              "type": "wordOrder",
+              "de": "Was hast du gestern gemacht?",
+              "fr": "Qu'as-tu fait hier ?"
+            },
+            {
+              "type": "errorCorrection",
+              "text": "Ich habe gekauft ein Brot.",
+              "answer": "Ich habe ein Brot gekauft.",
+              "distractors": [
+                "Ich habe ein Brot kauft.",
+                "Ich gekauft habe ein Brot."
+              ],
+              "translation": "J'ai acheté un pain.",
+              "hint": "participe à la fin"
+            }
+          ],
+          "grammar": [
+            "de_g_perfekt_haben",
+            "de_g_praeteritum_sein_haben"
+          ]
+        },
+        {
+          "id": "de_a1_u6_l4",
+          "title": "Ich bin gefahren — Le parfait avec sein",
+          "newVocab": [
+            "v_grandir",
+            "v_grand",
+            "v_petit",
+            "v_jeune",
+            "v_vieux",
+            "v_beau",
+            "v_gentil",
+            "v_sympa"
+          ],
+          "exercises": [
+            {
+              "type": "vocabIntro",
+              "vocab": [
+                "v_grand",
+                "v_petit",
+                "v_jeune",
+                "v_vieux"
+              ]
+            },
+            {
+              "type": "vocabIntro",
+              "vocab": [
+                "v_beau",
+                "v_gentil",
+                "v_sympa",
+                "v_grandir"
+              ]
+            },
+            {
+              "type": "conjugation",
+              "verb": "gehen",
+              "person": 0,
+              "translation": "je suis allé",
+              "tense": "perfekt"
+            },
+            {
+              "type": "conjugation",
+              "verb": "kommen",
+              "person": 2,
+              "translation": "il est venu",
+              "tense": "perfekt"
+            },
+            {
+              "type": "conjugation",
+              "verb": "fahren",
+              "person": 3,
+              "translation": "nous sommes allés (en véhicule)",
+              "tense": "perfekt"
+            },
+            {
+              "type": "conjugation",
+              "verb": "bleiben",
+              "person": 1,
+              "translation": "tu es resté",
+              "tense": "perfekt"
+            },
+            {
+              "type": "conjugation",
+              "verb": "aufstehen",
+              "person": 0,
+              "translation": "je me suis levé",
+              "tense": "perfekt"
+            },
+            {
+              "type": "cloze",
+              "text": "Ich ___ nach Hause gegangen.",
+              "answer": "bin",
+              "translation": "Je suis rentré à la maison.",
+              "choices": [
+                "bin",
+                "habe",
+                "ist"
+              ],
+              "hint": "gehen : Perfekt avec sein"
+            },
+            {
+              "type": "cloze",
+              "text": "Wir ___ in Paris geblieben.",
+              "answer": "sind",
+              "translation": "Nous sommes restés à Paris.",
+              "choices": [
+                "sind",
+                "haben",
+                "seid"
+              ]
+            },
+            {
+              "type": "wordOrder",
+              "de": "Er ist spät nach Hause gekommen.",
+              "fr": "Il est rentré tard à la maison."
+            },
+            {
+              "type": "errorCorrection",
+              "text": "Ich habe nach Berlin gefahren.",
+              "answer": "Ich bin nach Berlin gefahren.",
+              "distractors": [
+                "Ich bin nach Berlin fahren.",
+                "Ich habe nach Berlin fahre."
+              ],
+              "translation": "Je suis allé à Berlin.",
+              "hint": "verbe de déplacement → sein"
+            },
+            {
+              "type": "translate",
+              "fr": "Elle est venue hier.",
+              "de": "Sie ist gestern gekommen."
+            }
+          ],
+          "grammar": [
+            "de_g_perfekt_sein"
+          ]
+        }
+      ]
+    }
+  ]
+}

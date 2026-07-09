@@ -18,6 +18,7 @@ struct SettingsView: View {
     var body: some View {
         Form {
             if let settings = settingsList.first {
+                courseSection(settings)
                 trainingSection(settings)
                 certificateSection(settings)
             }
@@ -80,6 +81,23 @@ struct SettingsView: View {
             Button("Abbrechen", role: .cancel) {}
         } message: {
             Text("Lektionen, Vokabeltraining und Fehlerprotokoll werden unwiderruflich gelöscht.")
+        }
+    }
+
+    private func courseSection(_ settings: UserSettings) -> some View {
+        Section {
+            Picker("Kurs", selection: Binding(
+                get: { settings.courseDirection },
+                set: { settings.courseDirection = $0 }
+            )) {
+                ForEach(CourseDirection.allCases) { direction in
+                    Text("\(direction.flag) \(direction.targetLanguageName) lernen").tag(direction)
+                }
+            }
+        } header: {
+            Text("Kurs")
+        } footer: {
+            Text("Der Wechsel ist verlustfrei: Lernstand, Lektionen und Zertifikate des anderen Kurses bleiben gespeichert und erscheinen wieder, sobald du zurückwechselst.")
         }
     }
 

@@ -6,9 +6,10 @@ import SwiftData
 /// vorher zeigt die Liste nur den Titel mit Schloss.
 struct GrammarListView: View {
     @Query private var progress: [LessonProgress]
+    @Query private var settingsList: [UserSettings]
     @State private var showMixedPractice = false
 
-    private let content = ContentStore.shared
+    private var content: ContentStore { settingsList.first?.content ?? .shared }
 
     private var snapshot: ProgressSnapshot {
         ProgressSnapshot(progress: progress, content: content)
@@ -86,7 +87,7 @@ struct GrammarListView: View {
                 GrammarDetailView(rule: rule)
             }
             .fullScreenCover(isPresented: $showMixedPractice) {
-                GrammarPracticeView(rules: unlockedRules)
+                GrammarPracticeView(rules: unlockedRules, content: content)
             }
         }
     }
@@ -98,10 +99,11 @@ struct GrammarDetailView: View {
     let rule: GrammarRule
 
     @Query private var progress: [LessonProgress]
+    @Query private var settingsList: [UserSettings]
     @State private var selectedTense: Conjugator.Tense = .present
     @State private var showPractice = false
 
-    private let content = ContentStore.shared
+    private var content: ContentStore { settingsList.first?.content ?? .shared }
 
     private var snapshot: ProgressSnapshot {
         ProgressSnapshot(progress: progress, content: content)
@@ -168,7 +170,7 @@ struct GrammarDetailView: View {
         .navigationTitle(rule.title)
         .navigationBarTitleDisplayMode(.large)
         .fullScreenCover(isPresented: $showPractice) {
-            GrammarPracticeView(rules: [rule], title: rule.title)
+            GrammarPracticeView(rules: [rule], content: content, title: rule.title)
         }
     }
 
@@ -192,7 +194,11 @@ struct GrammarDetailView: View {
                 .font(.headline)
 
             ForEach(infinitives, id: \.self) { infinitive in
-                if let verb = content.conjugator.verb(infinitive) {
+                if content.direction == .german {
+                    if let verb = content.germanConjugator.verb(infinitive) {
+                        GermanConjugationTable(verb: verb, conjugator: content.germanConjugator)
+                    }
+                } else if let verb = content.conjugator.verb(infinitive) {
                     ConjugationTable(verb: verb, conjugator: content.conjugator)
                 }
             }
@@ -289,7 +295,7 @@ struct ConjugationTable: View {
     private var tensePicker: some View {
         Picker("Zeit", selection: $tense) {
             ForEach(availableTenses, id: \.self) { t in
-                Text(t.germanLabel).tag(t)
+                Text(t.label).tag(t)
             }
         }
     }
@@ -299,6 +305,86 @@ struct ConjugationTable: View {
         case 1: return "1. Gruppe (-er)"
         case 2: return "2. Gruppe (-ir)"
         default: return "unregelmäßig"
+        }
+    }
+}
+
+/// Konjugationstabelle des Deutsch-Kurses — gleicher Aufbau, eigene Engine.
+struct GermanConjugationTable: View {
+    let verb: GermanVerbEntry
+    let conjugator: GermanConjugator
+
+    @State private var tense: GermanConjugator.Tense = .praesens
+
+    private var availableTenses: [GermanConjugator.Tense] {
+        conjugator.availableTenses(for: verb)
+    }
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            HStack {
+                Text(verb.infinitive)
+                    .font(.title3.bold())
+                Text(verb.fr)
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+                Spacer()
+                Text(typeLabel)
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            }
+
+            if availableTenses.count > 1 {
+                if availableTenses.count <= 3 {
+                    tensePicker.pickerStyle(.segmented)
+                } else {
+                    HStack {
+                        Text("Zeitform")
+                            .font(.subheadline)
+                            .foregroundStyle(.secondary)
+                        Spacer()
+                        tensePicker.pickerStyle(.menu)
+                    }
+                }
+            }
+
+            VStack(spacing: 0) {
+                let rows = conjugator.table(for: verb, tense: tense)
+                ForEach(rows.indices, id: \.self) { index in
+                    HStack {
+                        Text(rows[index].pronoun)
+                            .font(.subheadline)
+                            .foregroundStyle(.secondary)
+                            .frame(width: 80, alignment: .trailing)
+                        Text(rows[index].form)
+                            .font(.body.weight(.semibold))
+                        Spacer()
+                    }
+                    .padding(.vertical, 6)
+                    if index < rows.count - 1 {
+                        Divider()
+                    }
+                }
+            }
+        }
+        .card()
+    }
+
+    private var tensePicker: some View {
+        Picker("Zeit", selection: $tense) {
+            ForEach(availableTenses, id: \.self) { t in
+                Text(t.label).tag(t)
+            }
+        }
+    }
+
+    private var typeLabel: String {
+        switch verb.type {
+        case "weak": return String(localized: "regelmäßig")
+        case "strong": return String(localized: "stark")
+        case "mixed": return String(localized: "gemischt")
+        case "modal": return String(localized: "Modalverb")
+        default: return String(localized: "unregelmäßig")
         }
     }
 }

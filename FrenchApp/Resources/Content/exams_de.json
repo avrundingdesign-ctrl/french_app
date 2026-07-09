@@ -1,0 +1,368 @@
+{
+  "exams": [
+    {
+      "id": "de_exam_a1",
+      "level": "A1",
+      "durationMinutes": 30,
+      "sections": [
+        {
+          "kind": "listening",
+          "intro": "Tu entends chaque annonce deux fois au maximum. Choisis la bonne réponse.",
+          "tasks": [
+            {
+              "context": "Tu entends un message sur le répondeur.",
+              "audioScript": "Hallo Marie, hier ist Thomas. Wir gehen heute Abend um sieben Uhr ins Restaurant. Das Restaurant ist neben dem Bahnhof. Bis heute Abend!",
+              "questions": [
+                {
+                  "type": "mcSentence",
+                  "question": "Qui a laissé le message ?",
+                  "answer": "Thomas",
+                  "distractors": [
+                    "Marie",
+                    "Paul"
+                  ]
+                },
+                {
+                  "type": "mcSentence",
+                  "question": "À quelle heure se retrouvent-ils ?",
+                  "answer": "À sept heures du soir",
+                  "distractors": [
+                    "À cinq heures du soir",
+                    "À neuf heures du matin"
+                  ]
+                },
+                {
+                  "type": "mcSentence",
+                  "question": "Où est le restaurant ?",
+                  "answer": "À côté de la gare",
+                  "distractors": [
+                    "À côté de l'école",
+                    "Dans le parc"
+                  ]
+                }
+              ]
+            },
+            {
+              "context": "Tu entends une annonce à la gare.",
+              "audioScript": "Achtung an Gleis drei: Der Zug nach München fährt heute nicht um zehn Uhr, sondern um elf Uhr. Wir bitten um Entschuldigung.",
+              "questions": [
+                {
+                  "type": "mcSentence",
+                  "question": "Où va le train ?",
+                  "answer": "À Munich",
+                  "distractors": [
+                    "À Berlin",
+                    "À Hambourg"
+                  ]
+                },
+                {
+                  "type": "mcSentence",
+                  "question": "Quand part le train aujourd'hui ?",
+                  "answer": "À onze heures",
+                  "distractors": [
+                    "À dix heures",
+                    "À midi"
+                  ]
+                },
+                {
+                  "type": "mcSentence",
+                  "question": "Quel est le problème ?",
+                  "answer": "Le train part plus tard",
+                  "distractors": [
+                    "Le train ne part pas",
+                    "Le train est complet"
+                  ]
+                }
+              ]
+            },
+            {
+              "context": "Tu entends un dialogue à la boulangerie.",
+              "audioScript": "Guten Tag! Ich möchte zwei Brötchen und einen Kaffee, bitte. — Gerne. Das macht drei Euro fünfzig. — Danke, auf Wiedersehen!",
+              "questions": [
+                {
+                  "type": "mcSentence",
+                  "question": "Qu'est-ce que le client achète ?",
+                  "answer": "Deux petits pains et un café",
+                  "distractors": [
+                    "Un pain et deux cafés",
+                    "Deux croissants et un thé"
+                  ]
+                },
+                {
+                  "type": "mcSentence",
+                  "question": "Combien ça coûte ?",
+                  "answer": "3,50 euros",
+                  "distractors": [
+                    "2,50 euros",
+                    "5,30 euros"
+                  ]
+                },
+                {
+                  "type": "mcSentence",
+                  "question": "Où se passe la scène ?",
+                  "answer": "À la boulangerie",
+                  "distractors": [
+                    "Au restaurant",
+                    "À la gare"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "reading",
+          "intro": "Lis les textes et réponds aux questions.",
+          "tasks": [
+            {
+              "context": "Tu lis un panneau à l'entrée d'un magasin.",
+              "passageTitle": "Öffnungszeiten",
+              "passage": "Supermarkt Müller — Öffnungszeiten: Montag bis Freitag 8–20 Uhr, Samstag 8–18 Uhr. Sonntag geschlossen.",
+              "questions": [
+                {
+                  "type": "mcSentence",
+                  "question": "Quand le supermarché est-il fermé ?",
+                  "answer": "Le dimanche",
+                  "distractors": [
+                    "Le samedi",
+                    "Le lundi"
+                  ]
+                },
+                {
+                  "type": "mcSentence",
+                  "question": "Jusqu'à quelle heure est-il ouvert le samedi ?",
+                  "answer": "Jusqu'à 18 heures",
+                  "distractors": [
+                    "Jusqu'à 20 heures",
+                    "Jusqu'à 8 heures"
+                  ]
+                },
+                {
+                  "type": "mcSentence",
+                  "question": "À quelle heure ouvre-t-il en semaine ?",
+                  "answer": "À 8 heures",
+                  "distractors": [
+                    "À 20 heures",
+                    "À 18 heures"
+                  ]
+                }
+              ]
+            },
+            {
+              "context": "Tu lis un e-mail d'une amie.",
+              "passageTitle": "E-Mail von Julia",
+              "passage": "Hallo! Am Samstag mache ich eine Party. Wir feiern meinen Geburtstag — ich werde 25! Die Party beginnt um 19 Uhr bei mir zu Hause. Bringst du einen Salat mit? Deine Julia",
+              "questions": [
+                {
+                  "type": "mcSentence",
+                  "question": "Pourquoi Julia fait-elle une fête ?",
+                  "answer": "C'est son anniversaire",
+                  "distractors": [
+                    "Elle a un nouveau travail",
+                    "Elle déménage"
+                  ]
+                },
+                {
+                  "type": "mcSentence",
+                  "question": "Quand commence la fête ?",
+                  "answer": "Samedi à 19 heures",
+                  "distractors": [
+                    "Samedi à 15 heures",
+                    "Dimanche à 19 heures"
+                  ]
+                },
+                {
+                  "type": "mcSentence",
+                  "question": "Que doit apporter l'invité ?",
+                  "answer": "Une salade",
+                  "distractors": [
+                    "Un gâteau",
+                    "Du vin"
+                  ]
+                }
+              ]
+            },
+            {
+              "context": "Tu lis une petite annonce.",
+              "passageTitle": "Anzeige",
+              "passage": "Suche Wohnung in Berlin! 2 Zimmer, mit Küche und Balkon, maximal 800 Euro. Telefon: 030 123456. Anrufe bitte nur am Abend.",
+              "questions": [
+                {
+                  "type": "mcSentence",
+                  "question": "Que cherche la personne ?",
+                  "answer": "Un appartement",
+                  "distractors": [
+                    "Une voiture",
+                    "Un travail"
+                  ]
+                },
+                {
+                  "type": "mcSentence",
+                  "question": "Combien veut-elle payer au maximum ?",
+                  "answer": "800 euros",
+                  "distractors": [
+                    "600 euros",
+                    "1000 euros"
+                  ]
+                },
+                {
+                  "type": "mcSentence",
+                  "question": "Quand peut-on appeler ?",
+                  "answer": "Le soir",
+                  "distractors": [
+                    "Le matin",
+                    "À midi"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "language",
+          "intro": "Complète les phrases — grammaire et vocabulaire.",
+          "tasks": [
+            {
+              "context": "Choisis ou écris la forme correcte.",
+              "questions": [
+                {
+                  "type": "cloze",
+                  "text": "Ich ___ aus Frankreich.",
+                  "answer": "komme",
+                  "choices": [
+                    "komme",
+                    "kommst",
+                    "kommt"
+                  ],
+                  "translation": "Je viens de France."
+                },
+                {
+                  "type": "cloze",
+                  "text": "___ du einen Bruder?",
+                  "answer": "Hast",
+                  "choices": [
+                    "Hast",
+                    "Habe",
+                    "Hat"
+                  ],
+                  "translation": "As-tu un frère ?"
+                },
+                {
+                  "type": "cloze",
+                  "text": "Er ___ gern Fisch.",
+                  "answer": "isst",
+                  "choices": [
+                    "isst",
+                    "esst",
+                    "essen"
+                  ],
+                  "translation": "Il aime manger du poisson."
+                },
+                {
+                  "type": "conjugation",
+                  "verb": "sein",
+                  "person": 3,
+                  "translation": "nous sommes"
+                },
+                {
+                  "type": "conjugation",
+                  "verb": "arbeiten",
+                  "person": 1,
+                  "translation": "tu travailles"
+                },
+                {
+                  "type": "cloze",
+                  "text": "Ich habe ___ Auto.",
+                  "answer": "kein",
+                  "choices": [
+                    "kein",
+                    "keine",
+                    "nicht"
+                  ],
+                  "translation": "Je n'ai pas de voiture."
+                },
+                {
+                  "type": "cloze",
+                  "text": "Wir möchten einen Kaffee ___.",
+                  "answer": "trinken",
+                  "choices": [
+                    "trinken",
+                    "trinkt",
+                    "trinke"
+                  ],
+                  "translation": "Nous voudrions boire un café."
+                },
+                {
+                  "type": "cloze",
+                  "text": "Ich stehe um sieben Uhr ___.",
+                  "answer": "auf",
+                  "choices": [
+                    "auf",
+                    "an",
+                    "ein"
+                  ],
+                  "translation": "Je me lève à sept heures."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "writing",
+          "intro": "Écris les phrases demandées — en allemand.",
+          "tasks": [
+            {
+              "context": "Présente-toi par écrit.",
+              "questions": [
+                {
+                  "type": "translate",
+                  "fr": "Je m'appelle Anna et j'habite à Lyon.",
+                  "de": "Ich heiße Anna und ich wohne in Lyon.",
+                  "altAnswers": [
+                    "Ich heiße Anna und wohne in Lyon."
+                  ]
+                }
+              ]
+            },
+            {
+              "context": "Remets la phrase dans le bon ordre.",
+              "questions": [
+                {
+                  "type": "wordOrder",
+                  "de": "Heute gehe ich ins Kino.",
+                  "fr": "Aujourd'hui, je vais au cinéma."
+                }
+              ]
+            },
+            {
+              "context": "Réponds à l'invitation de Julia.",
+              "questions": [
+                {
+                  "type": "translate",
+                  "fr": "Merci, je viens samedi !",
+                  "de": "Danke, ich komme am Samstag!",
+                  "altAnswers": [
+                    "Danke, ich komme Samstag!"
+                  ]
+                }
+              ]
+            },
+            {
+              "context": "Raconte au passé.",
+              "questions": [
+                {
+                  "type": "translate",
+                  "fr": "Hier, j'ai joué au football.",
+                  "de": "Gestern habe ich Fußball gespielt.",
+                  "altAnswers": [
+                    "Ich habe gestern Fußball gespielt."
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

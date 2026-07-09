@@ -14,8 +14,8 @@ struct ExamSessionView: View {
 
     private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 
-    init(exam: ExamDefinition) {
-        let session = ExamSession(exam: exam)
+    init(exam: ExamDefinition, content: ContentStore = .shared) {
+        let session = ExamSession(exam: exam, content: content)
         _session = State(initialValue: session)
         _remainingSeconds = State(initialValue: exam.durationMinutes * 60)
     }
@@ -24,7 +24,7 @@ struct ExamSessionView: View {
         Group {
             switch session.phase {
             case .intro:
-                ExamIntroView(exam: session.exam, questionCount: session.questions.count) {
+                ExamIntroView(exam: session.exam, direction: session.direction, questionCount: session.questions.count) {
                     session.start()
                 } onCancel: {
                     dismiss()
@@ -140,7 +140,7 @@ struct ExamSessionView: View {
     private func sectionBadge(_ question: ExamQuestion) -> some View {
         HStack(spacing: 6) {
             Image(systemName: question.kind.symbol)
-            Text("Teil \(question.sectionIndex + 1) · \(question.kind.germanTitle)")
+            Text("Teil \(question.sectionIndex + 1) · \(question.kind.title)")
         }
         .font(.caption.bold())
         .foregroundStyle(Theme.levelColor(session.exam.level))
@@ -237,7 +237,7 @@ struct AudioPlayerCard: View {
         guard canPlay, let script = question.audioScript else { return }
         session.registerPlay(for: question)
         isPlaying = true
-        SpeechService.shared.speak(script, level: session.exam.level) {
+        SpeechService.shared.speak(script, level: session.exam.level, language: session.direction.targetLocaleID) {
             isPlaying = false
         }
     }
@@ -276,6 +276,7 @@ struct PassageCard: View {
 
 struct ExamIntroView: View {
     let exam: ExamDefinition
+    var direction: CourseDirection = .french
     let questionCount: Int
     let onStart: () -> Void
     let onCancel: () -> Void
@@ -296,7 +297,7 @@ struct ExamIntroView: View {
                 VStack(spacing: 4) {
                     Text("Niveau-Prüfung \(exam.level.rawValue)")
                         .font(.title2.bold())
-                    Text("Nach dem Vorbild der offiziellen \(exam.level.examBrand)-Prüfung")
+                    Text("Nach dem Vorbild der offiziellen \(direction.examBrand(for: exam.level))-Prüfung")
                         .font(.subheadline)
                         .foregroundStyle(.secondary)
                 }
@@ -308,7 +309,7 @@ struct ExamIntroView: View {
                                 .frame(width: 28)
                                 .foregroundStyle(Theme.levelColor(exam.level))
                             VStack(alignment: .leading, spacing: 1) {
-                                Text("Teil \(index + 1) · \(section.kind.germanTitle)")
+                                Text("Teil \(index + 1) · \(section.kind.title)")
                                     .font(.subheadline.weight(.semibold))
                                 Text(section.kind.frenchTitle + " · 25 Punkte")
                                     .font(.caption)
@@ -453,7 +454,7 @@ struct ExamResultView: View {
     private func sectionRow(_ section: ExamSession.SectionResult) -> some View {
         VStack(spacing: 6) {
             HStack {
-                Label(section.kind.germanTitle, systemImage: section.kind.symbol)
+                Label(section.kind.title, systemImage: section.kind.symbol)
                     .font(.subheadline.weight(.medium))
                 Spacer()
                 Text("\(points(section.points)) / 25")

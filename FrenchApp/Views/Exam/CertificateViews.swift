@@ -7,18 +7,19 @@ struct CertificateGalleryView: View {
     @Query private var certificates: [EarnedCertificate]
     @Query private var settingsList: [UserSettings]
 
-    private let content = ContentStore.shared
+    private var content: ContentStore { settingsList.first?.content ?? .shared }
 
     var body: some View {
         ScrollView {
             VStack(spacing: 16) {
-                ForEach(content.levels) { level in
+                ForEach(examLevels) { level in
                     if let certificate = certificate(for: level) {
                         NavigationLink {
                             CertificateDetailView(certificate: certificate, name: certificateName)
                         } label: {
                             CertificateCardView(
                                 level: level,
+                                direction: content.direction,
                                 name: certificateName,
                                 date: certificate.date,
                                 score: certificate.score,
@@ -37,13 +38,18 @@ struct CertificateGalleryView: View {
         .navigationTitle("Zertifikate")
     }
 
+    private var examLevels: [CEFRLevel] {
+        content.exams.map(\.level).sorted()
+    }
+
     private var certificateName: String {
         let name = settingsList.first?.certificateName.trimmingCharacters(in: .whitespaces) ?? ""
-        return name.isEmpty ? "Apprenant·e de français" : name
+        guard name.isEmpty else { return name }
+        return content.direction == .german ? "Apprenant·e d'allemand" : "Apprenant·e de français"
     }
 
     private func certificate(for level: CEFRLevel) -> EarnedCertificate? {
-        certificates.first { $0.levelRaw == level.rawValue }
+        certificates.first { $0.levelRaw == content.direction.storageID(level.rawValue) }
     }
 
     private func lockedPlaceholder(_ level: CEFRLevel) -> some View {
@@ -84,6 +90,7 @@ struct CertificateDetailView: View {
                 if let level = certificate.level {
                     CertificateCardView(
                         level: level,
+                        direction: certificate.direction,
                         name: name,
                         date: certificate.date,
                         score: certificate.score,
@@ -95,7 +102,9 @@ struct CertificateDetailView: View {
                     ShareLink(
                         item: renderedImage(level: level),
                         preview: SharePreview(
-                            "Certificat de français — Niveau \(level.rawValue)",
+                            certificate.direction == .german
+                                ? "Certificat d'allemand — Niveau \(level.rawValue)"
+                                : "Certificat de français — Niveau \(level.rawValue)",
                             image: renderedImage(level: level)
                         )
                     ) {
@@ -108,7 +117,7 @@ struct CertificateDetailView: View {
                     .tint(Theme.levelColor(level))
                     .padding(.horizontal, 24)
 
-                    Text("Hinweis: Dieses Zertifikat bestätigt deinen Lernfortschritt in der App. Es ist kein offizielles DELF-Diplom.")
+                    Text("Hinweis: Dieses Zertifikat bestätigt deinen Lernfortschritt in der App. Es ist kein offizielles \(certificate.direction.examBrand(for: level))-Diplom.")
                         .font(.caption2)
                         .foregroundStyle(.secondary)
                         .multilineTextAlignment(.center)
@@ -117,7 +126,7 @@ struct CertificateDetailView: View {
             }
         }
         .background(Color(.systemGroupedBackground))
-        .navigationTitle("Zertifikat \(certificate.levelRaw)")
+        .navigationTitle("Zertifikat \(certificate.level?.rawValue ?? "")")
         .navigationBarTitleDisplayMode(.inline)
     }
 
@@ -125,6 +134,7 @@ struct CertificateDetailView: View {
     private func renderedImage(level: CEFRLevel) -> Image {
         let card = CertificateCardView(
             level: level,
+            direction: certificate.direction,
             name: name,
             date: certificate.date,
             score: certificate.score,
@@ -147,6 +157,7 @@ struct CertificateDetailView: View {
 
 struct CertificateCardView: View {
     let level: CEFRLevel
+    var direction: CourseDirection = .french
     let name: String
     let date: Date
     let score: Double
@@ -154,12 +165,12 @@ struct CertificateCardView: View {
 
     var body: some View {
         VStack(spacing: 14) {
-            tricolore
+            flagStripe
                 .frame(height: 5)
                 .clipShape(Capsule())
                 .padding(.horizontal, 40)
 
-            Text("CERTIFICAT DE FRANÇAIS")
+            Text(direction == .german ? "CERTIFICAT D'ALLEMAND" : "CERTIFICAT DE FRANÇAIS")
                 .font(.caption.bold())
                 .tracking(3)
                 .foregroundStyle(.secondary)
@@ -192,7 +203,7 @@ struct CertificateCardView: View {
             }
             .padding(.top, 2)
 
-            tricolore
+            flagStripe
                 .frame(height: 5)
                 .clipShape(Capsule())
                 .padding(.horizontal, 40)
@@ -212,11 +223,21 @@ struct CertificateCardView: View {
         )
     }
 
-    private var tricolore: some View {
-        HStack(spacing: 0) {
-            Color(red: 0, green: 85 / 255, blue: 164 / 255)
-            Color.white
-            Color(red: 239 / 255, green: 65 / 255, blue: 53 / 255)
+    /// Trikolore bzw. Schwarz-Rot-Gold, je nach Lernsprache.
+    @ViewBuilder
+    private var flagStripe: some View {
+        if direction == .german {
+            VStack(spacing: 0) {
+                Color.black
+                Color(red: 221 / 255, green: 0, blue: 0)
+                Color(red: 255 / 255, green: 206 / 255, blue: 0)
+            }
+        } else {
+            HStack(spacing: 0) {
+                Color(red: 0, green: 85 / 255, blue: 164 / 255)
+                Color.white
+                Color(red: 239 / 255, green: 65 / 255, blue: 53 / 255)
+            }
         }
     }
 

@@ -14,7 +14,7 @@ struct ReviewSessionView: View {
     @State private var revealed = false
     @State private var reviewedCount = 0
 
-    private let content = ContentStore.shared
+    private var content: ContentStore { settingsList.first?.content ?? .shared }
 
     var body: some View {
         VStack(spacing: 0) {
@@ -22,7 +22,7 @@ struct ReviewSessionView: View {
                 .padding(.horizontal)
                 .padding(.top, 12)
 
-            if let state = queue.first, let item = content.vocab(state.vocabID) {
+            if let state = queue.first, let item = content.vocab(forReviewID: state.vocabID) {
                 cardView(state: state, item: item)
             } else if built {
                 finishedView
@@ -36,9 +36,12 @@ struct ReviewSessionView: View {
         guard !built else { return }
         built = true
         guard let settings = settingsList.first else { return }
-        let q = SRSService.buildQueue(states: states, settings: settings)
+        // Nur Karten der aktuellen Kursrichtung (Präfix-Filter) —
+        // auch fürs Tagespensum zählt nur der eigene Kurs.
+        let mine = states.filter { settings.courseDirection.owns(storageID: $0.vocabID) }
+        let q = SRSService.buildQueue(states: mine, settings: settings)
         // Nur Karten, deren Vokabel es (noch) gibt.
-        queue = q.all.filter { content.vocab($0.vocabID) != nil }
+        queue = q.all.filter { content.vocab(forReviewID: $0.vocabID) != nil }
     }
 
     private var header: some View {
@@ -62,14 +65,18 @@ struct ReviewSessionView: View {
     // MARK: - Karte
 
     private func cardView(state: ReviewState, item: VocabItem) -> some View {
-        let production = state.repetitions >= 2 // DE→FR, sobald die Karte sitzt
+        let production = state.repetitions >= 2 // Muttersprache → Lernsprache, sobald die Karte sitzt
+        let pair = content.pair
+        let direction = content.direction
 
         return VStack(spacing: 16) {
             Spacer()
 
             VStack(spacing: 14) {
                 HStack {
-                    Text(production ? "Deutsch → Französisch" : "Französisch → Deutsch")
+                    Text(production
+                         ? "\(direction.nativeLanguageName) → \(direction.targetLanguageName)"
+                         : "\(direction.targetLanguageName) → \(direction.nativeLanguageName)")
                         .font(.caption)
                         .foregroundStyle(.secondary)
                     Spacer()
@@ -83,7 +90,7 @@ struct ReviewSessionView: View {
                     }
                 }
 
-                Text(production ? item.de : item.fr)
+                Text(production ? pair.native(item) : pair.target(item))
                     .font(.largeTitle.bold())
                     .multilineTextAlignment(.center)
                     .frame(maxWidth: .infinity)
@@ -96,18 +103,18 @@ struct ReviewSessionView: View {
 
                 if revealed {
                     Divider()
-                    Text(production ? item.fr : item.de)
+                    Text(production ? pair.target(item) : pair.native(item))
                         .font(.title2.weight(.semibold))
                         .foregroundStyle(Theme.accent)
                         .multilineTextAlignment(.center)
-                    if let example = item.exampleFR, let exampleDE = item.exampleDE {
+                    if let example = pair.targetExample(item), let nativeExample = pair.nativeExample(item) {
                         VStack(spacing: 2) {
                             Text(example).font(.subheadline.italic())
-                            Text(exampleDE).font(.footnote).foregroundStyle(.secondary)
+                            Text(nativeExample).font(.footnote).foregroundStyle(.secondary)
                         }
                         .multilineTextAlignment(.center)
                     }
-                    if let note = item.note {
+                    if let note = content.pair.note(item) {
                         Text(note)
                             .font(.footnote)
                             .foregroundStyle(.secondary)
@@ -129,8 +136,8 @@ struct ReviewSessionView: View {
     }
 
     private func frontDetail(_ item: VocabItem) -> String? {
-        var parts = [item.pos.germanLabel]
-        if let gender = item.genderLabel { parts.append(gender) }
+        var parts = [item.pos.label]
+        if let gender = content.pair.genderDetail(item) { parts.append(gender) }
         return parts.joined(separator: " · ")
     }
 

@@ -22,6 +22,15 @@ sind — und die sind nur da, wenn sie hier **Deutsch lernen** können.
 Die umgekehrte Lernrichtung ist damit Voraussetzung für ein
 funktionierendes Tandem-Netzwerk, nicht bloß ein Zusatzfeature.
 
+**Stand 2026-07-09: Stufe 5a ist umgesetzt** — Richtungswahl im Onboarding
+und in den Einstellungen (verlustfreier Wechsel), deutscher A1-Kurs
+(24 Lektionen, 203 Vokabeln wiederverwendet), GermanConjugator
+(100 Verben, Präsens/Perfekt/Präteritum/Imperativ), 23 Grammatikregeln
+auf Französisch, Goethe-Stil-A1-Prüfung, Hörtraining mit de-DE-Stimme
+und 24 Minimalpaaren, SRS-Trennung per `de:`-Präfix, String-Katalog mit
+~140 französischen UI-Übersetzungen (Rest fällt auf Deutsch zurück —
+Übersetzung iterativ erweiterbar).
+
 ### Stufe 5a — Minimal nutzbar für Franzosen (Tandem-Enabler)
 
 1. **Richtungswahl im Onboarding:** „Ich spreche Deutsch → lerne
