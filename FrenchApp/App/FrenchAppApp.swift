@@ -17,7 +17,12 @@ struct FrenchAppApp: App {
             ChallengeProgress.self,
         ])
         do {
-            container = try ModelContainer(for: schema)
+            // Lernfortschritt bleibt lokal: Die iCloud-Entitlements gehören der
+            // Tandem-Community (direktes CloudKit) — ohne .none würde SwiftData
+            // sonst automatisch CloudKit-Sync aktivieren und an den
+            // unique-Constraints (ReviewState.vocabID …) scheitern.
+            let configuration = ModelConfiguration(schema: schema, cloudKitDatabase: .none)
+            container = try ModelContainer(for: schema, configurations: configuration)
         } catch {
             fatalError("SwiftData-Container konnte nicht erstellt werden: \(error)")
         }

@@ -11,7 +11,7 @@ final class ChallengeTests: XCTestCase {
 
     override func setUpWithError() throws {
         let schema = Schema([ChallengeProgress.self])
-        let config = ModelConfiguration(isStoredInMemoryOnly: true)
+        let config = ModelConfiguration(schema: schema, isStoredInMemoryOnly: true, cloudKitDatabase: .none)
         container = try ModelContainer(for: schema, configurations: config)
         context = ModelContext(container)
         content = try ContentStore(bundle: Bundle(for: ContentStore.self))

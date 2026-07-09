@@ -13,7 +13,7 @@ final class SRSTests: XCTestCase {
             ReviewState.self, ReviewLogEntry.self, LessonProgress.self,
             MistakeRecord.self, UserSettings.self,
         ])
-        let config = ModelConfiguration(isStoredInMemoryOnly: true)
+        let config = ModelConfiguration(schema: schema, isStoredInMemoryOnly: true, cloudKitDatabase: .none)
         container = try ModelContainer(for: schema, configurations: config)
         context = ModelContext(container)
     }

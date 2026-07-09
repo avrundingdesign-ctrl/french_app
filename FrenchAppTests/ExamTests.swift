@@ -16,7 +16,7 @@ final class ExamTests: XCTestCase {
             MistakeRecord.self, UserSettings.self,
             ExamAttempt.self, EarnedCertificate.self,
         ])
-        let config = ModelConfiguration(isStoredInMemoryOnly: true)
+        let config = ModelConfiguration(schema: schema, isStoredInMemoryOnly: true, cloudKitDatabase: .none)
         container = try ModelContainer(for: schema, configurations: config)
         context = ModelContext(container)
         content = try ContentStore(bundle: Bundle(for: ContentStore.self))

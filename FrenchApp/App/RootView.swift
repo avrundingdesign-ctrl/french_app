@@ -59,6 +59,9 @@ struct MainTabView: View {
             GrammarListView()
                 .tabItem { Label("Grammatik", systemImage: "text.book.closed.fill") }
 
+            CommunityRootView()
+                .tabItem { Label("Tandem", systemImage: "globe.europe.africa.fill") }
+
             ProfileView()
                 .tabItem { Label("Profil", systemImage: "person.fill") }
         }
