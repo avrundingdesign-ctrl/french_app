@@ -4,8 +4,10 @@ import SwiftData
 /// Thematische Wortschatz-Pakete: auf Knopfdruck wandern alle Wörter eines
 /// Pakets ins SRS-Training — das Tagespensum verteilt sie dann über die Tage.
 struct VocabPacksView: View {
+    @EnvironmentObject private var premium: PremiumStore
     @Query private var states: [ReviewState]
     @Query private var settingsList: [UserSettings]
+    @State private var showPaywall = false
 
     private var content: ContentStore { settingsList.first?.content ?? .shared }
 
@@ -16,6 +18,10 @@ struct VocabPacksView: View {
 
     private func isEnrolled(_ vocabID: String) -> Bool {
         enrolledIDs.contains(content.srsID(for: vocabID))
+    }
+
+    private func isPremiumLocked(_ pack: VocabPack) -> Bool {
+        PremiumGate.packRequiresPremium(level: pack.level) && !premium.isPremium
     }
 
     var body: some View {
@@ -32,12 +38,21 @@ struct VocabPacksView: View {
                             .font(.headline)
                     }
                     ForEach(content.packs.filter { $0.level == level }) { pack in
-                        NavigationLink {
-                            VocabPackDetailView(pack: pack)
-                        } label: {
-                            packRow(pack)
+                        if isPremiumLocked(pack) {
+                            Button {
+                                showPaywall = true
+                            } label: {
+                                packRow(pack)
+                            }
+                            .buttonStyle(.plain)
+                        } else {
+                            NavigationLink {
+                                VocabPackDetailView(pack: pack)
+                            } label: {
+                                packRow(pack)
+                            }
+                            .buttonStyle(.plain)
                         }
-                        .buttonStyle(.plain)
                     }
                 }
             }
@@ -45,6 +60,9 @@ struct VocabPacksView: View {
         }
         .background(Color(.systemGroupedBackground))
         .navigationTitle("Wortschatz-Pakete")
+        .sheet(isPresented: $showPaywall) {
+            PaywallView()
+        }
     }
 
     private var levels: [CEFRLevel] {
@@ -54,30 +72,39 @@ struct VocabPacksView: View {
     private func packRow(_ pack: VocabPack) -> some View {
         let enrolled = pack.vocab.filter { isEnrolled($0) }.count
         let complete = enrolled == pack.vocab.count
+        let locked = isPremiumLocked(pack)
 
         return HStack(spacing: 12) {
-            Image(systemName: pack.icon ?? "rectangle.stack")
+            Image(systemName: locked ? "crown.fill" : (pack.icon ?? "rectangle.stack"))
                 .font(.title3)
                 .frame(width: 34)
-                .foregroundStyle(complete ? Theme.success : Theme.levelColor(pack.level))
+                .foregroundStyle(locked ? Theme.accent : (complete ? Theme.success : Theme.levelColor(pack.level)))
             VStack(alignment: .leading, spacing: 2) {
-                Text(pack.title)
-                    .font(.body.weight(.semibold))
+                HStack(spacing: 6) {
+                    Text(pack.title)
+                        .font(.body.weight(.semibold))
+                        .foregroundStyle(locked ? Color.secondary : Color.primary)
+                    if locked {
+                        PremiumBadge()
+                    }
+                }
                 if let subtitle = pack.subtitle {
                     Text(subtitle)
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 }
-                Text(complete
-                     ? "Alle \(pack.vocab.count) Wörter im Training"
-                     : enrolled > 0
-                        ? "\(enrolled) von \(pack.vocab.count) Wörtern im Training"
-                        : "\(pack.vocab.count) Wörter")
+                Text(locked
+                     ? "Mit Premium freischalten · \(pack.vocab.count) Wörter"
+                     : complete
+                        ? "Alle \(pack.vocab.count) Wörter im Training"
+                        : enrolled > 0
+                            ? "\(enrolled) von \(pack.vocab.count) Wörtern im Training"
+                            : "\(pack.vocab.count) Wörter")
                     .font(.caption2)
-                    .foregroundStyle(complete ? Theme.success : .secondary)
+                    .foregroundStyle(complete && !locked ? Theme.success : .secondary)
             }
             Spacer()
-            if complete {
+            if complete && !locked {
                 Image(systemName: "checkmark.circle.fill")
                     .foregroundStyle(Theme.success)
             } else {
@@ -96,11 +123,17 @@ struct VocabPacksView: View {
 struct VocabPackDetailView: View {
     let pack: VocabPack
 
+    @EnvironmentObject private var premium: PremiumStore
     @Environment(\.modelContext) private var context
     @Query private var states: [ReviewState]
     @Query private var settingsList: [UserSettings]
+    @State private var showPaywall = false
 
     private var content: ContentStore { settingsList.first?.content ?? .shared }
+
+    private var premiumLocked: Bool {
+        PremiumGate.packRequiresPremium(level: pack.level) && !premium.isPremium
+    }
 
     private var items: [VocabItem] {
         pack.vocab.compactMap { content.vocab($0) }
@@ -123,7 +156,18 @@ struct VocabPackDetailView: View {
                         .foregroundStyle(.secondary)
                 }
 
-                if missing.isEmpty {
+                if premiumLocked {
+                    Button {
+                        showPaywall = true
+                    } label: {
+                        Label("Mit Premium freischalten", systemImage: "crown.fill")
+                            .font(.headline)
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 6)
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .tint(Theme.accent)
+                } else if missing.isEmpty {
                     Label("Alle \(pack.vocab.count) Wörter sind in deinem Training", systemImage: "checkmark.circle.fill")
                         .font(.subheadline.weight(.semibold))
                         .foregroundStyle(Theme.success)
@@ -160,6 +204,9 @@ struct VocabPackDetailView: View {
         .background(Color(.systemGroupedBackground))
         .navigationTitle(pack.title)
         .navigationBarTitleDisplayMode(.inline)
+        .sheet(isPresented: $showPaywall) {
+            PaywallView()
+        }
     }
 
     private func wordRow(_ item: VocabItem) -> some View {

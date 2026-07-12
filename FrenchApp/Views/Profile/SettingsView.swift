@@ -4,6 +4,7 @@ import SwiftData
 /// Einstellungen (Spec Screen 7): Tagespensum, Erscheinungsbild,
 /// Datenexport und Zurücksetzen — bewusst ohne Streak-Optionen.
 struct SettingsView: View {
+    @EnvironmentObject private var premium: PremiumStore
     @Environment(\.modelContext) private var context
     @Query private var settingsList: [UserSettings]
     @Query private var states: [ReviewState]
@@ -14,9 +15,12 @@ struct SettingsView: View {
     @AppStorage("appearance") private var appearance = "system"
     @State private var confirmSRSReset = false
     @State private var confirmFullReset = false
+    @State private var showPaywall = false
 
     var body: some View {
         Form {
+            premiumSection
+
             if let settings = settingsList.first {
                 courseSection(settings)
                 trainingSection(settings)
@@ -74,6 +78,9 @@ struct SettingsView: View {
             }
         }
         .navigationTitle("Einstellungen")
+        .sheet(isPresented: $showPaywall) {
+            PaywallView()
+        }
         .confirmationDialog(
             "Vokabeltraining zurücksetzen?",
             isPresented: $confirmSRSReset,
@@ -93,6 +100,39 @@ struct SettingsView: View {
             Button("Abbrechen", role: .cancel) {}
         } message: {
             Text("Lektionen, Vokabeltraining und Fehlerprotokoll werden unwiderruflich gelöscht.")
+        }
+    }
+
+    private var premiumSection: some View {
+        Section {
+            if premium.isPremium {
+                Label {
+                    Text("Premium ist aktiv — danke für deine Unterstützung!")
+                } icon: {
+                    Image(systemName: "crown.fill")
+                        .foregroundStyle(Theme.accent)
+                }
+            } else {
+                Button {
+                    showPaywall = true
+                } label: {
+                    Label {
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text("Premium freischalten")
+                                .foregroundStyle(Color.primary)
+                            Text("Lernpfad bis B2, alle Pakete, Vertiefungen, Prüfungen B2/C1")
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                        }
+                    } icon: {
+                        Image(systemName: "crown.fill")
+                            .foregroundStyle(Theme.accent)
+                    }
+                }
+                Button("Käufe wiederherstellen") {
+                    Task { await premium.restore() }
+                }
+            }
         }
     }
 

@@ -4,6 +4,7 @@ import SwiftData
 @main
 struct FrenchAppApp: App {
     let container: ModelContainer
+    @StateObject private var premium = PremiumStore()
 
     init() {
         let schema = Schema([
@@ -31,6 +32,7 @@ struct FrenchAppApp: App {
     var body: some Scene {
         WindowGroup {
             RootView()
+                .environmentObject(premium)
         }
         .modelContainer(container)
     }

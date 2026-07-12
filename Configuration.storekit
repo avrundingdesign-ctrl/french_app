@@ -1,0 +1,43 @@
+{
+  "identifier" : "C0FFEE00-0000-4000-8000-000000000001",
+  "nonRenewingSubscriptions" : [
+
+  ],
+  "products" : [
+    {
+      "displayPrice" : "9.99",
+      "familyShareable" : true,
+      "internalID" : "C0FFEE00-0000-4000-8000-000000000002",
+      "localizations" : [
+        {
+          "description" : "Lernpfad bis B2, alle Wortschatz-Pakete, Vertiefungen, Prüfungen B2/C1.",
+          "displayName" : "Premium freischalten",
+          "locale" : "de_DE"
+        },
+        {
+          "description" : "Parcours complet jusqu'à B2, tous les packs de vocabulaire, chapitres d'approfondissement, examens B2/C1.",
+          "displayName" : "Débloquer Premium",
+          "locale" : "fr_FR"
+        }
+      ],
+      "productID" : "design.avrunding.frenchapp.premium",
+      "referenceName" : "Premium",
+      "type" : "NonConsumable"
+    }
+  ],
+  "settings" : {
+    "_failTransactionsEnabled" : false,
+    "_locale" : "de_DE",
+    "_storefront" : "DEU",
+    "_storeKitErrors" : [
+
+    ]
+  },
+  "subscriptionGroups" : [
+
+  ],
+  "version" : {
+    "major" : 3,
+    "minor" : 0
+  }
+}

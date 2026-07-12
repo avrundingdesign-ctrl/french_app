@@ -60,6 +60,8 @@ schemes:
         FrenchAppTests: [test]
     run:
       config: Debug
+      # Lokales StoreKit-Testing (Paywall im Simulator ohne App Store Connect).
+      storeKitConfiguration: Configuration.storekit
     test:
       config: Debug
       gatherCoverageData: false

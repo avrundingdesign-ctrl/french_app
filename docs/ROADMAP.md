@@ -109,6 +109,22 @@ Code-Anteil überschaubar (Richtungslogik, Lokalisierung, Konjugator).
   `SPEC.md` prüfen — aktuell unkritisch, da der gesamte Content selbst
   verfasst ist; das muss auch für Phase-5-Content so bleiben.
 
-**Reihenfolge:** erst Phase 5a (sonst kauft niemand auf der
-FR-Seite), Paywall kann parallel zu 5b kommen, da sie primär die
-bestehende DE→FR-Seite betrifft.
+**Stand 2026-07-13: umgesetzt.** `PremiumStore` (StoreKit 2:
+`Transaction.currentEntitlements` + `updates`-Listener, purchase,
+`AppStore.sync()`-Restore), Gating als pure Logik in `PremiumGate`
+(statt `premium`-Flags in den JSONs — Niveau-basiert, damit auch der
+wachsende Phase-5-Content automatisch richtig einsortiert wird):
+Lektionen und Pakete ab B1 Premium, Prüfungen ab B2, Vertiefungen
+komplett; A1+A2, SRS, Hörtraining und Tandem frei — in beiden
+Kursrichtungen. Paywall-Sheet mit Feature-Liste, Preis aus dem Product,
+Restore, Familienfreigabe-Hinweis; Krone-Badges an allen Sperren
+(Lernpfad, Pakete, Prüfungen, Vertiefungen), Premium-Sektion in den
+Einstellungen. Lokales Testing über `Configuration.storekit`
+(im Scheme hinterlegt, 9,99 €); Dev-Flags `--premium`/`--unlock-all`/
+`--show-paywall` für Reviews und Screenshots. 7 neue Tests sichern
+die Gating-Entscheidungen und die Substanz der freien Zone ab.
+
+**Noch offen für den Launch:** Produkt
+`design.avrunding.frenchapp.premium` in App Store Connect anlegen
+(non-consumable, Familienfreigabe an, Preis festlegen) und einen
+Kauf-Durchlauf im Sandbox-Account auf echtem Gerät testen.

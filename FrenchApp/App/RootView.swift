@@ -5,6 +5,8 @@ struct RootView: View {
     @Environment(\.modelContext) private var context
     @Query private var settingsList: [UserSettings]
     @AppStorage("appearance") private var appearance = "system"
+    /// Dev-Flag für Screenshots: öffnet die Paywall direkt beim Start.
+    @State private var showPaywallDebug = ProcessInfo.processInfo.arguments.contains("--show-paywall")
 
     var body: some View {
         Group {
@@ -17,6 +19,9 @@ struct RootView: View {
             } else {
                 Color(.systemBackground)
             }
+        }
+        .sheet(isPresented: $showPaywallDebug) {
+            PaywallView()
         }
         .task {
             let settings = settingsList.first ?? UserSettings.fetchOrCreate(in: context)
