@@ -9,8 +9,12 @@ auf Branch `v2_Online` inkl. Moderation store-reif.
 
 - [ ] Apple-Developer-Setup: iCloud- + Push-Capability, CloudKit-Container
       und Indizes (`docs/V2_ONLINE.md`), Gerätetest des CloudKit-Pfads
-- [ ] App-Store-Vorbereitung: Datenschutzerklärung, Privacy Labels,
-      Support-Kontakt, Screenshots, Altersfreigabe
+- [x] App-Store-Vorbereitung (Teil 1, 2026-07-12): Datenschutzerklärung
+      auf trin.studio/datenschutz.html um FrenchApp-Abschnitt erweitert,
+      Privacy-Label-Mapping in `docs/APP_PRIVACY.md`, Support-/Rechtliches-
+      Links in SettingsView (Datenschutz, Impressum, Support-Mail).
+      Noch offen: Screenshots, Altersfreigabe-Fragebogen final ausfüllen
+      (Vorlage in APP_PRIVACY.md)
 - [ ] `v2_Online` → `main` mergen (nach Gerätetest)
 - [ ] Optional: FSRS-Opt-in, XCUITests, weitere Wortschatz-Runden
       (Ziel ~2500 Wörter für belastbares B2), Unblock-UI

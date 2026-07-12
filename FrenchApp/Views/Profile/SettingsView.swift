@@ -60,6 +60,18 @@ struct SettingsView: View {
                 }
                 .padding(.vertical, 2)
             }
+
+            Section("Rechtliches & Support") {
+                Link(destination: URL(string: "https://trin.studio/datenschutz.html")!) {
+                    Label("Datenschutzerklärung", systemImage: "hand.raised")
+                }
+                Link(destination: URL(string: "https://trin.studio/impressum.html")!) {
+                    Label("Impressum", systemImage: "doc.text")
+                }
+                Link(destination: URL(string: "mailto:c.hesse@trin.studio")!) {
+                    Label("Support kontaktieren", systemImage: "envelope")
+                }
+            }
         }
         .navigationTitle("Einstellungen")
         .confirmationDialog(
