@@ -68,11 +68,21 @@ Modalverben-Präteritum), 18 A2-Grammatikregeln auf Französisch,
 30 neue Verben (inkl. Reflexive „sich waschen" und Futur im
 GermanConjugator), Goethe-Stil-A2-Prüfung, 4 gespiegelte A2-Pakete.
 
+**Stand 2026-07-13: Konjugator-Ausbau + B1-Tranche umgesetzt** —
+GermanConjugator bildet jetzt Präteritum für alle Verbklassen
+(schwach regelbasiert, stark/gemischt über `praeteritumStem`),
+Plusquamperfekt (Präteritum von haben/sein + Partizip II) und
+Konjunktiv II (Tabellen für sein/haben/werden/wissen/Modalverben +
+häufige starke Verben, sonst würde-Form). 18 neue B1-Grammatikregeln
+auf Französisch (Adjektivdeklination, Genitiv, Passiv, Konjunktiv II,
+Plusquamperfekt, Relativsätze, indirekte Fragen, weitere Nebensätze,
+Finalsätze, Doppelkonnektoren) und 24 B1-Lektionen (6 Einheiten) —
+komplett auf den schon zweisprachigen 112 B1-Vokabeln der
+Französisch-Richtung aufgebaut, kein neues Vokabular nötig.
+
 Noch offen in 5b:
-- Deutsch-Kurs B1→B2 (48 weitere Lektionen), Grammatik B1/B2
-  (Adjektivdeklination, Passiv, Konjunktiv II, Relativsätze, Genitiv …)
-  — braucht Konjugator-Ausbau (Präteritum aller Verben, Konjunktiv II,
-  Plusquamperfekt)
+- Deutsch-Kurs B2 (24 weitere Lektionen), Grammatik B2 (z. B. Konjunktiv I
+  für indirekte Rede, erweiterte Partizipialkonstruktionen, Nominalstil)
 - Prüfungen B1/B2 im Goethe-Stil
 - Vertiefungskapitel für die DE-Richtung
 - Restliche UI-Übersetzungen ins Französische
