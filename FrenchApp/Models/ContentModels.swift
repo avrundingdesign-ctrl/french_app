@@ -241,10 +241,22 @@ struct GermanVerbEntry: Codable, Identifiable, Hashable {
     let participle: String?
     /// "sein", falls das Perfekt-Hilfsverb nicht "haben" ist.
     let auxiliary: String?
-    /// Sechs Präteritumformen — auf A1 nur für sein/haben/werden/Modalverben.
+    /// Sechs Präteritumformen (Tabellen-Override) — für sein/haben/werden/
+    /// Modalverben/wissen. Alle anderen Verben werden regelbasiert gebildet:
+    /// schwache aus dem Infinitivstamm, starke/gemischte aus `praeteritumStem`.
     let praeteritum: [String]?
+    /// 3.-Person-Singular-Stamm des Präteritums für starke/gemischte Verben
+    /// (z. B. "fuhr" bei fahren, "brach" bei bringen) — bei trennbaren Verben
+    /// ohne Präfix, das kommt über `separablePrefix` dazu. Der Konjugator
+    /// leitet daraus alle sechs Formen ab (Ablaut-Endungen bei starken,
+    /// te-Endungen bei gemischten Verben).
+    let praeteritumStem: String?
     /// Imperativ [du, ihr, Sie], falls unregelmäßig (sei!, iss!).
     let imperative: [String]?
+    /// Sechs Konjunktiv-II-Formen (Tabellen-Override) — für sein/haben/
+    /// werden/wissen/Modalverben und einige sehr häufige starke Verben.
+    /// Fehlt der Override, wird die würde-Form (würde + Infinitiv) gebildet.
+    let konjunktivII: [String]?
 }
 
 struct GermanVerbsFile: Codable {

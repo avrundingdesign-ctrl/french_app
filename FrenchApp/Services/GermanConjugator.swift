@@ -14,7 +14,9 @@ struct GermanConjugator {
         case praesens
         case perfekt
         case praeteritum
+        case plusquamperfekt
         case futur
+        case konjunktiv2
         case imperativ
 
         var id: String { rawValue }
@@ -24,7 +26,9 @@ struct GermanConjugator {
             case .praesens: return String(localized: "Präsens")
             case .perfekt: return String(localized: "Perfekt")
             case .praeteritum: return String(localized: "Präteritum")
+            case .plusquamperfekt: return String(localized: "Plusquamperfekt")
             case .futur: return String(localized: "Futur")
+            case .konjunktiv2: return String(localized: "Konjunktiv II")
             case .imperativ: return String(localized: "Imperativ")
             }
         }
@@ -76,15 +80,35 @@ struct GermanConjugator {
             if let reflexive { return "\(aux) \(reflexive) \(participle)" }
             return "\(aux) \(participle)"
         case .praeteritum:
-            guard let forms = verb.praeteritum, forms.count == 6 else { return nil }
+            guard let forms = praeteritumForms(verb) else { return nil }
             let withReflexive = reflexive.map { "\(forms[person]) \($0)" } ?? forms[person]
             return withPrefix(withReflexive, verb: verb)
+        case .plusquamperfekt:
+            // hatte gearbeitet · war aufgestanden · hatte mich gewaschen
+            guard let participle = participle(of: verb),
+                  let aux = auxiliaryPraeteritumForm(of: verb, person: person)
+            else { return nil }
+            if let reflexive { return "\(aux) \(reflexive) \(participle)" }
+            return "\(aux) \(participle)"
         case .futur:
             // werde arbeiten · werde mich waschen · werde aufstehen
             guard let werden = werdenForm(person: person) else { return nil }
             let infinitive = bareInfinitive(verb)
             if let reflexive { return "\(werden) \(reflexive) \(infinitive)" }
             return "\(werden) \(infinitive)"
+        case .konjunktiv2:
+            if let table = verb.konjunktivII, table.count == 6 {
+                let withReflexive = reflexive.map { "\(table[person]) \($0)" } ?? table[person]
+                return withPrefix(withReflexive, verb: verb)
+            }
+            // Modalverben bilden nie die würde-Form ("würde möchten" wäre falsch) —
+            // ohne eigene Tabelle gibt es für sie kein Konjunktiv II.
+            guard verb.type != "modal" else { return nil }
+            // würde arbeiten · würde mich waschen · würde aufstehen
+            guard let wuerde = byInfinitive["werden"]?.konjunktivII, wuerde.count == 6 else { return nil }
+            let infinitive = bareInfinitive(verb)
+            if let reflexive { return "\(wuerde[person]) \(reflexive) \(infinitive)" }
+            return "\(wuerde[person]) \(infinitive)"
         case .imperativ:
             guard Self.imperativePersons.contains(person),
                   let finite = imperativeFinite(verb, person: person)
@@ -242,6 +266,49 @@ struct GermanConjugator {
     private func auxiliaryForm(of verb: GermanVerbEntry, person: Int) -> String? {
         let auxInfinitive = verb.auxiliary ?? "haben"
         guard let aux = byInfinitive[auxInfinitive], let forms = aux.present, forms.count == 6 else {
+            return nil
+        }
+        return forms[person]
+    }
+
+    // MARK: - Präteritum
+
+    /// Sechs Präteritumformen, gleich welche Verbklasse: Tabellen-Override
+    /// (irregulär/Modal) > Ablaut-Stamm (stark/gemischt) > Regel aus dem
+    /// Infinitivstamm (schwach).
+    private func praeteritumForms(_ verb: GermanVerbEntry) -> [String]? {
+        if let table = verb.praeteritum, table.count == 6 { return table }
+        if let stem = verb.praeteritumStem {
+            switch verb.type {
+            case "strong": return strongPraeteritumForms(stem: stem)
+            case "mixed": return weakPraeteritumForms(stem: stem)
+            default: return nil
+            }
+        }
+        guard verb.type == "weak" else { return nil }
+        let base = baseInfinitive(verb)
+        return weakPraeteritumForms(stem: stem(ofBase: base))
+    }
+
+    /// Starke Endungen: ich/er ohne Endung, du -st/-est, wir/sie -en,
+    /// ihr -t/-et — dieselben Kontraktions-/Epenthese-Regeln wie im Präsens
+    /// (z. B. "fandest" bei d-Stämmen, "last" bei s-Stämmen).
+    private func strongPraeteritumForms(stem: String) -> [String] {
+        let du = contractsS(stem) ? stem + "t" : stem + (needsEpenthesis(stem) ? "est" : "st")
+        let ihr = needsEpenthesis(stem) ? stem + "et" : stem + "t"
+        return [stem, du, stem, stem + "en", ihr, stem + "en"]
+    }
+
+    /// Schwache Endungen -te/-test/-te/-ten/-tet/-ten, mit Epenthese-e bei
+    /// Stämmen auf t/d bzw. Nasal nach Konsonant (arbeitete, öffnete).
+    private func weakPraeteritumForms(stem: String) -> [String] {
+        let core = stem + (needsEpenthesis(stem) ? "e" : "")
+        return [core + "te", core + "test", core + "te", core + "ten", core + "tet", core + "ten"]
+    }
+
+    private func auxiliaryPraeteritumForm(of verb: GermanVerbEntry, person: Int) -> String? {
+        let auxInfinitive = verb.auxiliary ?? "haben"
+        guard let aux = byInfinitive[auxInfinitive], let forms = praeteritumForms(aux) else {
             return nil
         }
         return forms[person]

@@ -37,6 +37,28 @@ final class GermanConjugatorTests: XCTestCase {
         }
     }
 
+    func testAllVerbsExceptMoechtenProduceSixPraeteritumForms() throws {
+        for entry in conjugator.verbs where entry.infinitive != "möchten" {
+            for person in 0...5 {
+                XCTAssertNotNil(
+                    conjugator.form(of: entry, tense: .praeteritum, person: person),
+                    "\(entry.infinitive): Präteritum P\(person) fehlt"
+                )
+            }
+        }
+    }
+
+    func testAllVerbsProduceSixKonjunktiv2Forms() throws {
+        for entry in conjugator.verbs where entry.infinitive != "möchten" {
+            for person in 0...5 {
+                XCTAssertNotNil(
+                    conjugator.form(of: entry, tense: .konjunktiv2, person: person),
+                    "\(entry.infinitive): Konjunktiv II P\(person) fehlt"
+                )
+            }
+        }
+    }
+
     func testStrongAndMixedVerbsAlwaysHaveExplicitParticiple() throws {
         for entry in conjugator.verbs where ["strong", "mixed"].contains(entry.type) {
             XCTAssertNotNil(entry.participle, "\(entry.infinitive): starkes/gemischtes Verb ohne Partizip")
@@ -140,7 +162,7 @@ final class GermanConjugatorTests: XCTestCase {
         XCTAssertEqual(try form("aufräumen", .perfekt, 1), "hast aufgeräumt")
     }
 
-    // MARK: - Präteritum (nur Tabellenverben)
+    // MARK: - Präteritum (Phase 5b: alle Verbklassen)
 
     func testPraeteritumForTableVerbs() throws {
         XCTAssertEqual(try form("sein", .praeteritum, 0), "war")
@@ -149,9 +171,73 @@ final class GermanConjugatorTests: XCTestCase {
         XCTAssertEqual(try form("müssen", .praeteritum, 3), "mussten")
     }
 
-    func testNoPraeteritumOutsideTheTable() throws {
-        XCTAssertNil(conjugator.form(of: try verb("machen"), tense: .praeteritum, person: 0))
-        XCTAssertNil(conjugator.form(of: try verb("fahren"), tense: .praeteritum, person: 2))
+    func testWeakPraeteritumIsRuleGenerated() throws {
+        XCTAssertEqual(try form("machen", .praeteritum, 0), "machte")
+        XCTAssertEqual(try form("machen", .praeteritum, 1), "machtest")
+        XCTAssertEqual(try form("machen", .praeteritum, 3), "machten")
+        XCTAssertEqual(try form("arbeiten", .praeteritum, 0), "arbeitete", "Epenthese-e wie im Präsens")
+        XCTAssertEqual(try form("arbeiten", .praeteritum, 1), "arbeitetest")
+        XCTAssertEqual(try form("reisen", .praeteritum, 0), "reiste")
+    }
+
+    func testStrongPraeteritumFromStem() throws {
+        XCTAssertEqual(try form("fahren", .praeteritum, 0), "fuhr")
+        XCTAssertEqual(try form("fahren", .praeteritum, 1), "fuhrst")
+        XCTAssertEqual(try form("fahren", .praeteritum, 3), "fuhren")
+        XCTAssertEqual(try form("essen", .praeteritum, 1), "aßt", "s-Kontraktion wie im Präsens")
+        XCTAssertEqual(try form("finden", .praeteritum, 1), "fandest", "Epenthese bei d-Stamm")
+        XCTAssertEqual(try form("finden", .praeteritum, 4), "fandet")
+        XCTAssertEqual(try form("lesen", .praeteritum, 1), "last")
+    }
+
+    func testSeparableStrongPraeteritumSplits() throws {
+        XCTAssertEqual(try form("aufstehen", .praeteritum, 0), "stand auf")
+        XCTAssertEqual(try form("ankommen", .praeteritum, 2), "kam an")
+        XCTAssertEqual(try form("sich anziehen", .praeteritum, 0), "zog mich an")
+    }
+
+    func testMixedPraeteritumFromStem() throws {
+        XCTAssertEqual(try form("bringen", .praeteritum, 0), "brachte")
+        XCTAssertEqual(try form("kennen", .praeteritum, 1), "kanntest")
+        XCTAssertEqual(try form("mitbringen", .praeteritum, 3), "brachten mit")
+    }
+
+    func testInseparablePrefixPraeteritumIsFullForm() throws {
+        XCTAssertEqual(try form("verstehen", .praeteritum, 0), "verstand")
+        XCTAssertEqual(try form("bekommen", .praeteritum, 2), "bekam")
+        XCTAssertEqual(try form("gefallen", .praeteritum, 2), "gefiel")
+    }
+
+    // MARK: - Plusquamperfekt
+
+    func testPlusquamperfektWithHaben() throws {
+        XCTAssertEqual(try form("machen", .plusquamperfekt, 0), "hatte gemacht")
+        XCTAssertEqual(try form("essen", .plusquamperfekt, 3), "hatten gegessen")
+    }
+
+    func testPlusquamperfektWithSein() throws {
+        XCTAssertEqual(try form("aufstehen", .plusquamperfekt, 0), "war aufgestanden")
+        XCTAssertEqual(try form("kommen", .plusquamperfekt, 2), "war gekommen")
+    }
+
+    func testPlusquamperfektReflexive() throws {
+        XCTAssertEqual(try form("sich waschen", .plusquamperfekt, 0), "hatte mich gewaschen")
+    }
+
+    // MARK: - Konjunktiv II
+
+    func testKonjunktiv2FromTable() throws {
+        XCTAssertEqual(try form("sein", .konjunktiv2, 0), "wäre")
+        XCTAssertEqual(try form("haben", .konjunktiv2, 1), "hättest")
+        XCTAssertEqual(try form("können", .konjunktiv2, 0), "könnte")
+        XCTAssertEqual(try form("wollen", .konjunktiv2, 0), "wollte", "Keine Umlautung bei wollen/sollen")
+        XCTAssertEqual(try form("kommen", .konjunktiv2, 0), "käme")
+    }
+
+    func testKonjunktiv2FallsBackToWuerdeForm() throws {
+        XCTAssertEqual(try form("machen", .konjunktiv2, 0), "würde machen")
+        XCTAssertEqual(try form("aufstehen", .konjunktiv2, 2), "würde aufstehen", "Trennbares Verb bleibt im Infinitiv ganz")
+        XCTAssertEqual(try form("sich waschen", .konjunktiv2, 0), "würde mich waschen")
     }
 
     // MARK: - Imperativ
@@ -244,7 +330,9 @@ final class GermanConjugatorTests: XCTestCase {
         XCTAssertTrue(tenses.contains(.praesens))
         XCTAssertTrue(tenses.contains(.perfekt))
         XCTAssertTrue(tenses.contains(.imperativ))
-        XCTAssertFalse(tenses.contains(.praeteritum), "machen hat keine A1-Präteritumtabelle")
+        XCTAssertTrue(tenses.contains(.praeteritum), "schwache Verben bilden das Präteritum regelbasiert (Phase 5b)")
+        XCTAssertTrue(tenses.contains(.plusquamperfekt))
+        XCTAssertTrue(tenses.contains(.konjunktiv2), "ohne Tabelle greift die würde-Form")
 
         let imperativeTable = conjugator.table(for: machen, tense: .imperativ)
         XCTAssertEqual(imperativeTable.count, 3)
