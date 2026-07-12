@@ -24,7 +24,10 @@ VALID_TENSES = {
 }
 VALID_LEVELS = {"A1", "A2", "B1", "B2", "C1"}
 # Deutsch-Kurs (Gegenrichtung): eigene Tempora des GermanConjugator.
-VALID_TENSES_DE = {"praesens", "perfekt", "praeteritum", "futur", "imperativ"}
+VALID_TENSES_DE = {
+    "praesens", "perfekt", "praeteritum", "plusquamperfekt", "futur",
+    "konjunktiv2", "imperativ",
+}
 VALID_GERMAN_VERB_TYPES = {"weak", "strong", "mixed", "modal", "irregular"}
 INSEPARABLE_PREFIXES = ("be", "ge", "er", "ver", "zer", "ent", "emp", "miss")
 EXAM_SECTION_KINDS = ["listening", "reading", "language", "writing"]
@@ -92,8 +95,15 @@ def check_spec_de(ex, where, verbs_de, errors):
                 errors.append(f"{where}: {ex['verb']} hat keinen Imperativ")
         elif not 0 <= person <= 5:
             errors.append(f"{where}: person fehlt/ungültig")
-        if tense == "praeteritum" and not verb.get("praeteritum"):
-            errors.append(f"{where}: {ex['verb']} hat keine Präteritum-Tabelle (A1: nur sein/haben/werden/Modalverben)")
+        has_praeteritum = bool(
+            verb.get("praeteritum") or verb.get("praeteritumStem") or verb["type"] == "weak"
+        )
+        if tense in ("praeteritum", "plusquamperfekt") and not has_praeteritum:
+            errors.append(f"{where}: {ex['verb']} hat kein Präteritum (Tabelle/Stamm/schwache Regel)")
+        if tense == "plusquamperfekt" and not verb.get("participle") and verb["type"] != "weak":
+            errors.append(f"{where}: {ex['verb']} hat kein Partizip für das Plusquamperfekt")
+        if tense == "konjunktiv2" and not verb.get("konjunktivII") and verb["type"] == "modal":
+            errors.append(f"{where}: {ex['verb']} (Modalverb) hat kein Konjunktiv-II-Override — würde-Form ist hier falsch")
         if tense == "perfekt" and verb["type"] != "weak" and not verb.get("participle"):
             errors.append(f"{where}: {ex['verb']} hat kein Partizip für das Perfekt")
     elif t == "cloze":
@@ -130,7 +140,7 @@ def validate_german_course(vocab, errors, warnings):
             errors.append(f"verbs_de {name}: starkes/gemischtes Verb ohne Partizip")
         if verb["type"] == "irregular" and not verb.get("present"):
             errors.append(f"verbs_de {name}: unregelmäßig ohne Präsenstabelle")
-        for key in ("present", "praeteritum"):
+        for key in ("present", "praeteritum", "konjunktivII"):
             if verb.get(key) and len(verb[key]) != 6:
                 errors.append(f"verbs_de {name}: {key} braucht 6 Formen")
         if verb.get("imperative") and len(verb["imperative"]) != 3:

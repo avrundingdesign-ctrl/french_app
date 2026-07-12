@@ -939,6 +939,395 @@
         }
       ],
       "typicalMistake": "man (minuscule, un n) = « on » ; Mann (majuscule, deux n) = « homme ». « Man isst » (on mange) ≠ « Mann isst » (un homme mange)."
+    },
+    {
+      "id": "de_g_adjektiv_bestimmt",
+      "title": "L'adjectif épithète après der/die/das (déclinaison faible)",
+      "level": "B1",
+      "explanation": "Après un article défini (der/die/das) ou un déterminant similaire (dieser, jeder…), l'adjectif épithète prend une terminaison **faible** : **-e** au nominatif singulier (les trois genres) et à l'accusatif féminin/neutre ; **-en** partout ailleurs (accusatif masculin, datif, génitif, et tout le pluriel).\n\nNominatif : der neu**e** Mann, die neu**e** Frau, das neu**e** Auto, die neu**en** Leute.\nAccusatif : den neu**en** Mann, die neu**e** Frau, das neu**e** Auto, die neu**en** Leute.",
+      "examples": [
+        {
+          "de": "Der neue Kollege ist sehr nett.",
+          "fr": "Le nouveau collègue est très sympa."
+        },
+        {
+          "de": "Ich mag die alte Stadt.",
+          "fr": "J'aime la vieille ville."
+        },
+        {
+          "de": "Kennst du den kleinen Laden hier?",
+          "fr": "Tu connais la petite boutique ici ?"
+        }
+      ],
+      "typicalMistake": "Après un article, l'adjectif a **toujours** une terminaison : pas de « der neu Mann », mais « der neu**e** Mann »."
+    },
+    {
+      "id": "de_g_adjektiv_unbestimmt",
+      "title": "L'adjectif après ein/eine (déclinaison mixte)",
+      "level": "B1",
+      "explanation": "Après ein/eine/kein/mein… (article indéfini), l'adjectif prend une terminaison **forte** uniquement là où l'article lui-même n'indique pas le genre (masculin et neutre au nominatif/accusatif neutre) ; partout ailleurs, terminaison faible **-en/-e** comme avec der/die/das.\n\nNominatif : ein neu**er** Mann (l'article « ein » ne montre pas le genre → l'adjectif le fait), eine neu**e** Frau, ein neu**es** Auto.\nAccusatif : einen neu**en** Mann, eine neu**e** Frau, ein neu**es** Auto.",
+      "examples": [
+        {
+          "de": "Das ist ein guter Freund von mir.",
+          "fr": "C'est un bon ami à moi."
+        },
+        {
+          "de": "Sie hat eine neue Wohnung gefunden.",
+          "fr": "Elle a trouvé un nouvel appartement."
+        },
+        {
+          "de": "Ich brauche ein größeres Zimmer.",
+          "fr": "J'ai besoin d'une chambre plus grande."
+        }
+      ],
+      "typicalMistake": "« ein » ne montre pas toujours le genre : au masculin nominatif, il faut « ein neu**er** Mann » (pas « ein neue Mann ») — c'est l'adjectif qui porte l'information."
+    },
+    {
+      "id": "de_g_adjektiv_ohne_artikel",
+      "title": "L'adjectif sans article (déclinaison forte)",
+      "level": "B1",
+      "explanation": "Sans aucun article (quantités indéfinies, pluriel sans déterminant), l'adjectif prend les terminaisons **fortes** — celles que l'article défini aurait eues : der → -er, die → -e, das → -es, pluriel → -e.\n\n« guter Wein » (du bon vin), « frische Milch », « kaltes Wasser », « kleine Kinder ».",
+      "examples": [
+        {
+          "de": "Ich trinke gern kalten Kaffee.",
+          "fr": "J'aime bien boire du café froid."
+        },
+        {
+          "de": "Frische Luft tut gut.",
+          "fr": "L'air frais fait du bien."
+        },
+        {
+          "de": "Kleine Kinder brauchen viel Schlaf.",
+          "fr": "Les petits enfants ont besoin de beaucoup de sommeil."
+        }
+      ],
+      "typicalMistake": "Sans article, l'adjectif porte seul l'information de genre/cas — il ne peut donc jamais rester sans terminaison."
+    },
+    {
+      "id": "de_g_genitiv",
+      "title": "Le génitif",
+      "level": "B1",
+      "explanation": "Le génitif exprime la possession (« wessen? » = à qui ?). Masculin/neutre singulier : l'article devient **des** et le nom prend **-s** ou **-es**. Féminin/pluriel : l'article devient **der**, le nom ne change pas.\n\ndes Mann**es**, des Kind**es**, der Frau, der Kinder.\n\nÀ l'oral, on remplace souvent le génitif par **von** + datif (« von dem Mann »), mais à l'écrit et à l'examen, le génitif reste attendu.",
+      "examples": [
+        {
+          "de": "Das Auto des Lehrers ist neu.",
+          "fr": "La voiture du professeur est neuve."
+        },
+        {
+          "de": "Die Farbe der Wände gefällt mir.",
+          "fr": "La couleur des murs me plaît."
+        },
+        {
+          "de": "Das ist das Zimmer meines Bruders.",
+          "fr": "C'est la chambre de mon frère."
+        }
+      ],
+      "typicalMistake": "Ne pas oublier le -s/-es sur le **nom** lui-même, pas seulement sur l'article : « das Auto des Mann**es** », pas « des Mann »."
+    },
+    {
+      "id": "de_g_genitiv_praepositionen",
+      "title": "Les prépositions + génitif : wegen, trotz, während, statt",
+      "level": "B1",
+      "explanation": "Certaines prépositions exigent le génitif : **wegen** (à cause de), **trotz** (malgré), **während** (pendant), **(an)statt** (au lieu de).\n\nwegen des Regens (à cause de la pluie), trotz der Kälte (malgré le froid), während des Urlaubs (pendant les vacances).\n\nÀ l'oral, wegen/trotz sont très souvent suivis du **datif** — mais à l'écrit, le génitif reste la norme.",
+      "examples": [
+        {
+          "de": "Wegen des Regens bleiben wir zu Hause.",
+          "fr": "À cause de la pluie, nous restons à la maison."
+        },
+        {
+          "de": "Trotz der Kälte gehen sie schwimmen.",
+          "fr": "Malgré le froid, ils vont nager."
+        },
+        {
+          "de": "Während des Essens hat er nichts gesagt.",
+          "fr": "Pendant le repas, il n'a rien dit."
+        }
+      ],
+      "typicalMistake": "wegen/trotz + génitif à l'écrit : « wegen des Regens », pas « wegen der Regen »."
+    },
+    {
+      "id": "de_g_passiv_praesens",
+      "title": "Le passif présent : werden + participe II",
+      "level": "B1",
+      "explanation": "Le passif (Vorgangspassiv) se forme avec **werden** conjugué + **participe II** à la fin : « Das Auto **wird** repariert » (la voiture est réparée / en train d'être réparée).\n\nL'agent, si mentionné : **von** + datif pour une personne (von meinem Kollegen), **durch** + accusatif pour une cause/un moyen (durch den Sturm).",
+      "examples": [
+        {
+          "de": "Das Brot wird jeden Tag frisch gebacken.",
+          "fr": "Le pain est cuit frais chaque jour."
+        },
+        {
+          "de": "Die E-Mail wird von der Chefin gelesen.",
+          "fr": "L'e-mail est lu par la cheffe."
+        },
+        {
+          "de": "Das Fenster wird durch den Sturm zerstört.",
+          "fr": "La fenêtre est détruite par la tempête."
+        }
+      ],
+      "typicalMistake": "Ne pas confondre avec **sein** + participe (Zustandspassiv = état/résultat) : « Das Fenster **ist** repariert » (c'est réparé, résultat) ≠ « **wird** repariert » (en cours de réparation).",
+      "verbTables": [
+        "werden"
+      ]
+    },
+    {
+      "id": "de_g_passiv_praeteritum",
+      "title": "Le passif au prétérit : wurde + participe II",
+      "level": "B1",
+      "explanation": "Au prétérit, le passif utilise **wurde** (au lieu de wird) + participe II : ich wurde, du wurdest, er wurde, wir wurden, ihr wurdet, sie wurden.\n\n« Das Haus **wurde** 1990 **gebaut** » (la maison a été construite en 1990) — le prétérit est la forme normale du passif dans un récit ou un texte écrit.",
+      "examples": [
+        {
+          "de": "Das Haus wurde 1990 gebaut.",
+          "fr": "La maison a été construite en 1990."
+        },
+        {
+          "de": "Die Fenster wurden letzte Woche geputzt.",
+          "fr": "Les fenêtres ont été nettoyées la semaine dernière."
+        },
+        {
+          "de": "Ich wurde von niemandem informiert.",
+          "fr": "Je n'ai été informé par personne."
+        }
+      ],
+      "typicalMistake": "Le passif au prétérit utilise **wurde**, pas « wird » au passé composé avec « ist » — jamais « ist geworden repariert »."
+    },
+    {
+      "id": "de_g_passiv_modalverben",
+      "title": "Le passif avec verbe modal : muss gemacht werden",
+      "level": "B1",
+      "explanation": "Avec un verbe modal, l'ordre est : modal conjugué … participe II … **werden** (infinitif) tout à la fin de la phrase.\n\n« Die Aufgabe **muss** heute **gemacht werden** » (le devoir doit être fait aujourd'hui) : le modal porte la conjugaison, « werden » reste à l'infinitif après le participe.",
+      "examples": [
+        {
+          "de": "Die Aufgabe muss heute gemacht werden.",
+          "fr": "Le devoir doit être fait aujourd'hui."
+        },
+        {
+          "de": "Das Zimmer kann nicht geändert werden.",
+          "fr": "La chambre ne peut pas être changée."
+        },
+        {
+          "de": "Der Vertrag muss unterschrieben werden.",
+          "fr": "Le contrat doit être signé."
+        }
+      ],
+      "typicalMistake": "Ne pas oublier « werden » tout à la fin — « Die Aufgabe muss gemacht » est une phrase incomplète."
+    },
+    {
+      "id": "de_g_konjunktiv2_wuerde",
+      "title": "Le conditionnel avec würde + infinitif",
+      "level": "B1",
+      "explanation": "Pour la plupart des verbes, le Konjunktiv II se forme avec **würde** conjugué + **infinitif** à la fin — utilisé pour les souhaits, demandes polies et hypothèses.\n\n« Ich **würde** gern nach Berlin **fahren** » (j'aimerais bien aller à Berlin).\n\nwürde : ich würde, du würdest, er würde, wir würden, ihr würdet, sie würden.",
+      "examples": [
+        {
+          "de": "Ich würde gern nach Berlin fahren.",
+          "fr": "J'aimerais bien aller à Berlin."
+        },
+        {
+          "de": "Würdest du mir helfen?",
+          "fr": "Tu pourrais m'aider ?"
+        },
+        {
+          "de": "Das würde ich nicht machen.",
+          "fr": "Je ne ferais pas ça."
+        }
+      ],
+      "typicalMistake": "würde + infinitif fonctionne pour presque tous les verbes — sauf sein, haben, werden, wissen et les modaux, qui ont leur propre forme courte (règle suivante).",
+      "verbTables": [
+        "werden"
+      ]
+    },
+    {
+      "id": "de_g_konjunktiv2_kurzform",
+      "title": "Les formes courtes : wäre, hätte, könnte…",
+      "level": "B1",
+      "explanation": "sein, haben, werden, wissen et les verbes modaux ont leur propre forme courte de Konjunktiv II, préférée à « würde + infinitif » : **wäre** (sein), **hätte** (haben), **wüsste** (wissen), **könnte**, **müsste**, **dürfte**, **möchte**, **wollte**, **sollte**.\n\n« Ich **hätte** gern einen Kaffee » (je voudrais bien un café) — pas « ich würde haben ».",
+      "examples": [
+        {
+          "de": "Ich wäre gern dabei.",
+          "fr": "J'aimerais bien être là."
+        },
+        {
+          "de": "Hättest du kurz Zeit für mich?",
+          "fr": "Tu aurais un moment pour moi ?"
+        },
+        {
+          "de": "Ich könnte dir helfen.",
+          "fr": "Je pourrais t'aider."
+        }
+      ],
+      "typicalMistake": "« würde sein »/« würde haben » sonnent faux pour un natif — dites toujours **wäre**/**hätte**.",
+      "verbTables": [
+        "sein",
+        "haben",
+        "können"
+      ]
+    },
+    {
+      "id": "de_g_konjunktiv2_bedingung",
+      "title": "Les phrases conditionnelles irréelles : wenn... , würde/wäre...",
+      "level": "B1",
+      "explanation": "Pour une condition irréelle (peu probable ou fausse), les **deux** propositions sont au Konjunktiv II :\n\n« **Wenn** ich Zeit **hätte**, **würde** ich mitkommen » (si j'avais le temps, je viendrais).\n\nOn peut aussi supprimer « wenn » et inverser : « **Hätte** ich Zeit, würde ich mitkommen. »",
+      "examples": [
+        {
+          "de": "Wenn ich Zeit hätte, würde ich mitkommen.",
+          "fr": "Si j'avais le temps, je viendrais."
+        },
+        {
+          "de": "Wenn ich du wäre, würde ich das nicht sagen.",
+          "fr": "Si j'étais toi, je ne dirais pas ça."
+        },
+        {
+          "de": "Hätte ich das gewusst, wäre ich früher gekommen.",
+          "fr": "Si j'avais su ça, je serais venu plus tôt."
+        }
+      ],
+      "typicalMistake": "Les deux propositions sont au Konjunktiv II — pas seulement une : « Wenn ich Zeit **habe**, würde ich mitkommen » est incorrect ici (condition réelle, présent normal)."
+    },
+    {
+      "id": "de_g_plusquamperfekt",
+      "title": "Le plus-que-parfait : hatte/war + participe II",
+      "level": "B1",
+      "explanation": "Le Plusquamperfekt exprime l'antériorité — un passé avant un autre passé — surtout avec **nachdem** : hatte/war (au Präteritum) + participe II.\n\n« **Nachdem** er gegessen **hatte**, ging er ins Bett » (après avoir mangé, il est allé se coucher) : le nachdem-Satz est au Plusquamperfekt, la phrase principale au Präteritum.",
+      "examples": [
+        {
+          "de": "Nachdem er gegessen hatte, ging er ins Bett.",
+          "fr": "Après avoir mangé, il est allé se coucher."
+        },
+        {
+          "de": "Nachdem sie angekommen war, rief sie mich an.",
+          "fr": "Après être arrivée, elle m'a appelé."
+        },
+        {
+          "de": "Ich hatte den Film schon gesehen, bevor du kamst.",
+          "fr": "J'avais déjà vu le film avant que tu arrives."
+        }
+      ],
+      "typicalMistake": "Le nachdem-Satz demande un temps **différent** de la phrase principale : Plusquamperfekt puis Präteritum/Perfekt — jamais deux fois le même temps."
+    },
+    {
+      "id": "de_g_relativsatz_nom_akk",
+      "title": "Les relatives : der/die/das au nominatif et à l'accusatif",
+      "level": "B1",
+      "explanation": "Le pronom relatif s'accorde en genre/nombre avec le nom auquel il renvoie, mais son **cas** dépend de sa fonction dans la relative ; le verbe conjugué va à la **fin**.\n\nNominatif (sujet de la relative) : « Der Mann, **der** dort steht, ist mein Chef. »\nAccusatif (objet direct de la relative) : « Der Mann, **den** ich sehe, ist mein Chef. »",
+      "examples": [
+        {
+          "de": "Der Mann, der dort steht, ist mein Chef.",
+          "fr": "L'homme qui est debout là-bas est mon chef."
+        },
+        {
+          "de": "Die Frau, die ich kenne, wohnt hier.",
+          "fr": "La femme que je connais habite ici."
+        },
+        {
+          "de": "Das Buch, das ich lese, ist spannend.",
+          "fr": "Le livre que je lis est passionnant."
+        }
+      ],
+      "typicalMistake": "Le genre du pronom relatif vient du nom auquel il renvoie, pas de sa fonction : « die Frau, **den** ich kenne » est faux (Frau = féminin → die, pas den)."
+    },
+    {
+      "id": "de_g_relativsatz_dat_gen",
+      "title": "Les relatives au datif et au génitif : dem, deren, dessen",
+      "level": "B1",
+      "explanation": "Au datif : dem (masc./neutre), der (fém.), denen (pluriel). Au génitif : dessen (masc./neutre, « dont le/dont la … de lui »), deren (fém./pluriel, « dont le/la … d'elle/d'eux »).\n\n« Die Frau, **der** ich geholfen habe, … » (datif : à qui j'ai aidé).\n« Der Mann, **dessen** Auto kaputt ist, … » (génitif : dont la voiture).",
+      "examples": [
+        {
+          "de": "Die Frau, der ich geholfen habe, ist Ärztin.",
+          "fr": "La femme que j'ai aidée est médecin."
+        },
+        {
+          "de": "Der Mann, dessen Auto kaputt ist, wartet hier.",
+          "fr": "L'homme dont la voiture est en panne attend ici."
+        },
+        {
+          "de": "Das ist die Kollegin, deren Sohn Deutsch lernt.",
+          "fr": "C'est la collègue dont le fils apprend l'allemand."
+        }
+      ],
+      "typicalMistake": "dessen/deren ne s'accordent pas avec le mot qui suit (« Auto », « Sohn ») mais avec l'antécédent (« der Mann » → dessen, « die Kollegin » → deren)."
+    },
+    {
+      "id": "de_g_indirekte_fragen",
+      "title": "Les questions indirectes : ob et les mots interrogatifs",
+      "level": "B1",
+      "explanation": "Dans une question indirecte, le verbe va à la **fin** (ordre subordonnée). On utilise **ob** (« si ») quand il n'y a pas de mot interrogatif, sinon le mot interrogatif lui-même (wann, wo, warum…).\n\n« Ich weiß nicht, **ob** er kommt. » / « Ich weiß nicht, **wann** er kommt. »",
+      "examples": [
+        {
+          "de": "Ich weiß nicht, ob er kommt.",
+          "fr": "Je ne sais pas s'il vient."
+        },
+        {
+          "de": "Kannst du mir sagen, wo der Bahnhof ist?",
+          "fr": "Tu peux me dire où est la gare ?"
+        },
+        {
+          "de": "Ich frage mich, warum sie nichts gesagt hat.",
+          "fr": "Je me demande pourquoi elle n'a rien dit."
+        }
+      ],
+      "typicalMistake": "Après ob/le mot interrogatif, le verbe va à la fin : « Ich weiß nicht, ob **er kommt** », pas « ob kommt er »."
+    },
+    {
+      "id": "de_g_nebensatz_zeit_gegensatz",
+      "title": "obwohl, während, nachdem, bevor : d'autres subordonnées",
+      "level": "B1",
+      "explanation": "D'autres conjonctions qui envoient le verbe à la **fin** : **obwohl** (bien que), **während** (pendant que / alors que), **nachdem** (après que), **bevor** (avant que).\n\n« **Obwohl** es regnet, gehen wir spazieren » (bien qu'il pleuve, nous allons nous promener).",
+      "examples": [
+        {
+          "de": "Obwohl es regnet, gehen wir spazieren.",
+          "fr": "Bien qu'il pleuve, nous allons nous promener."
+        },
+        {
+          "de": "Während ich koche, räumt er auf.",
+          "fr": "Pendant que je cuisine, il range."
+        },
+        {
+          "de": "Bevor ich schlafen gehe, lese ich noch.",
+          "fr": "Avant d'aller dormir, je lis encore."
+        }
+      ],
+      "typicalMistake": "Le verbe va à la fin de la subordonnée, comme avec weil/wenn/dass : « obwohl es regnet », pas « obwohl regnet es »."
+    },
+    {
+      "id": "de_g_final_damit_umzu",
+      "title": "Le but : damit et um … zu",
+      "level": "B1",
+      "explanation": "**um … zu** + infinitif quand le sujet est **le même** dans les deux propositions : « Ich lerne Deutsch, **um** in Berlin **zu** arbeiten » (même sujet : ich).\n\n**damit** + subordonnée conjuguée (verbe à la fin) quand les sujets sont **différents** : « Ich erkläre es langsam, **damit** du es verstehst » (sujets différents : ich / du).",
+      "examples": [
+        {
+          "de": "Ich lerne Deutsch, um in Berlin zu arbeiten.",
+          "fr": "J'apprends l'allemand pour travailler à Berlin."
+        },
+        {
+          "de": "Ich erkläre es langsam, damit du es verstehst.",
+          "fr": "J'explique lentement pour que tu comprennes."
+        },
+        {
+          "de": "Sie ruft an, um sich zu entschuldigen.",
+          "fr": "Elle appelle pour s'excuser."
+        }
+      ],
+      "typicalMistake": "Si les sujets sont différents, « um zu » est impossible — il faut **damit** : « Ich erkläre es, damit du es verstehst », pas « um du es zu verstehen »."
+    },
+    {
+      "id": "de_g_doppelkonnektoren",
+      "title": "sowohl...als auch, entweder...oder, weder...noch, zwar...aber",
+      "level": "B1",
+      "explanation": "Ces couples de connecteurs relient deux éléments : **sowohl … als auch** (aussi bien … que), **entweder … oder** (soit … soit), **weder … noch** (ni … ni), **zwar … aber** (certes … mais).\n\n« Sie spricht **sowohl** Deutsch **als auch** Französisch. » (Elle parle aussi bien allemand que français.)",
+      "examples": [
+        {
+          "de": "Sie spricht sowohl Deutsch als auch Französisch.",
+          "fr": "Elle parle aussi bien allemand que français."
+        },
+        {
+          "de": "Entweder wir bleiben, oder wir gehen jetzt.",
+          "fr": "Soit nous restons, soit nous partons maintenant."
+        },
+        {
+          "de": "Er hat weder Zeit noch Lust.",
+          "fr": "Il n'a ni le temps ni l'envie."
+        }
+      ],
+      "typicalMistake": "Avec « weder … noch », pas de négation supplémentaire avec nicht/kein — « weder Zeit noch Lust » suffit, « weder keine Zeit noch keine Lust » est incorrect (double négation)."
     }
   ]
 }

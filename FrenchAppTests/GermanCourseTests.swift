@@ -57,13 +57,14 @@ final class GermanCourseTests: XCTestCase {
 
     // MARK: - Kursstruktur
 
-    func testGermanCourseHas48LessonsAcrossA1AndA2() {
-        XCTAssertEqual(german.orderedLessons.count, 48)
-        XCTAssertEqual(german.levels, [.a1, .a2])
+    func testGermanCourseHas72LessonsAcrossA1A2AndB1() {
+        XCTAssertEqual(german.orderedLessons.count, 72)
+        XCTAssertEqual(german.levels, [.a1, .a2, .b1])
         XCTAssertTrue(german.orderedLessons.allSatisfy { $0.id.hasPrefix("de_") })
-        // A1 kommt im Pfad vor A2.
+        // A1 kommt im Pfad vor A2, A2 vor B1.
         XCTAssertTrue(german.orderedLessons.prefix(24).allSatisfy { $0.id.hasPrefix("de_a1_") })
-        XCTAssertTrue(german.orderedLessons.suffix(24).allSatisfy { $0.id.hasPrefix("de_a2_") })
+        XCTAssertTrue(german.orderedLessons[24..<48].allSatisfy { $0.id.hasPrefix("de_a2_") })
+        XCTAssertTrue(german.orderedLessons.suffix(24).allSatisfy { $0.id.hasPrefix("de_b1_") })
         // Kein Überschneiden mit den Lektions-IDs des Französisch-Kurses.
         let frenchIDs = Set(french.orderedLessons.map(\.id))
         XCTAssertTrue(frenchIDs.isDisjoint(with: german.orderedLessons.map(\.id)))
