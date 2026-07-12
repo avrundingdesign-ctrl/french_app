@@ -15,9 +15,13 @@ struct ProgressSnapshot {
         completedLessonIDs.contains(lessonID)
     }
 
+    /// Dev-Flag für Reviews/Screenshots: hebt die sequenzielle Freischaltung auf.
+    static let unlockAllOverride = ProcessInfo.processInfo.arguments.contains("--unlock-all")
+
     /// Sequenzielle Freischaltung (Spec §7): offen, wenn erste Lektion des Kurses
     /// oder die vorherige Lektion abgeschlossen ist. Abgeschlossene bleiben offen.
     func isUnlocked(_ lesson: CourseLesson) -> Bool {
+        if Self.unlockAllOverride { return true }
         if isCompleted(lesson.id) { return true }
         guard let previous = content.lesson(before: lesson) else { return true }
         return isCompleted(previous.id)
@@ -48,7 +52,8 @@ struct ProgressSnapshot {
 
     /// Grammatikregeln gelten als behandelt, sobald eine verknüpfte Lektion abgeschlossen ist.
     func isGrammarCovered(_ ruleID: String) -> Bool {
-        content.lessons(covering: ruleID).contains { isCompleted($0.id) }
+        if Self.unlockAllOverride { return true }
+        return content.lessons(covering: ruleID).contains { isCompleted($0.id) }
     }
 
     var coveredGrammarCount: Int {
