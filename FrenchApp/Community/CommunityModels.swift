@@ -109,9 +109,12 @@ struct TandemMatch: Identifiable, Equatable {
 }
 
 /// Chat-Nachricht. `language` ist die Sprache, in der der Absender
-/// geschrieben hat (immer seine Lernsprache) — die Gegenseite bekommt
-/// den Text on-device in ihre Lernsprache übersetzt.
-struct ChatMessage: Identifiable, Equatable {
+/// geschrieben hat (im Tandem immer seine Lernsprache) — die Gegenseite
+/// bekommt den Text on-device in ihre Lernsprache übersetzt.
+///
+/// `Codable`, weil der KI-Chat seinen Verlauf lokal als JSON ablegt
+/// (siehe `AIChatStore`); Tandem-Nachrichten leben weiter in CloudKit.
+struct ChatMessage: Identifiable, Equatable, Codable {
     var id: String
     var matchID: String
     var senderProfileID: String
@@ -134,5 +137,21 @@ enum ChatDisplay {
     /// Muttersprache (= Schreibsprache des Partners) in seine Lernsprache.
     static func translationDirection(for viewer: CommunityProfile) -> (source: TandemLanguage, target: TandemLanguage) {
         (viewer.nativeLanguage, viewer.learningLanguage)
+    }
+
+    /// Die jeweils *andere* Sprache einer Nachricht — Ziel beim Antippen.
+    ///
+    /// Damit gilt in beiden Chats dieselbe Regel: Tippen zeigt die Nachricht
+    /// in der anderen Sprache. Für Partner-Nachrichten (in meiner
+    /// Muttersprache) ist das meine Lernsprache; für alles in meiner
+    /// Lernsprache Geschriebene — eigene Nachrichten wie KI-Antworten —
+    /// meine Muttersprache.
+    static func translationTarget(
+        for message: ChatMessage,
+        viewer: CommunityProfile
+    ) -> TandemLanguage {
+        message.language == viewer.learningLanguage
+            ? viewer.nativeLanguage
+            : viewer.learningLanguage
     }
 }

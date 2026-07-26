@@ -128,6 +128,53 @@ final class CommunityTests: XCTestCase {
         XCTAssertFalse(flipped.isIncoming(for: me.id), "Angenommen = keine offene Anfrage mehr")
     }
 
+    /// Tippen zeigt eine Nachricht in der jeweils *anderen* Sprache — für
+    /// Partner-Nachrichten die Lernsprache, für alles selbst Geschriebene
+    /// (eigene Nachrichten wie KI-Antworten) die Muttersprache.
+    func testTranslationTargetCoversBothDirections() {
+        let me = CommunityProfile(
+            id: "me", displayName: "Ich", bio: "", hobbies: [],
+            nativeLanguage: .german, photoData: nil, createdAt: .now
+        )
+
+        func message(language: TandemLanguage, from senderID: String) -> ChatMessage {
+            ChatMessage(
+                id: UUID().uuidString, matchID: "m1", senderProfileID: senderID,
+                text: "…", language: language, sentAt: .now
+            )
+        }
+
+        // Partner schreibt Deutsch (seine Lernsprache) → Ziel ist mein Französisch.
+        let fromPartner = message(language: .german, from: "them")
+        XCTAssertEqual(ChatDisplay.translationTarget(for: fromPartner, viewer: me), .french)
+
+        // Ich schreibe Französisch (meine Lernsprache) → Ziel ist mein Deutsch.
+        let fromMe = message(language: .french, from: me.id)
+        XCTAssertEqual(ChatDisplay.translationTarget(for: fromMe, viewer: me), .german)
+
+        // KI schreibt Französisch → ebenfalls Ziel Deutsch.
+        let fromAI = message(language: .french, from: AIPartnerIdentity.profileID)
+        XCTAssertEqual(ChatDisplay.translationTarget(for: fromAI, viewer: me), .german)
+
+        // Und spiegelverkehrt für einen französischen Muttersprachler.
+        let partner = CommunityProfile(
+            id: "them", displayName: "Camille", bio: "", hobbies: [],
+            nativeLanguage: .french, photoData: nil, createdAt: .now
+        )
+        XCTAssertEqual(ChatDisplay.translationTarget(for: fromPartner, viewer: partner), .french)
+        XCTAssertEqual(ChatDisplay.translationTarget(for: fromMe, viewer: partner), .german)
+    }
+
+    func testChatMessageSurvivesJSONRoundTrip() throws {
+        let original = ChatMessage(
+            id: "m1", matchID: AIPartnerIdentity.matchID, senderProfileID: "me",
+            text: "Salut ! Ça va ?", language: .french, sentAt: .now
+        )
+        let data = try JSONEncoder().encode(original)
+        let restored = try JSONDecoder().decode(ChatMessage.self, from: data)
+        XCTAssertEqual(restored, original)
+    }
+
     func testLanguageHelpers() {
         XCTAssertEqual(TandemLanguage.german.other, .french)
         XCTAssertEqual(TandemLanguage.french.other, .german)

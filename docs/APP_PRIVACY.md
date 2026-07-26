@@ -43,9 +43,48 @@ und Nachrichten hängen am CloudKit-Nutzerkonto (iCloud), das ist die
 Definition von „linked" laut Apple-Doku, auch wenn wir die Apple-ID
 selbst nie sehen.
 
-**Dritte:** Keine — CloudKit ist Apples eigene Infrastruktur, kein
-Analytics-/Advertising-/Crash-SDK verbaut (siehe `grep` über
-`FrenchApp/` auf Analytics/Firebase/AdMob/Crashlytics/Sentry — leer).
+**Dritte:** Für den Tandem-Teil keine — CloudKit ist Apples eigene
+Infrastruktur, kein Analytics-/Advertising-/Crash-SDK verbaut (siehe `grep`
+über `FrenchApp/` auf Analytics/Firebase/AdMob/Crashlytics/Sentry — leer).
+**Ausnahme: der KI-Gesprächspartner**, siehe nächster Abschnitt.
+
+## KI-Gesprächspartner (Anthropic, opt-in)
+
+⚠️ **Erster echter Drittanbieter in der App.** Die Aussage „Dritte: Keine"
+gilt seit diesem Feature nicht mehr pauschal.
+
+Nur relevant, wenn der Nutzer den KI-Chat öffnet **und** einen eigenen
+Anthropic-API-Key hinterlegt (`AIChatSetupView`). Ohne Key wird nichts
+übertragen; ohne Öffnen des Chats entsteht keine Verbindung.
+
+| Apple-Kategorie | Datentyp | Verlinkt mit Identität? | Zweck | Tracking? |
+|---|---|---|---|---|
+| User Content | Other User Content (Chatnachrichten an die KI) | Nein | App-Funktionalität | Nein |
+
+**Empfänger:** Anthropic PBC, `api.anthropic.com`. Übertragen wird
+ausschließlich der Nachrichtentext des KI-Chats (plus die letzten 20
+Nachrichten als Gesprächskontext, `ClaudeAIPartnerService.historyLimit`) —
+**kein** Profilname, kein Foto, keine iCloud-ID, kein Lernfortschritt.
+Bei aktivem Key kann zusätzlich Text aus dem Tandem-Chat übertragen werden,
+wenn der Nutzer eine Nachricht antippt und die On-Device-Übersetzung
+(Apple Translation) nicht verfügbar ist — dann übernimmt die KI die
+Übersetzung.
+
+**Warum „Not Linked":** Die Anfragen laufen über den Key des Nutzers und
+tragen keine Kennung aus der App; die Verknüpfung besteht allenfalls
+zwischen Nutzer und seinem eigenen Anthropic-Konto, nicht durch uns.
+
+**Der API-Key** liegt ausschließlich im Geräte-Schlüsselbund
+(`KeychainAIKeyStore`, `kSecAttrAccessibleAfterFirstUnlock`) — nicht in
+iCloud, nicht in `UserDefaults`, nicht in unserem Code.
+
+**Noch zu erledigen vor Release:**
+- Datenschutzerklärung unter `trin.studio/datenschutz.html` um Anthropic
+  als Auftragsverarbeiter/Empfänger ergänzen.
+- Im App-Store-Connect-Fragebogen die Zeile oben mit aufnehmen.
+- Prüfen, ob ein eingebauter statt nutzereigener Key kommen soll — dann
+  ändert sich die Bewertung (dann verarbeiten *wir* die Daten, nicht der
+  Nutzer über seinen eigenen Zugang).
 
 ## Bei Einführung der Paywall (Phase 6, StoreKit 2)
 
@@ -67,3 +106,14 @@ Wortfilter (`CommunityModeration.swift`), keine unmoderierten Freitext-Profile
 ohne Report-Möglichkeit. Trotzdem im Formular ehrlich „Enthält
 nutzergenerierte Inhalte: Ja" ankreuzen — Apple entscheidet die Alterseinstufung
 daraus selbst.
+
+**KI-generierte Inhalte:** Der KI-Chat erzeugt Text, den wir nicht
+vorab kontrollieren. Apple verlangt dafür eine klare Kennzeichnung; die
+ist umgesetzt: Der Partner heißt überall sichtbar „… (KI)"
+(`AIPersona.displayName`), trägt ein Funkel-Symbol statt eines Fotos,
+und über dem Chat steht dauerhaft „Du chattest mit einer KI, nicht mit
+einem Menschen." Ausgehende Nachrichten laufen zusätzlich durch den
+bestehenden Wortfilter (`ContentFilter`); eingehende sind durch die
+Sicherheitsfilter des Modells abgedeckt (`stop_reason: "refusal"` wird
+behandelt). Statt „Melden" gibt es beim KI-Partner „Gespräch neu starten" —
+melden ergibt bei einem Bot keinen Sinn.

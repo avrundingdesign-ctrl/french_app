@@ -130,6 +130,7 @@ struct CommunityHomeView: View {
                         title: "Noch keine Vorschläge",
                         text: "Sobald sich \(profile.learningLanguage.label.dropLast(0))-Muttersprachler anmelden, erscheinen sie hier. Zieh zum Aktualisieren nach unten."
                     )
+                    aiFallbackCard
                 } else {
                     ForEach(candidates) { candidate in
                         candidateCard(candidate)
@@ -234,13 +235,17 @@ struct CommunityHomeView: View {
     private var chatList: some View {
         ScrollView {
             VStack(spacing: 12) {
+                // Dauerhaft oben: Der KI-Partner ist kein Notnagel, sondern
+                // eine gleichwertige Option neben echten Tandems.
+                aiPartnerRow
+
                 if loading {
                     ProgressView().padding(.top, 40)
                 } else if matches.isEmpty {
                     emptyState(
                         icon: "bubble.left.and.bubble.right",
-                        title: "Noch keine Chats",
-                        text: "Frage unter «Partner finden» ein Tandem an — angenommene Anfragen landen hier."
+                        title: "Noch keine Tandem-Chats",
+                        text: "Frage unter «Partner finden» ein Tandem an — angenommene Anfragen landen hier. Bis dahin ist der KI-Partner oben immer für dich da."
                     )
                 } else {
                     ForEach(sortedMatches) { match in
@@ -278,6 +283,8 @@ struct CommunityHomeView: View {
                     profile: profile,
                     partner: partner,
                     match: match,
+                    aiService: aiService,
+                    aiKeyStore: aiKeyStore,
                     onMatchEnded: { Task { await reload() } }
                 )
             } label: {
@@ -352,6 +359,91 @@ struct CommunityHomeView: View {
                 ? "Möchte dein Tandem-Partner werden"
                 : "Anfrage gesendet — wartet auf Antwort"
         }
+    }
+
+    // MARK: - KI-Partner
+
+    private var aiPersona: AIPersona {
+        AIPersona(language: profile.learningLanguage, level: .a1)
+    }
+
+    /// Im Demo-Modus antwortet der Mock ohne Netz und ohne Key — damit der
+    /// Flow für Screenshots und App Review vollständig durchspielbar ist.
+    private var aiService: AIPartnerService {
+        if isDemo { return MockAIPartnerService() }
+        return ClaudeAIPartnerService()
+    }
+
+    private var aiKeyStore: AIKeyStoring {
+        if isDemo { return InMemoryAIKeyStore(key: "demo") }
+        return KeychainAIKeyStore()
+    }
+
+    @ViewBuilder
+    private var aiChatDestination: some View {
+        AIChatView(profile: profile, isDemo: isDemo)
+    }
+
+    /// Angepinnte Zeile über den echten Tandems.
+    private var aiPartnerRow: some View {
+        NavigationLink {
+            aiChatDestination
+        } label: {
+            HStack(spacing: 12) {
+                ZStack {
+                    Circle().fill(Theme.accent.opacity(0.15))
+                    Image(systemName: "sparkles")
+                        .font(.system(size: 20, weight: .semibold))
+                        .foregroundStyle(Theme.accent)
+                }
+                .frame(width: 48, height: 48)
+
+                VStack(alignment: .leading, spacing: 2) {
+                    Text(aiPersona.displayName)
+                        .font(.body.weight(.semibold))
+                    Text("Immer verfügbar · \(profile.learningLanguage.label) üben")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                        .lineLimit(1)
+                }
+
+                Spacer()
+                Image(systemName: "chevron.right")
+                    .font(.caption)
+                    .foregroundStyle(.tertiary)
+            }
+            .padding(14)
+            .background(
+                Color(.secondarySystemGroupedBackground),
+                in: RoundedRectangle(cornerRadius: 16)
+            )
+        }
+        .buttonStyle(.plain)
+    }
+
+    /// Auffangkarte, wenn die Partnersuche nichts findet.
+    private var aiFallbackCard: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Label("Kein Partner in Sicht?", systemImage: "sparkles")
+                .font(.headline)
+            Text("Üb solange mit dem KI-Gesprächspartner — jederzeit verfügbar, antwortet sofort auf \(profile.learningLanguage.label).")
+                .font(.subheadline)
+                .foregroundStyle(.secondary)
+            NavigationLink {
+                aiChatDestination
+            } label: {
+                Text("Mit KI chatten")
+                    .font(.headline)
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 6)
+            }
+            .buttonStyle(.borderedProminent)
+        }
+        .padding(16)
+        .background(
+            Color(.secondarySystemGroupedBackground),
+            in: RoundedRectangle(cornerRadius: 16)
+        )
     }
 
     private func emptyState(icon: String, title: String, text: String) -> some View {

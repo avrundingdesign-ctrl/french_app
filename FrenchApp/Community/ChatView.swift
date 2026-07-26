@@ -8,12 +8,21 @@ struct ChatView: View {
     let profile: CommunityProfile
     let partner: CommunityProfile
     let match: TandemMatch
+    /// Rückfallebene fürs Übersetzen, wenn Apple Translation nicht kann.
+    var aiService: AIPartnerService = ClaudeAIPartnerService()
+    var aiKeyStore: AIKeyStoring = KeychainAIKeyStore()
     var onMatchEnded: () -> Void = {}
 
     @Environment(\.dismiss) private var dismiss
     @State private var messages: [ChatMessage] = []
     @State private var translations: [String: String] = [:]
-    @State private var showOriginal: Set<String> = []
+    /// Nachrichten, die gerade in der *anderen* als ihrer Standardsprache
+    /// angezeigt werden.
+    @State private var flipped: Set<String> = []
+    /// Angetippt und noch nicht übersetzt — nur diese werden on demand geholt.
+    @State private var requested: Set<String> = []
+    @State private var translating: Set<String> = []
+    @State private var unavailable: Set<String> = []
     @State private var input = ""
     @State private var sending = false
     @State private var showReportSheet = false
@@ -56,8 +65,31 @@ struct ChatView: View {
         .onReceive(refreshTimer) { _ in
             Task { await reload() }
         }
+        // Automatisch: Partner-Nachrichten in meine Lernsprache (Immersion).
         .background {
-            ChatTranslationBridge(messages: messages, viewer: profile, translations: $translations)
+            ChatTranslationBridge(
+                messages: messages,
+                viewer: profile,
+                translations: $translations,
+                onUnavailable: translateWithAI
+            )
+        }
+        // Auf Anfrage: alles in meiner Lernsprache Geschriebene — also meine
+        // eigenen Nachrichten — in meine Muttersprache. Nur angetippte, damit
+        // nicht prophylaktisch der ganze Verlauf doppelt übersetzt wird.
+        .background {
+            TranslationBridge(
+                requests: messages
+                    .filter {
+                        requested.contains($0.id)
+                            && !ChatDisplay.needsTranslation($0, for: profile)
+                    }
+                    .map { TranslationRequest(id: $0.id, text: $0.text) },
+                source: profile.learningLanguage,
+                target: profile.nativeLanguage,
+                translations: $translations,
+                onUnavailable: translateWithAI
+            )
         }
         .sheet(isPresented: $showReportSheet) {
             ReportSheetView(service: service, reporter: profile, reported: partner, matchID: match.id)
@@ -175,28 +207,12 @@ struct ChatView: View {
     @ViewBuilder
     private func bubble(_ message: ChatMessage) -> some View {
         let isMine = message.senderProfileID == profile.id
-        let needsTranslation = ChatDisplay.needsTranslation(message, for: profile)
-        let translated = translations[message.id]
+        let translated = isShowingTranslation(message)
 
         VStack(alignment: isMine ? .trailing : .leading, spacing: 4) {
             VStack(alignment: .leading, spacing: 6) {
-                if needsTranslation, let translated, !showOriginal.contains(message.id) {
-                    Text(translated)
-                    Label("übersetzt · Original zeigen", systemImage: "globe")
-                        .font(.caption2)
-                        .opacity(0.7)
-                } else {
-                    Text(message.text)
-                    if needsTranslation, translated != nil {
-                        Label("Original · Übersetzung zeigen", systemImage: "globe")
-                            .font(.caption2)
-                            .opacity(0.7)
-                    } else if needsTranslation, !ChatTranslationBridge.isSupported {
-                        Label("Übersetzung ab iOS 18", systemImage: "info.circle")
-                            .font(.caption2)
-                            .opacity(0.7)
-                    }
-                }
+                Text(translated ? (translations[message.id] ?? message.text) : message.text)
+                translationFooter(for: message, showsTranslation: translated)
             }
             .padding(.horizontal, 14)
             .padding(.vertical, 9)
@@ -205,14 +221,8 @@ struct ChatView: View {
                 in: RoundedRectangle(cornerRadius: 16)
             )
             .foregroundStyle(isMine ? .white : .primary)
-            .onTapGesture {
-                guard needsTranslation, translations[message.id] != nil else { return }
-                if showOriginal.contains(message.id) {
-                    showOriginal.remove(message.id)
-                } else {
-                    showOriginal.insert(message.id)
-                }
-            }
+            .contentShape(RoundedRectangle(cornerRadius: 16))
+            .onTapGesture { toggleTranslation(message) }
 
             Text(message.sentAt.formatted(date: .omitted, time: .shortened))
                 .font(.caption2)
@@ -220,6 +230,101 @@ struct ChatView: View {
         }
         .frame(maxWidth: .infinity, alignment: isMine ? .trailing : .leading)
         .padding(isMine ? .leading : .trailing, 48)
+    }
+
+    /// Partner-Nachrichten zeigen standardmäßig die Übersetzung (Immersion),
+    /// alles in meiner Lernsprache Geschriebene das Original. `flipped` kehrt
+    /// das jeweils um.
+    private func isShowingTranslation(_ message: ChatMessage) -> Bool {
+        guard translations[message.id] != nil else { return false }
+        let defaultsToTranslation = ChatDisplay.needsTranslation(message, for: profile)
+        return flipped.contains(message.id) ? !defaultsToTranslation : defaultsToTranslation
+    }
+
+    /// Dauerhaft sichtbar — vorher war nicht erkennbar, dass Blasen antippbar
+    /// sind, weil der Hinweis erst *nach* erfolgreicher Übersetzung erschien.
+    @ViewBuilder
+    private func translationFooter(for message: ChatMessage, showsTranslation: Bool) -> some View {
+        if translating.contains(message.id) {
+            Label("Übersetze …", systemImage: "globe")
+                .font(.caption2)
+                .opacity(0.7)
+        } else if unavailable.contains(message.id) {
+            Label(
+                TranslationBridge.isSupported
+                    ? "Übersetzung nicht verfügbar"
+                    : "Übersetzung ab iOS 18",
+                systemImage: "info.circle"
+            )
+            .font(.caption2)
+            .opacity(0.7)
+        } else if showsTranslation {
+            Label("Original zeigen", systemImage: "globe")
+                .font(.caption2)
+                .opacity(0.7)
+        } else {
+            Label(
+                translations[message.id] != nil ? "Übersetzung zeigen" : "Übersetzen",
+                systemImage: "globe"
+            )
+            .font(.caption2)
+            .opacity(0.7)
+        }
+    }
+
+    // MARK: - Übersetzen
+
+    private func toggleTranslation(_ message: ChatMessage) {
+        if translations[message.id] != nil {
+            if flipped.contains(message.id) {
+                flipped.remove(message.id)
+            } else {
+                flipped.insert(message.id)
+            }
+            return
+        }
+        guard !translating.contains(message.id) else { return }
+
+        // Damit die Übersetzung nach dem Eintreffen auch zu sehen ist: Bei
+        // eigenen Nachrichten muss umgeschaltet werden, bei Partner-
+        // Nachrichten ist sie ohnehin die Standardanzeige.
+        if !ChatDisplay.needsTranslation(message, for: profile) {
+            flipped.insert(message.id)
+        }
+
+        if unavailable.contains(message.id) || !TranslationBridge.isSupported {
+            // On-device hat schon abgewinkt → direkt zur KI.
+            unavailable.remove(message.id)
+            translateWithAI([TranslationRequest(id: message.id, text: message.text)])
+        } else {
+            requested.insert(message.id)
+        }
+    }
+
+    /// Rückfallebene, wenn Apple Translation nicht kann (iOS 17, oder das
+    /// Sprachmodell ist nicht geladen). Ohne API-Key bleibt es beim Hinweis.
+    private func translateWithAI(_ open: [TranslationRequest]) {
+        guard aiKeyStore.hasKey else {
+            for request in open { unavailable.insert(request.id) }
+            return
+        }
+        for request in open where !translating.contains(request.id) {
+            guard let message = messages.first(where: { $0.id == request.id }) else { continue }
+            let target = ChatDisplay.translationTarget(for: message, viewer: profile)
+            translating.insert(request.id)
+            Task {
+                do {
+                    translations[request.id] = try await aiService.translate(
+                        request.text,
+                        from: message.language,
+                        to: target
+                    )
+                } catch {
+                    unavailable.insert(request.id)
+                }
+                translating.remove(request.id)
+            }
+        }
     }
 
     // MARK: - Eingabe

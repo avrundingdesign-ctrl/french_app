@@ -128,3 +128,49 @@ die Gating-Entscheidungen und die Substanz der freien Zone ab.
 `design.avrunding.frenchapp.premium` in App Store Connect anlegen
 (non-consumable, Familienfreigabe an, Preis festlegen) und einen
 Kauf-Durchlauf im Sandbox-Account auf echtem Gerät testen.
+
+## Phase 7 — KI-Gesprächspartner & Übersetzen auf Tippen
+
+**Warum:** Der Tandem-Bereich lebt vom Netzwerkeffekt — und genau der
+fehlt am Anfang. Findet die Partnersuche niemanden, konnte der Nutzer
+bisher nur warten. Ein KI-Partner überbrückt das nicht nur, er ist als
+Dauer-Option auch dann sinnvoll, wenn Partner da sind: sofort verfügbar,
+endlos geduldig, jederzeit auf dem passenden Niveau.
+
+**Sprachlogik.** Im Tandem schreibt jeder in *seiner* Lernsprache; die KI
+dreht das um und schreibt durchgehend in der **Lernsprache des Nutzers** —
+sie übt nichts, sie ist Muttersprachlerin. Das Verständnis sichert das
+Antippen ab.
+
+**Übersetzen auf Tippen** gilt jetzt in beiden Chats nach einer Regel:
+*Tippen zeigt die Nachricht in der jeweils anderen Sprache.* Für
+Partner-Nachrichten bleibt die Übersetzung die Standardanzeige
+(Immersion, unverändert); eigene Nachrichten und KI-Antworten lassen sich
+neu in die Muttersprache umschalten — nützlich für „habe ich das gerade
+richtig gesagt?". Primär übersetzt Apple Translation on-device (offline,
+kostenlos, ab iOS 18); fällt das aus (iOS 17, Sprachmodell nicht geladen),
+springt die KI ein — deshalb heißt „immer" jetzt wirklich immer.
+
+**Umsetzung:** `AIPartner.swift` (Persona, System-Prompt, Anbindung an die
+Anthropic Messages API über `URLSession` — für Swift gibt es kein
+offizielles SDK), `AIKeyStore.swift` (Keychain), `AIChatStore.swift`
+(Verlauf lokal als JSON, bewusst weder SwiftData noch CloudKit),
+`AIChatView.swift` (Chat, Einrichtung, Gesprächseinstiege, Niveau-Picker).
+`TranslationService.swift` wurde auf beliebige Sprachpaare verallgemeinert
+(`TranslationBridge`), `ChatView` nutzt zwei Bridges — eine automatisch für
+Partner-Nachrichten, eine auf Anfrage für die Gegenrichtung.
+
+**Entscheidungen (jeweils an einer Stelle umstellbar):**
+- **Key:** eigener Anthropic-Key pro Nutzer, im Schlüsselbund. Kein
+  eingebauter Key — der wäre aus dem Binary auslesbar, und dann chatten
+  Fremde auf fremde Rechnung. Für einen breiten Release mit KI für alle
+  führt langfristig kein Weg an einem eigenen Proxy vorbei.
+- **Modell:** `claude-opus-4-8` (`ClaudeAIPartnerService.model`).
+- **Zugang:** frei, kein Limit — passend zum Eigener-Key-Modell.
+  Tageslimit oder Premium-Gating (`PremiumStore.isPremium`) sind
+  nachrüstbar.
+
+**Noch offen:** Datenschutzerklärung auf `trin.studio` um Anthropic als
+Empfänger ergänzen (Details in `APP_PRIVACY.md`), und den Flow einmal auf
+echtem Gerät mit echtem Key durchspielen — im Container gibt es keinen
+Swift-Compiler, der Code ist ungebaut geschrieben.
