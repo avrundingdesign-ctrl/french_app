@@ -169,6 +169,12 @@ struct ClaudeAIPartnerService: AIPartnerService {
     static func model(for level: CEFRLevel) -> String {
         level >= .b1 ? advancedModel : entryModel
     }
+
+    /// `output_config.effort` gibt es erst ab der Opus-4.x-/Sonnet-5-Reihe.
+    /// Haiku 4.5 beantwortet den Parameter mit 400, also darf er dort fehlen.
+    static func supportsEffort(_ model: String) -> Bool {
+        model != entryModel
+    }
     /// Chat-Antworten sind ein bis drei Sätze; mehr Budget kostet nur.
     static let maxTokens = 512
     /// So viele Nachrichten gehen maximal als Verlauf mit. Die API ist
@@ -242,8 +248,9 @@ struct ClaudeAIPartnerService: AIPartnerService {
                 model: model,
                 maxTokens: Self.maxTokens,
                 system: system,
-                // Kurze Turns, Latenz zählt mehr als Tiefe.
-                outputConfig: Payload.OutputConfig(effort: "low"),
+                // Kurze Turns, Latenz zählt mehr als Tiefe. Haiku kennt `effort`
+                // nicht und quittiert es mit 400 — dort bleibt das Feld weg.
+                outputConfig: Self.supportsEffort(model) ? Payload.OutputConfig(effort: "low") : nil,
                 messages: turns
             )
         )
@@ -312,7 +319,8 @@ struct ClaudeAIPartnerService: AIPartnerService {
         let model: String
         let maxTokens: Int
         let system: String
-        let outputConfig: OutputConfig
+        // Nur Modelle setzen, die `effort` kennen — Haiku 4.5 lehnt es mit 400 ab.
+        let outputConfig: OutputConfig?
         let messages: [Turn]
 
         enum CodingKeys: String, CodingKey {

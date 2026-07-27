@@ -5,7 +5,7 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
 
-import { validateRequest, buildChatPrompt, modelFor, LIMITS } from '../src/prompt.js'
+import { validateRequest, buildChatPrompt, modelFor, supportsEffort, LIMITS } from '../src/prompt.js'
 
 const chat = (overrides = {}) => ({
   mode: 'chat',
@@ -30,6 +30,15 @@ test('Modellstaffelung: günstig bis A2, stark ab B1', () => {
   assert.equal(modelFor('A2'), 'claude-haiku-4-5')
   assert.equal(modelFor('B1'), 'claude-opus-4-8')
   assert.equal(modelFor('B2'), 'claude-opus-4-8')
+})
+
+// Haiku 4.5 kennt `output_config.effort` nicht und antwortet mit 400. Ohne
+// diese Weiche schlüge jede A1/A2-Antwort und jede Übersetzung fehl.
+test('effort nur für Modelle, die ihn kennen', () => {
+  assert.equal(supportsEffort(modelFor('A1')), false)
+  assert.equal(supportsEffort(modelFor('A2')), false)
+  assert.equal(supportsEffort(modelFor('B1')), true)
+  assert.equal(supportsEffort(modelFor('B2')), true)
 })
 
 // MARK: - Gültige Anfragen

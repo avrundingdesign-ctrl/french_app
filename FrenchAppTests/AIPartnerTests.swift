@@ -152,6 +152,21 @@ final class AIPartnerTests: XCTestCase {
         XCTAssertEqual(payload["max_tokens"] as? Int, ClaudeAIPartnerService.maxTokens)
         let system = try XCTUnwrap(payload["system"] as? String)
         XCTAssertTrue(system.contains("Französisch"))
+    }
+
+    func testEffortOnlyForModelsThatSupportIt() async throws {
+        // Haiku 4.5 kennt `output_config.effort` nicht und antwortet mit 400 —
+        // auf A1/A2 muss das Feld also fehlen.
+        _ = try await makeService().reply(to: [message("Bonjour", from: "me")], as: persona)
+        let entry = try XCTUnwrap(StubURLProtocol.lastRequestJSON())
+        XCTAssertEqual(entry["model"] as? String, ClaudeAIPartnerService.entryModel)
+        XCTAssertNil(entry["output_config"], "Haiku verträgt `effort` nicht")
+
+        // Ab B1 läuft Opus, und dort ist `effort` erlaubt und erwünscht.
+        let advanced = AIPersona(language: .french, level: .b1)
+        _ = try await makeService().reply(to: [message("Bonjour", from: "me")], as: advanced)
+        let payload = try XCTUnwrap(StubURLProtocol.lastRequestJSON())
+        XCTAssertEqual(payload["model"] as? String, ClaudeAIPartnerService.advancedModel)
         let outputConfig = try XCTUnwrap(payload["output_config"] as? [String: Any])
         XCTAssertEqual(outputConfig["effort"] as? String, "low")
     }

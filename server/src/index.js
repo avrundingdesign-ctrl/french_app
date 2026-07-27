@@ -9,7 +9,7 @@
 // echten, unveränderten Instanz dieser App auf echter Apple-Hardware kommen.
 
 import { verifyAttestation, verifyAssertion, b64ToBytes, bytesToB64 } from './attest.js'
-import { validateRequest } from './prompt.js'
+import { validateRequest, supportsEffort } from './prompt.js'
 
 const CHALLENGE_TTL_SECONDS = 300
 const DEFAULT_DAILY_LIMIT = 40
@@ -185,7 +185,9 @@ async function callAnthropic(plan, env) {
       model: plan.model,
       max_tokens: 512,
       system: plan.system,
-      output_config: { effort: 'low' },
+      // Kurze Turns, Latenz zählt mehr als Tiefe. Haiku kennt `effort` nicht
+      // und quittiert es mit 400 — dort bleibt das Feld weg.
+      ...(supportsEffort(plan.model) ? { output_config: { effort: 'low' } } : {}),
       messages: plan.messages,
     }),
   })

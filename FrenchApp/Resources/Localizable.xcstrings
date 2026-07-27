@@ -47,6 +47,16 @@
     "%@ abgeschlossen!" : {
 
     },
+    "%@ antwortet auf %@ — passend zu Niveau %@." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ antwortet auf %2$@ — passend zu Niveau %3$@."
+          }
+        }
+      }
+    },
     "%@ beendet!" : {
 
     },
@@ -65,6 +75,9 @@
           }
         }
       }
+    },
+    "%@ schreibt …" : {
+
     },
     "%lld" : {
 
@@ -195,9 +208,6 @@
     "a réussi l'examen de niveau %@ (CECRL)" : {
 
     },
-    "A1 und A2 bleiben komplett kostenlos — Premium öffnet den ganzen Weg bis zum Zertifikat." : {
-
-    },
     "Ab 50 Punkten (und 5 je Teil) ist die Prüfung bestanden — du kannst sie jederzeit wiederholen." : {
 
     },
@@ -323,6 +333,9 @@
           }
         }
       }
+    },
+    "API-Key entfernen" : {
+
     },
     "Auf %@ schreiben …" : {
 
@@ -490,6 +503,9 @@
     "Dein Fortschritt in dieser Lektion geht verloren." : {
 
     },
+    "Dein Key wird nur auf diesem Gerät im Schlüsselbund gespeichert — nie in iCloud, nie an uns." : {
+
+    },
     "Dein Name" : {
 
     },
@@ -524,7 +540,19 @@
     "Demo-Modus starten" : {
 
     },
+    "Der bisherige Verlauf wird gelöscht." : {
+
+    },
     "Der Deutsch-Pfad wächst — weitere Niveaus folgen. Gute Reise !" : {
+
+    },
+    "Der Key konnte nicht gespeichert werden." : {
+
+    },
+    "Der KI-Partner ist jederzeit zum Üben da — auch wenn gerade kein Tandem-Partner online ist." : {
+
+    },
+    "Der komplette Lernpfad, alle Prüfungen und Vertiefungen sind kostenlos — Premium schaltet zusätzlich die B2-Wortschatz-Pakete frei." : {
 
     },
     "Der komplette Pfad von A1 bis B2 — bonne route !" : {
@@ -575,6 +603,9 @@
           }
         }
       }
+    },
+    "Die Nutzung wird über deinen eigenen Anthropic-Zugang abgerechnet." : {
+
     },
     "Die Spracherkennung für %@ ist auf diesem Gerät gerade nicht verfügbar. Prüfe, ob Siri & Diktat aktiviert sind, und versuche es später erneut." : {
 
@@ -632,6 +663,9 @@
         }
       }
     },
+    "Du chattest mit einer KI, nicht mit einem Menschen. Sie schreibt auf %@." : {
+
+    },
     "Du findest es in deiner Zertifikats-Galerie im Profil." : {
 
     },
@@ -670,6 +704,9 @@
           }
         }
       }
+    },
+    "Eigenen API-Key hinterlegen" : {
+
     },
     "Einfach" : {
       "localizations" : {
@@ -903,6 +940,12 @@
     "Gesamten Fortschritt löschen?" : {
 
     },
+    "Gespräch neu starten" : {
+
+    },
+    "Gespräch neu starten?" : {
+
+    },
     "Geübt (%lld)" : {
 
     },
@@ -997,6 +1040,9 @@
         }
       }
     },
+    "Hinweis" : {
+
+    },
     "Hinweis: Dieses Zertifikat bestätigt deinen Lernfortschritt in der App. Es ist kein offizielles %@-Diplom." : {
 
     },
@@ -1065,6 +1111,9 @@
     "Ihr seht euch nicht mehr in den Vorschlägen; ein bestehendes Tandem wird beendet." : {
 
     },
+    "Immer verfügbar · %@ üben" : {
+
+    },
     "Imperativ" : {
       "localizations" : {
         "fr" : {
@@ -1097,6 +1146,9 @@
     "Kein Mikrofon-Zugriff" : {
 
     },
+    "Kein Partner in Sicht?" : {
+
+    },
     "Keine Fehler" : {
 
     },
@@ -1121,6 +1173,15 @@
       }
     },
     "Keine offenen Fehler. Falsch beantwortete Übungen landen hier zum gezielten Üben." : {
+
+    },
+    "Key bei Anthropic erstellen" : {
+
+    },
+    "Key speichern" : {
+
+    },
+    "KI-Gesprächspartner" : {
 
     },
     "Konjugation" : {
@@ -1242,9 +1303,6 @@
         }
       }
     },
-    "Lernpfad bis B2, alle Pakete, Vertiefungen, Prüfungen B2/C1" : {
-
-    },
     "Leseverstehen" : {
       "localizations" : {
         "fr" : {
@@ -1295,6 +1353,9 @@
 
     },
     "Methodik" : {
+
+    },
+    "Mit KI chatten" : {
 
     },
     "Mit Premium freischalten" : {
@@ -1358,6 +1419,9 @@
           }
         }
       }
+    },
+    "Neu starten" : {
+
     },
     "Neue Karten pro Tag" : {
       "localizations" : {
@@ -1503,7 +1567,7 @@
         }
       }
     },
-    "Original · Übersetzung zeigen" : {
+    "Original zeigen" : {
 
     },
     "Pakete ansehen" : {
@@ -1631,6 +1695,9 @@
     "Richtige Antwort: **%@**" : {
 
     },
+    "Sag einfach Hallo" : {
+
+    },
     "Sätze nachsprechen" : {
 
     },
@@ -1715,6 +1782,9 @@
           }
         }
       }
+    },
+    "sk-ant-…" : {
+
     },
     "So funktioniert's" : {
 
@@ -1904,10 +1974,16 @@
         }
       }
     },
+    "Üb solange mit dem KI-Gesprächspartner — jederzeit verfügbar, antwortet sofort auf %@." : {
+
+    },
     "Über" : {
 
     },
     "Über dich" : {
+
+    },
+    "Übersetze …" : {
 
     },
     "Übersetze ins Deutsche" : {
@@ -1930,10 +2006,16 @@
         }
       }
     },
-    "übersetzt · Original zeigen" : {
+    "Übersetzen" : {
 
     },
     "Übersetzung ab iOS 18" : {
+
+    },
+    "Übersetzung nicht verfügbar" : {
+
+    },
+    "Übersetzung zeigen" : {
 
     },
     "unregelmäßig" : {
@@ -2019,6 +2101,9 @@
           }
         }
       }
+    },
+    "Was du dem KI-Partner schreibst, wird zur Beantwortung an Anthropic übertragen. Schreib dort nichts Vertrauliches." : {
+
     },
     "Was gehört in die Lücke?" : {
       "localizations" : {
@@ -2211,6 +2296,9 @@
       }
     },
     "Zurücksetzen" : {
+
+    },
+    "Zusätzliche B2-Wortschatz-Pakete" : {
 
     }
   },

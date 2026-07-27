@@ -25,8 +25,17 @@ const LEVEL_HINTS = {
 /// A1/A2 kommen mit dem günstigen Modell aus; ab B1 wird beiläufiges
 /// Korrigieren anspruchsvoll, und ein falsch „korrigierter" Satz bringt der
 /// lernenden Person aktiv etwas Falsches bei.
+export const ENTRY_MODEL = 'claude-haiku-4-5'
+export const ADVANCED_MODEL = 'claude-opus-4-8'
+
 export function modelFor(level) {
-  return level === 'B1' || level === 'B2' ? 'claude-opus-4-8' : 'claude-haiku-4-5'
+  return level === 'B1' || level === 'B2' ? ADVANCED_MODEL : ENTRY_MODEL
+}
+
+/// `output_config.effort` gibt es erst ab der Opus-4.x-/Sonnet-5-Reihe.
+/// Haiku 4.5 beantwortet den Parameter mit 400, also darf er dort fehlen.
+export function supportsEffort(model) {
+  return model !== ENTRY_MODEL
 }
 
 export function buildChatPrompt({ language, level }) {
@@ -98,7 +107,7 @@ export function validateRequest(payload) {
     return {
       mode: 'translate',
       // Übersetzen ist die einfachere Aufgabe — immer das günstige Modell.
-      model: 'claude-haiku-4-5',
+      model: ENTRY_MODEL,
       system: buildTranslatePrompt(payload),
       messages: [{ role: 'user', content: payload.text }],
     }
