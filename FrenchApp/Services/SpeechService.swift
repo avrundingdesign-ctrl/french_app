@@ -17,6 +17,10 @@ final class SpeechService: NSObject, AVSpeechSynthesizerDelegate, @unchecked Sen
 
     private let synthesizer = AVSpeechSynthesizer()
     private var onFinish: (() -> Void)?
+    /// Die Utterance, zu der `onFinish` gehört. `didFinish`/`didCancel` kommen
+    /// asynchron — ohne diese Zuordnung würde der Abbruch der vorigen Ausgabe
+    /// den Callback der nächsten auslösen und deren Button zurückspringen lassen.
+    private var activeUtterance: AVSpeechUtterance?
 
     private override init() {
         super.init()
@@ -37,6 +41,7 @@ final class SpeechService: NSObject, AVSpeechSynthesizerDelegate, @unchecked Sen
         utterance.voice = Self.voice(for: language)
         utterance.rate = level <= .a2 ? 0.42 : 0.48
         utterance.preUtteranceDelay = 0.3
+        activeUtterance = utterance
         synthesizer.speak(utterance)
     }
 
@@ -46,22 +51,32 @@ final class SpeechService: NSObject, AVSpeechSynthesizerDelegate, @unchecked Sen
 
     func stop() {
         if synthesizer.isSpeaking {
-            // Löst didCancel aus — das ruft den offenen onFinish-Callback auf,
-            // damit kein Abspiel-Button im "Läuft …"-Zustand hängen bleibt.
             synthesizer.stopSpeaking(at: .immediate)
         }
-        onFinish?()
-        onFinish = nil
+        // Direkt aufräumen, damit kein Abspiel-Button im "Läuft …"-Zustand
+        // hängen bleibt. Das zugehörige didCancel trifft danach ins Leere —
+        // sonst würde es den Callback der nächsten Ausgabe erwischen.
+        finish(activeUtterance)
     }
 
     func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
-        onFinish?()
-        onFinish = nil
+        finish(utterance)
     }
 
     func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didCancel utterance: AVSpeechUtterance) {
-        onFinish?()
+        finish(utterance)
+    }
+
+    /// Ruft den Callback genau einmal auf, und nur für die Utterance, zu der
+    /// er gehört. Zustand wird vor dem Aufruf gelöst: Der Callback darf
+    /// seinerseits `speak` auslösen.
+    private func finish(_ utterance: AVSpeechUtterance?) {
+        guard onFinish != nil || activeUtterance != nil else { return }
+        guard utterance === activeUtterance else { return }
+        let pending = onFinish
         onFinish = nil
+        activeUtterance = nil
+        pending?()
     }
 
     // MARK: - Stimmenwahl

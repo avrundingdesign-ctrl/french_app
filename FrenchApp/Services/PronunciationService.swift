@@ -29,6 +29,10 @@ final class PronunciationService {
     private var recognitionTask: SFSpeechRecognitionTask?
     /// Wird mit dem finalen Transkript aufgelöst (oder dem letzten Zwischenstand).
     private var finish: ((String) -> Void)?
+    /// Notbremse für `stopRecording`, falls die Erkennung kein Endergebnis
+    /// liefert. Muss beim Auflösen gecancelt werden — sonst schlägt sie
+    /// verspätet zu und bricht die inzwischen gestartete nächste Aufnahme ab.
+    private var fallbackTask: Task<Void, Never>?
 
     /// Fragt Spracherkennungs- und Mikrofon-Berechtigung an.
     func requestAccess() async -> Bool {
@@ -127,8 +131,12 @@ final class PronunciationService {
         stopAudio()
         recognitionRequest?.endAudio()
 
-        Task { @MainActor [weak self] in
+        fallbackTask?.cancel()
+        fallbackTask = Task { @MainActor [weak self] in
             try? await Task.sleep(for: .seconds(1.5))
+            // `try?` schluckt den Abbruch der Sleep — ohne diese Prüfung liefe
+            // resolve() auch für eine längst abgelöste Aufnahme weiter.
+            guard !Task.isCancelled else { return }
             self?.resolve()
         }
     }
@@ -136,6 +144,8 @@ final class PronunciationService {
     /// Bricht ohne Ergebnis ab (View verschwindet, nächste Aufgabe).
     func cancel() {
         finish = nil
+        fallbackTask?.cancel()
+        fallbackTask = nil
         stopAudio()
         recognitionTask?.cancel()
         recognitionTask = nil
@@ -144,6 +154,8 @@ final class PronunciationService {
     }
 
     private func resolve() {
+        fallbackTask?.cancel()
+        fallbackTask = nil
         guard let finish else {
             // Kein Stop unterwegs (z. B. Erkennungsfehler mitten in der
             // Aufnahme): Zustand aufräumen.

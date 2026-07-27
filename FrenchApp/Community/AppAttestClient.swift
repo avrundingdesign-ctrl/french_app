@@ -45,6 +45,13 @@ actor AppAttestClient {
     private static let keyIDStorageKey = "ai.attest.keyID"
     private static let registeredStorageKey = "ai.attest.registered"
 
+    /// Läuft eine Registrierung, hängen sich weitere Aufrufer daran. Actors
+    /// sind über `await` reentrant: Ohne das würden zwei parallele Anfragen
+    /// (Chat und Übersetzung) je einen Schlüssel erzeugen, der zweite den
+    /// ersten in den Defaults überschreiben — und der Server kennte den
+    /// Schlüssel nicht mehr, mit dem danach signiert wird.
+    private var registration: Task<String, Error>?
+
     init(
         baseURL: URL,
         session: URLSession = .shared,
@@ -99,6 +106,19 @@ actor AppAttestClient {
             return existing
         }
 
+        // Läuft schon eine Registrierung, deren Ergebnis abwarten statt eine
+        // zweite zu starten.
+        if let registration {
+            return try await registration.value
+        }
+
+        let task = Task { try await performRegistration() }
+        registration = task
+        defer { registration = nil }
+        return try await task.value
+    }
+
+    private func performRegistration() async throws -> String {
         // Ein bereits erzeugter, aber nicht registrierter Schlüssel wird
         // wiederverwendet — `generateKey` ist nicht kostenlos.
         let keyID: String
