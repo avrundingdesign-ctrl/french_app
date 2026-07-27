@@ -14,6 +14,9 @@ settings:
     IPHONEOS_DEPLOYMENT_TARGET: "17.0"
     TARGETED_DEVICE_FAMILY: "1"
     CODE_SIGN_STYLE: Automatic
+    # Ohne Team fragt Xcode nach jedem `xcodegen generate` wieder nach,
+    # weil die .xcodeproj generiert und gitignored ist.
+    DEVELOPMENT_TEAM: 8698DN5A64
     CURRENT_PROJECT_VERSION: "1"
     MARKETING_VERSION: "0.1.0"
     SWIFT_EMIT_LOC_STRINGS: YES
