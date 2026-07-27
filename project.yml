@@ -33,10 +33,17 @@ targets:
         UISupportedInterfaceOrientations:
           - UIInterfaceOrientationPortrait
         ITSAppUsesNonExemptEncryption: false
+        # Adresse des KI-Proxys (server/). Leer = kein Proxy-Pfad; dann läuft
+        # der KI-Partner nur über Apple Intelligence oder einen eigenen Key.
+        AIProxyBaseURL: $(AI_PROXY_BASE_URL)
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: design.avrunding.frenchapp
         CODE_SIGN_ENTITLEMENTS: FrenchApp/FrenchApp.entitlements
+        # Nach dem Deploy des Workers hier die Adresse eintragen, z. B.
+        # https://frenchapp-ai-proxy.<dein-subdomain>.workers.dev
+        # Leer lassen heißt: kein Proxy-Pfad (siehe server/README.md).
+        AI_PROXY_BASE_URL: ""
         ENABLE_PREVIEWS: YES
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
         ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor

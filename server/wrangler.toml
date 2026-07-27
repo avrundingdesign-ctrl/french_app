@@ -1,0 +1,24 @@
+name = "frenchapp-ai-proxy"
+main = "src/index.js"
+compatibility_date = "2026-01-15"
+# Nötig für cbor-x und @peculiar/x509 (App-Attest-Prüfung).
+compatibility_flags = ["nodejs_compat"]
+
+[vars]
+# Aus dem Apple Developer Portal (Membership Details).
+APPLE_TEAM_ID = "DEINE_TEAM_ID"
+APPLE_BUNDLE_ID = "design.avrunding.frenchapp"
+# Nur für Builds aus Xcode auf "true" setzen — im App Store MUSS das "false"
+# sein, sonst kommen Development-Attestations durch.
+ALLOW_DEV_ATTEST = "false"
+# Kostendeckel pro Gerät und Tag.
+DAILY_MESSAGE_LIMIT = "40"
+
+# Speichert registrierte Geräte (Public Key + Zähler) und die Tageszähler.
+# Anlegen mit:  npx wrangler kv namespace create DEVICES
+[[kv_namespaces]]
+binding = "DEVICES"
+id = "HIER_DIE_ID_AUS_DEM_BEFEHL_EINTRAGEN"
+
+# ANTHROPIC_API_KEY ist ein Secret, kein var — niemals hier eintragen:
+#   npx wrangler secret put ANTHROPIC_API_KEY

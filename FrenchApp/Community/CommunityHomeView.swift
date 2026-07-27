@@ -284,7 +284,6 @@ struct CommunityHomeView: View {
                     partner: partner,
                     match: match,
                     aiService: aiService,
-                    aiKeyStore: aiKeyStore,
                     onMatchEnded: { Task { await reload() } }
                 )
             } label: {
@@ -367,16 +366,13 @@ struct CommunityHomeView: View {
         AIPersona(language: profile.learningLanguage, level: .a1)
     }
 
-    /// Im Demo-Modus antwortet der Mock ohne Netz und ohne Key — damit der
+    /// Rückfall fürs Übersetzen im Tandem-Chat. Apples Modell zuerst: kostenlos
+    /// und ohne Key. Im Demo-Modus antwortet der Mock ohne Netz — damit der
     /// Flow für Screenshots und App Review vollständig durchspielbar ist.
     private var aiService: AIPartnerService {
         if isDemo { return MockAIPartnerService() }
+        if AppleAIPartnerService.isAvailable { return AppleAIPartnerService() }
         return ClaudeAIPartnerService()
-    }
-
-    private var aiKeyStore: AIKeyStoring {
-        if isDemo { return InMemoryAIKeyStore(key: "demo") }
-        return KeychainAIKeyStore()
     }
 
     @ViewBuilder

@@ -159,9 +159,16 @@ protocol AIPartnerService: Sendable {
 /// Für Swift gibt es kein offizielles Anthropic-SDK — daher direkt über
 /// `URLSession`.
 struct ClaudeAIPartnerService: AIPartnerService {
-    /// Modellwahl für den gesamten KI-Partner — hier zentral umstellbar
-    /// (z. B. auf `claude-haiku-4-5` für deutlich weniger Kosten).
-    static let model = "claude-opus-4-8"
+    /// A1/A2: günstig, und für Small Talk auf diesem Niveau völlig ausreichend.
+    static let entryModel = "claude-haiku-4-5"
+    /// Ab B1: Hier wird das beiläufige Korrigieren anspruchsvoll, und ein
+    /// falsch „korrigierter" Satz schadet mehr als gar keine Korrektur —
+    /// deshalb ist Sparen an dieser Stelle teurer als das Modell.
+    static let advancedModel = "claude-opus-4-8"
+
+    static func model(for level: CEFRLevel) -> String {
+        level >= .b1 ? advancedModel : entryModel
+    }
     /// Chat-Antworten sind ein bis drei Sätze; mehr Budget kostet nur.
     static let maxTokens = 512
     /// So viele Nachrichten gehen maximal als Verlauf mit. Die API ist
@@ -190,7 +197,11 @@ struct ClaudeAIPartnerService: AIPartnerService {
         while turns.first?.role == "assistant" { turns.removeFirst() }
         guard !turns.isEmpty else { throw AIPartnerError.emptyResponse }
 
-        return try await send(system: persona.systemPrompt, turns: turns)
+        return try await send(
+            model: Self.model(for: persona.level),
+            system: persona.systemPrompt,
+            turns: turns
+        )
     }
 
     func translate(
@@ -206,12 +217,18 @@ struct ClaudeAIPartnerService: AIPartnerService {
         Erklärung, keine Alternativen, kein Markdown. Behalte den Ton des \
         Originals bei; Umgangssprache bleibt Umgangssprache.
         """
-        return try await send(system: system, turns: [Payload.Turn(role: "user", content: text)])
+        // Übersetzen ist die einfachere Aufgabe — dafür reicht immer das
+        // günstige Modell, unabhängig vom Niveau.
+        return try await send(
+            model: Self.entryModel,
+            system: system,
+            turns: [Payload.Turn(role: "user", content: text)]
+        )
     }
 
     // MARK: Transport
 
-    private func send(system: String, turns: [Payload.Turn]) async throws -> String {
+    private func send(model: String, system: String, turns: [Payload.Turn]) async throws -> String {
         guard let key = keyStore.load() else { throw AIPartnerError.missingKey }
 
         var request = URLRequest(url: endpoint)
@@ -222,7 +239,7 @@ struct ClaudeAIPartnerService: AIPartnerService {
         request.timeoutInterval = 60
         request.httpBody = try JSONEncoder().encode(
             Payload(
-                model: Self.model,
+                model: model,
                 maxTokens: Self.maxTokens,
                 system: system,
                 // Kurze Turns, Latenz zählt mehr als Tiefe.
@@ -336,6 +353,133 @@ struct ClaudeAIPartnerService: AIPartnerService {
             let type: String
             let message: String
         }
+    }
+}
+
+// MARK: - Proxy-Zugang
+
+/// Adresse des eigenen Proxys (CloudFlare Worker unter `server/`).
+///
+/// Der Anthropic-Key liegt **dort**, nicht in der App: Ein eingebauter Key
+/// wäre aus dem App-Binary auslesbar und stünde außerdem im Klartext im
+/// `x-api-key`-Header — jeder mit einem Debug-Proxy könnte auf fremde
+/// Rechnung chatten.
+struct AIProxyConfig: Sendable, Equatable {
+    let baseURL: URL
+
+    /// Aus der `Info.plist` (`AIProxyBaseURL`), damit die Adresse pro Build
+    /// gesetzt werden kann, ohne Code zu ändern. Fehlt der Eintrag, gibt es
+    /// schlicht keinen Proxy-Pfad.
+    static func fromBundle(_ bundle: Bundle = .main) -> AIProxyConfig? {
+        from(rawValue: bundle.object(forInfoDictionaryKey: "AIProxyBaseURL") as? String)
+    }
+
+    /// Ohne Bundle prüfbar. **Nur HTTPS** — der Nachweis über App Attest
+    /// schützt nichts, wenn die Verbindung unverschlüsselt ist.
+    static func from(rawValue: String?) -> AIProxyConfig? {
+        guard
+            let trimmed = rawValue?.trimmingCharacters(in: .whitespaces),
+            !trimmed.isEmpty,
+            let url = URL(string: trimmed),
+            url.scheme == "https"
+        else { return nil }
+        return AIProxyConfig(baseURL: url)
+    }
+}
+
+// MARK: - Dienstauswahl
+
+/// Woher die Antworten kommen — steuert Hinweistext und Einrichtungs-Screen.
+enum AIPartnerSource: Equatable {
+    /// Apples On-Device-Modell: kostenlos, offline, ohne Einrichtung.
+    case apple
+    /// Eigener Anthropic-Key des Nutzers.
+    case ownKey
+    /// Über den eigenen Proxy — Premium, Key liegt serverseitig.
+    case proxy
+    case demo
+    case unavailable(hint: String)
+
+    var isUsable: Bool {
+        if case .unavailable = self { return false }
+        return true
+    }
+
+    /// Kurzer Hinweis unter dem Chat, damit erkennbar ist, was gerade läuft.
+    var label: String {
+        switch self {
+        case .apple:  return "Apple Intelligence · auf dem Gerät, kostenlos"
+        case .ownKey: return "Claude · über deinen eigenen API-Key"
+        case .proxy:  return "Claude · über Premium"
+        case .demo:   return "Demo-Modus · feste Antworten"
+        case .unavailable: return ""
+        }
+    }
+}
+
+struct AIPartnerRouting {
+    let source: AIPartnerSource
+    let service: AIPartnerService?
+}
+
+/// Entscheidet, welcher Dienst den KI-Partner bedient.
+///
+/// Grundregel: **Apples Modell hat Vorrang**, weil es kostenlos, offline und
+/// ohne jede Einrichtung läuft. Ausnahme ist B1/B2 — dort wird das beiläufige
+/// Korrigieren anspruchsvoll, und ein kleines Modell, das einen richtigen Satz
+/// „korrigiert", bringt der lernenden Person aktiv etwas Falsches bei.
+enum AIPartnerResolver {
+    static func resolve(
+        isDemo: Bool,
+        level: CEFRLevel,
+        keyStore: AIKeyStoring,
+        proxy: AIProxyConfig?,
+        isPremium: Bool,
+        appleAvailability: AppleAIPartnerService.Availability = AppleAIPartnerService.availability
+    ) -> AIPartnerRouting {
+        if isDemo {
+            return AIPartnerRouting(source: .demo, service: MockAIPartnerService())
+        }
+
+        let claude: AIPartnerRouting? = {
+            if keyStore.hasKey {
+                return AIPartnerRouting(
+                    source: .ownKey,
+                    service: ClaudeAIPartnerService(keyStore: keyStore)
+                )
+            }
+            if let proxy, isPremium {
+                return AIPartnerRouting(
+                    source: .proxy,
+                    service: ProxyAIPartnerService(config: proxy)
+                )
+            }
+            return nil
+        }()
+
+        if level >= .b1, let claude { return claude }
+        if appleAvailability.isAvailable {
+            return AIPartnerRouting(source: .apple, service: AppleAIPartnerService())
+        }
+        if let claude { return claude }
+
+        return AIPartnerRouting(
+            source: .unavailable(hint: hint(for: appleAvailability, hasProxy: proxy != nil)),
+            service: nil
+        )
+    }
+
+    /// Erklärt, was fehlt — und nennt zuerst den Weg, der nichts kostet.
+    private static func hint(
+        for availability: AppleAIPartnerService.Availability,
+        hasProxy: Bool
+    ) -> String {
+        var lines = [availability.hint]
+        if hasProxy {
+            lines.append("Mit Premium schaltest du den KI-Partner auf jedem Gerät frei.")
+        }
+        lines.append("Alternativ kannst du unten einen eigenen Anthropic-API-Key hinterlegen.")
+        return lines.filter { !$0.isEmpty }.joined(separator: "\n\n")
     }
 }
 

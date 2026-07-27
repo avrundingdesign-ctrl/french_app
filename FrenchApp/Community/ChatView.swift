@@ -10,7 +10,6 @@ struct ChatView: View {
     let match: TandemMatch
     /// Rückfallebene fürs Übersetzen, wenn Apple Translation nicht kann.
     var aiService: AIPartnerService = ClaudeAIPartnerService()
-    var aiKeyStore: AIKeyStoring = KeychainAIKeyStore()
     var onMatchEnded: () -> Void = {}
 
     @Environment(\.dismiss) private var dismiss
@@ -302,12 +301,13 @@ struct ChatView: View {
     }
 
     /// Rückfallebene, wenn Apple Translation nicht kann (iOS 17, oder das
-    /// Sprachmodell ist nicht geladen). Ohne API-Key bleibt es beim Hinweis.
+    /// Sprachmodell ist nicht geladen).
+    ///
+    /// Kein Vorab-Check auf einen Key: Welcher Dienst dahintersteckt, weiß der
+    /// Aufrufer — Apples On-Device-Modell braucht gar keinen. Steht kein
+    /// Dienst bereit, wirft er sofort (ohne Netzzugriff), und der `catch`
+    /// setzt den Hinweis.
     private func translateWithAI(_ open: [TranslationRequest]) {
-        guard aiKeyStore.hasKey else {
-            for request in open { unavailable.insert(request.id) }
-            return
-        }
         for request in open where !translating.contains(request.id) {
             guard let message = messages.first(where: { $0.id == request.id }) else { continue }
             let target = ChatDisplay.translationTarget(for: message, viewer: profile)

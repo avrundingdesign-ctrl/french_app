@@ -4,6 +4,11 @@
 <dict>
 	<key>aps-environment</key>
 	<string>development</string>
+	<!-- App Attest für den KI-Proxy (server/). Für App-Store-Builds auf
+	     "production" umstellen — sonst weist der Worker die Attestation ab,
+	     falls dort ALLOW_DEV_ATTEST auf "false" steht (was es sein muss). -->
+	<key>com.apple.developer.devicecheck.appattest-environment</key>
+	<string>development</string>
 	<key>com.apple.developer.icloud-container-identifiers</key>
 	<array>
 		<string>iCloud.design.avrunding.frenchapp</string>

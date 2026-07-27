@@ -48,14 +48,25 @@ Infrastruktur, kein Analytics-/Advertising-/Crash-SDK verbaut (siehe `grep`
 über `FrenchApp/` auf Analytics/Firebase/AdMob/Crashlytics/Sentry — leer).
 **Ausnahme: der KI-Gesprächspartner**, siehe nächster Abschnitt.
 
-## KI-Gesprächspartner (Anthropic, opt-in)
+## KI-Gesprächspartner
+
+Der KI-Partner kann über **drei** Wege laufen (`AIPartnerResolver`). Nur zwei
+davon übertragen überhaupt Daten:
+
+| Weg | Wann | Daten verlassen das Gerät? |
+|---|---|---|
+| **Apple Intelligence** (`AppleAIPartnerService`) | Standard, wenn iOS 26 + Apple-Intelligence-Gerät | **Nein** — das Modell läuft on-device |
+| **Eigener Anthropic-Key** | Nutzer hinterlegt selbst einen Key | Ja → Anthropic |
+| **Proxy** (`server/`, Premium) | Nur wenn `AIProxyBaseURL` gesetzt und Premium aktiv | Ja → CloudFlare → Anthropic |
+
+Der **Regelfall auf neueren Geräten ist der erste** — dort ist der KI-Partner
+datenschutzrechtlich unauffällig, weil nichts das Gerät verlässt. Das ist auch
+der Grund, warum er Vorrang hat.
+
+### Wenn Daten übertragen werden (Weg 2 und 3)
 
 ⚠️ **Erster echter Drittanbieter in der App.** Die Aussage „Dritte: Keine"
-gilt seit diesem Feature nicht mehr pauschal.
-
-Nur relevant, wenn der Nutzer den KI-Chat öffnet **und** einen eigenen
-Anthropic-API-Key hinterlegt (`AIChatSetupView`). Ohne Key wird nichts
-übertragen; ohne Öffnen des Chats entsteht keine Verbindung.
+gilt für diese beiden Wege nicht mehr.
 
 | Apple-Kategorie | Datentyp | Verlinkt mit Identität? | Zweck | Tracking? |
 |---|---|---|---|---|
@@ -74,17 +85,27 @@ wenn der Nutzer eine Nachricht antippt und die On-Device-Übersetzung
 tragen keine Kennung aus der App; die Verknüpfung besteht allenfalls
 zwischen Nutzer und seinem eigenen Anthropic-Konto, nicht durch uns.
 
-**Der API-Key** liegt ausschließlich im Geräte-Schlüsselbund
+**Der API-Key** liegt bei Weg 2 ausschließlich im Geräte-Schlüsselbund
 (`KeychainAIKeyStore`, `kSecAttrAccessibleAfterFirstUnlock`) — nicht in
-iCloud, nicht in `UserDefaults`, nicht in unserem Code.
+iCloud, nicht in `UserDefaults`, nicht im Code. Bei Weg 3 liegt er
+serverseitig im Worker und ist der App gar nicht bekannt.
+
+**Zum Proxy (Weg 3):** CloudFlare ist dabei Auftragsverarbeiter (Transport
+und kurzzeitige Verarbeitung), Anthropic Empfänger des Nachrichtentextes.
+Gespeichert wird im Worker **kein** Chatinhalt — nur pro Gerät ein
+Public Key, ein Signaturzähler und ein Tageszähler (`server/src/index.js`).
+Der Schlüssel identifiziert das Gerät, nicht die Person; er hängt an keinem
+Namen, keiner iCloud-ID und keinem Lernfortschritt.
 
 **Noch zu erledigen vor Release:**
-- Datenschutzerklärung unter `trin.studio/datenschutz.html` um Anthropic
-  als Auftragsverarbeiter/Empfänger ergänzen.
-- Im App-Store-Connect-Fragebogen die Zeile oben mit aufnehmen.
-- Prüfen, ob ein eingebauter statt nutzereigener Key kommen soll — dann
-  ändert sich die Bewertung (dann verarbeiten *wir* die Daten, nicht der
-  Nutzer über seinen eigenen Zugang).
+- Datenschutzerklärung unter `trin.studio/datenschutz.html` ergänzen:
+  Anthropic als Empfänger, bei aktivem Proxy zusätzlich CloudFlare als
+  Auftragsverarbeiter.
+- Im App-Store-Connect-Fragebogen die Zeile oben mit aufnehmen — sofern die
+  App überhaupt mit Weg 2 oder 3 ausgeliefert wird. Läuft sie nur mit Apple
+  Intelligence, entsteht keine zusätzliche Kategorie.
+- Prüfen, ob der Proxy-Pfad im Release aktiv sein soll
+  (`AI_PROXY_BASE_URL` in `project.yml`). Leer = aus.
 
 ## Bei Einführung der Paywall (Phase 6, StoreKit 2)
 

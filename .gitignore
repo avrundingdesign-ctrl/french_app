@@ -14,3 +14,8 @@ build/
 
 # Temporäres
 *.log
+
+# Worker (server/) — Abhängigkeiten und Wrangler-Zustand
+server/node_modules/
+server/.wrangler/
+server/.dev.vars

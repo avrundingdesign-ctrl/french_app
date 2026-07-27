@@ -2,43 +2,39 @@ import SwiftUI
 
 /// Chat mit dem KI-Gesprächspartner.
 ///
-/// Die KI schreibt durchgehend in der **Lernsprache** des Nutzers — sie übt
-/// nichts, sie ist Muttersprachlerin. Verständnis sichert das Antippen einer
-/// Nachricht ab: Das zeigt sie in der Muttersprache.
+/// Welcher Dienst antwortet, entscheidet `AIPartnerResolver` — bevorzugt
+/// Apples On-Device-Modell, weil es kostenlos, offline und ohne Einrichtung
+/// läuft. Die KI schreibt durchgehend in der **Lernsprache** des Nutzers; das
+/// Verständnis sichert das Antippen einer Nachricht ab.
 struct AIChatView: View {
     let profile: CommunityProfile
-    let service: AIPartnerService
+    let isDemo: Bool
     let keyStore: AIKeyStoring
-    /// Im Demo-Modus braucht es keinen Key — der Mock antwortet ohne Netz.
-    let requiresKey: Bool
+    let proxy: AIProxyConfig?
+    /// Nur für Tests und Previews — überspringt die Dienstauswahl.
+    let serviceOverride: AIPartnerService?
 
     init(
         profile: CommunityProfile,
-        service: AIPartnerService = ClaudeAIPartnerService(),
+        isDemo: Bool = false,
         keyStore: AIKeyStoring = KeychainAIKeyStore(),
-        requiresKey: Bool = true
+        proxy: AIProxyConfig? = AIProxyConfig.fromBundle(),
+        serviceOverride: AIPartnerService? = nil
     ) {
         self.profile = profile
-        self.service = service
+        self.isDemo = isDemo
         self.keyStore = keyStore
-        self.requiresKey = requiresKey
+        self.proxy = proxy
+        self.serviceOverride = serviceOverride
     }
 
-    /// Einstieg aus der Community — im Demo-Modus ohne Key und ohne Netz.
-    init(profile: CommunityProfile, isDemo: Bool) {
-        self.init(
-            profile: profile,
-            service: isDemo ? MockAIPartnerService() : ClaudeAIPartnerService(),
-            requiresKey: !isDemo
-        )
-    }
-
+    @EnvironmentObject private var premium: PremiumStore
     @AppStorage("ai.level") private var levelRaw = CEFRLevel.a1.rawValue
 
+    @State private var routing: AIPartnerRouting?
     @State private var messages: [ChatMessage] = []
     @State private var input = ""
     @State private var sending = false
-    @State private var ready = false
     @State private var errorMessage: String?
     @State private var confirmReset = false
 
@@ -50,33 +46,38 @@ struct AIChatView: View {
     @State private var unavailable: Set<String> = []
 
     private let store = AIChatStore()
-
     private static let levels: [CEFRLevel] = [.a1, .a2, .b1, .b2]
+    private static let typingAnchor = "typing"
+
+    private var level: CEFRLevel { CEFRLevel(rawValue: levelRaw) ?? .a1 }
 
     private var persona: AIPersona {
-        AIPersona(
-            language: profile.learningLanguage,
-            level: CEFRLevel(rawValue: levelRaw) ?? .a1
-        )
+        AIPersona(language: profile.learningLanguage, level: level)
     }
 
     var body: some View {
         Group {
-            if ready {
-                chat
+            if let service = routing?.service {
+                chat(service: service)
             } else {
-                AIChatSetupView(keyStore: keyStore) {
-                    ready = true
-                }
+                AIChatSetupView(
+                    keyStore: keyStore,
+                    hint: unavailableHint,
+                    onSaved: refreshRouting
+                )
             }
         }
         .navigationTitle(persona.displayName)
         .navigationBarTitleDisplayMode(.inline)
-        .toolbar { if ready { chatMenu } }
+        .toolbar { if routing?.service != nil { chatMenu } }
         .task {
-            ready = !requiresKey || keyStore.hasKey
+            refreshRouting()
             messages = await store.load()
         }
+        // Das Niveau steuert die Modellwahl mit — ab B1 lieber Claude, wenn
+        // erreichbar. Also bei Änderung neu entscheiden.
+        .onChange(of: levelRaw) { refreshRouting() }
+        .onChange(of: premium.isPremium) { refreshRouting() }
         .confirmationDialog(
             "Gespräch neu starten?",
             isPresented: $confirmReset,
@@ -96,9 +97,28 @@ struct AIChatView: View {
         }
     }
 
+    private var unavailableHint: String {
+        if case .unavailable(let hint) = routing?.source { return hint }
+        return ""
+    }
+
+    private func refreshRouting() {
+        if let serviceOverride {
+            routing = AIPartnerRouting(source: .ownKey, service: serviceOverride)
+            return
+        }
+        routing = AIPartnerResolver.resolve(
+            isDemo: isDemo,
+            level: level,
+            keyStore: keyStore,
+            proxy: proxy,
+            isPremium: premium.isPremium
+        )
+    }
+
     // MARK: - Chat
 
-    private var chat: some View {
+    private func chat(service: AIPartnerService) -> some View {
         VStack(spacing: 0) {
             aiBanner
 
@@ -106,10 +126,10 @@ struct AIChatView: View {
                 ScrollView {
                     LazyVStack(spacing: 10) {
                         if messages.isEmpty {
-                            starters
+                            starters(service: service)
                         }
                         ForEach(messages) { message in
-                            bubble(message).id(message.id)
+                            bubble(message, service: service).id(message.id)
                         }
                         if sending {
                             typingIndicator.id(Self.typingAnchor)
@@ -121,13 +141,11 @@ struct AIChatView: View {
                 .onChange(of: sending) { scrollToEnd(proxy) }
             }
 
-            inputBar
+            inputBar(service: service)
         }
         .background(Color(.systemGroupedBackground))
-        .background { translationBridge }
+        .background { translationBridge(service: service) }
     }
-
-    private static let typingAnchor = "typing"
 
     private func scrollToEnd(_ proxy: ScrollViewProxy) {
         withAnimation {
@@ -140,13 +158,20 @@ struct AIChatView: View {
     }
 
     /// Apple verlangt, dass KI-Gespräche klar als solche erkennbar sind —
-    /// deshalb dauerhaft sichtbar, nicht nur im Titel.
+    /// deshalb dauerhaft sichtbar, nicht nur im Titel. Die zweite Zeile zeigt,
+    /// welcher Dienst gerade antwortet.
     private var aiBanner: some View {
-        HStack(spacing: 6) {
-            Image(systemName: "sparkles")
-                .font(.caption)
-            Text("Du chattest mit einer KI, nicht mit einem Menschen. Sie schreibt auf \(persona.language.label).")
-                .font(.caption)
+        VStack(spacing: 2) {
+            HStack(spacing: 6) {
+                Image(systemName: "sparkles").font(.caption)
+                Text("Du chattest mit einer KI, nicht mit einem Menschen. Sie schreibt auf \(persona.language.label).")
+                    .font(.caption)
+            }
+            if let label = routing?.source.label, !label.isEmpty {
+                Text(label)
+                    .font(.caption2)
+                    .foregroundStyle(.tertiary)
+            }
         }
         .foregroundStyle(.secondary)
         .frame(maxWidth: .infinity)
@@ -156,7 +181,7 @@ struct AIChatView: View {
     }
 
     /// Für A1-Lernende ist das leere Eingabefeld die größte Hürde.
-    private var starters: some View {
+    private func starters(service: AIPartnerService) -> some View {
         VStack(spacing: 12) {
             Image(systemName: "bubble.left.and.sparkles.fill")
                 .font(.system(size: 40))
@@ -171,7 +196,7 @@ struct AIChatView: View {
             VStack(spacing: 8) {
                 ForEach(persona.starters, id: \.self) { starter in
                     Button {
-                        send(starter)
+                        send(starter, service: service)
                     } label: {
                         Text(starter)
                             .font(.subheadline)
@@ -206,7 +231,7 @@ struct AIChatView: View {
     // MARK: - Nachrichten-Blase
 
     @ViewBuilder
-    private func bubble(_ message: ChatMessage) -> some View {
+    private func bubble(_ message: ChatMessage, service: AIPartnerService) -> some View {
         let isMine = message.senderProfileID == profile.id
         let translation = translations[message.id]
         let showsTranslation = flipped.contains(message.id) && translation != nil
@@ -224,7 +249,7 @@ struct AIChatView: View {
             )
             .foregroundStyle(isMine ? .white : .primary)
             .contentShape(RoundedRectangle(cornerRadius: 16))
-            .onTapGesture { toggleTranslation(message) }
+            .onTapGesture { toggleTranslation(message, service: service) }
 
             Text(message.sentAt.formatted(date: .omitted, time: .shortened))
                 .font(.caption2)
@@ -263,8 +288,7 @@ struct AIChatView: View {
     // MARK: - Übersetzen
 
     /// Nur angetippte Nachrichten werden übersetzt — nicht prophylaktisch alle.
-    /// Das hält Akku- und Rechenaufwand niedrig.
-    private var translationBridge: some View {
+    private func translationBridge(service: AIPartnerService) -> some View {
         TranslationBridge(
             requests: messages
                 .filter { requested.contains($0.id) }
@@ -272,11 +296,11 @@ struct AIChatView: View {
             source: profile.learningLanguage,
             target: profile.nativeLanguage,
             translations: $translations,
-            onUnavailable: translateWithAI
+            onUnavailable: { open in translateWithAI(open, service: service) }
         )
     }
 
-    private func toggleTranslation(_ message: ChatMessage) {
+    private func toggleTranslation(_ message: ChatMessage, service: AIPartnerService) {
         if translations[message.id] != nil {
             if flipped.contains(message.id) {
                 flipped.remove(message.id)
@@ -291,22 +315,21 @@ struct AIChatView: View {
         flipped.insert(message.id)
 
         if unavailable.contains(message.id) || !TranslationBridge.isSupported {
-            // On-device hat schon abgewinkt → direkt zur KI. (Erneutes
+            // On-device hat schon abgewinkt → direkt zum KI-Dienst. (Erneutes
             // Eintragen in `requested` würde die Bridge nicht noch einmal
             // anstoßen, weil sich ihre Anfrageliste nicht ändert.)
             unavailable.remove(message.id)
-            translateWithAI([TranslationRequest(id: message.id, text: message.text)])
+            translateWithAI(
+                [TranslationRequest(id: message.id, text: message.text)],
+                service: service
+            )
         } else {
             requested.insert(message.id)
         }
     }
 
     /// Rückfallebene, wenn Apple Translation nicht kann (iOS 17, Modell fehlt).
-    private func translateWithAI(_ open: [TranslationRequest]) {
-        guard !requiresKey || keyStore.hasKey else {
-            for request in open { unavailable.insert(request.id) }
-            return
-        }
+    private func translateWithAI(_ open: [TranslationRequest], service: AIPartnerService) {
         for request in open where !translating.contains(request.id) {
             translating.insert(request.id)
             Task {
@@ -326,7 +349,7 @@ struct AIChatView: View {
 
     // MARK: - Eingabe
 
-    private var inputBar: some View {
+    private func inputBar(service: AIPartnerService) -> some View {
         HStack(spacing: 10) {
             TextField(
                 "Auf \(persona.language.label) schreiben …",
@@ -335,10 +358,10 @@ struct AIChatView: View {
             )
             .lineLimit(1...4)
             .textFieldStyle(.roundedBorder)
-            .onSubmit { send(input) }
+            .onSubmit { send(input, service: service) }
 
             Button {
-                send(input)
+                send(input, service: service)
             } label: {
                 Image(systemName: "arrow.up.circle.fill")
                     .font(.system(size: 30))
@@ -354,7 +377,7 @@ struct AIChatView: View {
         !sending && !input.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
     }
 
-    private func send(_ text: String) {
+    private func send(_ text: String, service: AIPartnerService) {
         let trimmed = text.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !trimmed.isEmpty, !sending else { return }
         guard ContentFilter.isAcceptable(trimmed) else {
@@ -373,21 +396,21 @@ struct AIChatView: View {
             language: profile.learningLanguage,
             sentAt: .now
         )
+        let currentPersona = persona
 
         Task {
-            // Den zurückgegebenen Stand direkt weiterverwenden, statt ihn über
-            // `messages` zurückzulesen — die KI braucht die eigene Nachricht
-            // bereits im Verlauf.
+            // Den zurückgegebenen Stand direkt weiterverwenden — die KI braucht
+            // die eigene Nachricht bereits im Verlauf.
             let withMine = await store.append(mine)
             messages = withMine
             do {
-                let answer = try await service.reply(to: withMine, as: persona)
+                let answer = try await service.reply(to: withMine, as: currentPersona)
                 messages = await store.append(ChatMessage(
                     id: UUID().uuidString,
                     matchID: AIPartnerIdentity.matchID,
                     senderProfileID: AIPartnerIdentity.profileID,
                     text: answer,
-                    language: persona.language,
+                    language: currentPersona.language,
                     sentAt: .now
                 ))
             } catch {
@@ -414,10 +437,10 @@ struct AIChatView: View {
                 } label: {
                     Label("Gespräch neu starten", systemImage: "arrow.counterclockwise")
                 }
-                if requiresKey, keyStore.hasKey {
+                if keyStore.hasKey {
                     Button(role: .destructive) {
                         keyStore.clear()
-                        ready = false
+                        refreshRouting()
                     } label: {
                         Label("API-Key entfernen", systemImage: "key.slash")
                     }
@@ -440,13 +463,16 @@ struct AIChatView: View {
 
 // MARK: - Einrichtung
 
-/// Erster Start ohne hinterlegten Key: erklären, wofür er ist, und dass
-/// Nachrichten an einen Drittanbieter gehen.
+/// Zu sehen, wenn gerade kein Dienst verfügbar ist. Nennt zuerst den Weg, der
+/// nichts kostet (Apple Intelligence bzw. Premium) und bietet erst danach den
+/// eigenen API-Key an.
 struct AIChatSetupView: View {
     let keyStore: AIKeyStoring
+    let hint: String
     let onSaved: () -> Void
 
     @State private var key = ""
+    @State private var showKeyField = false
     @State private var showInvalid = false
 
     var body: some View {
@@ -457,70 +483,93 @@ struct AIChatSetupView: View {
                     .foregroundStyle(Theme.accent)
                     .padding(.top, 32)
 
-                Text("KI-Gesprächspartner einrichten")
+                Text("KI-Gesprächspartner")
                     .font(.title3.bold())
                     .multilineTextAlignment(.center)
 
                 Text("""
-                Der KI-Partner ist jederzeit zum Üben da — auch wenn gerade \
-                kein Tandem-Partner online ist. Dafür brauchst du einen \
-                eigenen API-Key von Anthropic.
+                Der KI-Partner ist jederzeit zum Üben da — auch wenn gerade kein \
+                Tandem-Partner online ist.
                 """)
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
                 .multilineTextAlignment(.center)
 
-                SecureField("sk-ant-…", text: $key)
-                    .textFieldStyle(.roundedBorder)
-                    .textInputAutocapitalization(.never)
-                    .autocorrectionDisabled()
-                    .padding(.top, 8)
-
-                Button {
-                    save()
-                } label: {
-                    Text("Key speichern")
-                        .font(.headline)
-                        .frame(maxWidth: .infinity)
-                        .padding(.vertical, 6)
-                }
-                .buttonStyle(.borderedProminent)
-                .disabled(key.trimmingCharacters(in: .whitespaces).isEmpty)
-
-                if showInvalid {
-                    Text("Der Key konnte nicht gespeichert werden.")
-                        .font(.footnote)
-                        .foregroundStyle(Theme.danger)
-                }
-
-                Link(destination: URL(string: "https://console.anthropic.com/settings/keys")!) {
-                    Label("Key bei Anthropic erstellen", systemImage: "arrow.up.right.square")
+                if !hint.isEmpty {
+                    Text(hint)
                         .font(.subheadline)
+                        .multilineTextAlignment(.center)
+                        .padding(14)
+                        .frame(maxWidth: .infinity)
+                        .background(
+                            Color(.secondarySystemGroupedBackground),
+                            in: RoundedRectangle(cornerRadius: 12)
+                        )
                 }
-                .padding(.top, 4)
 
-                VStack(alignment: .leading, spacing: 8) {
-                    Label {
-                        Text("Dein Key wird nur auf diesem Gerät im Schlüsselbund gespeichert — nie in iCloud, nie an uns.")
-                    } icon: {
-                        Image(systemName: "lock.fill")
+                if showKeyField {
+                    keyEntry
+                } else {
+                    Button("Eigenen API-Key hinterlegen") {
+                        showKeyField = true
                     }
-                    Label {
-                        Text("Was du dem KI-Partner schreibst, wird zur Beantwortung an Anthropic übertragen. Schreib dort nichts Vertrauliches.")
-                    } icon: {
-                        Image(systemName: "info.circle.fill")
-                    }
-                    Label {
-                        Text("Die Nutzung wird über deinen eigenen Anthropic-Zugang abgerechnet.")
-                    } icon: {
-                        Image(systemName: "eurosign.circle.fill")
-                    }
+                    .font(.subheadline)
+                    .padding(.top, 4)
                 }
-                .font(.caption)
-                .foregroundStyle(.secondary)
-                .padding(.top, 12)
             }
             .padding(24)
+        }
+    }
+
+    private var keyEntry: some View {
+        VStack(spacing: 12) {
+            SecureField("sk-ant-…", text: $key)
+                .textFieldStyle(.roundedBorder)
+                .textInputAutocapitalization(.never)
+                .autocorrectionDisabled()
+
+            Button {
+                save()
+            } label: {
+                Text("Key speichern")
+                    .font(.headline)
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 6)
+            }
+            .buttonStyle(.borderedProminent)
+            .disabled(key.trimmingCharacters(in: .whitespaces).isEmpty)
+
+            if showInvalid {
+                Text("Der Key konnte nicht gespeichert werden.")
+                    .font(.footnote)
+                    .foregroundStyle(Theme.danger)
+            }
+
+            Link(destination: URL(string: "https://console.anthropic.com/settings/keys")!) {
+                Label("Key bei Anthropic erstellen", systemImage: "arrow.up.right.square")
+                    .font(.subheadline)
+            }
+
+            VStack(alignment: .leading, spacing: 8) {
+                Label {
+                    Text("Dein Key wird nur auf diesem Gerät im Schlüsselbund gespeichert — nie in iCloud, nie an uns.")
+                } icon: {
+                    Image(systemName: "lock.fill")
+                }
+                Label {
+                    Text("Was du dem KI-Partner schreibst, wird zur Beantwortung an Anthropic übertragen. Schreib dort nichts Vertrauliches.")
+                } icon: {
+                    Image(systemName: "info.circle.fill")
+                }
+                Label {
+                    Text("Die Nutzung wird über deinen eigenen Anthropic-Zugang abgerechnet.")
+                } icon: {
+                    Image(systemName: "eurosign.circle.fill")
+                }
+            }
+            .font(.caption)
+            .foregroundStyle(.secondary)
+            .padding(.top, 8)
         }
     }
 

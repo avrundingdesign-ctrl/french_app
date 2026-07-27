@@ -174,3 +174,59 @@ Partner-Nachrichten, eine auf Anfrage für die Gegenrichtung.
 Empfänger ergänzen (Details in `APP_PRIVACY.md`), und den Flow einmal auf
 echtem Gerät mit echtem Key durchspielen — im Container gibt es keinen
 Swift-Compiler, der Code ist ungebaut geschrieben.
+
+### Nachtrag — Apple Intelligence zuerst, Proxy für den Rest
+
+Die erste Fassung hatte eine Schwäche: „Bring deinen eigenen Anthropic-Key
+mit" ist für eine Consumer-App eine Zumutung. Praktisch niemand außer dem
+Entwickler hat einen — damit wäre der KI-Partner eine Tür, die nie aufgeht,
+und der leere Tandem-Bereich bliebe leer. Deshalb jetzt gestaffelt
+(`AIPartnerResolver`):
+
+1. **Apple Intelligence** (`AppleAIPartnerService`, Foundation Models, ab
+   iOS 26) — kostenlos, offline, ohne Einrichtung. Standard, wo verfügbar.
+2. **Eigener Key** — wenn der Nutzer selbst einen hinterlegt.
+3. **Proxy** (`server/`) — Premium, Key liegt serverseitig.
+
+**Ausnahme von Regel 1:** Ab B1 hat Claude Vorrang, wenn erreichbar. Apples
+Modell hat rund 3 Mrd. Parameter; für Small Talk auf A1/A2 reicht das gut,
+beim beiläufigen Korrigieren auf B1/B2 wird es dünn — und ein falsch
+„korrigierter" Satz bringt der lernenden Person aktiv etwas Falsches bei.
+Aus demselben Grund staffelt auch die Claude-Seite: `claude-haiku-4-5` bis
+A2, `claude-opus-4-8` ab B1.
+
+**Warum ein Proxy und kein eingebauter Key:** Ein Key in der App ist nicht zu
+schützen. App-Store-Binaries lassen sich entschlüsseln und durchsuchen, und
+selbst ein perfekt versteckter Key steht beim Absenden im Klartext im
+`x-api-key`-Header — ein Debug-Proxy auf dem eigenen Gerät liest ihn mit.
+Der Worker hält den Key stattdessen serverseitig, ist ohne App-Update
+rotierbar und deckelt pro Gerät (Standard 40 Nachrichten/Tag).
+
+Zugang nur mit **App Attest**: Jede Anfrage trägt eine Signatur aus der
+Secure Enclave über den Request-Body, plus einen Zähler gegen
+Wiedereinspielung. Wer die Proxy-Adresse aus dem Binary liest, kann sie
+trotzdem nicht benutzen. Zusätzlich baut der Worker den System-Prompt selbst
+— sonst wäre er ein kostenloser Allzweck-Claude für jeden, der die Adresse
+kennt.
+
+Die Premium-Prüfung bleibt in der App. Das trägt, weil App Attest
+*veränderte* Apps abweist: Eine gepatchte App, die den Check überspringt,
+besteht die Attestation nicht. Quittungsprüfung über die App Store Server
+API wäre die festere Variante — bewusst nicht drin.
+
+**Kosten:** Der Worker läuft im CloudFlare-Gratis-Tier. Anthropic kostet ca.
+0,25 Cent pro Chat-Zug (Haiku). Bei 20 Nachrichten/Tag sind das rund 1,50 €
+pro aktivem Nutzer und Monat — deshalb deckt Apple Intelligence den
+Großteil ab, und der Claude-Pfad hängt an Premium.
+
+**Getestet:** 18 Tests im Worker (`cd server && npm test`) decken den
+Assertion-Pfad ab, der bei jeder Anfrage läuft — DER-Umwandlung der
+Signatur, Zählerprüfung, App-Bindung, fremde Schlüssel — sowie die
+Eingabeprüfung. **Nicht** abgedeckt: die Attestation bei der Registrierung
+(braucht ein echtes, von Apple signiertes Blob) und die Swift-Seite
+(kein Compiler im Container).
+
+**Noch offen:** Worker deployen und `AI_PROXY_BASE_URL` in `project.yml`
+eintragen (Anleitung in `server/README.md`); Entitlement für
+App-Store-Builds auf `production` stellen; auf echtem Gerät durchspielen —
+App Attest gibt es im Simulator nicht.

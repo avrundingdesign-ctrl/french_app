@@ -148,7 +148,7 @@ final class AIPartnerTests: XCTestCase {
         _ = try await service.reply(to: [message("Bonjour", from: "me")], as: persona)
 
         let payload = try XCTUnwrap(StubURLProtocol.lastRequestJSON())
-        XCTAssertEqual(payload["model"] as? String, ClaudeAIPartnerService.model)
+        XCTAssertEqual(payload["model"] as? String, ClaudeAIPartnerService.entryModel)
         XCTAssertEqual(payload["max_tokens"] as? Int, ClaudeAIPartnerService.maxTokens)
         let system = try XCTUnwrap(payload["system"] as? String)
         XCTAssertTrue(system.contains("Französisch"))
@@ -198,6 +198,113 @@ final class AIPartnerTests: XCTestCase {
         let payload = try XCTUnwrap(StubURLProtocol.lastRequestJSON())
         let messages = try XCTUnwrap(payload["messages"] as? [[String: Any]])
         XCTAssertEqual(messages.map { $0["role"] as? String }, ["user", "assistant", "user"])
+    }
+
+    /// A1/A2 kommen mit dem günstigen Modell aus; ab B1 wird beiläufiges
+    /// Korrigieren anspruchsvoll — und eine falsche „Korrektur" bringt der
+    /// lernenden Person aktiv etwas Falsches bei.
+    func testModelFollowsLevel() async throws {
+        XCTAssertEqual(ClaudeAIPartnerService.model(for: .a1), ClaudeAIPartnerService.entryModel)
+        XCTAssertEqual(ClaudeAIPartnerService.model(for: .a2), ClaudeAIPartnerService.entryModel)
+        XCTAssertEqual(ClaudeAIPartnerService.model(for: .b1), ClaudeAIPartnerService.advancedModel)
+        XCTAssertEqual(ClaudeAIPartnerService.model(for: .b2), ClaudeAIPartnerService.advancedModel)
+
+        let service = makeService()
+        _ = try await service.reply(
+            to: [message("Bonjour", from: "me")],
+            as: AIPersona(language: .french, level: .b2)
+        )
+        let payload = try XCTUnwrap(StubURLProtocol.lastRequestJSON())
+        XCTAssertEqual(payload["model"] as? String, ClaudeAIPartnerService.advancedModel)
+    }
+
+    // MARK: - Dienstauswahl
+
+    /// Apples Modell hat Vorrang, weil es kostenlos, offline und ohne
+    /// Einrichtung läuft.
+    func testAppleWinsWhenAvailable() {
+        let routing = AIPartnerResolver.resolve(
+            isDemo: false, level: .a1, keyStore: InMemoryAIKeyStore(),
+            proxy: nil, isPremium: false, appleAvailability: .available
+        )
+        XCTAssertEqual(routing.source, .apple)
+        XCTAssertNotNil(routing.service)
+    }
+
+    /// Ausnahme: Ab B1 ist Claude die bessere Wahl, wenn erreichbar.
+    func testClaudePreferredFromB1Upwards() {
+        let store = InMemoryAIKeyStore(key: "sk-ant-test")
+        let a1 = AIPartnerResolver.resolve(
+            isDemo: false, level: .a1, keyStore: store,
+            proxy: nil, isPremium: false, appleAvailability: .available
+        )
+        XCTAssertEqual(a1.source, .apple, "Auf A1 reicht das kostenlose Modell")
+
+        let b1 = AIPartnerResolver.resolve(
+            isDemo: false, level: .b1, keyStore: store,
+            proxy: nil, isPremium: false, appleAvailability: .available
+        )
+        XCTAssertEqual(b1.source, .ownKey, "Ab B1 zählt Korrekturqualität mehr als der Preis")
+    }
+
+    func testFallsBackToClaudeWhenAppleUnavailable() {
+        let routing = AIPartnerResolver.resolve(
+            isDemo: false, level: .a1, keyStore: InMemoryAIKeyStore(key: "sk-ant-test"),
+            proxy: nil, isPremium: false, appleAvailability: .deviceNotEligible
+        )
+        XCTAssertEqual(routing.source, .ownKey)
+    }
+
+    func testProxyOnlyForPremium() {
+        let proxy = AIProxyConfig(baseURL: URL(string: "https://proxy.example")!)
+        let free = AIPartnerResolver.resolve(
+            isDemo: false, level: .a1, keyStore: InMemoryAIKeyStore(),
+            proxy: proxy, isPremium: false, appleAvailability: .deviceNotEligible
+        )
+        XCTAssertFalse(free.source.isUsable)
+        XCTAssertNil(free.service)
+
+        let premium = AIPartnerResolver.resolve(
+            isDemo: false, level: .a1, keyStore: InMemoryAIKeyStore(),
+            proxy: proxy, isPremium: true, appleAvailability: .deviceNotEligible
+        )
+        XCTAssertEqual(premium.source, .proxy)
+        XCTAssertNotNil(premium.service)
+    }
+
+    func testDemoNeedsNothing() {
+        let routing = AIPartnerResolver.resolve(
+            isDemo: true, level: .a1, keyStore: InMemoryAIKeyStore(),
+            proxy: nil, isPremium: false, appleAvailability: .needsNewerOS
+        )
+        XCTAssertEqual(routing.source, .demo)
+        XCTAssertNotNil(routing.service)
+    }
+
+    /// Der Hinweis muss den kostenlosen Weg zuerst nennen — und bei
+    /// abgeschaltetem Apple Intelligence sagen, dass es behebbar ist.
+    func testUnavailableHintNamesFreePathFirst() {
+        let routing = AIPartnerResolver.resolve(
+            isDemo: false, level: .a1, keyStore: InMemoryAIKeyStore(),
+            proxy: nil, isPremium: false, appleAvailability: .notEnabled
+        )
+        guard case .unavailable(let hint) = routing.source else {
+            return XCTFail("Ohne Dienst erwartet: .unavailable")
+        }
+        XCTAssertTrue(hint.contains("Apple Intelligence"))
+        XCTAssertTrue(hint.contains("API-Key"), "Der eigene Key bleibt als Ausweg genannt")
+    }
+
+    func testProxyConfigRejectsNonHTTPS() {
+        // Der Nachweis über App Attest schützt nichts, wenn die Verbindung
+        // unverschlüsselt ist.
+        XCTAssertNil(AIProxyConfig.from(rawValue: "http://proxy.example"))
+        XCTAssertNil(AIProxyConfig.from(rawValue: ""))
+        XCTAssertNil(AIProxyConfig.from(rawValue: nil))
+        XCTAssertEqual(
+            AIProxyConfig.from(rawValue: " https://proxy.example ")?.baseURL,
+            URL(string: "https://proxy.example")
+        )
     }
 
     // MARK: - Übersetzung
