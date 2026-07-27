@@ -357,7 +357,8 @@ final class AIPartnerTests: XCTestCase {
         XCTAssertEqual(loaded.last?.senderProfileID, AIPartnerIdentity.profileID)
 
         await store.reset()
-        XCTAssertTrue(await AIChatStore(filename: filename).load().isEmpty)
+        let afterReset = await AIChatStore(filename: filename).load()
+        XCTAssertTrue(afterReset.isEmpty)
     }
 
     func testChatStoreCapsStoredMessages() async {
