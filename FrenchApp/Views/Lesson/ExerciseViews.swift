@@ -237,21 +237,17 @@ struct TextInputExerciseView: View {
                     .foregroundStyle(.secondary)
             }
 
-            VStack(spacing: 10) {
-                TextField("Antwort", text: $text)
-                    .textFieldStyle(.roundedBorder)
-                    .font(.title3)
-                    .autocorrectionDisabled()
-                    .textInputAutocapitalization(.never)
-                    .keyboardType(.default)
-                    .submitLabel(.done)
-                    .focused($focused)
-                    .onSubmit(submit)
-                    .disabled(answered)
-
-                AccentBar(text: $text)
-                    .disabled(answered)
-            }
+            TextField("Antwort", text: $text)
+                .textFieldStyle(.roundedBorder)
+                .font(.title3)
+                .autocorrectionDisabled()
+                .textInputAutocapitalization(.never)
+                .keyboardType(.default)
+                .submitLabel(.done)
+                .focused($focused)
+                .onSubmit(submit)
+                .disabled(answered)
+                .accentBar(text: $text, isActive: focused && !answered)
 
             Button(action: submit) {
                 Text("Prüfen")
@@ -430,28 +426,43 @@ struct ExerciseHeader: View {
     }
 }
 
-/// Eingabeleiste für französische Sonderzeichen.
-struct AccentBar: View {
+/// Eingabehilfe für französische Sonderzeichen, direkt über der Tastatur.
+///
+/// Nicht unter dem Feld: Dort sah die Leiste aus wie die Wortkacheln der
+/// Satzbau-Aufgaben, also wie eine Auswahl, aus der die Antwort zu bauen sei —
+/// und weil dieselben Zeichen immer dastehen, wirkte die Aufgabe kaputt.
+/// Über der Tastatur ist sie unmissverständlich Eingabehilfe.
+struct AccentBar: ViewModifier {
     @Binding var text: String
+    /// Nur einblenden, solange die Eingabe offen ist.
+    let isActive: Bool
 
     private static let accents = ["é", "è", "ê", "à", "ç", "ù", "â", "î", "ô", "û", "ë", "ï", "œ", "'"]
 
-    var body: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: 8) {
-                ForEach(Self.accents, id: \.self) { accent in
-                    Button {
-                        text.append(accent)
-                    } label: {
-                        Text(accent)
-                            .font(.title3)
-                            .frame(width: 38, height: 38)
-                            .background(Color(.secondarySystemGroupedBackground), in: RoundedRectangle(cornerRadius: 8))
+    func body(content: Content) -> some View {
+        content.toolbar {
+            ToolbarItemGroup(placement: .keyboard) {
+                if isActive {
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack(spacing: 6) {
+                            ForEach(Self.accents, id: \.self) { accent in
+                                Button(accent) { text.append(accent) }
+                                    .font(.title3)
+                                    .frame(minWidth: 34, minHeight: 34)
+                            }
+                        }
+                        .padding(.horizontal, 2)
                     }
-                    .buttonStyle(.plain)
                 }
             }
         }
+    }
+}
+
+extension View {
+    /// Hängt die Sonderzeichen-Leiste an die Tastatur des Feldes.
+    func accentBar(text: Binding<String>, isActive: Bool) -> some View {
+        modifier(AccentBar(text: text, isActive: isActive))
     }
 }
 
