@@ -251,6 +251,24 @@ final class GermanConjugatorTests: XCTestCase {
         XCTAssertEqual(try form("fahren", .imperativ, 1), "fahr", "Kein Umlaut im Imperativ")
     }
 
+    /// Reine Umlautung entfällt im Imperativ, der e→i(e)-Wechsel nicht.
+    /// Ohne diese Unterscheidung wurde aus „vergiss!" ein „vergess!".
+    func testImperativeKeepsVowelChangeButNotUmlaut() throws {
+        XCTAssertEqual(try form("vergessen", .imperativ, 1), "vergiss")
+        // Endungslos: kein Epenthese-e, auch wenn der Stamm es sonst nähme.
+        XCTAssertFalse(try form("vergessen", .imperativ, 1).hasSuffix("e"))
+        // Die ihr-Form bleibt beim Grundstamm.
+        XCTAssertEqual(try form("vergessen", .imperativ, 4), "vergesst")
+
+        for umlautVerb in ["fahren", "laufen", "schlafen", "tragen", "waschen"] {
+            let imperative = try form(umlautVerb, .imperativ, 1)
+            XCTAssertFalse(
+                imperative.contains("ä") || imperative.contains("äu"),
+                "\(umlautVerb): Umlaut gehört nicht in den Imperativ, war \(imperative)"
+            )
+        }
+    }
+
     func testIrregularImperativeFromTable() throws {
         XCTAssertEqual(try form("essen", .imperativ, 1), "iss")
         XCTAssertEqual(try form("sein", .imperativ, 1), "sei")

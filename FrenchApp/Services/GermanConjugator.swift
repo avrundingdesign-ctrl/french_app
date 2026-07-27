@@ -333,6 +333,9 @@ struct GermanConjugator {
         let stem = stem(ofBase: base)
         switch person {
         case 1:
+            // e→i(e) gilt auch im Imperativ, und zwar immer endungslos:
+            // vergiss!, gib!, sieh!, tritt!
+            if let changed = eiImperativeStem(verb, stem: stem) { return changed }
             // fahr! (a→ä-Wechsel entfällt im Imperativ), arbeite!, öffne!
             return stem + (needsEpenthesis(stem) ? "e" : "")
         case 4:
@@ -342,6 +345,26 @@ struct GermanConjugator {
         default:
             return nil
         }
+    }
+
+    /// Der Wechselstamm der 2./3. Person, falls es sich um e→i(e) handelt —
+    /// nur dieser Wechsel schlägt auf den Imperativ durch. Reine Umlautung
+    /// (a→ä, au→äu) tut es nicht: „du fährst", aber „fahr!".
+    ///
+    /// Unterschieden wird daran, ob der Wechselstamm ohne seine Umlaute
+    /// wieder der Grundstamm ist — dann war es nur Umlautung.
+    private func eiImperativeStem(_ verb: GermanVerbEntry, stem: String) -> String? {
+        guard let stem23 = verb.presentStem23, withoutUmlauts(stem23) != stem else {
+            return nil
+        }
+        return stem23
+    }
+
+    private func withoutUmlauts(_ text: String) -> String {
+        text
+            .replacingOccurrences(of: "ä", with: "a")
+            .replacingOccurrences(of: "ö", with: "o")
+            .replacingOccurrences(of: "ü", with: "u")
     }
 }
 

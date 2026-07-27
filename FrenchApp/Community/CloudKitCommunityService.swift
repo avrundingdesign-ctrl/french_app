@@ -256,17 +256,34 @@ final class CloudKitCommunityService: CommunityService {
         _ = try await database.save(record)
     }
 
+    /// Obergrenze der Löschrunden à 200 Records — deckt jeden realistischen
+    /// Verlauf ab und begrenzt zugleich den Schaden, falls die Schleife
+    /// aus einem anderen Grund nicht leerläuft.
+    private static let maxDeletionRounds = 50
+
     func endMatch(_ match: TandemMatch) async throws {
         // Verlauf portionsweise löschen (Queries liefern max. 200 Records).
-        while true {
+        //
+        // Zwei Gründe, warum das eine echte Abbruchbedingung braucht: Die
+        // Public DB ist eventually consistent, liefert also gerade gelöschte
+        // Records durchaus noch einmal zurück; und `modifyRecords` meldet
+        // Fehler pro Record im Ergebnis, statt zu werfen. Ohne das drehte
+        // sich die Schleife ewig, und mit ihr „Tandem beenden" und die
+        // Profil-Löschung.
+        var attempted = Set<CKRecord.ID>()
+        for _ in 0..<Self.maxDeletionRounds {
             let query = CKQuery(
                 recordType: "Message",
                 predicate: NSPredicate(format: "matchID == %@", match.id)
             )
             let (results, _) = try await database.records(matching: query, resultsLimit: 200)
             let recordIDs = results.compactMap { try? $0.1.get().recordID }
-            guard !recordIDs.isEmpty else { break }
-            _ = try await database.modifyRecords(saving: [], deleting: recordIDs)
+            let pending = recordIDs.filter { !attempted.contains($0) }
+            guard !pending.isEmpty else { break }
+            // Vor dem Aufruf vormerken: Ein Record, den wir nicht löschen
+            // dürfen, soll die Schleife nicht erneut beschäftigen.
+            attempted.formUnion(pending)
+            _ = try await database.modifyRecords(saving: [], deleting: pending)
         }
         try await database.deleteRecord(withID: CKRecord.ID(recordName: match.id))
     }

@@ -141,12 +141,8 @@ async function chat(request, env, ctx) {
     JSON.stringify({ ...stored, counter, lastSeenAt: Date.now() })
   )
 
-  const limit = Number(env.DAILY_MESSAGE_LIMIT ?? DEFAULT_DAILY_LIMIT)
-  const usage = await bumpDailyUsage(env, keyId, limit)
-  if (usage.exceeded) {
-    return fail(429, 'rate_limited', `Tageslimit von ${limit} Nachrichten erreicht.`)
-  }
-
+  // Erst prüfen, dann zählen: Eine kaputte Anfrage soll keine der
+  // Tagesnachrichten kosten.
   let plan
   try {
     plan = validateRequest(JSON.parse(new TextDecoder().decode(body)))
@@ -154,7 +150,21 @@ async function chat(request, env, ctx) {
     return fail(400, 'bad_request', error.message)
   }
 
-  return callAnthropic(plan, env)
+  const limit = Number(env.DAILY_MESSAGE_LIMIT ?? DEFAULT_DAILY_LIMIT)
+  const used = await dailyUsage(env, keyId)
+  if (used >= limit) {
+    return fail(429, 'rate_limited', `Tageslimit von ${limit} Nachrichten erreicht.`)
+  }
+
+  const response = await callAnthropic(plan, env)
+  // Verbucht wird nur, was auch eine Antwort geliefert hat. Ein Ausfall
+  // beim KI-Dienst darf das Kontingent nicht aufbrauchen — sonst wäre der
+  // Tag nach ein paar Fehlversuchen vorbei, ohne eine Antwort gesehen zu
+  // haben.
+  if (response.ok) {
+    await recordUsage(env, keyId, used)
+  }
+  return response
 }
 
 /// Tageslimit pro Gerät.
@@ -162,13 +172,19 @@ async function chat(request, env, ctx) {
 /// - Note: KV ist letztlich konsistent — bei parallelen Anfragen kann das
 ///   Limit leicht überschritten werden. Für ein hartes Limit wäre ein Durable
 ///   Object nötig; für den Kostenschutz reicht diese Genauigkeit.
-async function bumpDailyUsage(env, keyId, limit) {
+function dailyUsageKey(keyId) {
   const day = new Date().toISOString().slice(0, 10)
-  const key = `rate:${keyId}:${day}`
-  const current = Number((await env.DEVICES.get(key)) ?? 0)
-  if (current >= limit) return { exceeded: true, current }
-  await env.DEVICES.put(key, String(current + 1), { expirationTtl: 60 * 60 * 26 })
-  return { exceeded: false, current: current + 1 }
+  return `rate:${keyId}:${day}`
+}
+
+async function dailyUsage(env, keyId) {
+  return Number((await env.DEVICES.get(dailyUsageKey(keyId))) ?? 0)
+}
+
+async function recordUsage(env, keyId, previous) {
+  await env.DEVICES.put(dailyUsageKey(keyId), String(previous + 1), {
+    expirationTtl: 60 * 60 * 26,
+  })
 }
 
 // MARK: - Anthropic
