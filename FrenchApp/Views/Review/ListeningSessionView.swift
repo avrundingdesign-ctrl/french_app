@@ -159,7 +159,9 @@ struct ListeningSessionView: View {
             correct: outcome.correct,
             accentHint: outcome.accentHint,
             correctAnswer: correctAnswer,
-            explanation: explanation
+            explanation: explanation,
+            // Nach der Antwort darf der gehörte Satz erneut abgespielt werden.
+            audio: SpeechText(text: exercise.audio, language: content.direction.targetLocaleID)
         )
     }
 

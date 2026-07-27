@@ -110,7 +110,8 @@ struct GrammarPracticeView: View {
             correct: outcome.correct,
             accentHint: outcome.accentHint,
             correctAnswer: correctAnswer,
-            explanation: explanation
+            explanation: explanation,
+            audio: exercise.kind.feedbackAudio
         )
     }
 

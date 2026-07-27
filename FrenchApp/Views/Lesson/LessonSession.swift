@@ -29,6 +29,22 @@ final class LessonSession {
         let accentHint: Bool
         let correctAnswer: String
         let explanation: String?
+        /// Vorlesbare Lösung (Lernsprache) für den Lautsprecher im Banner.
+        var audio: SpeechText?
+
+        init(
+            correct: Bool,
+            accentHint: Bool,
+            correctAnswer: String,
+            explanation: String?,
+            audio: SpeechText? = nil
+        ) {
+            self.correct = correct
+            self.accentHint = accentHint
+            self.correctAnswer = correctAnswer
+            self.explanation = explanation
+            self.audio = audio
+        }
     }
 
     struct Summary {
@@ -116,7 +132,8 @@ final class LessonSession {
             correct: outcome.correct,
             accentHint: outcome.accentHint,
             correctAnswer: correctAnswerText(for: exercise),
-            explanation: explanation
+            explanation: explanation,
+            audio: exercise.kind.feedbackAudio
         )
     }
 

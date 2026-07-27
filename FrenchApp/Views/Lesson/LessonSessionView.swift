@@ -135,9 +135,15 @@ struct FeedbackBanner: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Label(title, systemImage: feedback.correct ? "checkmark.circle.fill" : "xmark.circle.fill")
-                .font(.headline)
-                .foregroundStyle(color)
+            HStack(spacing: 10) {
+                Label(title, systemImage: feedback.correct ? "checkmark.circle.fill" : "xmark.circle.fill")
+                    .font(.headline)
+                    .foregroundStyle(color)
+                Spacer()
+                if let audio = feedback.audio {
+                    SpeakerButton(speech: audio)
+                }
+            }
 
             if !feedback.correct || feedback.accentHint {
                 Text("Richtige Antwort: **\(feedback.correctAnswer)**")

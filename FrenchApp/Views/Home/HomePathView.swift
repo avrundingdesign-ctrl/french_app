@@ -4,7 +4,6 @@ import SwiftData
 /// Zentraler Hub (Spec Screen 2): vertikaler Lernpfad nach Niveau und Einheit,
 /// Freischalt-Status, Fortschritt pro Niveau, Einstieg in fällige Wiederholungen.
 struct HomePathView: View {
-    @EnvironmentObject private var premium: PremiumStore
     @Query private var progress: [LessonProgress]
     @Query private var reviewStates: [ReviewState]
     @Query private var settingsList: [UserSettings]
@@ -16,7 +15,6 @@ struct HomePathView: View {
     @State private var activeChallenge: ChallengeChapter?
     @State private var showReview = false
     @State private var showGrammarPractice = false
-    @State private var showPaywall = false
 
     private var content: ContentStore { settingsList.first?.content ?? .shared }
 
@@ -69,9 +67,6 @@ struct HomePathView: View {
             }
             .fullScreenCover(isPresented: $showGrammarPractice) {
                 GrammarPracticeView(rules: unlockedGrammarRules, content: content)
-            }
-            .sheet(isPresented: $showPaywall) {
-                PaywallView()
             }
         }
     }
@@ -133,16 +128,13 @@ struct HomePathView: View {
     // MARK: - Vertiefung (optionale Komplex-Übungen)
 
     private func challengeCard(_ chapter: ChallengeChapter) -> some View {
-        let premiumLocked = PremiumGate.challengeRequiresPremium(level: chapter.level) && !premium.isPremium
-        let unlocked = snapshot.isExamUnlocked(chapter.level, earnedLevels: earnedLevels) && !premiumLocked
+        let unlocked = snapshot.isExamUnlocked(chapter.level, earnedLevels: earnedLevels)
         let progress = challengeProgress.first { $0.chapterID == chapter.id }
         let color = Theme.levelColor(chapter.level)
 
         return Button {
             if unlocked {
                 activeChallenge = chapter
-            } else if premiumLocked {
-                showPaywall = true
             }
         } label: {
             HStack(spacing: 12) {
@@ -152,27 +144,23 @@ struct HomePathView: View {
                         .frame(width: 40, height: 40)
                     Image(systemName: progress != nil
                           ? "star.fill"
-                          : (unlocked ? "puzzlepiece.extension.fill" : (premiumLocked ? "crown.fill" : "lock.fill")))
+                          : (unlocked ? "puzzlepiece.extension.fill" : "lock.fill"))
                         .font(.subheadline)
-                        .foregroundStyle(unlocked || progress != nil ? .white : (premiumLocked ? Theme.accent : .secondary))
+                        .foregroundStyle(unlocked || progress != nil ? .white : .secondary)
                 }
                 VStack(alignment: .leading, spacing: 2) {
                     HStack(spacing: 6) {
                         Text(chapter.title)
                             .font(.body.weight(.semibold))
                             .foregroundStyle(unlocked ? Color.primary : Color.secondary)
-                        if premiumLocked {
-                            PremiumBadge()
-                        } else {
-                            Text("optional")
-                                .font(.caption2.bold())
-                                .foregroundStyle(.secondary)
-                                .padding(.horizontal, 6)
-                                .padding(.vertical, 2)
-                                .background(Color(.systemFill), in: Capsule())
-                        }
+                        Text("optional")
+                            .font(.caption2.bold())
+                            .foregroundStyle(.secondary)
+                            .padding(.horizontal, 6)
+                            .padding(.vertical, 2)
+                            .background(Color(.systemFill), in: Capsule())
                     }
-                    Text(challengeSubtitle(chapter, progress: progress, unlocked: unlocked, premiumLocked: premiumLocked))
+                    Text(challengeSubtitle(chapter, progress: progress, unlocked: unlocked))
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 }
@@ -191,18 +179,15 @@ struct HomePathView: View {
             .background(Color(.secondarySystemGroupedBackground), in: RoundedRectangle(cornerRadius: 16))
         }
         .buttonStyle(.plain)
-        .disabled(!unlocked && !premiumLocked)
+        .disabled(!unlocked)
     }
 
-    private func challengeSubtitle(_ chapter: ChallengeChapter, progress: ChallengeProgress?, unlocked: Bool, premiumLocked: Bool) -> String {
+    private func challengeSubtitle(_ chapter: ChallengeChapter, progress: ChallengeProgress?, unlocked: Bool) -> String {
         if let progress {
             return "Bester Lauf: \(Int((progress.bestScore * 100).rounded())) % · \(chapter.questionCount) Aufgaben"
         }
         if unlocked {
             return "Komplexe Übungen: Grammatik + Wortschatz kombiniert · \(chapter.questionCount) Aufgaben"
-        }
-        if premiumLocked {
-            return "Mit Premium freischalten · \(chapter.questionCount) Aufgaben"
         }
         return "Schließe zuerst alle Lektionen von \(chapter.level.rawValue) ab"
     }
@@ -268,15 +253,12 @@ struct HomePathView: View {
 
     private func examCard(_ exam: ExamDefinition) -> some View {
         let passed = earnedLevels.contains(exam.level)
-        let premiumLocked = PremiumGate.examRequiresPremium(level: exam.level) && !premium.isPremium
-        let unlocked = snapshot.isExamUnlocked(exam.level, earnedLevels: earnedLevels) && !premiumLocked
+        let unlocked = snapshot.isExamUnlocked(exam.level, earnedLevels: earnedLevels)
         let color = Theme.levelColor(exam.level)
 
         return Button {
             if unlocked {
                 activeExam = exam
-            } else if premiumLocked {
-                showPaywall = true
             }
         } label: {
             HStack(spacing: 12) {
@@ -286,20 +268,15 @@ struct HomePathView: View {
                         .frame(width: 40, height: 40)
                     Image(systemName: passed
                           ? "checkmark.seal.fill"
-                          : (unlocked ? "seal.fill" : (premiumLocked ? "crown.fill" : "lock.fill")))
+                          : (unlocked ? "seal.fill" : "lock.fill"))
                         .font(.subheadline)
-                        .foregroundStyle(unlocked || passed ? .white : (premiumLocked ? Theme.accent : .secondary))
+                        .foregroundStyle(unlocked || passed ? .white : .secondary)
                 }
                 VStack(alignment: .leading, spacing: 2) {
-                    HStack(spacing: 6) {
-                        Text("Niveau-Prüfung \(exam.level.rawValue)")
-                            .font(.body.weight(.semibold))
-                            .foregroundStyle(unlocked ? Color.primary : Color.secondary)
-                        if premiumLocked {
-                            PremiumBadge()
-                        }
-                    }
-                    Text(examSubtitle(exam, passed: passed, unlocked: unlocked, premiumLocked: premiumLocked))
+                    Text("Niveau-Prüfung \(exam.level.rawValue)")
+                        .font(.body.weight(.semibold))
+                        .foregroundStyle(unlocked ? Color.primary : Color.secondary)
+                    Text(examSubtitle(exam, passed: passed, unlocked: unlocked))
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 }
@@ -322,18 +299,15 @@ struct HomePathView: View {
             )
         }
         .buttonStyle(.plain)
-        .disabled(!unlocked && !premiumLocked)
+        .disabled(!unlocked)
     }
 
-    private func examSubtitle(_ exam: ExamDefinition, passed: Bool, unlocked: Bool, premiumLocked: Bool) -> String {
+    private func examSubtitle(_ exam: ExamDefinition, passed: Bool, unlocked: Bool) -> String {
         if passed {
             return "Bestanden — Zertifikat in deiner Galerie"
         }
         if unlocked {
             return "\(content.direction.examBrand(for: exam.level))-Stil · 4 Teile · \(exam.durationMinutes) Minuten"
-        }
-        if premiumLocked {
-            return "Mit Premium freischalten · \(content.direction.examBrand(for: exam.level))-Stil · \(exam.durationMinutes) Minuten"
         }
         let (_, total) = snapshot.levelProgress(exam.level)
         if total == 0, let previous = CEFRLevel.allCases.filter({ $0 < exam.level }).max() {
@@ -343,37 +317,30 @@ struct HomePathView: View {
     }
 
     private func unitCard(_ unit: CourseUnit) -> some View {
-        let premiumLocked = PremiumGate.lessonRequiresPremium(level: unit.level) && !premium.isPremium
-        return VStack(alignment: .leading, spacing: 4) {
+        VStack(alignment: .leading, spacing: 4) {
             HStack(spacing: 8) {
                 Image(systemName: unit.icon ?? "folder")
                     .foregroundStyle(Theme.levelColor(unit.level))
                 Text(unit.title)
                     .font(.subheadline.bold())
                     .foregroundStyle(.secondary)
-                if premiumLocked {
-                    Spacer()
-                    PremiumBadge()
-                }
             }
             .padding(.bottom, 4)
 
             ForEach(Array(unit.lessons.enumerated()), id: \.element.id) { index, lesson in
-                lessonRow(lesson, number: index + 1, premiumLocked: premiumLocked)
+                lessonRow(lesson, number: index + 1)
             }
         }
         .card()
     }
 
-    private func lessonRow(_ lesson: CourseLesson, number: Int, premiumLocked: Bool) -> some View {
-        let unlocked = snapshot.isUnlocked(lesson) && !premiumLocked
+    private func lessonRow(_ lesson: CourseLesson, number: Int) -> some View {
+        let unlocked = snapshot.isUnlocked(lesson)
         let completed = snapshot.isCompleted(lesson.id)
 
         return Button {
             if unlocked {
                 activeLesson = lesson
-            } else if premiumLocked {
-                showPaywall = true
             }
         } label: {
             HStack(spacing: 12) {
@@ -389,10 +356,6 @@ struct HomePathView: View {
                         Image(systemName: "play.fill")
                             .font(.subheadline)
                             .foregroundStyle(.white)
-                    } else if premiumLocked {
-                        Image(systemName: "crown.fill")
-                            .font(.subheadline)
-                            .foregroundStyle(Theme.accent)
                     } else {
                         Image(systemName: "lock.fill")
                             .font(.subheadline)
@@ -423,7 +386,7 @@ struct HomePathView: View {
             .padding(.vertical, 6)
         }
         .buttonStyle(.plain)
-        .disabled(!unlocked && !premiumLocked)
+        .disabled(!unlocked)
     }
 
     private func lessonSubtitle(_ lesson: CourseLesson) -> String {

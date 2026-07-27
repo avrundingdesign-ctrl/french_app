@@ -4,30 +4,14 @@ import StoreKit
 // MARK: - Gating-Regeln (Phase 6)
 
 /// Was Premium kostet und was frei bleibt — bewusst als pure Logik getrennt
-/// vom StoreKit-Teil, damit die Produktentscheidungen testbar sind.
-/// Prinzip (ROADMAP Phase 6): Einstieg und Netzwerk frei, Tiefe kostet.
-/// Frei: A1+A2-Lernpfad (beide Richtungen), A1/A2-Pakete, SRS-Trainer,
-/// Hörtraining, Tandem, Prüfungen A1–B1. Premium: Lernpfad ab B1,
-/// Wortschatzpakete ab B1, Vertiefungskapitel, Prüfungen ab B2.
+/// vom StoreKit-Teil, damit die Produktentscheidung testbar ist.
+/// Prinzip: Lernpfad, Prüfungen, Vertiefungen und Grammatik sind komplett
+/// kostenlos (beide Kursrichtungen) — bezahlt wird ausschließlich für die
+/// zusätzlichen B2-Wortschatz-Pakete im Training-Tab.
 enum PremiumGate {
-    /// Lektionen ab B1 sind Premium (gilt für beide Kursrichtungen).
-    static func lessonRequiresPremium(level: CEFRLevel) -> Bool {
-        level >= .b1
-    }
-
-    /// Wortschatzpakete ab B1 sind Premium.
+    /// Wortschatzpakete ab B2 sind Premium; A1/A2/B1-Pakete bleiben frei.
     static func packRequiresPremium(level: CEFRLevel) -> Bool {
-        level >= .b1
-    }
-
-    /// Prüfungssimulationen B2/C1 sind Premium; A1–B1 bleiben frei.
-    static func examRequiresPremium(level: CEFRLevel) -> Bool {
         level >= .b2
-    }
-
-    /// Vertiefungskapitel (optionale Komplex-Übungen) sind komplett Premium.
-    static func challengeRequiresPremium(level: CEFRLevel) -> Bool {
-        true
     }
 }
 

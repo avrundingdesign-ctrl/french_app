@@ -10,7 +10,9 @@ struct ReviewHubView: View {
     @State private var showSession = false
     @State private var showMistakePractice = false
     @State private var listeningMode: ListeningTrainer.Mode?
+    @State private var speakingMode: PronunciationTrainer.Mode?
     @AppStorage("listeningLevel") private var listeningLevelRaw = CEFRLevel.a1.rawValue
+    @AppStorage("speakingLevel") private var speakingLevelRaw = CEFRLevel.a1.rawValue
 
     private var content: ContentStore { settingsList.first?.content ?? .shared }
 
@@ -41,6 +43,7 @@ struct ReviewHubView: View {
                         packsCard
                     }
                     listeningCard
+                    speakingCard
                     infoCard
                 }
                 .padding()
@@ -55,6 +58,9 @@ struct ReviewHubView: View {
             }
             .fullScreenCover(item: $listeningMode) { mode in
                 ListeningSessionView(mode: mode, level: listeningLevel, content: content)
+            }
+            .fullScreenCover(item: $speakingMode) { mode in
+                PronunciationSessionView(mode: mode, level: speakingLevel, content: content)
             }
         }
     }
@@ -189,6 +195,60 @@ struct ReviewHubView: View {
             ForEach(ListeningTrainer.Mode.allCases) { mode in
                 Button {
                     listeningMode = mode
+                } label: {
+                    HStack(spacing: 12) {
+                        Image(systemName: mode.symbol)
+                            .frame(width: 28)
+                            .foregroundStyle(Theme.accent)
+                        VStack(alignment: .leading, spacing: 1) {
+                            Text(mode.title)
+                                .font(.subheadline.weight(.semibold))
+                                .foregroundStyle(Color.primary)
+                            Text(mode.description)
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                                .multilineTextAlignment(.leading)
+                        }
+                        Spacer()
+                        Image(systemName: "chevron.right")
+                            .font(.caption)
+                            .foregroundStyle(.tertiary)
+                    }
+                    .padding(10)
+                    .background(Color(.tertiarySystemGroupedBackground), in: RoundedRectangle(cornerRadius: 12))
+                }
+                .buttonStyle(.plain)
+            }
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .card()
+    }
+
+    // MARK: - Sprechtraining
+
+    private var speakingLevel: CEFRLevel {
+        CEFRLevel(rawValue: speakingLevelRaw) ?? .a1
+    }
+
+    private var speakingCard: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            Label("Sprechtraining", systemImage: "mic.fill")
+                .font(.headline)
+
+            Text("Sprich Wörter und Sätze nach — die Spracherkennung bewertet, wie gut man dich auf \(content.direction.targetLanguageName) versteht.")
+                .font(.subheadline)
+                .foregroundStyle(.secondary)
+
+            Picker("Niveau", selection: $speakingLevelRaw) {
+                ForEach(content.levels) { level in
+                    Text(level.rawValue).tag(level.rawValue)
+                }
+            }
+            .pickerStyle(.segmented)
+
+            ForEach(PronunciationTrainer.Mode.allCases) { mode in
+                Button {
+                    speakingMode = mode
                 } label: {
                     HStack(spacing: 12) {
                         Image(systemName: mode.symbol)

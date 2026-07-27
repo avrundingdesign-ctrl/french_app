@@ -95,7 +95,9 @@ final class ExamSession {
                         exerciseIndex: sectionIndex * 100 + taskIndex,
                         subIndex: questionIndex
                     )
-                    guard let exercise = factory.standaloneExercise(spec: spec, ref: ref) else {
+                    // Ohne Lautsprecher-Texte: In der Prüfung würde Vorlesen
+                    // Lese- und Strukturaufgaben verfälschen.
+                    guard let exercise = factory.standaloneExercise(spec: spec, ref: ref, includeAudio: false) else {
                         continue
                     }
                     built.append(ExamQuestion(

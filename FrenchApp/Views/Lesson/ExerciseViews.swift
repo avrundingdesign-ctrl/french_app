@@ -15,7 +15,8 @@ struct MCExerciseView: View {
             ExerciseHeader(
                 instruction: exercise.instruction,
                 prompt: exercise.prompt,
-                detail: exercise.promptDetail
+                detail: exercise.promptDetail,
+                audio: exercise.promptAudio
             )
 
             VStack(spacing: 10) {
@@ -191,6 +192,11 @@ struct MatchingExerciseView: View {
             matched.insert(left.pairID)
             selectedLeft = nil
             selectedRight = nil
+            // Gefundenes Paar vorlesen — passives Hörtraining beim Zuordnen.
+            if let pair = exercise.pairs.first(where: { $0.id == left.pairID }),
+               let speech = exercise.speech(for: pair) {
+                SpeechService.shared.speak(speech)
+            }
             if matched.count == exercise.pairs.count {
                 finished = true
                 onAnswered(AnswerOutcome(correct: !hadMistake))
@@ -398,15 +404,22 @@ struct ExerciseHeader: View {
     let instruction: String
     let prompt: String
     let detail: String?
+    /// Lautsprecher neben dem Prompt, wenn er in der Lernsprache steht.
+    var audio: SpeechText?
 
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
             Text(instruction)
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
-            Text(prompt)
-                .font(.title2.bold())
-                .fixedSize(horizontal: false, vertical: true)
+            HStack(alignment: .firstTextBaseline, spacing: 10) {
+                Text(prompt)
+                    .font(.title2.bold())
+                    .fixedSize(horizontal: false, vertical: true)
+                if let audio {
+                    SpeakerButton(speech: audio)
+                }
+            }
             if let detail, !detail.isEmpty {
                 Text(detail)
                     .font(.subheadline)

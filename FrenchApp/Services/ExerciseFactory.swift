@@ -11,6 +11,30 @@ struct MCExercise {
     let correctIndex: Int
     /// Zusatzinfo fürs Feedback (z. B. Beispielsatz).
     let explanation: String?
+    /// Vorlesbarer Prompt, falls er in der Lernsprache steht.
+    var promptAudio: SpeechText?
+    /// Vorlesbare Lösung fürs Feedback nach der Antwort.
+    var solutionAudio: SpeechText?
+
+    init(
+        instruction: String,
+        prompt: String,
+        promptDetail: String?,
+        options: [String],
+        correctIndex: Int,
+        explanation: String?,
+        promptAudio: SpeechText? = nil,
+        solutionAudio: SpeechText? = nil
+    ) {
+        self.instruction = instruction
+        self.prompt = prompt
+        self.promptDetail = promptDetail
+        self.options = options
+        self.correctIndex = correctIndex
+        self.explanation = explanation
+        self.promptAudio = promptAudio
+        self.solutionAudio = solutionAudio
+    }
 
     var correctAnswer: String { options[correctIndex] }
 }
@@ -24,6 +48,23 @@ struct MatchingExercise {
 
     let instruction: String
     let pairs: [Pair]
+    /// Sprache der Lernseite — gesetzt, wenn gefundene Paare vorgelesen werden sollen.
+    var audioLanguage: String?
+
+    init(instruction: String, pairs: [Pair], audioLanguage: String? = nil) {
+        self.instruction = instruction
+        self.pairs = pairs
+        self.audioLanguage = audioLanguage
+    }
+
+    /// Die vorlesbare (Lernsprachen-)Seite eines Paars.
+    func speech(for pair: Pair) -> SpeechText? {
+        guard let audioLanguage else { return nil }
+        return SpeechText(
+            text: audioLanguage.hasPrefix("de") ? pair.de : pair.fr,
+            language: audioLanguage
+        )
+    }
 }
 
 struct TextInputExercise {
@@ -39,6 +80,9 @@ struct TextInputExercise {
     let translation: String?
     /// Vollständige Lösung fürs Feedback.
     let fullSolution: String
+    /// Vorlesbare Lösung fürs Feedback nach der Antwort (nicht vorher —
+    /// bei Lücken- und Übersetzungsaufgaben würde Audio die Lösung verraten).
+    var solutionAudio: SpeechText?
 
     init(
         instruction: String,
@@ -48,7 +92,8 @@ struct TextInputExercise {
         altAnswers: [String] = [],
         hint: String?,
         translation: String?,
-        fullSolution: String
+        fullSolution: String,
+        solutionAudio: SpeechText? = nil
     ) {
         self.instruction = instruction
         self.prefix = prefix
@@ -58,6 +103,7 @@ struct TextInputExercise {
         self.hint = hint
         self.translation = translation
         self.fullSolution = fullSolution
+        self.solutionAudio = solutionAudio
     }
 
     /// Prüft die Eingabe gegen Haupt- und Alternativantworten; bestes Ergebnis zählt.
@@ -83,6 +129,15 @@ struct WordOrderExercise {
     let tokens: [String]
     /// Deutsche Übersetzung — sagt, welcher Satz zu bilden ist.
     let de: String
+    /// Vorlesbarer Zielsatz fürs Feedback nach der Antwort.
+    var solutionAudio: SpeechText?
+
+    init(instruction: String, tokens: [String], de: String, solutionAudio: SpeechText? = nil) {
+        self.instruction = instruction
+        self.tokens = tokens
+        self.de = de
+        self.solutionAudio = solutionAudio
+    }
 }
 
 enum ExerciseKind {
@@ -90,6 +145,37 @@ enum ExerciseKind {
     case matching(MatchingExercise)
     case textInput(TextInputExercise)
     case wordOrder(WordOrderExercise)
+
+    /// Was der Lautsprecher-Button im Feedback-Banner vorliest: die Lösung
+    /// in der Lernsprache — beim Erkennen-MC ersatzweise der Prompt (dort ist
+    /// die Lösung die Muttersprache, hörenswert ist das abgefragte Wort).
+    var feedbackAudio: SpeechText? {
+        switch self {
+        case .multipleChoice(let mc): return mc.solutionAudio ?? mc.promptAudio
+        case .textInput(let input): return input.solutionAudio
+        case .wordOrder(let order): return order.solutionAudio
+        case .matching: return nil
+        }
+    }
+
+    /// Kopie ohne Audio — für Prüfungen, wo Vorlesen die Aufgaben verfälschen würde.
+    func strippingAudio() -> ExerciseKind {
+        switch self {
+        case .multipleChoice(var mc):
+            mc.promptAudio = nil
+            mc.solutionAudio = nil
+            return .multipleChoice(mc)
+        case .textInput(var input):
+            input.solutionAudio = nil
+            return .textInput(input)
+        case .wordOrder(var order):
+            order.solutionAudio = nil
+            return .wordOrder(order)
+        case .matching(var matching):
+            matching.audioLanguage = nil
+            return .matching(matching)
+        }
+    }
 }
 
 /// Stabile Referenz auf einen Übungs-Spec, um Übungen für die
@@ -122,6 +208,13 @@ struct ExerciseFactory {
     /// Prompt-/Lösungsseite je Kursrichtung (Deutsch-Kurs: de ist Ziel).
     private var pair: LanguagePair { content.pair }
 
+    /// Macht einen Lernsprachen-Text vorlesbar — nichts mit Lücke ("___"),
+    /// das klingt vorgelesen falsch.
+    private func speech(_ text: String?) -> SpeechText? {
+        guard let text, !text.isEmpty, !text.contains("___") else { return nil }
+        return SpeechText(text: text, language: content.direction.targetLocaleID)
+    }
+
     func exercises(for lesson: CourseLesson) -> [RuntimeExercise] {
         lesson.exercises.enumerated().flatMap { index, spec in
             build(spec: spec, lesson: lesson, exerciseIndex: index)
@@ -140,25 +233,38 @@ struct ExerciseFactory {
 
     /// Baut eine Übung aus einem freistehenden Spec (Niveau-Prüfungen) — ohne
     /// Lektionskontext. Vokabel-Typen (vocabIntro/vocabProd/matching) brauchen
-    /// eine Lektion und sind hier nicht erlaubt.
-    func standaloneExercise(spec: ExerciseSpec, ref: ExerciseRef) -> RuntimeExercise? {
+    /// eine Lektion und sind hier nicht erlaubt. `includeAudio: false` entfernt
+    /// die Lautsprecher-Texte (Prüfungsmodus).
+    func standaloneExercise(spec: ExerciseSpec, ref: ExerciseRef, includeAudio: Bool = true) -> RuntimeExercise? {
+        let built: RuntimeExercise?
         switch spec.type {
         case .cloze:
             guard let text = spec.text, let answer = spec.answer else { return nil }
-            return clozeExercise(text: text, answer: answer, spec: spec, ref: ref)
+            built = clozeExercise(text: text, answer: answer, spec: spec, ref: ref)
         case .conjugation:
-            return conjugationExercise(spec: spec, ref: ref)
+            built = conjugationExercise(spec: spec, ref: ref)
         case .wordOrder:
-            return wordOrderExercise(spec: spec, ref: ref)
+            built = wordOrderExercise(spec: spec, ref: ref)
         case .mcSentence:
-            return mcSentenceExercise(spec: spec, ref: ref)
+            built = mcSentenceExercise(spec: spec, ref: ref)
         case .translate:
-            return translateExercise(spec: spec, ref: ref)
+            built = translateExercise(spec: spec, ref: ref)
         case .errorCorrection:
-            return errorCorrectionExercise(spec: spec, ref: ref)
+            built = errorCorrectionExercise(spec: spec, ref: ref)
         case .vocabIntro, .vocabProd, .matching:
             return nil
         }
+        guard let built else { return nil }
+        guard includeAudio else {
+            return RuntimeExercise(
+                ref: built.ref,
+                kind: built.kind.strippingAudio(),
+                vocabID: built.vocabID,
+                promptSummary: built.promptSummary,
+                answerSummary: built.answerSummary
+            )
+        }
+        return built
     }
 
     // MARK: Aufbau pro Spec-Typ
@@ -186,7 +292,11 @@ struct ExerciseFactory {
                 return MatchingExercise.Pair(id: item.id, fr: item.fr, de: item.de)
             }
             guard pairs.count >= 3 else { return [] }
-            let exercise = MatchingExercise(instruction: String(localized: "Ordne die Paare zu"), pairs: pairs)
+            let exercise = MatchingExercise(
+                instruction: String(localized: "Ordne die Paare zu"),
+                pairs: pairs,
+                audioLanguage: content.direction.targetLocaleID
+            )
             return [RuntimeExercise(
                 ref: ref(0),
                 kind: .matching(exercise),
@@ -232,7 +342,8 @@ struct ExerciseFactory {
                 ? String(localized: "Bilde den deutschen Satz")
                 : String(localized: "Bilde den französischen Satz"),
             tokens: tokens,
-            de: native
+            de: native,
+            solutionAudio: speech(target)
         )
         return RuntimeExercise(
             ref: ref,
@@ -258,7 +369,9 @@ struct ExerciseFactory {
             promptDetail: nil,
             options: options,
             correctIndex: correctIndex,
-            explanation: spec.translation
+            explanation: spec.translation,
+            promptAudio: speech(question),
+            solutionAudio: speech(answer)
         )
         return RuntimeExercise(
             ref: ref,
@@ -283,7 +396,8 @@ struct ExerciseFactory {
             altAnswers: spec.altAnswers ?? [],
             hint: spec.hint,
             translation: native,
-            fullSolution: target
+            fullSolution: target,
+            solutionAudio: speech(target)
         )
         return RuntimeExercise(
             ref: ref,
@@ -309,7 +423,9 @@ struct ExerciseFactory {
             promptDetail: spec.translation,
             options: options,
             correctIndex: correctIndex,
-            explanation: spec.hint
+            explanation: spec.hint,
+            // Den fehlerhaften Satz bewusst nicht vorlesen — nur die Korrektur.
+            solutionAudio: speech(answer)
         )
         return RuntimeExercise(
             ref: ref,
@@ -354,7 +470,11 @@ struct ExerciseFactory {
             promptDetail: production ? nil : detailParts.joined(separator: " · "),
             options: options,
             correctIndex: correctIndex,
-            explanation: explanation
+            explanation: explanation,
+            // Erkennen: der Prompt ist das Lernsprachen-Wort. Produktion: der
+            // Prompt ist Muttersprache, hörbar wird die Lösung im Feedback.
+            promptAudio: production ? nil : speech(pair.target(item)),
+            solutionAudio: production ? speech(correct) : nil
         )
         return RuntimeExercise(
             ref: ref,
@@ -379,7 +499,8 @@ struct ExerciseFactory {
                 promptDetail: spec.translation,
                 options: options,
                 correctIndex: correctIndex,
-                explanation: spec.hint
+                explanation: spec.hint,
+                solutionAudio: speech(fullSolution)
             )
             return RuntimeExercise(
                 ref: ref,
@@ -399,7 +520,8 @@ struct ExerciseFactory {
             altAnswers: spec.altAnswers ?? [],
             hint: spec.hint,
             translation: spec.translation,
-            fullSolution: fullSolution
+            fullSolution: fullSolution,
+            solutionAudio: speech(fullSolution)
         )
         return RuntimeExercise(
             ref: ref,
@@ -467,7 +589,8 @@ struct ExerciseFactory {
             altAnswers: altAnswers,
             hint: hint,
             translation: spec.translation,
-            fullSolution: fullSolution
+            fullSolution: fullSolution,
+            solutionAudio: speech(fullSolution)
         )
         return RuntimeExercise(
             ref: ref,
@@ -519,7 +642,8 @@ struct ExerciseFactory {
             altAnswers: spec.altAnswers ?? [],
             hint: spec.hint,
             translation: spec.translation,
-            fullSolution: prefix + answer
+            fullSolution: prefix + answer,
+            solutionAudio: speech(prefix + answer)
         )
         return RuntimeExercise(
             ref: ref,

@@ -90,10 +90,18 @@ struct ReviewSessionView: View {
                     }
                 }
 
-                Text(production ? pair.native(item) : pair.target(item))
-                    .font(.largeTitle.bold())
-                    .multilineTextAlignment(.center)
-                    .frame(maxWidth: .infinity)
+                HStack(alignment: .firstTextBaseline, spacing: 10) {
+                    Text(production ? pair.native(item) : pair.target(item))
+                        .font(.largeTitle.bold())
+                        .multilineTextAlignment(.center)
+                    if !production {
+                        SpeakerButton(speech: SpeechText(
+                            text: pair.target(item),
+                            language: direction.targetLocaleID
+                        ))
+                    }
+                }
+                .frame(maxWidth: .infinity)
 
                 if !production, let detail = frontDetail(item) {
                     Text(detail)
@@ -103,13 +111,27 @@ struct ReviewSessionView: View {
 
                 if revealed {
                     Divider()
-                    Text(production ? pair.target(item) : pair.native(item))
-                        .font(.title2.weight(.semibold))
-                        .foregroundStyle(Theme.accent)
-                        .multilineTextAlignment(.center)
+                    HStack(alignment: .firstTextBaseline, spacing: 10) {
+                        Text(production ? pair.target(item) : pair.native(item))
+                            .font(.title2.weight(.semibold))
+                            .foregroundStyle(Theme.accent)
+                            .multilineTextAlignment(.center)
+                        if production {
+                            SpeakerButton(speech: SpeechText(
+                                text: pair.target(item),
+                                language: direction.targetLocaleID
+                            ))
+                        }
+                    }
                     if let example = pair.targetExample(item), let nativeExample = pair.nativeExample(item) {
                         VStack(spacing: 2) {
-                            Text(example).font(.subheadline.italic())
+                            HStack(alignment: .firstTextBaseline, spacing: 8) {
+                                Text(example).font(.subheadline.italic())
+                                SpeakerButton(
+                                    speech: SpeechText(text: example, language: direction.targetLocaleID),
+                                    font: .footnote
+                                )
+                            }
                             Text(nativeExample).font(.footnote).foregroundStyle(.secondary)
                         }
                         .multilineTextAlignment(.center)

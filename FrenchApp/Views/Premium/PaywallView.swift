@@ -13,14 +13,8 @@ struct PaywallView: View {
                     header
 
                     VStack(alignment: .leading, spacing: 14) {
-                        feature("map.fill", "Kompletter Lernpfad bis B2",
-                                "Alle B1- und B2-Lektionen — auf Wunsch in beiden Kursrichtungen.")
-                        feature("rectangle.stack.fill", "Alle Wortschatz-Pakete",
-                                "Über 20 thematische B1/B2-Pakete mit hunderten Wörtern fürs Training.")
-                        feature("puzzlepiece.extension.fill", "Vertiefungskapitel",
-                                "Komplexe Übungen pro Niveau: Transformation, Lückentexte, Konnektoren.")
-                        feature("seal.fill", "Prüfungen B2 und C1",
-                                "Simulationen im DELF/DALF-Stil mit Zertifikat beim Bestehen.")
+                        feature("rectangle.stack.fill", "Alle B2-Wortschatz-Pakete",
+                                "10 fortgeschrittene Themenpakete — Politik, Wirtschaft, Kultur, Wissenschaft und mehr — mit hunderten zusätzlichen Wörtern fürs Training.")
                     }
                     .padding(18)
                     .background(Color(.secondarySystemGroupedBackground), in: RoundedRectangle(cornerRadius: 16))
@@ -78,7 +72,7 @@ struct PaywallView: View {
                 .foregroundStyle(Theme.accent)
             Text("Premium freischalten")
                 .font(.title2.bold())
-            Text("A1 und A2 bleiben komplett kostenlos — Premium öffnet den ganzen Weg bis zum Zertifikat.")
+            Text("Der komplette Lernpfad, alle Prüfungen und Vertiefungen sind kostenlos — Premium schaltet zusätzlich die B2-Wortschatz-Pakete frei.")
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
                 .multilineTextAlignment(.center)

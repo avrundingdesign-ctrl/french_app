@@ -36,6 +36,9 @@ targets:
         # Adresse des KI-Proxys (server/). Leer = kein Proxy-Pfad; dann läuft
         # der KI-Partner nur über Apple Intelligence oder einen eigenen Key.
         AIProxyBaseURL: $(AI_PROXY_BASE_URL)
+        # Aussprache-Training: Aufnahme + Spracherkennung (bevorzugt auf dem Gerät).
+        NSMicrophoneUsageDescription: "Das Mikrofon wird für die Sprechübungen gebraucht, um deine Aussprache zu bewerten."
+        NSSpeechRecognitionUsageDescription: "Die Spracherkennung wandelt deine Sprechübungen in Text um, damit die App deine Aussprache bewerten kann — wenn möglich direkt auf dem Gerät."
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: design.avrunding.frenchapp

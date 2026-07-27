@@ -126,12 +126,21 @@ struct GrammarDetailView: View {
                         Text("Beispiele")
                             .font(.headline)
                         ForEach(rule.examples, id: \.fr) { example in
-                            VStack(alignment: .leading, spacing: 2) {
-                                Text(example.fr)
-                                    .font(.body.weight(.semibold))
-                                Text(example.de)
-                                    .font(.subheadline)
-                                    .foregroundStyle(.secondary)
+                            HStack(alignment: .firstTextBaseline, spacing: 10) {
+                                VStack(alignment: .leading, spacing: 2) {
+                                    Text(example.fr)
+                                        .font(.body.weight(.semibold))
+                                    Text(example.de)
+                                        .font(.subheadline)
+                                        .foregroundStyle(.secondary)
+                                }
+                                Spacer()
+                                if let target = content.pair.targetText(fr: example.fr, de: example.de) {
+                                    SpeakerButton(
+                                        speech: SpeechText(text: target, language: content.direction.targetLocaleID),
+                                        level: rule.level
+                                    )
+                                }
                             }
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .padding(12)

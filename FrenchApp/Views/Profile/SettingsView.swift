@@ -1,3 +1,4 @@
+import AVFoundation
 import SwiftUI
 import SwiftData
 
@@ -13,6 +14,9 @@ struct SettingsView: View {
     @Query private var reviewLog: [ReviewLogEntry]
 
     @AppStorage("appearance") private var appearance = "system"
+    /// Erzwingt das Neuzeichnen des Stimmen-Pickers nach einer Auswahl
+    /// (der Wert liegt in UserDefaults, nicht in einem @State).
+    @State private var voiceRefresh = 0
     @State private var confirmSRSReset = false
     @State private var confirmFullReset = false
     @State private var showPaywall = false
@@ -24,6 +28,7 @@ struct SettingsView: View {
             if let settings = settingsList.first {
                 courseSection(settings)
                 trainingSection(settings)
+                voiceSection(settings)
                 certificateSection(settings)
             }
 
@@ -120,7 +125,7 @@ struct SettingsView: View {
                         VStack(alignment: .leading, spacing: 2) {
                             Text("Premium freischalten")
                                 .foregroundStyle(Color.primary)
-                            Text("Lernpfad bis B2, alle Pakete, Vertiefungen, Prüfungen B2/C1")
+                            Text("Zusätzliche B2-Wortschatz-Pakete")
                                 .font(.caption)
                                 .foregroundStyle(.secondary)
                         }
@@ -166,6 +171,62 @@ struct SettingsView: View {
         } footer: {
             Text("Bestimmt, wie viele neue Wörter pro Tag zusätzlich zu den fälligen Wiederholungen ins Training kommen.")
         }
+    }
+
+    /// Stimme der Sprachausgabe für die aktuelle Lernsprache — gespeichert
+    /// pro Sprache (Geräte-Einstellung, Stimmen sind lokal installiert).
+    private func voiceSection(_ settings: UserSettings) -> some View {
+        let language = settings.courseDirection.targetLocaleID
+        let key = SpeechService.voiceDefaultsKey(for: language)
+        let voices = SpeechService.availableVoices(for: language)
+        let selection = Binding(
+            get: { UserDefaults.standard.string(forKey: key) ?? "" },
+            set: { newValue in
+                UserDefaults.standard.set(newValue, forKey: key)
+                voiceRefresh += 1
+            }
+        )
+
+        return Section {
+            Picker(selection: selection) {
+                Text("Automatisch (beste Qualität)").tag("")
+                ForEach(voices, id: \.identifier) { voice in
+                    Text(voiceLabel(voice)).tag(voice.identifier)
+                }
+            } label: {
+                Text("Stimme (\(settings.courseDirection.targetLanguageName))")
+            }
+            .id(voiceRefresh)
+
+            Button {
+                SpeechService.shared.speak(
+                    settings.courseDirection == .german
+                        ? String(localized: "Hallo! So klingt deine deutsche Stimme.")
+                        : "Bonjour ! Voici ta voix française.",
+                    level: .a1,
+                    language: language
+                )
+            } label: {
+                Label("Stimme anhören", systemImage: "speaker.wave.2.fill")
+            }
+        } header: {
+            Text("Sprachausgabe")
+        } footer: {
+            Text("Natürlichere Stimmen kannst du in den iOS-Einstellungen laden: Bedienungshilfen → Gesprochene Inhalte → Stimmen → \(settings.courseDirection.targetLanguageName). Neu geladene Stimmen erscheinen hier nach einem App-Neustart.")
+        }
+    }
+
+    private func voiceLabel(_ voice: AVSpeechSynthesisVoice) -> String {
+        var label = voice.name
+        if let quality = SpeechService.qualityLabel(for: voice) {
+            label += " · \(quality)"
+        }
+        // Regionale Varianten kennzeichnen (fr-CA, de-AT …).
+        if let region = voice.language.split(separator: "-").last,
+           !["FR", "DE"].contains(region) {
+            label += " (\(region))"
+        }
+        return label
     }
 
     private func certificateSection(_ settings: UserSettings) -> some View {

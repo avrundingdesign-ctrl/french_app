@@ -202,7 +202,8 @@ struct ChallengeSessionView: View {
             correct: outcome.correct,
             accentHint: outcome.accentHint,
             correctAnswer: correctAnswer,
-            explanation: explanation
+            explanation: explanation,
+            audio: question.exercise.kind.feedbackAudio
         )
     }
 
