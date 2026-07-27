@@ -31,7 +31,7 @@
             {"type": "vocabIntro", "vocab": ["v_monsieur", "v_madame", "v_enchante"]},
             {"type": "matching", "vocab": ["v_moi", "v_toi", "v_et", "v_comment", "v_madame"]},
             {"type": "cloze", "text": "___ tu t'appelles ?", "answer": "Comment", "choices": ["Comment", "Et", "Oui"], "translation": "Wie heißt du?", "vocab": ["v_comment"]},
-            {"type": "wordOrder", "fr": "Moi, je m'appelle Paul", "de": "Ich heiße Paul", "vocab": ["v_je_mappelle"]},
+            {"type": "wordOrder", "fr": "Moi, je m'appelle Paul", "de": "Also ich heiße Paul", "vocab": ["v_je_mappelle", "v_moi"]},
             {"type": "mcSentence", "question": "Jemand sagt: «Je m'appelle Léo.» Was bedeutet das?", "answer": "Ich heiße Léo.", "distractors": ["Ich mag Léo.", "Wie geht es Léo?"], "vocab": ["v_je_mappelle"]},
             {"type": "vocabProd", "vocab": ["v_et", "v_comment"]}
           ]
